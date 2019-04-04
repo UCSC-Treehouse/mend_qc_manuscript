@@ -1,0 +1,6 @@
+Sample	Source	Disease	Sequence length (per read end)	Percent duplicates
+S1	SRA: SRP040454	embryonal rhabdomyosarcoma	75	28
+S2	doi: 10.24370/SD_BHJXBDQK	glioma (astrocytoma)	100	26
+S3	EGA: EGAD00001000158	medulloblastoma	100	11
+S4	dbGap: phs000673.v2.p1	undifferentiated spindle cell sarcoma	100	38
+S5	EGA: EGAD00001001927	primitive neuroectodermal tumor of the central nervous system	101	26

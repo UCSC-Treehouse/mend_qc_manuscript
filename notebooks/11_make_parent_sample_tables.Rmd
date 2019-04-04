@@ -1,0 +1,94 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+#  pdf_document: default
+ # fig_caption: yes
+
+---
+
+
+```{r setup, include=FALSE}
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(knitr)
+library(forcats)
+
+```
+
+
+
+                   
+## Load data
+
+
+```{r }
+
+raw_parent_sample_data_source <- read_tsv("../data/parent_sample_data_source.tsv") %>% rename(pub_ID = publication_id)
+```
+
+# Read counts 
+```{r}
+
+allCountsRaw <- read_tsv(file.path( "../data/raw_read_survey_results_2019_03_28.txt"), 
+                         col_names = c("sample_id", "count_type", "read_count")) %>%
+  dplyr::filter(
+    sample_id %in% raw_parent_sample_data_source$`Treehouse ID`
+  ) %>% 
+  spread(count_type, read_count) %>%
+  rename(UM = Uniquely_mapped_read_count,
+         UMND = Uniquely_mapped_non_duplicate_read_count) %>%
+  mutate(pct_UMEND = UMEND / total_sequences,
+         Percent_duplicates = 1 - (UMND / UM), 
+         not_uniquely_mapped = total_sequences - UM,
+         duplicate_reads = UM - UMND,
+         non_exonic_reads = UMND - UMEND
+  )
+
+parent_sample_data <- left_join(raw_parent_sample_data_source,
+                                allCountsRaw,
+                                by=c(`Treehouse ID`="sample_id")
+)
+
+```
+
+# minimal table for main text
+```{r}
+
+minimal_parent_sample_data_table <- parent_sample_data %>%
+  select(Sample = pub_ID, Source, `Disease`, `Sequence length (per read end)`, `Percent duplicates`=Percent_duplicates) %>%
+  mutate(`Percent duplicates`=round(100*`Percent duplicates`))
+
+knitr::kable(minimal_parent_sample_data_table) #, digits=3, format.args=list(big.mark = ','))
+
+minimal_parent_sample_data_table %>%  write_tsv("../figures_and_tables/table_1_selected_parent_sample_data.tsv")
+
+```
+
+
+# comprehensive_supplemental_table
+```{r}
+
+comprehensive_parent_sample_data_table <- parent_sample_data %>%
+  select(Sample = pub_ID, `Total sequences` = total_sequences, `Not uniquely mapped` = not_uniquely_mapped, `Duplicates` = duplicate_reads, `Non-exonic` = non_exonic_reads, UMEND,
+         `Percent UMEND` = pct_UMEND, `Treehouse ID`, `Project information`, `Sample ID in project`) %>%
+  mutate(`Non-exonic` = format(round(`Non-exonic`), big.mark = ","),
+         `Percent UMEND` = round(100 * `Percent UMEND`,1),
+         `Total sequences` = format(`Total sequences`, big.mark = ","),
+         `Not uniquely mapped` = format(`Not uniquely mapped`, big.mark = ","),
+         `Duplicates` = format(`Duplicates`, big.mark = ","),
+         `UMEND` = format(`UMEND`, big.mark = ","),
+         )
+
+knitr::kable(comprehensive_parent_sample_data_table[,1:7], digits=3, format.args=list(big.mark = ','))
+knitr::kable(comprehensive_parent_sample_data_table[,c(1,8:9)], digits=3, format.args=list(big.mark = ','))
+
+write_tsv(comprehensive_parent_sample_data_table, "../figures_and_tables/table_S1_comprehensive_parent_sample_data.tsv")
+
+```
+
+

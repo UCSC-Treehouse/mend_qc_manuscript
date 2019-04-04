@@ -1,0 +1,465 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+  toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+In this analysis, the true expression of a gene is considered to be the expression level found_in_the_deepest_subset made from that parent. An accurate measurement is defined as one that is within 25% percent of the true expression values. 
+
+```{r setup, include = FALSE}
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+library(cowplot)
+
+```
+
+## Load data
+
+```{r}
+
+gene_abundances_for_bin_detail <- read_tsv("../data/gene_abundances_for_bin_detail.tsv")
+
+highlighted_gene_abundances_raw <- read_tsv("../data/highlighted_gene_abundances.tsv")
+
+read_counts_raw <- read_tsv("../data/read_counts.txt",
+                            col_names = c("sample_id", "measurement", "read_count"))
+
+```
+
+## Groom data
+
+```{r}
+
+ 
+# add information about total reads at data points
+highlight_expression <- left_join(highlighted_gene_abundances_raw,
+                            read_counts_raw %>%
+                              dplyr::filter(measurement == "total_sequences") %>%
+                              select(-measurement) %>%
+                              select(total_reads = read_count, everything()),
+                            by = "sample_id") 
+
+```
+ 
+# Set grid line sizes
+
+```{r}
+
+grid_size_major <- 0.08
+grid_size_minor <- 0.05
+
+```
+
+## Highlight expression of some cancer genes
+
+```{r, fig.height = 5, fig.width = 9}
+
+expression_label_data <- highlight_expression %>%
+  dplyr::filter(
+    parent_id == "TH_Eval_014",
+    target_UMEND_count == max(target_UMEND_count)) %>% 
+  mutate(vjust_val = ifelse(gene %in% c("JAK2", "TP53"), 2, -0.5))
+
+# max_x=20+10*ceiling(max(expression_label_data$max_depth)/1e7)
+max_x <- 10 * ceiling(max(expression_label_data$total_reads) / 1E7)
+
+p <- ggplot(highlight_expression) +
+  geom_line(aes(x = total_reads / 1e6, y = expression, group = gene, color = gene)) +
+  geom_point(aes(x = total_reads / 1e6, y = expression, group = gene, color = gene), size = 0.5)
+  # shape= within_accuracy_threshold_of_deepest_val),  size=3, fill="white", alpha=.8 # line opts were , size=1.5, alpha=.7
+
+p2 <- p +
+  geom_text(data = expression_label_data,
+            aes(x = max_x - 5,
+                y = expression,
+                label = gene,
+                color = gene,
+                vjust = vjust_val),
+            size = 4, hjust = 1) #+
+  #expand_limits(x = max(expression_label_data$max_depth) / 1e6+5)  
+
+p3 <- p2 + 
+  facet_wrap(~publication_id, nrow = 1) + 
+  background_grid(major = "xy", 
+                  minor = "x",
+                  colour.major = "black", 
+                  colour.minor = grey(0.75),
+                  size.major = grid_size_major,
+                  size.minor = grid_size_minor) + 
+  theme(axis.line = element_blank(),
+        legend.position = "none",
+        plot.title = element_text(hjust = 0)) + 
+  scale_shape_manual(values = c(22, 16))  + 
+  scale_color_brewer(guide = FALSE, palette = "Set1") + 
+  expand_limits(y = 0, x = max_x) +
+  ylab("Expression (log2(TPM+1))") + 
+  xlab("Total reads (million)") +
+  ggtitle("A")
+
+p3
+
+```
+
+# Smaller
+
+```{r}
+
+ids_to_plot <- c("S1", "S2")
+small_highlight_expression <- subset(highlight_expression, publication_id %in% ids_to_plot)
+
+p <- ggplot(small_highlight_expression) +
+  geom_line(aes(x = total_reads / 1e6,
+                y = expression,
+                group = gene,
+                color = gene)) +
+  geom_point(aes(x = total_reads / 1e6,
+                 y = expression,
+                 group = gene,
+                 color = gene),
+             size = 0.5)  # shape= within_accuracy_threshold_of_deepest_val),  size=3, fill="white", alpha=.8 # line opts were , size=1.5, alpha=.7
+
+p2 <- p +
+  geom_text(data = expression_label_data,
+            aes(x = 1 + total_reads / 1e6,
+                y = expression,
+                label = gene,
+                color = gene,
+                vjust = vjust_val),
+            size = 4,
+            hjust = 1) #+
+  #expand_limits(x = max(expression_label_data$max_depth) / 1e6 + 5)  
+
+small_p3 <- p2 + 
+  facet_wrap(~publication_id, nrow = 1) + 
+  background_grid(major = "xy", 
+                  minor = "x",
+                  colour.major = "black", 
+                  colour.minor = grey(0.75),
+                  size.major = grid_size_major,
+                  size.minor = grid_size_minor) + 
+  theme(axis.line = element_blank(),
+        legend.position = "none",
+        plot.title = element_text(hjust = 0)) + 
+  scale_shape_manual(values = c(22, 16))  + 
+  scale_color_brewer(guide = FALSE, palette = "Set1") + 
+  expand_limits(y = 0, x = max_x) +
+  ylab("Expression (log2(TPM+1))") + 
+  xlab("Total reads (million)") +
+  ggtitle("A")
+
+small_p3
+
+```
+
+# Combine accuracy across expression bins
+
+These values are not used in calculations here, just for reporting. They are used in "summarize_expression"
+```{r}
+
+half_size_of_expr_bin <- 0.02
+gene_expression_levels <- c(1.5, 3.5, 5.5)
+
+
+n_gene_sample_combos <- gene_abundances_for_bin_detail %>% 
+  filter(target_UMEND_count == max(target_UMEND_count)) %>%
+  group_by(parent_id, expression_bin) %>%
+  summarize(n_genes_per_boxplot = n())
+
+unique(n_gene_sample_combos$n_genes_per_boxplot)
+
+```
+
+#  Box plots across expression bins by total reads
+
+note: 
+each expression bin contains `r unique(n_gene_sample_combos$n_genes_per_boxplot)` genes per parent sample
+Each expression bin contains genes that are expressed within +/- `r half_size_of_expr_bin` of `r gene_expression_levels`
+
+# All five parent samples
+
+```{r}
+
+pretty_expression <-  left_join(gene_abundances_for_bin_detail,
+                            read_counts_raw %>%
+                              dplyr::filter(measurement == "total_sequences") %>%
+                              select(-measurement) %>%
+                              select(total_reads = read_count, everything()),
+                            by = "sample_id") 
+
+
+
+# dummy data to make the y axis as big as i want them
+dummy <- bind_rows(c(median_expr = 1.5, expression = 5),
+                   c(median_expr = 1.5, expression = 0),
+                   c(median_expr = 3.5, expression = 6),
+                   c(median_expr = 3.5, expression = 1),
+                   c(median_expr = 5.5, expression = 3),
+                   c(median_expr = 5.5, expression = 8)) %>%
+  mutate(publication_id = "S1", # it doesn't matter which since they're all using the same y axis
+         total_reads = 10 * 1e6)
+
+pretty_expression$median_expr_f <- factor(as.character(pretty_expression$expression_bin),
+                                          levels = rev(as.character(gene_expression_levels)))
+dummy$median_expr_f <- factor(as.character(dummy$median_expr),
+                              levels = rev(as.character(gene_expression_levels)))
+
+hline_dummy <- as_tibble(expand.grid(median_expr = unique(dummy$median_expr),
+                                     publication_id = unique(pretty_expression$publication_id))) %>%
+  mutate(median_expr_f = factor(as.character(median_expr)))
+
+plot_title = "Range of expression of genes with similar expression"
+pBin <- ggplot(pretty_expression) + 
+  geom_hline(data = hline_dummy, aes(yintercept = median_expr),
+             size = 0.25, color = "#6699cc") +
+  geom_boxplot(aes(x = total_reads / 1e6,
+                   y = expression,
+                   group = paste(expression_bin, median_of_depth_bin)), #color=label,
+               outlier.size = 0.5, width = 3) + 
+  xlab("Total reads (million)") + 
+  ylab("Expression (log2(TPM+1))") + 
+  theme(legend.position = "none") + 
+  facet_grid(median_expr_f ~ publication_id, scales = "free_y") +
+  geom_blank(data = dummy, aes(x = total_reads / 1e6, y = expression)) +
+  scale_y_continuous(breaks = seq(0, 10, by = 2)) + 
+  ggtitle("B")
+  # ggtitle(plot_title)
+
+pBin2 <- pBin +
+  background_grid(major = "xy", 
+                  minor = "x",
+                  colour.major = "black", 
+                  colour.minor = grey(0.75),
+                  size.major = grid_size_major,
+                  size.minor = grid_size_minor) +
+  theme(axis.line = element_blank(),
+        plot.title = element_text(hjust = 0)) +
+  scale_x_continuous(breaks = seq(0, max_x, 25))
+  # minor_breaks = seq(5, max_x, 5)) +
+  # scale_x_continuous(breaks = seq(0, max_x, 25),
+  # minor_breaks = seq(5, max_x, 5)) +
+
+pBin2
+# ggsave(paste0("figures_and_tables/", plot_title, ".png"), plot=pBin, width=7, height=7)
+
+```
+
+# Just 2 parent samples
+
+```{r}
+
+# dummy data to make the y axis as big as i want them
+dummy <- bind_rows(c(expression_bin = 1.5, expression = 5),
+                   c(expression_bin = 1.5, expression = 0),
+                   c(expression_bin = 3.5, expression = 6),
+                   c(expression_bin = 3.5, expression = 1),
+                   c(expression_bin = 5.5, expression = 3),
+                   c(expression_bin = 5.5, expression = 8)) %>%
+  mutate(publication_id = "S1", # it doesn't matter which since they're all using the same y axis
+         total_reads = 10 * 1e6)
+
+hline_dummy <- as_tibble(expand.grid(expression_bin = unique(dummy$expression_bin),
+                                     publication_id = unique(pretty_expression$publication_id))) %>%
+  mutate(
+    expression_bin_f = factor(as.character(expression_bin), as.character(gene_expression_levels))
+  )
+
+pretty_expression$expression_bin_f <- factor(as.character(pretty_expression$expression_bin),
+                                             levels = as.character(gene_expression_levels))
+dummy$expression_bin_f <- factor(as.character(dummy$expression_bin),
+                              levels = as.character(gene_expression_levels))
+hline_dummy$expression_bin_f <- factor(hline_dummy$expression_bin_f,
+                                    levels = as.character(gene_expression_levels))
+
+ids_to_plot <- c("S1", "S2")
+small_pretty_expression <- subset(pretty_expression, publication_id %in% ids_to_plot)
+small_hline_dummy <- subset(hline_dummy, publication_id %in% ids_to_plot)
+
+plot_title <- "Range of expression of genes with similar expression"
+pBin <- ggplot(small_pretty_expression) + 
+  geom_hline(data = small_hline_dummy, aes(yintercept = expression_bin),
+             size = 0.25, color = "#6699cc") + # color = "grey") +
+  geom_boxplot(aes(x = total_reads / 1e6,
+                   y = expression,
+                   group = paste(expression_bin, median_of_depth_bin)), #color=label,
+               outlier.size = 0.25, width = 3) + 
+  # geom_hline(data=hline_dummy, aes(yintercept=expression_bin), size=0.5, linetype="dotted", color="blue") +
+  xlab("Total reads (million)") + 
+  ylab("Expression (log2(TPM+1))") + 
+  theme(legend.position = "none") + 
+  facet_grid(expression_bin_f ~ publication_id, scales = "free_y") +
+  geom_blank(data = dummy, aes(x = total_reads / 1e6, y = expression)) +
+  scale_y_continuous(breaks = seq(0, 10, by = 2)) + 
+  ggtitle("B")
+  # ggtitle(plot_title)
+
+pSmallBin2 <- pBin +
+  background_grid(major = "xy", 
+                  minor = "x",
+                  colour.major = "black", 
+                  colour.minor = grey(0.75),
+                  size.major = grid_size_major,
+                  size.minor = grid_size_minor) +
+  theme(axis.line = element_blank(),
+        plot.title = element_text(hjust = 0)) +
+  scale_x_continuous(breaks = seq(0, max_x, 25))
+
+pSmallBin2
+
+```
+
+## Combine plots
+
+```{r}
+
+combined_figure_name <- "expression_figures"
+
+library(grid)
+library(gtable)
+library(gridExtra)
+
+grob1 <- ggplotGrob(p3)
+grob2 <- ggplotGrob(pBin2)
+
+this_time_stamp <- Sys.time()
+
+grobCombo <- arrangeGrob(grobs = list(grob1, grob2), 
+                         layout_matrix = rbind(c(1,1),
+                                               c(1,1),
+                                               c(2,2),
+                                               c(2,2),
+                                               c(2,2)),
+                         bottom = textGrob(paste(combined_figure_name, this_time_stamp, "UTC"),
+                                           x=0,
+                                           just = "left",
+                                           gp = gpar(fontsize = 8)))
+grid.newpage()
+grid.draw(grobCombo)
+
+ggsave(file = paste0("../figures_and_tables/",
+                     combined_figure_name,
+                     "_",
+                     gsub(" ", "_", gsub(":", "-", this_time_stamp)),
+                     "_",
+                     "UTC",
+                     ".png"),
+       grobCombo,
+       width = 6,
+       height = 8)
+
+```
+
+## Combine small plots
+
+```{r}
+
+combined_figure_name <- "two_sample_expression_figure"
+
+library(grid)
+library(gtable)
+library(gridExtra)
+
+grob1 <- ggplotGrob(small_p3)
+grob2 <- ggplotGrob(pSmallBin2)
+
+this_time_stamp <- Sys.time()
+
+grobCombo <- arrangeGrob(grobs = list(grob1, grob2), 
+                         layout_matrix = rbind(c(1,2),
+                                               c(1,2)),
+                         bottom = textGrob(paste(combined_figure_name, this_time_stamp, "UTC"),
+                                           x = 0,
+                                           just = "left",
+                                           gp = gpar(fontsize = 8)))
+grid.newpage()
+grid.draw(grobCombo)
+
+ggsave(file = paste0("../figures_and_tables/",
+                     combined_figure_name,
+                     "_",
+                     gsub(" ", "_", gsub(":", "-", this_time_stamp)),
+                     "_",
+                     "UTC",
+                     ".png"),
+       grobCombo,
+       width = 8,
+       height = 4)
+
+```
+
+# Statements about analysis
+
+format: With 1 million reads, the values of the five measured genes ranged from 65 to 577% of the values measured at the maximum depth. With 5 million reads, the range is 0 to 132%. WIth 10 million reads, 88 to 120%.
+
+```{r}
+
+
+max_depth=max(highlight_expression$target_UMEND_count)
+
+highlight_expression_for_statements <- 
+  highlight_expression %>% 
+  group_by(gene, parent_id) %>%
+  mutate(
+    expression_at_max_depth = expression[target_UMEND_count==max_depth],
+    percent_of_max_value = 100*expression/expression_at_max_depth)
+
+
+# 1 million UMEND reads is roughtly 1 million total reads
+this_depth <- 1
+highlight_expression %>%
+  filter(target_UMEND_count==this_depth) %>%
+  pull(total_reads) %>%
+  range
+
+highlight_expression_for_statements %>%
+  filter(target_UMEND_count==this_depth) %>%
+  arrange(percent_of_max_value) %>%
+  select(-median_of_depth_bin, -sample_id) %>%
+  pull(percent_of_max_value) %>%
+  range %>%
+  round
+
+
+# 4 million UMEND reads is roughtly 5 million total reads
+this_depth <- 4
+highlight_expression %>%
+  filter(target_UMEND_count==this_depth) %>%
+  pull(total_reads) %>%
+  range
+
+highlight_expression_for_statements %>%
+  filter(target_UMEND_count==this_depth) %>%
+  arrange(percent_of_max_value) %>%
+  select(-median_of_depth_bin, -sample_id) %>%
+  pull(percent_of_max_value) %>%
+  range %>%
+  round
+
+
+# 8 million UMEND reads is roughtly 10 million total reads
+this_depth <- 8
+highlight_expression %>%
+  filter(target_UMEND_count==this_depth) %>%
+  pull(total_reads) %>%
+  range
+
+highlight_expression_for_statements %>%
+  filter(target_UMEND_count==this_depth) %>%
+  arrange(percent_of_max_value) %>%
+  select(-median_of_depth_bin, -sample_id) %>%
+  pull(percent_of_max_value) %>%
+  range %>%
+  round
+
+
+```

@@ -1,0 +1,109 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+
+```{r setup, include = FALSE}
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+
+```
+
+## Set parameters
+
+```{r}
+
+genes_to_highlight <- c("TP53", "NF1", "BRCA2", "FGFR2", "JAK2")
+half_size_of_expr_bin <- 0.02
+gene_expression_levels <- c(1.5, 3.5, 5.5)
+
+```
+                   
+## Load data
+
+```{r}
+
+expression_results_raw <- read_tsv("../data/expression_log2tpm1.txt.gz")
+
+
+# read_counts_raw <- read_tsv("../data/read_counts.txt", 
+#                            col_names = c("sample_id", "measurement", "read_count"))
+
+evenly_selected_subsamples <- read_tsv(paste0("../data/evenly_selected_subsamples_with_binwidth_4.tsv"))
+
+```
+
+
+
+## Groom and annotate expression
+```{r}
+
+long_expression_results <- expression_results_raw %>% gather(sample_id, expression, -gene)
+
+long_expression_results_anno <- long_expression_results %>%
+  dplyr::filter( sample_id %in% evenly_selected_subsamples$sample_id) %>%
+  left_join(evenly_selected_subsamples,
+            by = "sample_id")
+
+```
+
+## Identify genes with the desired expression levels
+```{r}
+
+long_expression_results_anno_highest_depth <- long_expression_results_anno %>%
+  filter(target_UMEND_count == max(target_UMEND_count))
+
+target_expression <- lapply(gene_expression_levels, function(this_gene_expression_level){
+  long_expression_results_anno_highest_depth %>%
+  filter(expression > this_gene_expression_level - half_size_of_expr_bin,
+         expression < this_gene_expression_level + half_size_of_expr_bin) %>%
+    mutate(expression_bin = this_gene_expression_level)
+}
+) %>% bind_rows
+
+min_n_genes <- target_expression %>%
+  group_by(parent_id, expression_bin) %>%
+  summarize(n_genes = n()) %>%
+  ungroup %>%
+  summarize(min_n_genes=min(n_genes)) %>%
+  pull(min_n_genes)
+
+set.seed(2343)
+genes_for_bins <- target_expression %>%
+  group_by(parent_id, expression_bin)  %>%
+  sample_n(min_n_genes) %>%
+  ungroup %>%
+  select(gene, parent_id, expression_bin)
+
+expr_for_bins <- left_join(genes_for_bins, 
+long_expression_results_anno, 
+by=c(gene="gene", parent_id="parent_id"))
+
+
+write_tsv(expr_for_bins, "../data/gene_abundances_for_bin_detail.tsv")
+
+ # nrow(genes_for_bins)/3/5
+```
+
+## Select expression of genes for further analysis
+```{r}
+
+highlight_expression <- long_expression_results_anno %>% 
+  filter(gene %in% genes_to_highlight)
+
+write_tsv(highlight_expression, "../data/highlighted_gene_abundances.tsv")
+
+```
+

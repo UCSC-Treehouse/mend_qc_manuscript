@@ -1,0 +1,98 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale & Jackie Roger"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+```{r setup, include = FALSE}
+
+#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+
+```
+
+## Load data
+
+```{r}
+
+read_counts_raw <- read_tsv("../data/read_counts.txt", 
+                            col_names = c("sample_id", "measurement", "read_count"))
+
+```
+
+## Groom read counts
+
+```{r}
+
+read_counts_anno <- read_counts_raw %>% 
+  mutate(target_UMEND_count = as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", sample_id)),
+         parent_id = gsub("_est.*$", "", sample_id)) %>%
+  spread(measurement, read_count)
+
+```
+
+## Make table with subsample fractions
+
+```{r}
+
+subsample_fractions <- read_counts_anno
+
+for (i in 1:nrow(subsample_fractions)) {
+  if (subsample_fractions$parent_id[i] == "TH_Eval_014") {
+    subsample_fractions$parent_id[i] <- "S1"
+  } else if (subsample_fractions$parent_id[i] == "TH_Eval_015") {
+    subsample_fractions$parent_id[i] <- "S2"
+  } else if (subsample_fractions$parent_id[i] == "TH_Eval_016") {
+    subsample_fractions$parent_id[i] <- "S3"
+  } else if (subsample_fractions$parent_id[i] == "TH_Eval_018") {
+    subsample_fractions$parent_id[i] <- "S4"
+  } else if (subsample_fractions$parent_id[i] == "TH_Eval_019") {
+    subsample_fractions$parent_id[i] <- "S5"
+  }
+}
+
+subsample_fractions <- subsample_fractions %>%
+  mutate(seed = substr(sample_id, nchar(sample_id)-3,
+                                        nchar(sample_id)),
+         percent_duplicates = 100 * (1 - (Uniquely_mapped_non_duplicate_read_count / Uniquely_mapped_read_count)),
+         percent_umend = 100 * (UMEND / total_sequences))
+
+subsample_fractions$UMEND <- round(subsample_fractions$UMEND, digits = 0)
+subsample_fractions$percent_duplicates <- round(subsample_fractions$percent_duplicates, digits = 1)
+subsample_fractions$percent_umend <- round(subsample_fractions$percent_umend, digits = 1)
+
+subsample_fractions2 <- subsample_fractions[,-1] %>%
+  select(-percent_duplicates) %>%
+  rename(
+    "Sample" = parent_id,
+    "Target UMEND Count (M)" = target_UMEND_count,
+         "Total Reads" = total_sequences,
+         "UMEND Reads" = UMEND,
+         "UMND Reads" = Uniquely_mapped_non_duplicate_read_count,
+         "UM Reads" = Uniquely_mapped_read_count,
+         "Seed" = seed,
+         #         "Percent Duplicate Reads" = percent_duplicates,
+         "Percent UMEND Reads" = percent_umend) %>%
+  mutate(
+    `Total Reads` = format(`Total Reads`, big.mark = ","),
+    `UMEND Reads` = format(`UMEND Reads`, big.mark = ","),
+    `UMND Reads` = format(`UMND Reads`, big.mark = ","),
+    `UM Reads` = format(`UM Reads`, big.mark = ",")
+  ) %>%
+  arrange(Sample, `Target UMEND Count (M)`)
+
+subsample_table <- subsample_fractions2[,c(2, 1, 7, 3, 6, 5, 4, 8)] %>%
+  write_tsv("../figures_and_tables/table_S2_subsamples.tsv")
+
+```
