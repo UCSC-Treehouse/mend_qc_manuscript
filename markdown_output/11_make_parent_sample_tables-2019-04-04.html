@@ -186,7 +186,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">11 make parent sample tables</h1>
 <h4 class="author"><em>Holly Beale</em></h4>
-<h4 class="date"><em>02 April, 2019</em></h4>
+<h4 class="date"><em>04 April, 2019</em></h4>
 
 </div>
 
@@ -288,72 +288,79 @@ knitr::kable(minimal_parent_sample_data_table) #, digits=3, format.args=list(big
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>minimal_parent_sample_data_table %&gt;%  write_tsv(&quot;../data/table_1_selected_parent_sample_data.tsv&quot;)</code></pre>
+<pre class="r"><code>minimal_parent_sample_data_table %&gt;%  write_tsv(&quot;../figures_and_tables/table_1_selected_parent_sample_data.tsv&quot;)</code></pre>
 </div>
 <div id="comprehensive_supplemental_table" class="section level1">
 <h1>comprehensive_supplemental_table</h1>
 <pre class="r"><code>comprehensive_parent_sample_data_table &lt;- parent_sample_data %&gt;%
-  select(Sample = pub_ID, `Total sequences` = total_sequences, `Not uniquely mapped` = not_uniquely_mapped, `Duplicates` = duplicate_reads, `Non-exonic` = non_exonic_reads, 
-         `Percent UMEND` = pct_UMEND, `Treehouse ID`, `Project information`, `Sample ID in project`) 
+  select(Sample = pub_ID, `Total sequences` = total_sequences, `Not uniquely mapped` = not_uniquely_mapped, `Duplicates` = duplicate_reads, `Non-exonic` = non_exonic_reads, UMEND,
+         `Percent UMEND` = pct_UMEND, `Treehouse ID`, `Project information`, `Sample ID in project`) %&gt;%
+  mutate(`Non-exonic` = format(round(`Non-exonic`), big.mark = &quot;,&quot;),
+         `Percent UMEND` = round(100 * `Percent UMEND`,1),
+         `Total sequences` = format(`Total sequences`, big.mark = &quot;,&quot;),
+         `Not uniquely mapped` = format(`Not uniquely mapped`, big.mark = &quot;,&quot;),
+         `Duplicates` = format(`Duplicates`, big.mark = &quot;,&quot;),
+         `UMEND` = format(`UMEND`, big.mark = &quot;,&quot;),
+         )
 
 knitr::kable(comprehensive_parent_sample_data_table[,1:7], digits=3, format.args=list(big.mark = ','))</code></pre>
 <table>
 <thead>
 <tr class="header">
 <th align="left">Sample</th>
-<th align="right">Total sequences</th>
-<th align="right">Not uniquely mapped</th>
-<th align="right">Duplicates</th>
-<th align="right">Non-exonic</th>
+<th align="left">Total sequences</th>
+<th align="left">Not uniquely mapped</th>
+<th align="left">Duplicates</th>
+<th align="left">Non-exonic</th>
+<th align="left">UMEND</th>
 <th align="right">Percent UMEND</th>
-<th align="left">Treehouse ID</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">S1</td>
-<td align="right">128,535,112</td>
-<td align="right">15,025,445</td>
-<td align="right">31,852,837</td>
-<td align="right">13,092,258</td>
-<td align="right">0.533</td>
-<td align="left">THR28_0688_S01</td>
+<td align="left">128,535,112</td>
+<td align="left">15,025,445</td>
+<td align="left">31,852,837</td>
+<td align="left">13,092,258</td>
+<td align="left">68,564,572</td>
+<td align="right">53.3</td>
 </tr>
 <tr class="even">
 <td align="left">S2</td>
-<td align="right">90,208,409</td>
-<td align="right">11,075,844</td>
-<td align="right">20,620,009</td>
-<td align="right">4,155,515</td>
-<td align="right">0.603</td>
-<td align="left">THR14_0298_S01</td>
+<td align="left">90,208,409</td>
+<td align="left">11,075,844</td>
+<td align="left">20,620,009</td>
+<td align="left">4,155,515</td>
+<td align="left">54,357,041</td>
+<td align="right">60.3</td>
 </tr>
 <tr class="odd">
 <td align="left">S3</td>
-<td align="right">84,452,915</td>
-<td align="right">10,977,547</td>
-<td align="right">7,756,765</td>
-<td align="right">15,510,051</td>
-<td align="right">0.595</td>
-<td align="left">THR17_0392_S01</td>
+<td align="left">84,452,915</td>
+<td align="left">10,977,547</td>
+<td align="left">7,756,765</td>
+<td align="left">15,510,051</td>
+<td align="left">50,208,552</td>
+<td align="right">59.5</td>
 </tr>
 <tr class="even">
 <td align="left">S4</td>
-<td align="right">109,466,113</td>
-<td align="right">9,303,394</td>
-<td align="right">37,877,638</td>
-<td align="right">4,410,048</td>
-<td align="right">0.529</td>
-<td align="left">THR31_0892_S01</td>
+<td align="left">109,466,113</td>
+<td align="left">9,303,394</td>
+<td align="left">37,877,638</td>
+<td align="left">4,410,048</td>
+<td align="left">57,875,034</td>
+<td align="right">52.9</td>
 </tr>
 <tr class="odd">
 <td align="left">S5</td>
-<td align="right">109,226,298</td>
-<td align="right">10,033,512</td>
-<td align="right">26,233,282</td>
-<td align="right">5,056,818</td>
-<td align="right">0.622</td>
-<td align="left">THR32_0941_S01</td>
+<td align="left">109,226,298</td>
+<td align="left">10,033,512</td>
+<td align="left">26,233,282</td>
+<td align="left">5,056,818</td>
+<td align="left">67,902,686</td>
+<td align="right">62.2</td>
 </tr>
 </tbody>
 </table>
@@ -362,39 +369,39 @@ knitr::kable(comprehensive_parent_sample_data_table[,1:7], digits=3, format.args
 <thead>
 <tr class="header">
 <th align="left">Sample</th>
+<th align="left">Treehouse ID</th>
 <th align="left">Project information</th>
-<th align="left">Sample ID in project</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">S1</td>
+<td align="left">THR28_0688_S01</td>
 <td align="left">SRA: SRP040454</td>
-<td align="left">SRR1201253</td>
 </tr>
 <tr class="even">
 <td align="left">S2</td>
+<td align="left">THR14_0298_S01</td>
 <td align="left"><a href="https://doi.org/10.24370/SD_BHJXBDQK" class="uri">https://doi.org/10.24370/SD_BHJXBDQK</a></td>
-<td align="left">C15990</td>
 </tr>
 <tr class="odd">
 <td align="left">S3</td>
+<td align="left">THR17_0392_S01</td>
 <td align="left">EGA: EGAD00001000158, <a href="https://dx.doi.org/10.1038/nature11327" class="uri">https://dx.doi.org/10.1038/nature11327</a></td>
-<td align="left">EGAZ00001000212_81CMBABXX_3</td>
 </tr>
 <tr class="even">
 <td align="left">S4</td>
+<td align="left">THR31_0892_S01</td>
 <td align="left">dbGap: phs000673.v2.p1, <a href="https://dx.doi.org/10.1001/jama.2015.10080" class="uri">https://dx.doi.org/10.1001/jama.2015.10080</a></td>
-<td align="left">52</td>
 </tr>
 <tr class="odd">
 <td align="left">S5</td>
+<td align="left">THR32_0941_S01</td>
 <td align="left">EGA: EGAD00001001927, <a href="https://dx.doi.org/10.1016/j.cell.2016.01.015" class="uri">https://dx.doi.org/10.1016/j.cell.2016.01.015</a></td>
-<td align="left">dkfz_CNS-PNET_15-0069</td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>write_tsv(comprehensive_parent_sample_data_table, &quot;../data/table_S1_comprehensive_parent_sample_data.tsv&quot;)</code></pre>
+<pre class="r"><code>write_tsv(comprehensive_parent_sample_data_table, &quot;../figures_and_tables/table_S1_comprehensive_parent_sample_data.tsv&quot;)</code></pre>
 </div>
 
 

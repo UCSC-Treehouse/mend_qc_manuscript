@@ -366,7 +366,15 @@ p1
 
 plotInfo_20U <- plotInfo %>% 
   group_by(sample_id) %>%
-  dplyr::filter(read_countM[read_type == "UMEND"] > 20) 
+  dplyr::filter(read_countM[read_type == "UMEND"] > 20)
+
+read_type_names <- better_names_for_read_types
+names(read_type_names)= names(category_colors)
+
+read_type_labeller <- function(variable,value){
+  return(read_type_names[value])
+}
+
 
 p20 <-  ggplot(plotInfo_20U) + 
   geom_histogram(aes(x = percent_of_total, fill = read_type)) + 
@@ -376,7 +384,7 @@ p20 <-  ggplot(plotInfo_20U) +
                  linetype = stat2)) +
   scale_fill_manual(values = category_colors) +
   scale_color_manual(values = category_colors) +
-  facet_wrap(~read_type) 
+  facet_wrap(~read_type, nrow=1, labeller=read_type_labeller) 
 
 p20b <- p20 + 
   theme(legend.position = "none") +
@@ -415,14 +423,18 @@ p20c
 ### Combine figures 2A and 2B
 ```{r}
 
-p12 <- plot_grid(p1, p20c, labels = c("A", "B"), rel_widths = c(2, 1.5) , axis = "x", align = "h")
+#p12 <- plot_grid(p1, p20c, labels = c("A", "B"), rel_widths = c(2.5, 1.5) , axis = "x", align = "h")
 
-title <- ggdraw() +
-  draw_label(plot_title, fontface = 'bold')
+p12 <- plot_grid(p1, p20c, labels = c("A", "B"), rel_heights = c(4, 1.5), nrow=2 , axis = "y", align = "v")
+
+
+#title <- ggdraw() +
+ # draw_label(plot_title, fontface = 'bold')
 
 fig_file_base <- paste(figure_name, Sys.time())
 
-plot_output <- plot_grid(title, p12, ncol = 1, rel_heights = c(0.1, 1)) + 
+#plot_output <- plot_grid(title, p12, ncol = 1, rel_heights = c(0.1, 1)) + 
+plot_output <-   p12 +
   draw_label(fig_file_base,
              x = 0,
              y = 0,
@@ -431,7 +443,8 @@ plot_output <- plot_grid(title, p12, ncol = 1, rel_heights = c(0.1, 1)) +
              size = 10) #, fontface = 'bold')
 
 plot_output
-ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output, height = 5, width = 12.5)
+# ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output, height = 5, width = 12.5)
+ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output, height = 7, width = 11)
 ```
 
 # Text related to figure 2

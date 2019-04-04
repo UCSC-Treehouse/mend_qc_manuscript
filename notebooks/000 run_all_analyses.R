@@ -1,5 +1,5 @@
 # setwd("notebooks")
-setwd("/data/projects/gitCode/calculations_for_umend_qc_publication/notebooks")
+setwd("/data/projects/gitCode/umend_qc_publication/notebooks")
 
 f_include_early_stage_munging <- TRUE # FALSE
 
