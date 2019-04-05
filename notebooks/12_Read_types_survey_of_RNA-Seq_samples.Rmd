@@ -333,7 +333,7 @@ p1 <- ggplot(small_plot_data) +
   # facet_grid(.~highlight_sample, scales="free_x", space="free") + 
   xlab(paste0("Samples, n=", length(samples_for_small_dataset))) +
   ylab("Read count (millions)") +
-  ylim(0, 175) +
+#  ylim(0, 175) +
   geom_text(data=subset(small_plot_data, read_type == "UMEND"),
                                aes(x = sample_id,
                 y = 1 + total_sequences / 1e6,
@@ -350,7 +350,8 @@ p1 <- ggplot(small_plot_data) +
   # labs(caption= paste(figure_name, Sys.time())) + 
     theme(axis.ticks.x = element_blank(), 
           axis.text.x = element_blank(),
-           legend.position = c(.4,.86)
+#           legend.position = c(.4,.86)
+           legend.position = c(0.65, 0.8)
         #   plot.caption = element_text(hjust = -1)
     ) 
   #geom_text(data=selected_small_plot_data, aes(x=sample_id, y=total_sequences), label="*")
