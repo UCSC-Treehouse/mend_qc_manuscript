@@ -73,15 +73,18 @@ minimal_parent_sample_data_table %>%  write_tsv("../figures_and_tables/table_1_s
 # comprehensive_supplemental_table
 ```{r}
 
-comprehensive_parent_sample_data_table <- parent_sample_data %>%
+
+comprehensive_parent_sample_data_table <- parent_sample_data %>% 
+  mutate(raw_age=Age) %>%
+  mutate(Age = ifelse(is.na(raw_age), "Unk", as.character(raw_age))) %>%
   select(Sample = pub_ID, `Total sequences` = total_sequences, `Not uniquely mapped` = not_uniquely_mapped, `Duplicates` = duplicate_reads, `Non-exonic` = non_exonic_reads, UMEND,
-         `Percent UMEND` = pct_UMEND, `Treehouse ID`, `Project information`, `Sample ID in project`) %>%
+         `Percent UMEND` = pct_UMEND, `Treehouse ID`, `Project information`, `Sample ID in project`, Age) %>%
   mutate(`Non-exonic` = format(round(`Non-exonic`), big.mark = ","),
          `Percent UMEND` = round(100 * `Percent UMEND`,1),
          `Total sequences` = format(`Total sequences`, big.mark = ","),
          `Not uniquely mapped` = format(`Not uniquely mapped`, big.mark = ","),
          `Duplicates` = format(`Duplicates`, big.mark = ","),
-         `UMEND` = format(`UMEND`, big.mark = ","),
+         `UMEND` = format(`UMEND`, big.mark = ",")
          )
 
 knitr::kable(comprehensive_parent_sample_data_table[,1:7], digits=3, format.args=list(big.mark = ','))
