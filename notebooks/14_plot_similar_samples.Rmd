@@ -5,32 +5,26 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     toc: true
-#  pdf_document: default
- # fig_caption: yes
-
+  # pdf_document: default
+  # fig_caption: yes
 ---
 
-
 ```{r parameters}
-min_correlation=0.875
 
-neighbor_filter="same_disease"
-
-f_make_supporting_plots=FALSE
-
+min_correlation <- 0.875
+neighbor_filter <- "same_disease"
+f_make_supporting_plots <- FALSE
 
 ```
 
-
-
-
 ```{r test_defs}
-this_truth_definition="found_in_3_of_4_biggest_subsets"
 
-truth_definitions=c("found_in_at_least_half_the_subsets", 
-                    "found_in_the_deepest_subset",
-                    "found_in_3_of_4_biggest_subsets"
-)
+this_truth_definition <- "found_in_3_of_4_biggest_subsets"
+
+truth_definitions <- c("found_in_at_least_half_the_subsets",
+                       "found_in_the_deepest_subset",
+                       "found_in_3_of_4_biggest_subsets")
+
 ```
 
 In the analysis in this document, truth is defined as "`r gsub("_", " ", this_truth_definition)`"
@@ -41,13 +35,11 @@ if it is `r gsub("_", " ", this_truth_definition)` made from that parent.
 
 The available definitions are:
 
-`r paste(truth_definitions, sep="\n")`
+`r paste(truth_definitions, sep = "\n")`
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 
 #knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
-
-
 
 library(readr)
 library(tidyr)
@@ -58,181 +50,171 @@ library(knitr)
 library(forcats)
 library(janitor)
 library(grid)
-	library(gtable)
-	library(gridExtra)
+library(gtable)
+library(gridExtra)
 
 ```
-
-
-
                    
 ## Load data
 
+```{r}
 
-```{r }
-
-
-this_bin_width=4
+this_bin_width <- 4
 
 #first_degree_results_with_self_correlations <- 
-first_degree_results_with_corrs_gt_875 <- 
-  read_tsv("../data/correlated_samples.txt",
-  col_types=cols()
-  ) %>% 
+first_degree_results_with_corrs_gt_875 <- read_tsv("../data/correlated_samples.txt",
+                                                   col_types=cols()) %>% 
   rename(neighbor_sample = first_degree_neighbor_sample) %>%
   mutate(
     sample_is_neighbor_in_subset = TRUE, 
-    parent_sample=gsub("_est.*$", "", focus_sample),
-    target_UMEND_count=as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", focus_sample))
-  ) %>%
+    parent_sample = gsub("_est.*$", "", focus_sample),
+    target_UMEND_count = as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", focus_sample))) %>%
   group_by(parent_sample, neighbor_sample)
 
 evenly_selected_subsamples <- read_tsv(
   paste0("../data/evenly_selected_subsamples_with_binwidth_", this_bin_width, ".tsv"),
-  col_types=cols()
-  )
+  col_types = cols())
 
-parent_sample_metadata<- read_tsv("../data/parent_sample_data_source.tsv",
-  col_types=cols()) %>%
+parent_sample_metadata <- read_tsv("../data/parent_sample_data_source.tsv",
+                                   col_types = cols()) %>%
 # parent_sample_metadata$`technical_sample_id-qc_only`
-rename(treehouse_id=`Treehouse ID`)
+rename(treehouse_id = `Treehouse ID`)
 
-
-
-disease_info_for_compendium<-read_tsv("../data/TreehousePEDv9_clinical_metadata.2019-03-15.tsv", col_types=cols()) %>% rename(THid=th_sampleid)
+disease_info_for_compendium <- read_tsv("../data/TreehousePEDv9_clinical_metadata.2019-03-15.tsv", col_types=cols()) %>%
+  rename(THid = th_sampleid)
 # disease_info_for_compendium<-read_tsv("../data/sample_data_for_qc_paper_downloaded_via_API_2019-01-04_07.01.47PM.txt",
 #  col_types=cols())
 
 disease_info_for_compendium
 
-
-
 ```
-
-
 
 ## Definitions
 
 ```{r}
-first_degree_neighbor_result_codes=tibble(
-	sample_is_true_positive_neighbor_in_parent_sample=c(T,F,T,F) , 
-	sample_is_neighbor_in_subset=c(T,T,F,F), 
-	hit_type=c("True positive", "False positive", "False negative", "True negative"))
 
+first_degree_neighbor_result_codes <- tibble(
+	sample_is_true_positive_neighbor_in_parent_sample = c(T,F,T,F) , 
+	sample_is_neighbor_in_subset = c(T,T,F,F), 
+	hit_type = c("True positive", "False positive", "False negative", "True negative"))
 
-plot_colors=c("False positive"="red", "True negative"="pink", 
-              "True positive"="lightblue", "False negative"="blue" )
+plot_colors <- c("False positive" = "red",
+                 "True negative" = "pink",
+                 "True positive" = "lightblue",
+                 "False negative" = "blue" )
 
 library(RColorBrewer)
-source_palette = brewer.pal(12, "Paired")
 
-cb_dark_orange=source_palette[8]
-cb_light_orange=source_palette[7]
+source_palette <- brewer.pal(12, "Paired")
+cb_dark_orange <- source_palette[8]
+cb_light_orange <- source_palette[7]
+cb_dark_green <- source_palette[4]
+cb_light_green <- source_palette[3]
+cb_dark_purple <- source_palette[10]
+cb_light_purple <- source_palette[9]
+cb_dark_blue <- source_palette[2]
+cb_light_blue <- source_palette[1]
 
-cb_dark_green=source_palette[4]
-cb_light_green=source_palette[3]
+plot_colors <- c("False positive" = cb_light_orange,
+                 "True negative" = cb_dark_orange,
+                 "True positive" = cb_dark_purple,
+                 "False negative" = cb_light_purple )
 
-cb_dark_purple=source_palette[10]
-cb_light_purple=source_palette[9]
+accuracy_line_colors <- c("sensitivity" = as.character(plot_colors["True positive"]),
+                          "specificity" = as.character(plot_colors["True negative"]))
 
-cb_dark_blue=source_palette[2]
-cb_light_blue=source_palette[1]
-
-plot_colors=c("False positive"=cb_light_orange, "True negative"=cb_dark_orange, 
-              "True positive"=cb_dark_purple, "False negative"=cb_light_purple )
-
-accuracy_line_colors<-c( "sensitivity"=as.character(plot_colors["True positive"]),
-                         "specificity"=as.character(plot_colors["True negative"]))
-
-fill_colors=c("TRUE"="black", "FALSE"="white")
+fill_colors <- c("TRUE" = "black", "FALSE" = "white")
 
 ```
 
 ## Add disease & bin info and exclude self-correlations
+
 ```{r}
 
 cohort_sizes_in_compendium <- disease_info_for_compendium %>% 
-  group_by (disease) %>%
+  group_by(disease) %>%
   summarize(matched_disease_cohort_size = n()) 
 
 first_degree_results_plus <- left_join(
   first_degree_results_with_corrs_gt_875,
   parent_sample_metadata,
-  by=c("parent_sample"="Eval_ID")
+  by = c("parent_sample"="Eval_ID")
 ) %>% 
 	left_join(
 	  evenly_selected_subsamples %>% select(sample_id, median_of_depth_bin) %>% distinct, 
     by = c("focus_sample"="sample_id")
 	) 
 
-
 first_degree_results <- first_degree_results_plus %>%
-  dplyr::filter(neighbor_sample!=treehouse_id) %>%
-left_join(disease_info_for_compendium %>% select (THid, disease),
-          by=c("neighbor_sample"="THid")) %>%
-  select("neighbor_disease"="disease", diagnosis="Disease", everything()) %>%
+  dplyr::filter(neighbor_sample != treehouse_id) %>%
+  left_join(disease_info_for_compendium %>%
+              select (THid, disease),
+            by = c("neighbor_sample" = "THid")) %>%
+  select("neighbor_disease"="disease", diagnosis = "Disease", everything()) %>%
   left_join(cohort_sizes_in_compendium, 
-            by=c("diagnosis"="disease")) %>%
-#  select(everything(), focus_disease_cohort_size_in_compendium=matched_disease_cohort_size)
-   select(-matched_disease_cohort_size)
-
+            by = c("diagnosis"="disease")) %>%
+  # select(everything(), focus_disease_cohort_size_in_compendium=matched_disease_cohort_size)
+  select(-matched_disease_cohort_size)
 
 ```
-
 
 ## Plan X axis values and labels
+
 ```{r}
 
-outlier_results_x_breaks=seq(
-        0, 
-        max(first_degree_results$median_of_depth_bin, na.rm=TRUE),
-        by=this_bin_width
-      )
-outlier_results_x_labels=gsub("^0$", 1, outlier_results_x_breaks)
-
+outlier_results_x_breaks <- seq(
+  0, 
+  max(first_degree_results$median_of_depth_bin, na.rm = TRUE),
+  by = this_bin_width
+)
+outlier_results_x_labels <- gsub("^0$", 1, outlier_results_x_breaks)
 
 ```
 
+## Apply filters to which neighbors we're analyzing
 
-
-## Apply filters to which neighbors we're analyzing 
 ```{r}
 
-# if (neighbor_filter=="same_disease"){
-  filter_description="Limit analysis to same disease neighbors"
-  first_degree_results_filtered<- first_degree_results %>%
-    dplyr::filter(diagnosis==neighbor_disease)
+  # if (neighbor_filter=="same_disease") {
+  filter_description <- "Limit analysis to same disease neighbors"
+  first_degree_results_filtered <- first_degree_results %>%
+    dplyr::filter(diagnosis == neighbor_disease)
 # }
 
-number_of_parent_samples=length(unique(first_degree_results_filtered$parent_sample))
-
+number_of_parent_samples <- length(unique(first_degree_results_filtered$parent_sample))
 
 ```
-
 
 ## Identify true neighbors &  annotate calls
 
-```{r }
-annotated_fdn_results_raw <- lapply(unique(first_degree_results_filtered $parent_sample), 
-                                    function(this_parent_sample){
-	# this_parent_sample =unique(first_degree_results_filtered $parent_sample)[1]
-  # this_parent_sample="TH_Eval_019"
-	fdn_found_in_selected_subsamples=subset(first_degree_results_filtered,
+```{r}
+
+annotated_fdn_results_raw <- lapply(unique(first_degree_results_filtered$parent_sample), 
+                                    function(this_parent_sample) {
+	# this_parent_sample = unique(first_degree_results_filtered $parent_sample)[1]
+  # this_parent_sample ="TH_Eval_019"
+	fdn_found_in_selected_subsamples = subset(first_degree_results_filtered,
 		 parent_sample == this_parent_sample & 
 		 focus_sample %in% evenly_selected_subsamples$sample_id) 
-	###
 	subsamples <- unique(fdn_found_in_selected_subsamples$focus_sample)
 	samples_that_are_fdn_in_any_subset <- unique(fdn_found_in_selected_subsamples$neighbor_sample)
 	# add data to show a negative result for genes not found in the outlier list
 	generic_subsample_info <- fdn_found_in_selected_subsamples %>% 
 	  ungroup %>%
-	  select(
-	    parent_sample, focus_sample, target_UMEND_count, treehouse_id, diagnosis, publication_id, median_of_depth_bin
-	  ) %>% distinct
+	  select(parent_sample,
+	         focus_sample,
+	         target_UMEND_count,
+	         treehouse_id,
+	         diagnosis,
+	         publication_id,
+	         median_of_depth_bin) %>%
+	  distinct
 	
-  evenly_selected_subsamples_this_parent	 <- subset(evenly_selected_subsamples, parent_id == this_parent_sample) 
+	  evenly_selected_subsamples_this_parent <- subset(evenly_selected_subsamples,
+	                                                   parent_id == this_parent_sample) 
 	
-	empty_results <- crossing(evenly_selected_subsamples_this_parent, neighbor_sample = samples_that_are_fdn_in_any_subset)
+	empty_results <- crossing(evenly_selected_subsamples_this_parent,
+	                          neighbor_sample = samples_that_are_fdn_in_any_subset)
 	  
 #	  evenly_selected_subsamples_this_parent %>%
 #	  mutate(neighbor_sample = rep(samples_that_are_fdn_in_any_subset, each = nrow(evenly_selected_subsamples_this_parent)))
@@ -248,113 +230,112 @@ annotated_fdn_results_raw <- lapply(unique(first_degree_results_filtered $parent
 	
 	# subset(evenly_selected_subsamples, parent_id == this_parent_sample)
 	
-	fdn_results <- right_join(fdn_found_in_selected_subsamples %>% select(-target_UMEND_count, -median_of_depth_bin,  -publication_id),
-	                          empty_results,
-	                          by = c("parent_sample"="parent_id", "focus_sample"="sample_id", "neighbor_sample")) %>%
-	  mutate(sample_is_neighbor_in_subset = ifelse(is.na(sample_is_neighbor_in_subset), FALSE, TRUE))
+  fdn_results <- right_join(fdn_found_in_selected_subsamples %>%
+	                            select(-target_UMEND_count,
+	                                   -median_of_depth_bin,
+	                                   -publication_id),
+                            empty_results,
+	                          by = c("parent_sample" = "parent_id",
+	                                 "focus_sample" = "sample_id",
+	                                 "neighbor_sample")) %>%
+    mutate(sample_is_neighbor_in_subset = ifelse(is.na(sample_is_neighbor_in_subset),
+                                                 FALSE,
+                                                 TRUE))
 	
 	# define true positives
 
-	if(this_truth_definition=="found_in_3_of_4_biggest_subsets"){
+	if(this_truth_definition == "found_in_3_of_4_biggest_subsets") {
 	  	
 	# define true positives
-	biggest_4_subsets=sort(unique(fdn_found_in_selected_subsamples$target_UMEND_count), decreasing=TRUE)[1:4]
-	minimum_hits_for_true_neighbors=3
+	biggest_4_subsets <- sort(unique(fdn_found_in_selected_subsamples$target_UMEND_count),
+	                          decreasing = TRUE)[1:4]
+	minimum_hits_for_true_neighbors <- 3
   
-    neighbor_frequency<-fdn_found_in_selected_subsamples %>% 
-    dplyr::filter(
-      sample_is_neighbor_in_subset,
-      target_UMEND_count %in% biggest_4_subsets) %>% 
+  neighbor_frequency <- fdn_found_in_selected_subsamples %>% 
+    dplyr::filter(sample_is_neighbor_in_subset,
+                  target_UMEND_count %in% biggest_4_subsets) %>% 
     group_by(neighbor_sample) %>% 
-    summarize(n_subsamples_found=length(unique(focus_sample)))
+    summarize(n_subsamples_found = length(unique(focus_sample)))
   
   true_neighbors_in_parent_sample <- neighbor_frequency %>% 
-    dplyr::filter(n_subsamples_found>=minimum_hits_for_true_neighbors) %>% 
+    dplyr::filter(n_subsamples_found >= minimum_hits_for_true_neighbors) %>% 
     pull(neighbor_sample)
 }
 
-	  if(this_truth_definition=="found_in_the_deepest_subset"){
-  	  	
+	  if(this_truth_definition == "found_in_the_deepest_subset") {
       true_neighbors_in_parent_sample <- subset(first_degree_results_filtered,
   		 parent_sample == this_parent_sample & 
-  		 target_UMEND_count==50) %>%
+  		 target_UMEND_count == 50) %>%
       dplyr::filter(sample_is_neighbor_in_subset) %>% 
       pull(neighbor_sample)
-      
-      
 	  }
-	 if(this_truth_definition=="found_in_at_least_half_the_subsets"){
-        minimum_hits_for_true_neighbors= length(unique(fdn_found_in_selected_subsamples$focus_sample))/2
   
-      neighbor_frequency<-fdn_found_in_selected_subsamples %>% 
-      dplyr::filter(sample_is_neighbor_in_subset) %>% 
-      group_by(neighbor_sample) %>% 
-      summarize(n_subsamples_found_in=length(unique(focus_sample)))
-    
-      true_neighbors_in_parent_sample <- neighbor_frequency %>% 
-      dplyr::filter(n_subsamples_found_in>=minimum_hits_for_true_neighbors) %>% 
-      pull(neighbor_sample)
+	 if(this_truth_definition == "found_in_at_least_half_the_subsets") {
+	   minimum_hits_for_true_neighbors <- length(unique(
+	     fdn_found_in_selected_subsamples$focus_sample)) / 2
+	   neighbor_frequency <- fdn_found_in_selected_subsamples %>%
+	     dplyr::filter(sample_is_neighbor_in_subset) %>% 
+	     group_by(neighbor_sample) %>% 
+	     summarize(n_subsamples_found_in = length(unique(focus_sample)))
+	   true_neighbors_in_parent_sample <- neighbor_frequency %>% 
+	     dplyr::filter(n_subsamples_found_in >= minimum_hits_for_true_neighbors) %>% 
+	     pull(neighbor_sample)
 	 }
 	
 	# except when True=present@50, exclude can2didate neighbors that are never positive in this data set
-  if(this_truth_definition!="found_in_the_deepest_subset"){
+  if(this_truth_definition != "found_in_the_deepest_subset") {
 	  fdn_found_in_selected_subsamples <- fdn_found_in_selected_subsamples %>% 
 	  group_by(neighbor_sample) %>%
-	  dplyr::filter(sum(sample_is_neighbor_in_subset)>0) 
+	  dplyr::filter(sum(sample_is_neighbor_in_subset) > 0) 
 }
 	
-	
-	this_annotated_fdn_results <-fdn_results %>% 
+	this_annotated_fdn_results <- fdn_results %>% 
 		group_by(neighbor_sample) %>% 
 		mutate(
-			neighbor_appearances=sum(as.numeric(sample_is_neighbor_in_subset)),
-			first_appears=min(median_of_depth_bin [sample_is_neighbor_in_subset]),
-			sample_is_true_positive_neighbor_in_parent_sample= 
-			  neighbor_sample %in% 
-			    true_neighbors_in_parent_sample,
-#			max_corr=max(correlation),
-			focus_and_neighbor_have_same_disease=diagnosis==neighbor_disease
+			neighbor_appearances = sum(as.numeric(sample_is_neighbor_in_subset)),
+			first_appears = min(median_of_depth_bin[sample_is_neighbor_in_subset]),
+			sample_is_true_positive_neighbor_in_parent_sample = neighbor_sample %in%
+			  true_neighbors_in_parent_sample,
+      #	max_corr=max(correlation),
+			focus_and_neighbor_have_same_disease=diagnosis == neighbor_disease
 		)
 	return(this_annotated_fdn_results)
-}) %>% bind_rows
+} ) %>% bind_rows
 
 table(annotated_fdn_results_raw$sample_is_true_positive_neighbor_in_parent_sample)
 table(annotated_fdn_results_raw$sample_is_neighbor_in_subset)
-
-
 
 annotated_fdn_results <- annotated_fdn_results_raw %>%
 # 		left_join(evenly_selected_subsamples %>% select(sample_id, median_of_depth_bin),  # moved earlier
 #		          by = c("focus_sample"="sample_id")
 #		) %>%
-		left_join(first_degree_neighbor_result_codes, by = 
-		            c("sample_is_neighbor_in_subset", "sample_is_true_positive_neighbor_in_parent_sample")
-		)
-
+  left_join(first_degree_neighbor_result_codes,
+            by = c("sample_is_neighbor_in_subset",
+                   "sample_is_true_positive_neighbor_in_parent_sample"))
 
 ```
 
 ## prepare data for plotting
+
 ```{r}
 
 # write_tsv(annotated_fdn_results, paste0("data/annotated_1deg_neighbor_results", "-", this_truth_definition, ".txt"))
 
-
-ordered_plot_input<-  annotated_fdn_results %>% 
+ordered_plot_input <- annotated_fdn_results %>% 
   #arrange(sample_is_true_positive_neighbor_in_parent_sample, neighbor_appearances, rev(first_appears)) %>%
   arrange(sample_is_true_positive_neighbor_in_parent_sample, neighbor_appearances) %>%
   ungroup %>%
   mutate(
-  	unique_focus_neighbor_id =	paste(parent_sample, neighbor_sample, sep="_"),
- 	  ordered_neighbor=factor(unique_focus_neighbor_id, levels=rev(unique(unique_focus_neighbor_id)))
+  	unique_focus_neighbor_id = paste(parent_sample, neighbor_sample, sep = "_"),
+ 	  ordered_neighbor = factor(unique_focus_neighbor_id, levels = rev(unique(unique_focus_neighbor_id)))
   ) %>% group_by(parent_sample) %>%
-  mutate(parent_sample_label=paste0(parent_sample, " (n=", length(unique(unique_focus_neighbor_id)), ")"))
-
+  mutate(parent_sample_label = paste0(
+    parent_sample, " (n=", length(unique(unique_focus_neighbor_id)), ")"))
 
 ```
 
-
 # Make multi-sample plot identified by final correlation
+
 ```{r}
 # 
 # 
@@ -421,22 +402,23 @@ ordered_plot_input<-  annotated_fdn_results %>%
 #      facet_grid(max_corr_group~.,scales="free_y", space="free") +
 #     theme(axis.text.y  = element_blank())
 # }
+
 ```
 
 ##  What percent of correlated samples were detectable with 1 million UMEND reads?
+
 ```{r}
- 
 
 # how many (real) correlated samples are there? 59
-  subset(ordered_plot_input, median_of_depth_bin==0) %>% pull(unique_focus_neighbor_id) %>% unique %>% length
+subset(ordered_plot_input, median_of_depth_bin == 0) %>%
+  pull(unique_focus_neighbor_id) %>% unique %>% length
 
 # 2% of (real) correlated samples were detectable with 1 million UMEND reads
-subset(ordered_plot_input, median_of_depth_bin==0 & sample_is_true_positive_neighbor_in_parent_sample) %>% tabyl(first_appears)
-
-
+subset(ordered_plot_input, median_of_depth_bin == 0 &
+         sample_is_true_positive_neighbor_in_parent_sample) %>%
+  tabyl(first_appears)
 
 ```
-
 
 # Make plots
 
@@ -478,13 +460,9 @@ subset(ordered_plot_input, median_of_depth_bin==0 & sample_is_true_positive_neig
 # 
 # #  ggsave(paste0("plots/", plot_title, ".png"))
 
-
 ```
 
-
-
-
-```{r fig.height=10, fig.width=9}
+```{r fig.height = 10, fig.width = 9}
 
 ## Make summary plots - one line per neighbor per parent
 # 
@@ -502,46 +480,50 @@ subset(ordered_plot_input, median_of_depth_bin==0 & sample_is_true_positive_neig
 ```
 
 
-
 ## Calculate fractional accuracy per sample
 
 ```{r}
-frac_accuracy  <-ordered_plot_input %>% 
-    group_by(median_of_depth_bin) %>%
-#  group_by(parent_sample_label, focus_sample, median_of_depth_bin) %>%
-	summarize(
-		fp_frac=sum(hit_type=="False positive")/n(),
-		tn_frac=sum(hit_type=="True negative")/n(),
-		fn_frac=sum(hit_type=="False negative")/n(),
-		tp_frac=sum(hit_type=="True positive")/n())
-		
-conv_table1<-tibble(fraction_type =c("fp_frac", "tn_frac", "fn_frac", "tp_frac"),
-	hit_type=c("False positive", "True negative", "False negative", "True positive"))
 
+frac_accuracy <- ordered_plot_input %>% 
+  group_by(median_of_depth_bin) %>%
+  # group_by(parent_sample_label, focus_sample, median_of_depth_bin) %>%
+	summarize(
+		fp_frac = sum(hit_type == "False positive") / n(),
+		tn_frac = sum(hit_type == "True negative") / n(),
+		fn_frac = sum(hit_type == "False negative") / n(),
+		tp_frac = sum(hit_type == "True positive")/n())
+		
+conv_table1 <- tibble(fraction_type = c("fp_frac", "tn_frac", "fn_frac", "tp_frac"),
+	hit_type = c("False positive", "True negative", "False negative", "True positive"))
 	
-g_frac_accuracy<-gather(frac_accuracy, fraction_type, fraction_amount,
-                          -median_of_depth_bin) %>%
-#                        -parent_sample_label, -focus_sample, -median_of_depth_bin) %>%
- left_join(conv_table1) %>%
-	mutate(hit_type=factor(hit_type, 
-	           levels=c("True negative","False positive","False negative", "True positive")))
+g_frac_accuracy <- gather(
+  frac_accuracy, fraction_type, fraction_amount, -median_of_depth_bin) %>%
+  # -parent_sample_label, -focus_sample, -median_of_depth_bin) %>%
+  left_join(conv_table1) %>%
+	mutate(hit_type = factor(hit_type,
+	                         levels = c("True negative",
+	                                    "False positive",
+	                                    "False negative",
+	                                    "True positive")))
 
 head(g_frac_accuracy)
-
 
 ```
 
 ## Plot fractional accuracy
 
-```{r, fig.height=10}
+```{r, fig.height = 10}
 
-
-  
-plot_title="neighbors - all parent samples"  
-p4<-ggplot(g_frac_accuracy) + 
-	geom_bar(aes(x= median_of_depth_bin, y= fraction_amount/number_of_parent_samples, fill= hit_type), stat="identity") +  
-	scale_fill_manual(values= plot_colors) +
-      scale_x_continuous("UMEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
+plot_title <- "neighbors - all parent samples"  
+p4 <- ggplot(g_frac_accuracy) + 
+  geom_bar(aes(x = median_of_depth_bin,
+               y = fraction_amount / number_of_parent_samples,
+               fill = hit_type),
+           stat = "identity") +  
+	scale_fill_manual(values = plot_colors) +
+  scale_x_continuous("UMEND reads (million)",
+                     breaks = outlier_results_x_breaks,
+                     labels = outlier_results_x_labels) +
 ggtitle(plot_title, paste("Truth is defined as", this_truth_definition))
 
 # if (f_facet_grid) p4 <- p4 + facet_grid(parent_sample_label~.,scales="free_y", space="free")
@@ -549,179 +531,171 @@ if(f_make_supporting_plots) p4
 
 ```
 
-
 # Accuracy rates, e.g. True positives etc.
 
 ## Calculations
 
-
 ```{r}
 
+colsToGather <- c("median_of_depth_bin", "sensitivity", "specificity", "ppv", "npv")
+#"tp_count_in_subset", "count_of_positives_in_full_set", "fp_count_in_subset", "count_of_negatives_in_full_set", "all_positives_in_subset", "allNegatives", 
 
-colsToGather=c("median_of_depth_bin", "sensitivity", "specificity", "ppv", "npv") #"tp_count_in_subset", "count_of_positives_in_full_set", "fp_count_in_subset", "count_of_negatives_in_full_set", "all_positives_in_subset", "allNegatives", 
+total_samples_in_compendium <- 11456
 
-total_samples_in_compendium=11456
-
-
-accuracy_stats<-NULL
-for (this_parent_sample in unique(ordered_plot_input$parent_sample)){
-# this_parent_sample="TH_Eval_018"
-    this_plot_input=subset(ordered_plot_input, parent_sample==this_parent_sample)
+accuracy_stats <- NULL
+for (this_parent_sample in unique(ordered_plot_input$parent_sample)) {
+  # this_parent_sample="TH_Eval_018"
+  this_plot_input <- subset(ordered_plot_input, parent_sample == this_parent_sample)
+  count_of_positives_in_full_set <- length(unique(subset(
+    this_plot_input,
+    sample_is_true_positive_neighbor_in_parent_sample)$neighbor_sample))
+  count_of_negatives_in_full_set <- total_samples_in_compendium - count_of_positives_in_full_set
+  #count_of_negatives_in_full_set=round(0.05*total_samples_in_compendium-count_of_positives_in_full_set)
+  samples_ever_called_as_neighbor <- unique(this_plot_input$neighbor_sample)
+  count_of_neighbors_not_found <- total_samples_in_compendium - length(samples_ever_called_as_neighbor)
     
+  ### calculate statistics to compare across samples
+  accuracy_counts<-this_plot_input %>% 
+    group_by(median_of_depth_bin) %>% 
+    summarize(all_positives_in_subset = sum(sample_is_neighbor_in_subset), 
+              all_negatives_in_subset = sum(!sample_is_neighbor_in_subset) + count_of_neighbors_not_found, 
+              tp_count_in_subset = sum(hit_type == "True positive"), 
+              fp_count_in_subset = sum(hit_type == "False positive"),
+              partial_tn_count_in_subset = sum(hit_type == "True negative"), 
+              total_tn_count_in_subset = partial_tn_count_in_subset + count_of_neighbors_not_found,
+              fn_count_in_subset=sum(hit_type=="False negative"))
     
+  accuracy_stats_this_parent <- accuracy_counts %>% 
+    mutate(sensitivity = tp_count_in_subset / count_of_positives_in_full_set,
+           specificity = total_tn_count_in_subset / count_of_negatives_in_full_set,
+           ppv = tp_count_in_subset / all_positives_in_subset,
+           npv = total_tn_count_in_subset / all_negatives_in_subset)
     
-    count_of_positives_in_full_set=length(unique(subset(this_plot_input, sample_is_true_positive_neighbor_in_parent_sample )$neighbor_sample))
-    count_of_negatives_in_full_set=total_samples_in_compendium-count_of_positives_in_full_set
-    #count_of_negatives_in_full_set=round(0.05*total_samples_in_compendium-count_of_positives_in_full_set)
+  fullStatNames <- data.frame(short = c("sensitivity", "specificity", "ppv", "npv"),
+                              long = c("sensitivity-detect when present",
+                                       "specificity-exclude when absent",
+                                       "ppv-positive predictive value",
+                                       "npv-negative predictive value"))
     
-    samples_ever_called_as_neighbor=unique(this_plot_input$neighbor_sample)
-    
-    count_of_neighbors_not_found = total_samples_in_compendium-length(samples_ever_called_as_neighbor)
-    
-    ### calculate statistics to compare across samples
-    accuracy_counts<-this_plot_input %>% 
-      group_by(median_of_depth_bin) %>% 
-      summarize(all_positives_in_subset=sum(sample_is_neighbor_in_subset), 
-                all_negatives_in_subset=sum(!sample_is_neighbor_in_subset)+ count_of_neighbors_not_found, 
-                tp_count_in_subset =sum(hit_type=="True positive"), 
-                fp_count_in_subset=sum(hit_type=="False positive"),
-                partial_tn_count_in_subset =sum(hit_type=="True negative"), 
-                total_tn_count_in_subset= partial_tn_count_in_subset + count_of_neighbors_not_found,
-                fn_count_in_subset=sum(hit_type=="False negative")
-              )
-    
-    
-    accuracy_stats_this_parent <- accuracy_counts %>% 
-      mutate(
-        sensitivity= tp_count_in_subset/count_of_positives_in_full_set, 
-        specificity= total_tn_count_in_subset/count_of_negatives_in_full_set, 
-        ppv= tp_count_in_subset/all_positives_in_subset, 
-        npv= total_tn_count_in_subset/all_negatives_in_subset
-      )
-    
-    
-    fullStatNames=data.frame(short= c("sensitivity", "specificity", "ppv", "npv"), long=c("sensitivity-detect when present", "specificity-exclude when absent", "ppv-positive predictive value", "npv-negative predictive value"))
-    
-    g_accuracy_stats_this_parent =gather(accuracy_stats_this_parent[, colsToGather], measurement, value, -median_of_depth_bin) %>%
-      mutate(parent_sample=this_parent_sample)
+  g_accuracy_stats_this_parent <- gather(
+    accuracy_stats_this_parent[,colsToGather], measurement, value, -median_of_depth_bin) %>%
+    mutate(parent_sample=this_parent_sample)
     
    accuracy_stats <- bind_rows(accuracy_stats, g_accuracy_stats_this_parent)
 }
-
 
 ```
 
 Note `r length(unique(ordered_plot_input$unique_focus_neighbor_id))` samples were ever called as a neighbor.
 
-## sensitivity and specificity per parent sample
+## Sensitivity and specificity per parent sample
 
+```{r, fig.height = 10, fig.width = 9}
 
-```{r, fig.height=10, fig.width=9}
-
-  accuracy_stats_min<-subset(accuracy_stats,measurement %in% c("sensitivity", "specificity") ) %>%
+accuracy_stats_min <- subset(accuracy_stats, measurement %in% c("sensitivity", "specificity") ) %>%
   group_by(median_of_depth_bin, measurement) %>% 
-  mutate(
-    depth_bin_min_value=min(value),
-    point_label=ifelse(depth_bin_min_value==value, 
-                   paste0("x=", median_of_depth_bin, " y=", round(value, 3)),
-                   "")
-  ) 
+  mutate(depth_bin_min_value = min(value),
+         point_label = ifelse(depth_bin_min_value == value,
+                              paste0("x=", median_of_depth_bin, " y=", round(value, 3)),"")) 
 
-proposed_thresholds_raw<- tibble(threshold=c(0.995, 0.95), measurement=c("specificity", "sensitivity"), min_reads=20 )
-
+proposed_thresholds_raw <- tibble(threshold = c(0.995, 0.95),
+                                  measurement = c("specificity", "sensitivity"),
+                                  min_reads = 20 )
 
 proposed_thresholds <- lapply(unique(accuracy_stats$parent_sample), function(x) {
-  proposed_thresholds_raw %>% mutate(parent_sample=x)
-  }) %>% bind_rows
-if(f_make_supporting_plots){
-ggplot(accuracy_stats_min, aes( y= value, color= measurement, x= median_of_depth_bin)) + geom_point() + geom_smooth(se=FALSE) + ggtitle(paste("sensitivity and specificity per parent sample"))  + facet_wrap(parent_sample~measurement, scale="free_y", ncol=2) + 
-  scale_color_manual(values= accuracy_line_colors) 
+  proposed_thresholds_raw %>%
+    mutate(parent_sample = x)
+}) %>% bind_rows
+
+if(f_make_supporting_plots) {
+  ggplot(accuracy_stats_min, aes(y = value, color = measurement, x = median_of_depth_bin)) +
+    geom_point() +
+    geom_smooth(se = FALSE) +
+    ggtitle(paste("sensitivity and specificity per parent sample")) +
+    facet_wrap(parent_sample~measurement, scale = "free_y", ncol = 2) +
+    scale_color_manual(values = accuracy_line_colors) 
 }
 
 ```
 
-
 # Re-calculate accuracy stats - combined across parent samples
+
 ```{r}
-colsToGather=c("median_of_depth_bin", "sensitivity", "specificity") #, "ppv", "npv") #"tp_count", "count_of_truly_correlated_samples", "fp_count", "count_of_truly_NON_correlated_samples", "positive_calls", "allNegatives", 
 
-count_of_truly_correlated_samples <- ordered_plot_input %>% 
-      dplyr::filter(sample_is_true_positive_neighbor_in_parent_sample) %>%
-      select(neighbor_sample, parent_sample) %>% 
-      distinct() %>%
-      nrow
+colsToGather <- c("median_of_depth_bin", "sensitivity", "specificity") #, "ppv", "npv") #"tp_count", "count_of_truly_correlated_samples", "fp_count", "count_of_truly_NON_correlated_samples", "positive_calls", "allNegatives", 
 
-samples_tested_for_correlation_in_assay <-         
-  disease_info_for_compendium %>% 
+count_of_truly_correlated_samples <- ordered_plot_input %>%
+  dplyr::filter(sample_is_true_positive_neighbor_in_parent_sample) %>%
+  select(neighbor_sample, parent_sample) %>% 
+  distinct() %>%
+  nrow
+
+samples_tested_for_correlation_in_assay <- disease_info_for_compendium %>%
   dplyr::filter(disease %in% ordered_plot_input$diagnosis) %>%
   nrow
 
 
-count_of_truly_NON_correlated_samples <- samples_tested_for_correlation_in_assay -
-  count_of_truly_correlated_samples
+count_of_truly_NON_correlated_samples <-
+  samples_tested_for_correlation_in_assay - count_of_truly_correlated_samples
 
 # count_of_truly_NON_correlated_samples <- number_of_parent_samples *
 #	total_samples_in_compendium - count_of_truly_correlated_samples
         
 samples_ever_called_as_neighbor <- ordered_plot_input %>% 
-      select(neighbor_sample, parent_sample) %>% 
-      distinct() %>%
-      nrow
- 
-      
-samples_NEVER_called_as_neighbor <- samples_tested_for_correlation_in_assay - samples_ever_called_as_neighbor
- 
-    
-    ### calculate statistics to compare across samples
-    accuracy_counts<-ordered_plot_input %>% 
-      group_by(median_of_depth_bin) %>% 
-      summarize(positive_calls=sum(sample_is_neighbor_in_subset), 
-                negative_calls=sum(!sample_is_neighbor_in_subset) + samples_NEVER_called_as_neighbor, 
-                tp_count =sum(hit_type=="True positive"), 
-                fp_count=sum(hit_type=="False positive"),
-                tn_count= sum(hit_type=="True negative") + samples_NEVER_called_as_neighbor,
-                fn_count=sum(hit_type=="False negative")
-              )
+  select(neighbor_sample, parent_sample) %>% 
+  distinct() %>%
+  nrow
 
-    accuracy_stats_raw <- accuracy_counts %>% 
-      mutate(
-        sensitivity= tp_count/count_of_truly_correlated_samples, 
-        specificity= tn_count/count_of_truly_NON_correlated_samples, 
-        ppv= tp_count/positive_calls, 
-        npv= tn_count/negative_calls
-      )
+samples_NEVER_called_as_neighbor <-
+  samples_tested_for_correlation_in_assay - samples_ever_called_as_neighbor
+ 
     
+### calculate statistics to compare across samples
+accuracy_counts <- ordered_plot_input %>% 
+  group_by(median_of_depth_bin) %>%
+  summarize(positive_calls = sum(sample_is_neighbor_in_subset),
+            negative_calls = sum(!sample_is_neighbor_in_subset) + samples_NEVER_called_as_neighbor,
+            tp_count = sum(hit_type == "True positive"),
+            fp_count = sum(hit_type == "False positive"),
+            tn_count = sum(hit_type == "True negative") + samples_NEVER_called_as_neighbor,
+            fn_count = sum(hit_type == "False negative"))
+
+accuracy_stats_raw <- accuracy_counts %>%
+  mutate(sensitivity = tp_count / count_of_truly_correlated_samples,
+         specificity = tn_count / count_of_truly_NON_correlated_samples,
+         ppv = tp_count / positive_calls,
+         npv = tn_count / negative_calls)
     
-    fullStatNames=data.frame(short= c("sensitivity", "specificity", "ppv", "npv"), long=c("sensitivity-detect when present", "specificity-exclude when absent", "ppv-positive predictive value", "npv-negative predictive value"))
+fullStatNames <- data.frame(short = c("sensitivity", "specificity", "ppv", "npv"),
+                            long = c("sensitivity-detect when present",
+                                     "specificity-exclude when absent",
+                                     "ppv-positive predictive value",
+                                     "npv-negative predictive value"))
     
 accuracy_stats <- gather(accuracy_stats_raw[, colsToGather], measurement, value, -median_of_depth_bin) 
 
 ```
 
-
-# plots for publication
-
+# Plots for publication
 
 ## Summary plots - one line per neighbor
 
 ```{r}
 
-plot_title="Summary neighbor plot - one line per neighbor"  
+plot_title <- "Summary neighbor plot - one line per neighbor"  
 
-pCIA<-ggplot(ordered_plot_input, aes(x = median_of_depth_bin, y = ordered_neighbor, fill = hit_type)) + 
+pCIA <- ggplot(ordered_plot_input, aes(x = median_of_depth_bin, y = ordered_neighbor, fill = hit_type)) +
   geom_tile(stat = "identity") +
-  scale_fill_manual("Call", values= plot_colors) +
-#  ggtitle(plot_title) + 
-  theme(axis.text.y  = element_blank()) +
-  scale_x_continuous("UMEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
+  scale_fill_manual("Call", values = plot_colors) +
+  # ggtitle(plot_title) + 
+  theme(axis.text.y = element_blank()) +
+  scale_x_continuous("UMEND reads (million)", breaks = outlier_results_x_breaks, labels = outlier_results_x_labels) +
   xlab("UMEND reads (million)") + 
   ylab("Correlated background sample") +
-  theme(
-    axis.text.y  = element_blank(),
-    axis.ticks.y  = element_blank()
-  )  + 
-  theme(legend.position="none") + 
-  facet_grid(publication_id~.,scales="free_y", space="free")
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) + 
+  theme(legend.position = "none") + 
+  facet_grid(publication_id~., scales = "free_y", space = "free")
+
 pCIA
 
 # ggsave(paste0("../figures_and_tables/", plot_title,".", Sys.Date(),  ".png"), plot=pCIA, width=3, height=3)
@@ -731,50 +705,47 @@ pCIA
 ## Plot fractional accuracy
 
 ```{r}
-
   
-plot_title="neighbors - all parent samples"  
-pCFA<- ggplot(g_frac_accuracy) +  # correlation fractional accuracy
-	geom_bar(aes(x= median_of_depth_bin, y= fraction_amount, fill= hit_type), stat="identity") +  
-	scale_fill_manual("Call", values= plot_colors) +
-  scale_x_continuous("UMEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
+plot_title <- "neighbors - all parent samples"  
+pCFA <- ggplot(g_frac_accuracy) +  # correlation fractional accuracy
+	geom_bar(aes(x = median_of_depth_bin, y = fraction_amount, fill = hit_type), stat = "identity") +  
+	scale_fill_manual("Call", values = plot_colors) +
+  scale_x_continuous("UMEND reads (million)", breaks = outlier_results_x_breaks, labels = outlier_results_x_labels) +
   ylab("Fraction of correlated background samples") +
   theme(
- #   axis.text.y  = element_blank(), # un comment when I've fixed the max = 0.8 issue
- #   axis.ticks.y  = element_blank()
+  # axis.text.y  = element_blank(), # un comment when I've fixed the max = 0.8 issue
+  # axis.ticks.y  = element_blank()
   )  + 
-  theme(legend.position="none") 
+  theme(legend.position = "none") 
 
 pCFA
 
 ```
 
 # Plot accuracy stats - combined across parent samples
+
 ```{r}
 
-  accuracy_stats_combined<-subset(accuracy_stats,measurement %in% c("sensitivity", "specificity") ) %>%
-  group_by(median_of_depth_bin, measurement) %>% 
-  mutate(
-    depth_bin_min_value=min(value),
-    point_label=ifelse(depth_bin_min_value==value, 
-                   paste0("x=", median_of_depth_bin, " y=", round(value, 3)),
-                   "")
-  ) 
+accuracy_stats_combined <- subset(accuracy_stats, measurement %in% c("sensitivity", "specificity")) %>%
+  group_by(median_of_depth_bin, measurement) %>%
+  mutate(depth_bin_min_value = min(value),
+         point_label = ifelse(depth_bin_min_value == value,
+                              paste0("x=", median_of_depth_bin, " y=", round(value, 3)),"")) 
 
-accuracy_stats_combined_with_no_zeroes<- accuracy_stats_combined %>% 
+accuracy_stats_combined_with_no_zeroes <- accuracy_stats_combined %>% 
   ungroup %>%
-  mutate(median_of_depth_bin = ifelse(median_of_depth_bin==0, 1, median_of_depth_bin))
+  mutate(median_of_depth_bin = ifelse(median_of_depth_bin == 0, 1, median_of_depth_bin))
 
-
-pCSS<-ggplot(accuracy_stats_combined_with_no_zeroes, aes( y= value, color= measurement, x= median_of_depth_bin)) + 
+pCSS <- ggplot(accuracy_stats_combined_with_no_zeroes,
+               aes(y = value, color = measurement, x = median_of_depth_bin)) + 
   geom_point() +
-  geom_smooth(se=TRUE) + 
-  scale_color_manual(values= accuracy_line_colors)   + 
-  theme(legend.position="none") +
+  geom_smooth(se = TRUE) + 
+  scale_color_manual(values = accuracy_line_colors) + 
+  theme(legend.position = "none") +
   # ylab("") +
   xlab("UMEND reads (million)" ) +
-  ylim(0,1.1) +
-  scale_y_continuous("", breaks=seq(0,1,0.2))
+  ylim(0, 1.1) +
+  scale_y_continuous("", breaks = seq(0, 1, 0.2))
  
 pCSS # correlation sensitivity and specificity
 
@@ -782,43 +753,41 @@ pCSS # correlation sensitivity and specificity
 
 ```
 
-
-## combine plots
+## Combine plots
 
 ```{r}
 
-combined_figure_name="correlated_samples_figures"
-
-
+combined_figure_name <- "correlated_samples_figures"
 
 pCFA <- pCFA + ggtitle("B") + theme(plot.title = element_text(hjust = 0))
 pCSS <- pCSS + ggtitle("C") + theme(plot.title = element_text(hjust = 0))
 pCIA <- pCIA + ggtitle("A") + theme(plot.title = element_text(hjust = 0))
  
-
-
-	grobCFA<-ggplotGrob(pCFA) # correlation Fractional accuracy
-	grobCSS<-ggplotGrob(pCSS) # plot of correlation sensitivity and specificity
-	grobCIA<-ggplotGrob(pCIA) # plot of individual correlation accuracy
-grobCombo <- arrangeGrob(grobs=list(grobCIA, grobCFA, grobCSS), 
-                         layout_matrix=rbind(c(1,2),
-                                             c(1,3)),
+grobCFA <- ggplotGrob(pCFA) # correlation Fractional accuracy
+grobCSS <- ggplotGrob(pCSS) # plot of correlation sensitivity and specificity
+grobCIA <- ggplotGrob(pCIA) # plot of individual correlation accuracy
+grobCombo <- arrangeGrob(grobs = list(grobCIA, grobCFA, grobCSS), 
+                         layout_matrix = rbind(c(1,2), c(1,3)),
                          bottom = textGrob(paste(combined_figure_name, Sys.time(), "GMT"),
                                            x=0,
                                            just = "left",
-                                           gp = gpar(fontsize = 8))
-)
+                                           gp = gpar(fontsize = 8)))
 grid.newpage()
 grid.draw(grobCombo)
 
 
 # ggsave(file=paste0("../figures_and_tables/", combined_figure_name, ".png"), grobCombo, width=10, height=8)
 
-ggsave(file=paste0("../figures_and_tables/", combined_figure_name, "_", gsub(" ", "_", gsub(":", "-", Sys.Date())), "_", "UTC", ".png"), grobCombo,  width=10, height=8)
+ggsave(file = paste0("../figures_and_tables/",
+                     combined_figure_name,
+                     "_",
+                     gsub(" ", "_", gsub(":", "-", Sys.Date())),
+                     "_",
+                     "UTC",
+                     ".png"),
+       grobCombo,  width = 10, height = 8)
 
 ```
-
-	
 	
 # Table of accuracy stats - combined across parent samples
 
@@ -829,12 +798,9 @@ accuracy_stats_combo_for_pub <- accuracy_stats_combined %>%
   distinct() %>%
   spread(measurement, depth_bin_min_value) 
 
-
 accuracy_stats_combo_for_pub %>% 
-  kable( digits=4)
+  kable(digits = 4)
 
 write_tsv(accuracy_stats_combo_for_pub, "../data/neighbor_accuracy_stats_combo_for_pub.tsv")
 
 ```
-
-
