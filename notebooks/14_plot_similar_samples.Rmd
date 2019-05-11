@@ -63,7 +63,7 @@ this_bin_width <- 4
 
 #first_degree_results_with_self_correlations <- 
 first_degree_results_with_corrs_gt_875 <- read_tsv("../data/correlated_samples.txt",
-                                                   col_types=cols()) %>% 
+                                                   col_types = cols()) %>% 
   rename(neighbor_sample = first_degree_neighbor_sample) %>%
   mutate(
     sample_is_neighbor_in_subset = TRUE, 
