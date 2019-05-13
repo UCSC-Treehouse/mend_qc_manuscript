@@ -76,7 +76,7 @@ minimal_parent_sample_data_table %>%  write_tsv("../figures_and_tables/table_1_s
 
 comprehensive_parent_sample_data_table <- parent_sample_data %>% 
   mutate(raw_age=Age) %>%
-  mutate(Age = ifelse(is.na(raw_age), "Unk", as.character(raw_age))) %>%
+  mutate(Age = ifelse(is.na(raw_age), "<30", as.character(raw_age))) %>%
   select(Sample = pub_ID, `Total sequences` = total_sequences, `Not uniquely mapped` = not_uniquely_mapped, `Duplicates` = duplicate_reads, `Non-exonic` = non_exonic_reads, UMEND,
          `Percent UMEND` = pct_UMEND, `Treehouse ID`, `Project information`, `Sample ID in project`, Age) %>%
   mutate(`Non-exonic` = format(round(`Non-exonic`), big.mark = ","),

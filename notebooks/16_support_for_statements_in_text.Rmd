@@ -10,7 +10,7 @@ output:
 ```{r setup, include = FALSE}
 
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "/data/projects/gitCode/calculations_for_umend_qc_publication/notebooks")
+# knitr::opts_knit$set(root.dir = "/data/projects/gitCode/umend_qc_publication/notebooks")
 
 library(readr)
 library(tidyr)
