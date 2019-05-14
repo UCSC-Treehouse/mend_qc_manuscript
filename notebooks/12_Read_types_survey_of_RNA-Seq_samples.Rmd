@@ -207,6 +207,74 @@ read_type_pct_thresholds <- read_type_pct_thresholds_raw %>%
 
 ```
 
+# Define reference range for mulitmapped reads
+```{r}
+
+multimapped_of_mapped <- complete_counts_raw %>%
+  dplyr::filter(total_sequences > 20*1E6) %>% 
+  mutate(pct_multimapped_of_mapped = Multimapped_read_count/(Multimapped_read_count + Uniquely_mapped_read_count))
+
+multimapper_thresholds_raw  <- multimapped_of_mapped %>%
+  ungroup %>%
+  summarize(mean_pct_of_mapped = mean(pct_multimapped_of_mapped), 
+            one_sd = sd(pct_multimapped_of_mapped),
+            mean_minus_one_sd = mean_pct_of_mapped - one_sd,
+            mean_plus_one_sd = mean_pct_of_mapped + one_sd,
+            mean_minus_two_sd = mean_pct_of_mapped - one_sd * 2,
+            mean_plus_two_sd = mean_pct_of_mapped + one_sd * 2) %>% 
+  gather(stat, value, -one_sd) %>%
+  mutate(stat2 = gsub("^.*two_sd", "two_sd", gsub("^.*one_sd", "one_sd", stat)))
+
+
+multimapper_thresholds <- multimapper_thresholds_raw %>% 
+ select(stat, value) %>%
+  spread(stat, value) %>%
+  rename(min_pct = mean_minus_two_sd, max_pct = mean_plus_two_sd)
+
+```
+
+# plot multimapped distribiution and limits
+```{r}
+
+
+p20MM <-  ggplot(multimapped_of_mapped) + 
+  geom_histogram(aes(x = pct_multimapped_of_mapped)) + 
+  geom_vline(data = multimapper_thresholds_raw, 
+             aes(xintercept = value,
+                 linetype = stat2))
+
+p20MMb <- p20MM + 
+  theme(legend.position = "none") +
+  ylab("Samples") + 
+  xlab(paste0("Fraction of total reads, n=", length(unique(multimapped_of_mapped$sample_id)))) 
+
+padding_from_line <- -0.04
+
+multimapper_thresholds_for_fig2 <- multimapper_thresholds %>%
+  gather(threshold, value) %>%
+  mutate(
+    x = ifelse(threshold=="max_pct", value + padding_from_line, value - padding_from_line),
+#    y = ifelse(read_type %in% c("Duplicate reads", "UMEND"), 200, 50),
+    y = 200,
+    hjust = ifelse(threshold=="max_pct", "left", "right"),
+    label = ifelse(threshold=="max_pct", 
+                   paste0("mean\n+ 2sd\n", round(value, 3)),
+                   paste0("mean\n- 2sd\n", round(value, 3))
+                   )
+    )
+
+p20MMc <- 
+  p20MMb + 
+  geom_label(data = multimapper_thresholds_for_fig2, 
+            aes(x = x, y = y, label = round(value, 3), hjust = hjust)
+  ) + 
+  scale_x_continuous(breaks = seq(0, 1, by=0.25)) +
+  expand_limits(x = c(-0.25, 0.9))
+
+p20MMc
+```
+
+
 
 # Identify samples within reference range
 
@@ -223,12 +291,25 @@ samples_within_read_type_limits <- plot_info_with_limits %>%
   group_by(sample_id) %>%
   filter(sum(grepl("within_limits", within_limits)) == 4) %>%
   pull(sample_id) %>% unique
+  
+samples_within_multimapper_limits <-  complete_counts_raw %>%
+  mutate(pct_multimapped_of_mapped = Multimapped_read_count/(Multimapped_read_count + Uniquely_mapped_read_count)) %>%
+  filter(pct_multimapped_of_mapped > multimapper_thresholds$min_pct,
+  pct_multimapped_of_mapped < multimapper_thresholds$max_pct
+  ) %>% pull(sample_id)
 
+# samples within read type limits but not multimapper limits  
+length(samples_within_read_type_limits[!samples_within_read_type_limits %in% samples_within_multimapper_limits])
+
+# samples within multimapper limits but not read type limits
+length(samples_within_multimapper_limits[!samples_within_multimapper_limits %in% samples_within_read_type_limits])
+
+samples_within_limits <- samples_within_read_type_limits[samples_within_read_type_limits %in% samples_within_multimapper_limits]
 
 length(unique(plot_info_with_limits$sample_id))
-length(samples_within_read_type_limits)
+length(samples_within_limits)
 
-length(samples_within_read_type_limits)/length(unique(plot_info_with_limits$sample_id))
+length(samples_within_limits)/length(unique(plot_info_with_limits$sample_id))
 ```
 # QC plot of samples
 ```{r}
@@ -241,12 +322,14 @@ depth_status <- read_counts_with_slices %>%
                           "10<UMEND_reads<20",
                           ">20M_UMEND_reads")
     ),
-  all_read_types_within_read_type_limits = sample_id %in% samples_within_read_type_limits,
+  all_read_types_within_read_type_limits = sample_id %in% samples_within_limits,
   within_read_type_limits_label = c( "not_WNL", "WNL")[1 + all_read_types_within_read_type_limits]
   )
 tabyl(depth_status, within_read_type_limits_label, status)
 
+
 plot_info_with_limits2 <- plot_info_with_limits %>% left_join(depth_status, by="sample_id")
+
 
 table(plot_info_with_limits2$within_limits)
 
@@ -275,7 +358,7 @@ ggplot(plot_info_for_problem_samples) +
 # Annotate small samples data to indicate those not WNL
 ```{r}
 
-small_plot_data$not_WNL <- small_plot_data$sample_id  %in% samples_within_read_type_limits
+small_plot_data$not_WNL <- small_plot_data$sample_id  %in% samples_within_limits
 
 threshold_codes=c("NM"="Not mapped", "D"="Duplicate reads", "NE" = "Non exonic reads", "U" = "UMEND")
 
@@ -326,7 +409,7 @@ percentiles_to_query = 0.95 # c(50, 75, 95, 100)/100
 
 # remove failed samples
 plot_info_within_limits <- plotInfo %>%
-  filter(sample_id %in% samples_within_read_type_limits)
+  filter(sample_id %in% samples_within_limits)
 
 proposed_threshold=1
 percentile_to_query=0.95
@@ -359,6 +442,10 @@ write_tsv(predictions %>% filter(percentile_to_query==0.95),
 
 ```
 
+
+# END OF CALCULATIONS
+
+# FIGURES
 # Figure 2
 
 ### 2A
@@ -511,10 +598,10 @@ print(paste("The total number of samples analyzed was",number_of_samples_analyze
 number_of_samples_with_more_than_20M_UMEND_reads <- nrow(subset(complete_counts_raw, UMEND> 20E6))
 print(paste( number_of_samples_with_more_than_20M_UMEND_reads, "samples have more than 20M UMEND reads"))
 
-number_of_samples_within_reference_ranges <- length(samples_within_read_type_limits)
+number_of_samples_within_reference_ranges <- length(samples_within_limits)
 print(paste(number_of_samples_within_reference_ranges,"of the", number_of_samples_analyzed, "samples analyzed had values within the reference range.",number_of_samples_analyzed-number_of_samples_within_reference_ranges, "(", round(100*(1-number_of_samples_within_reference_ranges/number_of_samples_analyzed)), "%) did not."))
 
-nrow(subset(complete_counts_raw, UMEND< 20E6 & ! sample_id %in% samples_within_read_type_limits))
+nrow(subset(complete_counts_raw, UMEND< 20E6 & ! sample_id %in% samples_within_limits))
 
 median_num_of_UMEND_reads_in_samples_within_limits <- plot_info_with_limits %>% 
   filter(within_limits == "within_limits",
@@ -533,7 +620,7 @@ print(paste("the median number of UMEND reads in these samples was", round(media
 
 # For applying the reference range read type cutoffs, we lose 317 (1082-765) samples
 
-samples_not_in_ref_range = complete_counts_raw$sample_id [ ! complete_counts_raw$sample_id %in% samples_within_read_type_limits]
+samples_not_in_ref_range = complete_counts_raw$sample_id [ ! complete_counts_raw$sample_id %in% samples_within_limits]
 
 nrow(subset(complete_counts_raw, ( sample_id %in% samples_not_in_ref_range) & UMEND <10E6))
 nrow(subset(complete_counts_raw, (sample_id %in% samples_not_in_ref_range) & UMEND <20E6 & UMEND >10E6))
@@ -542,7 +629,7 @@ read_counts_with_slices2 <- read_counts_with_slices %>%
   mutate(
     pct_unmapped = not_mapped / total_sequences,
     pct_non_exonic = non_exonic_reads - UMND,
-    in_ref_range = sample_id %in% samples_within_read_type_limits)
+    in_ref_range = sample_id %in% samples_within_limits)
 
 
 summary(read_counts_with_slices2$pct_unmapped)
@@ -566,7 +653,7 @@ print(splitz)
 
 
 
-# nrow(subset(complete_counts_raw, UMEND> 20E6 & sample_id %in% samples_within_read_type_limits)) # 710
+# nrow(subset(complete_counts_raw, UMEND> 20E6 & sample_id %in% samples_within_limits)) # 710
 # 
 # total_lost_to_10_UMEND_threshold <-  nrow(subset(complete_counts_raw, UMEND< 10E6)) # 710
 # 
@@ -588,7 +675,7 @@ fig_file_base <- paste(figure_name, Sys.time())
 
 this_plot_data <- subset(adjusted_read_counts,
                    sample_id %in% samples_for_small_dataset &
-                   sample_id %in% samples_within_read_type_limits)
+                   sample_id %in% samples_within_limits)
 
 this_plot_data_for_labels <- this_plot_data %>%
   filter(sample_id %in% selected_parent_samples$THid,
@@ -637,7 +724,7 @@ print(paste(number_of_samples_within_reference_ranges,"samples that had values w
 
 adjusted_UMEND_wnl <- 
 adjusted_read_counts %>%
-filter(sample_id %in% samples_within_read_type_limits,
+filter(sample_id %in% samples_within_limits,
        read_type == "UMEND"
        ) 
 
