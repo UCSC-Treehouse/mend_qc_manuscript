@@ -7,7 +7,6 @@ output:
     toc: true
 ---
 
-# Include MM at each step
 
 ```{r setup, include = FALSE}
 
@@ -56,13 +55,9 @@ names(category_colors) <- intermediate_names_for_read_types
 
 allCountsRaw <- read_tsv(file.path( "../data/raw_read_survey_results_2019_05_13.txt"), 
                          col_names = c("sample_id", "count_type", "read_count")) %>%
-  spread(count_type, read_count) %>%
-  filter(! grepl("THR08", sample_id),
-         ! grepl("THR33", sample_id)
-         )
+  spread(count_type, read_count) 
 
 samples_in_depth_order = allCountsRaw$sample_id[order(desc(allCountsRaw$total_sequences))]
-
 
 parent_sample_data <- read_tsv("../data/parent_sample_data_source.tsv") %>% rename(pub_ID = publication_id)
 
@@ -148,11 +143,43 @@ read_counts_with_percentages <- read_counts_with_slices %>%
 
 ```
 
-# Define reference ranges based on mean and sd of samples with 20M umend reads
+
+## Exclude samples with unusual depths
+```{r}
+
+calculate_outliers_thresholds <- function(x, IQR_multFactor=1.5) {
+	theseQuartiles=quantile(x, c(1/4,3/4), names=FALSE)
+	IQR =theseQuartiles[2]-theseQuartiles[1]
+	up_outlier_threshold = theseQuartiles[2] + (IQR_multFactor * IQR)
+	down_outlier_threshold = theseQuartiles[1] - (IQR_multFactor * IQR)
+	return(c("down" = down_outlier_threshold, "up" = up_outlier_threshold))
+	}
+
+outlier_thresholds_for_depth = calculate_outliers_thresholds(read_counts_with_percentages$total_sequences)
+# depth_outliers # down outlier threshold is negative; no samples have negative 
+
+read_counts_with_outlier_anno <- read_counts_with_percentages %>%
+  mutate(
+    total_seq_up_outlier = total_sequences > outlier_thresholds_for_depth["up"],
+    total_seq_down_outlier = total_sequences < outlier_thresholds_for_depth["down"]
+    )
+
+table(read_counts_with_outlier_anno$total_seq_down_outlier)
+table(read_counts_with_outlier_anno$total_seq_up_outlier)
+
+read_counts_without_total_seq_outliers <- read_counts_with_outlier_anno %>%
+  filter(!total_seq_down_outlier,
+         !total_seq_up_outlier)
+
+print(paste("exclude", length(unique(read_counts_with_percentages$sample_id)) - length(unique(read_counts_without_total_seq_outliers$sample_id)), "samples that were outliers with respect to sequence depth"))
+```
+# Reference ranges
+
+## Define reference ranges based on mean and sd of samples with 20M umend reads
 
 ```{r}
 
-read_type_training_set <- read_counts_with_percentages %>% 
+read_type_training_set <- read_counts_without_total_seq_outliers %>% 
   group_by(sample_id) %>%
   dplyr::filter(read_countM[read_type == "UMEND"] > 20)
 
@@ -192,7 +219,7 @@ read_type_pct_thresholds <- read_type_pct_thresholds_raw %>%
 
 ```
 
-# Identify samples within reference range
+## Identify samples within reference range
 
 ```{r}
 
@@ -237,7 +264,7 @@ read_counts_with_limits <- read_counts_with_thresholds %>%
 ```
 
 
-# identify low depth and unbalanced samples
+## identify low depth and unbalanced samples
 ```{r}
 
 plot_info_for_problem_samples <- read_counts_with_limits %>% 
@@ -300,7 +327,7 @@ ggplot(plot_info_for_problem_samples) +
 reasonably_sized_samples <- read_counts_with_limits %>%
   select(sample_id, total_sequences) %>%
   distinct %>%
-  filter(total_sequences < 150E6) %>% # the most relevant set, and limiting makes plots intelligible
+ # filter(total_sequences < 150E6) %>% # the most relevant set, and limiting makes plots intelligible
   pull(sample_id)
 
 
@@ -317,13 +344,18 @@ error_distribution <- tibble(error_group_name =names(distribution_in_full_datase
        freq_in_full_dataset = as.numeric(distribution_in_full_dataset_raw), 
        desired_freq_in_subset=freq_in_full_dataset*n_samples_to_plot/nrow(threshold_failure_annotations),
        desired_freq_in_subset_integer=round(desired_freq_in_subset),
-       curated_target_freq_in_subset = ifelse(error_group_name %in% c("U", ""), desired_freq_in_subset_integer+1,desired_freq_in_subset_integer) #,
+       curated_target_freq_in_subset = desired_freq_in_subset_integer
        
-       ) # when rounding, the total doesn't add to 50, so i intervened
+       ) 
 
-# test: 
-sum(error_distribution$curated_target_freq_in_subset)
+# if rounded fractions don't add to 50, fill
+while (sum(error_distribution$curated_target_freq_in_subset)<n_samples_to_plot){
+  row_for_passing_samples <- which(error_distribution$error_group_name  %in%  "")[1]
+  
+  error_distribution$curated_target_freq_in_subset[row_for_passing_samples] = error_distribution$curated_target_freq_in_subset[row_for_passing_samples] + 1
+}
 
+# sum(error_distribution$curated_target_freq_in_subset)
 
 random_samples <- apply(error_distribution, 1, function(x){
   # x=error_distribution[2,]
@@ -546,23 +578,6 @@ p1
 dim(subset(threshold_failure_annotations, sample_id %in% small_plot_data_no_MM$sample_id))
 ```
 
-### plot reality checks
-```{r}
-# with random seed 2, it looks like all the fail samples have lower total sequence depth
-
-# In fact, passing samples have the lowest median total sequences count
-read_counts_with_limits %>% select(total_sequences, sample_id, failed_thresholds) %>%
-  group_by(failed_thresholds) %>%
-  summarize(median_total_seq_count = median(total_sequences),
-            mean_total_seq_count = mean(total_sequences)
-            ) %>% 
-  arrange(desc(median_total_seq_count))
-  
-  
-ggplot(read_counts_with_limits)   + geom_histogram(aes(total_sequences)) + facet_wrap(~failed_thresholds)
-  
-
-```
 
 
 ### 2B
@@ -650,7 +665,7 @@ plot_output <-   p12 +
 
 plot_output
 # ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output, height = 5, width = 12.5)
-ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output, height = 7, width = 11)
+# ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output, height = 7, width = 11)
 ```
 
 # Text related to figure 2
@@ -704,11 +719,11 @@ read_counts_with_slices2 <- read_counts_with_slices %>%
 
 
 summary(read_counts_with_slices2$pct_unmapped)
-read_counts_with_slices2 %>% arrange(desc(pct_unmapped))
+# read_counts_with_slices2 %>% arrange(desc(pct_unmapped))
 
-read_counts_with_slices2 %>%
-  filter(UMEND > 20E6) %>%
-  arrange(desc(pct_unmapped))
+# read_counts_with_slices2 %>%
+#   filter(UMEND > 20E6) %>%
+#   arrange(desc(pct_unmapped))
 
 n_samples_with_gt95pct_unmapped <- sum(read_counts_with_slices2$pct_unmapped > 0.95)
 
@@ -716,7 +731,7 @@ n_samples_with_gt95pct_unmapped <-
   
   nrow(subset(read_counts_with_slices2, pct_unmapped > 0.95 & UMEND > 10E6))
 nrow(subset(read_counts_with_slices2, pct_unmapped > 0.95 & UMEND > 20E6))
-subset(read_counts_with_slices2, pct_unmapped > 0.95 & UMEND > 20E6)$UMEND
+#subset(read_counts_with_slices2, pct_unmapped > 0.95 & UMEND > 20E6)$UMEND
 
 splitz <- paste("When we apply the reference range cutoffs to the original complete data source, we lose 317 samples. 196 of those samples would be lost to the UMEND threshold even if we didn't apply the reference range. By applying the reference range, we exclude 317-196, 121 samples that wouldn't otherwise be excluded. Some are egregious (e.g.", n_samples_with_gt95pct_unmapped, "have less than 95% of reads mapped to the genome")
 
@@ -791,7 +806,7 @@ plot_output <- plot_grid(p) +
 
 plot_output
 
-ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output, height = 5, width = 8)
+#ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output, height = 5, width = 8)
 ```
 
 This file was saved with the timestamp `r fig_file_base`
@@ -1041,6 +1056,25 @@ subset(read_counts_with_limits, sample_id == s) %>% select(read_type, min_pct, m
   
 ```
 
+### plot reality checks
+```{r}
+# with random seed 2, it looks like all the fail samples have lower total sequence depth
+
+# In fact, passing samples have the lowest median total sequences count
+read_counts_with_limits %>% select(total_sequences, sample_id, failed_thresholds) %>%
+  group_by(failed_thresholds) %>%
+  summarize(median_total_seq_count = median(total_sequences),
+            mean_total_seq_count = mean(total_sequences)
+            ) %>% 
+  arrange(desc(median_total_seq_count))
+  
+  
+ggplot(read_counts_with_limits)   + geom_histogram(aes(total_sequences)) + facet_wrap(~failed_thresholds)
+  
+
+```
+
+
 ## How much does duplicate fraction vary by depth
 ```{r}
 
@@ -1076,146 +1110,5 @@ dupe_frac_compare <- read_counts_with_percentages_20U %>%
     facet_wrap(~depth_category)
   
 ggplot(dupe_frac_compare) + geom_point(aes(x=total_sequences, y=Percent_duplicates, color=pct_UMEND * total_sequences >40E6))
-
-```
-# Investigate pct dupe distributions at different depths
-```{r}
-
-#read_counts_with_percentages_20U
-#read_counts_with_limits_dupe_investigation
-
-rcdi <- read_counts_with_limits %>%
-  left_join(allCountsRaw %>% select(sample_id, UMEND))  %>% 
-  filter(
-    read_type=="Duplicate reads",
-#    UMEND > 20E6
-  ) %>%
-  mutate(
-    total_depth_category = 10*round(total_sequences/10E6),
-    UMEND_depth_category = 10*round(UMEND/10E6),
-    project = gsub("[_-].*", "", sample_id)
-    )  
-
-rcdi1 <- rcdi %>% 
-  filter(total_depth_category %in% 40:60)
-
-rcdi_stats <- rcdi1 %>% 
-  group_by(total_depth_category) %>% 
-  summarize(mean_pct_of_total = mean(percent_of_total), 
-            one_sd = sd(percent_of_total),
-            mean_minus_one_sd = mean_pct_of_total - one_sd,
-            mean_plus_one_sd = mean_pct_of_total + one_sd,
-            mean_minus_two_sd = mean_pct_of_total - one_sd * 2,
-            mean_plus_two_sd = mean_pct_of_total + one_sd * 2) %>% 
-  select(-one_sd) %>%
-  gather(stat, value, -total_depth_category) %>%
-  mutate(stat2 = gsub("^.*two_sd", "two_sd", gsub("^.*one_sd", "one_sd", stat)))
-
-# geom_vline(aes(xintercept = mean(speed)),col='red',size=2)+
-
-ggplot(rcdi1) + 
-#  geom_histogram(aes(x = percent_of_total, fill = read_type)) + 
-  geom_histogram(aes(x = percent_of_total, fill = UMEND>20E6), alpha = 0.5) +   facet_wrap(~total_depth_category) +
-#  scale_fill_manual(values = category_colors) +
-  scale_color_manual(values = category_colors) +
-  geom_vline(data = rcdi_stats, 
-             aes(xintercept = value,
-                 linetype = stat2))
-
-
-
-```
-# Investigate who has these low pct dupes
-```{r}
-
-
-rcdi_no2 <- read_counts_with_limits %>%
-  left_join(allCountsRaw %>% select(sample_id, UMEND))  %>% 
-  filter(
-    read_type=="Duplicate reads",
-#    UMEND > 20E6
-  ) %>%
-  mutate(
-    total_depth_category = 10*round(total_sequences/10E6),
-    UMEND_depth_category = 10*round(UMEND/10E6)
-    ) 
-
-#r2a <- subset(rcdi2, Percent_duplicates<0.20) %>%
-
-    sort(table(subset(rcdi, Percent_duplicates<0.20)$project), decreasing = TRUE)
-
-# for each project, what fraction of samples has fewer than 20% duplicates
-    
-    rcdi %>%
-      group_by(project) %>%
-      summarize(
-        pct_under_20 = sum(Percent_duplicates<0.2)/n(),
-        frac_under_20 = paste0(sum(Percent_duplicates<0.2), "/", n()),
-        mean = mean(Percent_duplicates)
-        ) %>%
-      arrange(desc(pct_under_20))
-    
-    # projects with more than 10 samples
-rcdi3_stats <-    rcdi %>%
-      group_by(project) %>%
-      summarize(
-        pct_under_20 = sum(Percent_duplicates<0.2)/n(),
-        frac_under_20 = paste0(sum(Percent_duplicates<0.2), "/", n()),
-        mean = mean(Percent_duplicates),
-        n_samples_in_project = n()
-        ) 
-
-ggplot(rcdi3_stats) + geom_histogram(aes(n_samples_in_project))
-    
-
-library(forcats)
-rcdi4 <- rcdi %>%
-  mutate(project = factor(project),
-         project_lumped = fct_lump(project, prop = 0.03)
-  )
-
-  
-
-ggplot(rcdi4) + geom_histogram(aes(Percent_duplicates, fill=project_lumped)) + ggtitle("pct dupes in larger projects")
-    
-
-
-
-rcdi4 %>%
-         mutate(small_projects = as.character(project)) %>%
-         filter(! project %in% levels(project_lumped)) %>%
-  ggplot + geom_histogram(aes(Percent_duplicates, fill=project))+ ggtitle("pct dupes in small projects")
-
-
-    # sort(table(subset(rcdi2, Percent_duplicates<0.20)$project), desc=TRUE)
-
-
-    
-```
-
-## Average duplicate rate per project
-
-```{r}
-
-read_counts_with_slices %>% 
-  mutate(project=gsub("[-_].*$", "", sample_id)) %>%
-  group_by(project) %>%
-  summarize(
-    mean_pct_dupe=mean(Percent_duplicates),
-    n=n()
-    ) %>%
-  arrange((mean_pct_dupe))
-
-read_counts_with_slices %>% 
-  filter(UMEND>20E6) %>%
-  mutate(project=gsub("[-_].*$", "", sample_id)) %>%
-  group_by(project) %>%
-  summarize(
-    mean_pct_dupe=mean(Percent_duplicates),
-    n=n()
-    ) %>%
-  arrange((mean_pct_dupe))
-
-
 
 ```
