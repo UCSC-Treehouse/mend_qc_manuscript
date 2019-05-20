@@ -56,7 +56,10 @@ names(category_colors) <- intermediate_names_for_read_types
 
 allCountsRaw <- read_tsv(file.path( "../data/raw_read_survey_results_2019_05_13.txt"), 
                          col_names = c("sample_id", "count_type", "read_count")) %>%
-  spread(count_type, read_count) 
+  spread(count_type, read_count) %>%
+  filter(! grepl("THR08", sample_id),
+         ! grepl("THR33", sample_id)
+         )
 
 samples_in_depth_order = allCountsRaw$sample_id[order(desc(allCountsRaw$total_sequences))]
 
@@ -547,7 +550,7 @@ dim(subset(threshold_failure_annotations, sample_id %in% small_plot_data_no_MM$s
 ```{r}
 # with random seed 2, it looks like all the fail samples have lower total sequence depth
 
-In fact, passing samples have the lowest median total sequences count
+# In fact, passing samples have the lowest median total sequences count
 read_counts_with_limits %>% select(total_sequences, sample_id, failed_thresholds) %>%
   group_by(failed_thresholds) %>%
   summarize(median_total_seq_count = median(total_sequences),
@@ -769,7 +772,13 @@ p <- ggplot(this_plot_data) +
                 y = 1 + total_adjusted_read_count / 1e6,
                 label = "*"),
             color = "black",
-            size = 5) + theme(legend.position="none")
+            size = 5) + 
+  theme(legend.position="none") +
+  geom_text(data=subset(this_plot_data, read_type == "UMEND"),
+            aes(x = sample_id, y = total_adjusted_read_count / 1e6/2, label = sample_id), 
+            angle = 90)
+
+
 ###
 
 plot_output <- plot_grid(p) +
@@ -992,7 +1001,8 @@ p20c
 
 
 
-s="THR33_1031_S01"  
+# s="THR33_1031_S01"  
+s = "THR13_0966_S01" 
 # s="TH34_1452_S01"
 #     
 # this_sample_plot_data <- subset(read_counts_with_limits, sample_id == s) 
@@ -1026,11 +1036,162 @@ ggplot(this_sample_plot_data) + geom_bar(aes(x=read_category , y=read_count/1e6,
   theme(axis.text.x = element_blank()) +
   theme(strip.background = element_blank(), strip.text = element_blank())
 
+
+subset(read_counts_with_limits, sample_id == s) %>% select(read_type, min_pct, max_pct, within_limits, percent_of_total)
   
 ```
 
+## How much does duplicate fraction vary by depth
+```{r}
 
 
+read_counts_with_percentages_20U <- read_counts_with_percentages %>% 
+  group_by(sample_id) %>%
+  dplyr::filter(
+    read_countM[read_type == "UMEND"] > 20,
+    !read_type == "Multi-mapped")
+
+read_type_names <- better_names_for_read_types
+names(read_type_names)= names(category_colors)
+
+read_type_labeller <- function(variable,value){
+  return(read_type_names[value])
+}
+
+
+dupe_frac_compare <- read_counts_with_percentages_20U %>% 
+  filter(read_type=="Duplicate reads") %>%
+  mutate(depth_category = round(total_sequences/10E6))
+  
+# p20 <-  
+  
+  ggplot(dupe_frac_compare) + 
+  geom_histogram(aes(x = percent_of_total, fill = read_type)) + 
+  geom_vline(data = subset(read_type_mean_and_sd_20U, read_type=="Duplicate reads"), 
+             aes(xintercept = value,
+                 color = read_type,
+                 linetype = stat2)) +
+  scale_fill_manual(values = category_colors) +
+  scale_color_manual(values = category_colors) +
+    facet_wrap(~depth_category)
+  
+ggplot(dupe_frac_compare) + geom_point(aes(x=total_sequences, y=Percent_duplicates, color=pct_UMEND * total_sequences >40E6))
+
+```
+# Investigate pct dupe distributions at different depths
+```{r}
+
+#read_counts_with_percentages_20U
+#read_counts_with_limits_dupe_investigation
+
+rcdi <- read_counts_with_limits %>%
+  left_join(allCountsRaw %>% select(sample_id, UMEND))  %>% 
+  filter(
+    read_type=="Duplicate reads",
+#    UMEND > 20E6
+  ) %>%
+  mutate(
+    total_depth_category = 10*round(total_sequences/10E6),
+    UMEND_depth_category = 10*round(UMEND/10E6),
+    project = gsub("[_-].*", "", sample_id)
+    )  
+
+rcdi1 <- rcdi %>% 
+  filter(total_depth_category %in% 40:60)
+
+rcdi_stats <- rcdi1 %>% 
+  group_by(total_depth_category) %>% 
+  summarize(mean_pct_of_total = mean(percent_of_total), 
+            one_sd = sd(percent_of_total),
+            mean_minus_one_sd = mean_pct_of_total - one_sd,
+            mean_plus_one_sd = mean_pct_of_total + one_sd,
+            mean_minus_two_sd = mean_pct_of_total - one_sd * 2,
+            mean_plus_two_sd = mean_pct_of_total + one_sd * 2) %>% 
+  select(-one_sd) %>%
+  gather(stat, value, -total_depth_category) %>%
+  mutate(stat2 = gsub("^.*two_sd", "two_sd", gsub("^.*one_sd", "one_sd", stat)))
+
+# geom_vline(aes(xintercept = mean(speed)),col='red',size=2)+
+
+ggplot(rcdi1) + 
+#  geom_histogram(aes(x = percent_of_total, fill = read_type)) + 
+  geom_histogram(aes(x = percent_of_total, fill = UMEND>20E6), alpha = 0.5) +   facet_wrap(~total_depth_category) +
+#  scale_fill_manual(values = category_colors) +
+  scale_color_manual(values = category_colors) +
+  geom_vline(data = rcdi_stats, 
+             aes(xintercept = value,
+                 linetype = stat2))
+
+
+
+```
+# Investigate who has these low pct dupes
+```{r}
+
+
+rcdi_no2 <- read_counts_with_limits %>%
+  left_join(allCountsRaw %>% select(sample_id, UMEND))  %>% 
+  filter(
+    read_type=="Duplicate reads",
+#    UMEND > 20E6
+  ) %>%
+  mutate(
+    total_depth_category = 10*round(total_sequences/10E6),
+    UMEND_depth_category = 10*round(UMEND/10E6)
+    ) 
+
+#r2a <- subset(rcdi2, Percent_duplicates<0.20) %>%
+
+    sort(table(subset(rcdi, Percent_duplicates<0.20)$project), decreasing = TRUE)
+
+# for each project, what fraction of samples has fewer than 20% duplicates
+    
+    rcdi %>%
+      group_by(project) %>%
+      summarize(
+        pct_under_20 = sum(Percent_duplicates<0.2)/n(),
+        frac_under_20 = paste0(sum(Percent_duplicates<0.2), "/", n()),
+        mean = mean(Percent_duplicates)
+        ) %>%
+      arrange(desc(pct_under_20))
+    
+    # projects with more than 10 samples
+rcdi3_stats <-    rcdi %>%
+      group_by(project) %>%
+      summarize(
+        pct_under_20 = sum(Percent_duplicates<0.2)/n(),
+        frac_under_20 = paste0(sum(Percent_duplicates<0.2), "/", n()),
+        mean = mean(Percent_duplicates),
+        n_samples_in_project = n()
+        ) 
+
+ggplot(rcdi3_stats) + geom_histogram(aes(n_samples_in_project))
+    
+
+library(forcats)
+rcdi4 <- rcdi %>%
+  mutate(project = factor(project),
+         project_lumped = fct_lump(project, prop = 0.03)
+  )
+
+  
+
+ggplot(rcdi4) + geom_histogram(aes(Percent_duplicates, fill=project_lumped)) + ggtitle("pct dupes in larger projects")
+    
+
+
+
+rcdi4 %>%
+         mutate(small_projects = as.character(project)) %>%
+         filter(! project %in% levels(project_lumped)) %>%
+  ggplot + geom_histogram(aes(Percent_duplicates, fill=project))+ ggtitle("pct dupes in small projects")
+
+
+    # sort(table(subset(rcdi2, Percent_duplicates<0.20)$project), desc=TRUE)
+
+
+    
+```
 
 ## Average duplicate rate per project
 

@@ -21,6 +21,9 @@ echo -e ${SAMPLE_ID}'\ttotal_sequences\t'${total_sequences} >> $output_file_name
 star_file=${data_source}${SAMPLE_ID}${star_log}
 Uniquely_mapped_read_count=$( cat $star_file | grep "Uniquely mapped reads number"  | cut -f2 -d"|" | tr -d '[:blank:]' )
 echo -e ${SAMPLE_ID}'\tUniquely_mapped_read_count\t'${Uniquely_mapped_read_count} >> $output_file_name 
+Multi_mapped_read_count=$( cat $i | grep "Number of reads mapped to multiple loci"  | cut -f2 -d"|" | tr -d '[:blank:]' )
+echo -e ${sample_id}'\tMultimapped_read_count\t'${Multi_mapped_read_count} >> $output_file_name 
+
 
 # get UMND and UMEND from RSeQC
 umend_file=${data_source}${SAMPLE_ID}${umend}

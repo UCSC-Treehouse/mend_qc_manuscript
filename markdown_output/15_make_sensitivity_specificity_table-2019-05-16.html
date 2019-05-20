@@ -382,8 +382,8 @@ $(document).ready(function () {
 
 
 <pre class="r"><code>neighbor_sens_spec_raw &lt;- read_tsv(&quot;../data/neighbor_accuracy_stats_combo_for_pub.tsv&quot;) %&gt;% 
-  dplyr::rename(bin_median=median_of_depth_bin) %&gt;%
-  mutate(bin_median=ifelse(bin_median==0, 1, bin_median))</code></pre>
+  dplyr::rename(bin_median = median_of_depth_bin) %&gt;%
+  mutate(bin_median = ifelse(bin_median == 0, 1, bin_median))</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   median_of_depth_bin = col_double(),
@@ -397,34 +397,32 @@ $(document).ready(function () {
 ##   sensitivity = col_double(),
 ##   specificity = col_double()
 ## )</code></pre>
-<pre class="r"><code> predicted_required_total_reads &lt;- read_tsv(&quot;../data/predicted_required_total_reads_within_limits.tsv&quot;) %&gt;%
-   select(-percentile_to_query)</code></pre>
+<pre class="r"><code>predicted_required_total_reads &lt;- read_tsv(&quot;../data/predicted_required_total_reads_within_limits.tsv&quot;) %&gt;%
+  select(-percentile_to_query)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   proposed_threshold = col_double(),
 ##   percentile_to_query = col_double(),
 ##   predicted_total_reads = col_double()
 ## )</code></pre>
-<pre class="r"><code>sens_spec &lt;- left_join(outlier_sens_spec_raw, neighbor_sens_spec_raw, by=c(median_of_depth_bin=&quot;bin_median&quot;)) %&gt;%
-  left_join(predicted_required_total_reads, c(&quot;median_of_depth_bin&quot;=&quot;proposed_threshold&quot;))
+<pre class="r"><code>sens_spec &lt;- left_join(outlier_sens_spec_raw,
+                       neighbor_sens_spec_raw,
+                       by = c(median_of_depth_bin = &quot;bin_median&quot;)) %&gt;%
+  left_join(predicted_required_total_reads, c(&quot;median_of_depth_bin&quot; = &quot;proposed_threshold&quot;))
   
-colnames(sens_spec)  =c(&quot;UMEND reads (million)&quot;, &quot;Outlier sensitivity&quot;, &quot;Outlier specificity&quot;,  &quot;Correlation sensitivity&quot;, &quot;Correlation specificity&quot;, &quot;Estimated total reads&quot;)
-  
+colnames(sens_spec) = c(&quot;UMEND reads (million)&quot;,
+                        &quot;Outlier sensitivity&quot;,
+                        &quot;Outlier specificity&quot;,
+                        &quot;Correlation sensitivity&quot;,
+                        &quot;Correlation specificity&quot;,
+                        &quot;Estimated total reads&quot;)
+
 sens_spec %&gt;%
-  mutate_at(vars(contains('ity')), funs(sprintf(&quot;%0.4f&quot;,.)))  %&gt;%  
-#  mutate(`Estimated total reads`= prettyNum(`Estimated total reads`, big.mark = &quot;,&quot;))  %&gt;%  
-  mutate(`Estimated total reads`= round(`Estimated total reads`/1E6, 1))  %&gt;%  
-  rename(`Estimated total reads (millions)`=`Estimated total reads`)  %&gt;% 
+  mutate_at(vars(contains('ity')), funs(sprintf(&quot;%0.4f&quot;,.))) %&gt;%  
+  # mutate(`Estimated total reads`= prettyNum(`Estimated total reads`, big.mark = &quot;,&quot;))  %&gt;%  
+  mutate(`Estimated total reads` = round(`Estimated total reads` / 1E6, 1))  %&gt;%  
+  rename(`Estimated total reads (millions)` = `Estimated total reads`)  %&gt;% 
   write_tsv(&quot;../figures_and_tables/table_2_sens_spec_and_thresholds.tsv&quot;)</code></pre>
-<pre><code>## Warning: funs() is soft deprecated as of dplyr 0.8.0
-## please use list() instead
-## 
-## # Before:
-## funs(name = f(.)
-## 
-## # After: 
-## list(name = ~f(.))
-## This warning is displayed once per session.</code></pre>
 
 
 
