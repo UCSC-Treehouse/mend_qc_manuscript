@@ -2,7 +2,7 @@
 library(tidyverse)
 library(jsonlite)
 
-this_dir="/private/groups/treehouse/archive/projects/qc_paper/scratch/calculations_for_umend_qc_publication"
+this_dir="/private/groups/treehouse/archive/projects/qc_paper/scratch/umend_qc_publication"
 setwd(this_dir)
 
 samples <- read_tsv("data/subsample_ids.txt")
