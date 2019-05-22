@@ -11,8 +11,8 @@ truth_definitions <- c("found_in_at_least_half_the_subsets",
 
 ## PICK SAMPLES TO ANALYZE
 if (f_include_early_stage_munging) rmarkdown::render(
-  input = "01_select_subsamples_by_UMEND_depth.Rmd", 
-  output_file = paste0("../markdown_output/01_select_subsamples_by_UMEND_depth-", Sys.Date(), ".html"))
+  input = "01_select_subsamples_by_MEND_depth.Rmd", 
+  output_file = paste0("../markdown_output/01_select_subsamples_by_MEND_depth-", Sys.Date(), ".html"))
 
 ## SUMMARIZE EXPRESSION
 if (f_include_early_stage_munging) rmarkdown::render(

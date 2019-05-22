@@ -21,8 +21,16 @@ library(knitr); citation("knitr")
 
 ```{r}
 
-read_counts <- read_tsv("../data/read_counts.txt", 
+read_counts_raw <- read_tsv("../data/read_counts.txt", 
                         col_names = c("sample_id", "measurement", "read_count")) 
+
+
+read_counts <- read_counts_raw %>%  
+  spread(measurement, read_count) %>%
+  mutate(Mapped_read_count = Multimapped_read_count + Uniquely_mapped_read_count) %>%
+  select(-Uniquely_mapped_read_count, -Multimapped_read_count) %>%
+  gather(measurement, read_count, -sample_id)
+
 
 parent_publication_ids <- read_tsv("../data/parent_sample_data_source.tsv") %>%
   select(Eval_ID, publication_id)
@@ -33,18 +41,18 @@ parent_publication_ids <- read_tsv("../data/parent_sample_data_source.tsv") %>%
 
 ```{r}
 
-UMEND_read_counts <- read_counts %>% 
+MEND_read_counts <- read_counts %>% 
 	mutate(
-		target_UMEND_count=as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", sample_id)),
+		target_MEND_count=as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", sample_id)),
 		parent_id = gsub("_est.*$", "", sample_id),
 		measurement = factor(measurement,
 		                     levels = c("total_sequences",
-		                                "Uniquely_mapped_read_count",
-		                                "Uniquely_mapped_non_duplicate_read_count",
-		                                "UMEND"))) %>%
-  filter(measurement == "UMEND") %>% 
+		                                "Mapped_read_count",
+		                                "Mapped_non_duplicate_read_count",
+		                                "MEND"))) %>%
+  filter(measurement == "MEND") %>% 
   select(-measurement) %>%
-  rename(UMEND = read_count) %>%
+  rename(MEND = read_count) %>%
   left_join(parent_publication_ids,
             by = c(parent_id = "Eval_ID"))
 
@@ -54,9 +62,9 @@ UMEND_read_counts <- read_counts %>%
 
 ```{r}
 
-selected_subset_depths <- tibble(target_UMEND_count = c(1, seq(4, 48, by = 4)))
-selected_subset_depths$median_of_depth_bin <- selected_subset_depths$target_UMEND_count
-selected_subset_depths$median_of_depth_bin[selected_subset_depths$target_UMEND_count == 1] <- 0
+selected_subset_depths <- tibble(target_MEND_count = c(1, seq(4, 48, by = 4)))
+selected_subset_depths$median_of_depth_bin <- selected_subset_depths$target_MEND_count
+selected_subset_depths$median_of_depth_bin[selected_subset_depths$target_MEND_count == 1] <- 0
 
 ```
 
@@ -68,20 +76,20 @@ This is required since the actual number of UMEND reads in a subsample differs f
 
 closest_samples <- NULL
 for (this_parent_id in parent_publication_ids$Eval_ID) {
-  for (this_target_UMEND_count in selected_subset_depths$target_UMEND_count) {
+  for (this_target_MEND_count in selected_subset_depths$target_MEND_count) {
     # this_parent_id = "TH_Eval_016"
-    # this_target_UMEND_count = 48
-    closest_subsample <- UMEND_read_counts %>%
+    # this_target_MEND_count = 48
+    closest_subsample <- MEND_read_counts %>%
       filter(parent_id == this_parent_id) %>%
-      mutate(dist_from_this_target_UMEND_count = abs(UMEND/1E6-this_target_UMEND_count )) %>%
-      arrange(dist_from_this_target_UMEND_count) %>%
-      top_n(-1, dist_from_this_target_UMEND_count)
+      mutate(dist_from_this_target_MEND_count = abs(MEND/1E6-this_target_MEND_count )) %>%
+      arrange(dist_from_this_target_MEND_count) %>%
+      top_n(-1, dist_from_this_target_MEND_count)
     
     closest_samples <- bind_rows(closest_samples,
                                  tibble(parent_id=this_parent_id, 
-                                        target_UMEND_count=this_target_UMEND_count,
+                                        target_MEND_count=this_target_MEND_count,
                                         closest_sample = closest_subsample$sample_id,
-                                        target_UMEND_count_of_closest_sample = closest_subsample$target_UMEND_count,
+                                        target_MEND_count_of_closest_sample = closest_subsample$target_MEND_count,
                                         publication_id = closest_subsample$publication_id))
   }
 }
@@ -93,17 +101,17 @@ for (this_parent_id in parent_publication_ids$Eval_ID) {
 ```{r}
 
   closest_samples %>%
-    filter(target_UMEND_count_of_closest_sample != target_UMEND_count)
+    filter(target_MEND_count_of_closest_sample != target_MEND_count)
 
 ```
 
 ## options for handling the difference between targeted UMEND count and actual UMEND count
 
-I use the TH_Eval_016 with 50M target_UMEND_count for the 48M bin. If we used the 50M values to define True, I might be tempted to keep the samples with a target UMEND value of 48M for the 48M bin. But currently we don't use the 50M values for anything.
+I use the TH_Eval_016 with 50M target_MEND_count for the 48M bin. If we used the 50M values to define True, I might be tempted to keep the samples with a target UMEND value of 48M for the 48M bin. But currently we don't use the 50M values for anything.
 
 A variable in which the smallest depth is zero is required to make the bin plots come out correctly. I rename the 0 bin to be 1 after the plot is generated. I use median_of_depth_bin.
 
-A variable in which the smallest depth is one is required to make the point plots come out correctly (so that a sensitivity isn't reported for zero reads, because that would make no sense). I use target_UMEND_count.
+A variable in which the smallest depth is one is required to make the point plots come out correctly (so that a sensitivity isn't reported for zero reads, because that would make no sense). I use target_MEND_count.
 
 The values are the same in every other case. Specifically, it is the value that is common across parent samples at which these samples can be compared. 
 
@@ -114,8 +122,8 @@ Literally, target UMEND count I had in mind when I created TH_Eval_016_est50M_UM
 ```{r}
 
 selected_samples <- closest_samples %>%
-  select(sample_id = closest_sample, target_UMEND_count, parent_id, publication_id) %>%
-  left_join(selected_subset_depths, by = "target_UMEND_count") %>%
+  select(sample_id = closest_sample, target_MEND_count, parent_id, publication_id) %>%
+  left_join(selected_subset_depths, by = "target_MEND_count") %>%
   select(-publication_id, everything())
 
 write_tsv(selected_samples, "../data/evenly_selected_subsamples_with_binwidth_4.tsv")
@@ -126,12 +134,12 @@ write_tsv(selected_samples, "../data/evenly_selected_subsamples_with_binwidth_4.
 
 ```{r fig.height = 8, fig.width = 8}
 
-ggplot(UMEND_read_counts) + 
-  geom_point(aes(x = UMEND/1e6, y = target_UMEND_count, color = as.character(target_UMEND_count))) +
-  geom_vline(aes(xintercept = target_UMEND_count), size = 0.05) + 
-  geom_vline(aes(xintercept = target_UMEND_count - 2), linetype = "dashed", size = 0.05) + 
+ggplot(MEND_read_counts) + 
+  geom_point(aes(x = MEND/1e6, y = target_MEND_count, color = as.character(target_MEND_count))) +
+  geom_vline(aes(xintercept = target_MEND_count),  linetype = "dashed", size = 0.05) + 
+  geom_vline(aes(xintercept = target_MEND_count - 2), size = 0.05) + 
   facet_wrap(~parent_id) + 
   theme(legend.position = "none") + 
-  ggtitle("Solid lines are the bin medians; dashed are bin boundaries")
+  ggtitle("dashed lines are the bin medians; solid are bin boundaries")
 
 ```
