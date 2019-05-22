@@ -1,0 +1,105 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+---
+
+
+```{r setup, include = FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+# knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/drafts_of_umend_qc_publication/")
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(gridGraphics)
+library(RColorBrewer)
+library(viridis)
+library(ggrepel)
+library(cowplot)
+library(janitor)
+
+```
+
+# Settings
+
+```{r}
+
+n_samples_to_plot <- 50
+
+f_run_qc <- FALSE
+f_label_bars_in_55_sample_plot <- FALSE
+
+library(RColorBrewer)
+
+source_palette <- brewer.pal(12, "Paired")
+cb_dark_green <- source_palette[4]
+cb_light_green <- source_palette[3]
+
+
+raw_names_for_read_types <-  c("not_mapped", "Multimapped_read_count", "duplicate_reads", "non_exonic_reads", "UMEND")
+intermediate_names_for_read_types = c("Not mapped", "Multi-mapped", "Duplicate reads", "Non exonic reads", "UMEND")
+better_names_for_read_types <- c("Not mapped", "Multi-mapped", "Duplicate", "Non exonic", "UMEND")
+
+
+category_colors <- c(grey(0.5), "blue", cb_light_green, grey(0.7), cb_dark_green) 
+names(category_colors) <- intermediate_names_for_read_types
+
+
+multimapper_colors <- c(source_palette[6], source_palette[2] ) 
+names(multimapper_colors) <- c("Multi-mapped", "Uniquely mapped")
+
+
+
+
+
+
+```
+
+# Load data
+
+```{r}
+
+
+samples_in_depth_order = allCountsRaw$sample_id[order(desc(allCountsRaw$total_sequences))]
+
+parent_sample_data <- read_tsv("../data/parent_sample_data_source.tsv") %>% rename(pub_ID = publication_id)
+
+```
+
+# Do we ever have more UMND than UM anymore in the survey?
+
+```{r}
+allCountsRaw <- read_tsv(file.path( "../data/raw_read_survey_results_2019_05_13.txt"), 
+                         col_names = c("sample_id", "count_type", "read_count")) %>%
+  spread(count_type, read_count) 
+
+complete_counts_troubleshooting <- na.omit(allCountsRaw) %>%
+  filter(!grepl("TH06", sample_id)) %>% # exclude placeholder QC values from TH06 (we don't have real QC values for these samples)
+  mutate(number_of_dupes = (Multimapped_read_count+Uniquely_mapped_read_count) - Uniquely_mapped_non_duplicate_read_count)
+
+summary(complete_counts_troubleshooting$number_of_dupes)
+
+
+```
+
+# Do we ever have more UMND than UM anymore in the subsets? - No
+
+```{r}
+allCountsRaw <- read_tsv(file.path( "../data/read_counts.txt"), 
+                         col_names = c("sample_id", "count_type", "read_count")) %>%
+  spread(count_type, read_count) 
+
+complete_counts_troubleshooting <- na.omit(allCountsRaw) %>%
+  filter(!grepl("TH06", sample_id)) %>% # exclude placeholder QC values from TH06 (we don't have real QC values for these samples)
+  mutate(number_of_dupes = (Multimapped_read_count+Uniquely_mapped_read_count) - Uniquely_mapped_non_duplicate_read_count)
+
+summary(complete_counts_troubleshooting$number_of_dupes)
+
+```
+

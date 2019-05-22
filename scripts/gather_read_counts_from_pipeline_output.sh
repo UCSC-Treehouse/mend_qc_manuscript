@@ -8,7 +8,7 @@ rm $output_file_name
 
 fastqc="/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/QC/fastQC/R1_fastqc.html"
 star_log="/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/QC/STAR/Log.final.out"
-umend="/secondary/ucsctreehouse-bam-umend-qc-1.1.1-5f286d7/bam_umend_qc.tsv"
+mend="/secondary/ucsctreehouse-bam-umend-qc-1.1.1-5f286d7/bam_umend_qc.tsv"
 
 cat data/subsample_ids.txt | grep -v sample_id | cut -f1 | while read SAMPLE_ID; do
 
@@ -25,11 +25,11 @@ Multi_mapped_read_count=$( cat $star_file | grep "Number of reads mapped to mult
 echo -e ${SAMPLE_ID}'\tMultimapped_read_count\t'${Multi_mapped_read_count} >> $output_file_name 
 
 
-# get UMND and UMEND from RSeQC
-umend_file=${data_source}${SAMPLE_ID}${umend}
-uniqMappedNonDupeReadCount=$( cat $umend_file | cut -f2 | tail -1 )
-UMEND=$( cat $umend_file | cut -f3 | tail -1)
-echo -e ${SAMPLE_ID}'\tUniquely_mapped_non_duplicate_read_count\t'${uniqMappedNonDupeReadCount}'\n'${SAMPLE_ID}'\tUMEND\t'${UMEND} >> $output_file_name 
+# get MND and MEND from RSeQC
+mend_file=${data_source}${SAMPLE_ID}${mend}
+MappedNonDupeReadCount=$( cat $mend_file | cut -f2 | tail -1 )
+MEND=$( cat $mend_file | cut -f3 | tail -1)
+echo -e ${SAMPLE_ID}'\tUniquely_mapped_non_duplicate_read_count\t'${MappedNonDupeReadCount}'\n'${SAMPLE_ID}'\tMEND\t'${MEND} >> $output_file_name 
 
 done
 
