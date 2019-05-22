@@ -29,7 +29,7 @@ echo -e ${SAMPLE_ID}'\tMultimapped_read_count\t'${Multi_mapped_read_count} >> $o
 mend_file=${data_source}${SAMPLE_ID}${mend}
 MappedNonDupeReadCount=$( cat $mend_file | cut -f2 | tail -1 )
 MEND=$( cat $mend_file | cut -f3 | tail -1)
-echo -e ${SAMPLE_ID}'\tUniquely_mapped_non_duplicate_read_count\t'${MappedNonDupeReadCount}'\n'${SAMPLE_ID}'\tMEND\t'${MEND} >> $output_file_name 
+echo -e ${SAMPLE_ID}'\tMapped_non_duplicate_read_count\t'${MappedNonDupeReadCount}'\n'${SAMPLE_ID}'\tMEND\t'${MEND} >> $output_file_name 
 
 done
 

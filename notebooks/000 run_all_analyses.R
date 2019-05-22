@@ -1,6 +1,6 @@
 # setwd("notebooks")
-# setwd("/data/projects/gitCode/umend_qc_publication/notebooks")
-setwd( "/Users/hbeale/Documents/Dropbox/ucsc/projects/gitCode/umend_qc_publication/notebooks")
+ setwd("/data/projects/gitCode/umend_qc_publication/notebooks")
+# setwd( "/Users/hbeale/Documents/Dropbox/ucsc/projects/gitCode/umend_qc_publication/notebooks")
 
 f_include_early_stage_munging <- TRUE # FALSE
 
