@@ -34,20 +34,25 @@ raw_parent_sample_data_source <- read_tsv("../data/parent_sample_data_source.tsv
 # Read counts 
 ```{r}
 
-allCountsRaw <- read_tsv(file.path( "../data/raw_read_survey_results_2019_03_28.txt"), 
+allCountsRaw <- read_tsv(file.path( "../data/raw_read_survey_results_2019_05_22.txt"), 
                          col_names = c("sample_id", "count_type", "read_count")) %>%
   dplyr::filter(
     sample_id %in% raw_parent_sample_data_source$`Treehouse ID`
   ) %>% 
   spread(count_type, read_count) %>%
-  rename(UM = Uniquely_mapped_read_count,
-         UMND = Uniquely_mapped_non_duplicate_read_count) %>%
-  mutate(pct_UMEND = UMEND / total_sequences,
-         Percent_duplicates = 1 - (UMND / UM), 
-         not_uniquely_mapped = total_sequences - UM,
-         duplicate_reads = UM - UMND,
-         non_exonic_reads = UMND - UMEND
+  mutate(Mapped_read_count = Multimapped_read_count + Uniquely_mapped_read_count) %>%
+  select(-Uniquely_mapped_read_count) %>%
+  rename(mapped = Mapped_read_count,
+         MND = Mapped_non_duplicate_read_count) %>%
+  mutate(pct_MEND = MEND / total_sequences,
+         Percent_duplicates = 1 - (MND / mapped), 
+         not_mapped = total_sequences - mapped,
+         duplicate_reads = mapped - MND,
+         non_exonic_reads = MND - MEND,
+         pct_MMoM = Multimapped_read_count/mapped
   )
+
+
 
 parent_sample_data <- left_join(raw_parent_sample_data_source,
                                 allCountsRaw,
@@ -77,18 +82,19 @@ minimal_parent_sample_data_table %>%  write_tsv("../figures_and_tables/table_1_s
 comprehensive_parent_sample_data_table <- parent_sample_data %>% 
   mutate(raw_age=Age) %>%
   mutate(Age = ifelse(is.na(raw_age), "<30", as.character(raw_age))) %>%
-  select(Sample = pub_ID, `Total sequences` = total_sequences, `Not uniquely mapped` = not_uniquely_mapped, `Duplicates` = duplicate_reads, `Non-exonic` = non_exonic_reads, UMEND,
-         `Percent UMEND` = pct_UMEND, `Treehouse ID`, `Project information`, `Sample ID in project`, Age) %>%
+  select(Sample = pub_ID, `Total sequences` = total_sequences, `Not mapped` = not_mapped, `Duplicates` = duplicate_reads, `Non-exonic` = non_exonic_reads, MEND,
+         `Percent MEND` = pct_MEND, `Percent MMoM` = pct_MMoM, `Treehouse ID`, `Project information`, `Sample ID in project`, Age) %>%
   mutate(`Non-exonic` = format(round(`Non-exonic`), big.mark = ","),
-         `Percent UMEND` = round(100 * `Percent UMEND`,1),
+         `Percent MEND` = round(100 * `Percent MEND`,1),
+         `Percent MMoM` = round(100 * `Percent MMoM`,1),
          `Total sequences` = format(`Total sequences`, big.mark = ","),
-         `Not uniquely mapped` = format(`Not uniquely mapped`, big.mark = ","),
+         `Not mapped` = format(`Not mapped`, big.mark = ","),
          `Duplicates` = format(`Duplicates`, big.mark = ","),
-         `UMEND` = format(`UMEND`, big.mark = ",")
+         `MEND` = format(`MEND`, big.mark = ",")
          )
 
-knitr::kable(comprehensive_parent_sample_data_table[,1:7], digits=3, format.args=list(big.mark = ','))
-knitr::kable(comprehensive_parent_sample_data_table[,c(1,8:9)], digits=3, format.args=list(big.mark = ','))
+knitr::kable(comprehensive_parent_sample_data_table[,1:8], digits=3, format.args=list(big.mark = ','))
+knitr::kable(comprehensive_parent_sample_data_table[,c(1,9:10)], digits=3, format.args=list(big.mark = ','))
 
 write_tsv(comprehensive_parent_sample_data_table, "../figures_and_tables/table_S1_comprehensive_parent_sample_data.tsv")
 

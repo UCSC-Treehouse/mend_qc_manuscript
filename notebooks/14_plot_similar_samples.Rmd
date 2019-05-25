@@ -9,6 +9,17 @@ output:
   # fig_caption: yes
 ---
 
+
+# Set submittable print options
+
+```{r}
+
+f_final_draft <- TRUE
+notation_text_alpha <- ifelse (f_final_draft, 0, 1 ) 
+
+```
+
+
 ```{r parameters}
 
 min_correlation <- 0.875
@@ -39,8 +50,6 @@ The available definitions are:
 
 ```{r setup, include = FALSE}
 
-#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
-
 library(readr)
 library(tidyr)
 library(dplyr)
@@ -68,7 +77,7 @@ first_degree_results_with_corrs_gt_875 <- read_tsv("../data/correlated_samples.t
   mutate(
     sample_is_neighbor_in_subset = TRUE, 
     parent_sample = gsub("_est.*$", "", focus_sample),
-    target_UMEND_count = as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", focus_sample))) %>%
+    target_MEND_count = as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", focus_sample))) %>%
   group_by(parent_sample, neighbor_sample)
 
 evenly_selected_subsamples <- read_tsv(
@@ -203,7 +212,7 @@ annotated_fdn_results_raw <- lapply(unique(first_degree_results_filtered$parent_
 	  ungroup %>%
 	  select(parent_sample,
 	         focus_sample,
-	         target_UMEND_count,
+	         target_MEND_count,
 	         treehouse_id,
 	         diagnosis,
 	         publication_id,
@@ -231,7 +240,7 @@ annotated_fdn_results_raw <- lapply(unique(first_degree_results_filtered$parent_
 	# subset(evenly_selected_subsamples, parent_id == this_parent_sample)
 	
   fdn_results <- right_join(fdn_found_in_selected_subsamples %>%
-	                            select(-target_UMEND_count,
+	                            select(-target_MEND_count,
 	                                   -median_of_depth_bin,
 	                                   -publication_id),
                             empty_results,
@@ -247,13 +256,13 @@ annotated_fdn_results_raw <- lapply(unique(first_degree_results_filtered$parent_
 	if(this_truth_definition == "found_in_3_of_4_biggest_subsets") {
 	  	
 	# define true positives
-	biggest_4_subsets <- sort(unique(fdn_found_in_selected_subsamples$target_UMEND_count),
+	biggest_4_subsets <- sort(unique(fdn_found_in_selected_subsamples$target_MEND_count),
 	                          decreasing = TRUE)[1:4]
 	minimum_hits_for_true_neighbors <- 3
   
   neighbor_frequency <- fdn_found_in_selected_subsamples %>% 
     dplyr::filter(sample_is_neighbor_in_subset,
-                  target_UMEND_count %in% biggest_4_subsets) %>% 
+                  target_MEND_count %in% biggest_4_subsets) %>% 
     group_by(neighbor_sample) %>% 
     summarize(n_subsamples_found = length(unique(focus_sample)))
   
@@ -265,7 +274,7 @@ annotated_fdn_results_raw <- lapply(unique(first_degree_results_filtered$parent_
 	  if(this_truth_definition == "found_in_the_deepest_subset") {
       true_neighbors_in_parent_sample <- subset(first_degree_results_filtered,
   		 parent_sample == this_parent_sample & 
-  		 target_UMEND_count == 50) %>%
+  		 target_MEND_count == 50) %>%
       dplyr::filter(sample_is_neighbor_in_subset) %>% 
       pull(neighbor_sample)
 	  }
@@ -370,7 +379,7 @@ ordered_plot_input <- annotated_fdn_results %>%
 #   scale_fill_brewer(palette="Set1") + 
 #   ggtitle("Molecular similarity analysis results", "grouped by final correlation at max depth") +
 #     #plot_title, paste("parent disease is", subset(parent_sample_metadata, sample_id==this_parent_sample)$diagnosis, "\nTruth is defined as", this_truth_definition) ) + # theme(axis.text.y  = element_blank()) +
-#   scale_x_continuous("UMEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
+#   scale_x_continuous("MEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
 #     facet_grid(max_corr_group~.,scales="free_y", space="free") +
 #     theme(axis.text.y  = element_blank()) +
 #     geom_vline(xintercept=outlier_results_x_breaks,
@@ -396,7 +405,7 @@ ordered_plot_input <- annotated_fdn_results %>%
 #   ylab("candidate neighbor (correlation to focus sample)") +
 #   scale_fill_manual(values= c("lightgrey", "darkgrey")) +
 # #  ggtitle(plot_title, paste("parent disease is", subset(parent_sample_metadata, sample_id==this_parent_sample)$diagnosis, "\nTruth is defined as", this_truth_definition) ) + # theme(axis.text.y  = element_blank()) +
-#   scale_x_continuous("UMEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
+#   scale_x_continuous("MEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
 #   # facet_grid(parent_sample_label~.,scales="free_y", space="free") +
 #   #  facet_wrap(~max_corr_group, ncol=1, scales="free_y", strip.position="right") + 
 #      facet_grid(max_corr_group~.,scales="free_y", space="free") +
@@ -405,7 +414,7 @@ ordered_plot_input <- annotated_fdn_results %>%
 
 ```
 
-##  What percent of correlated samples were detectable with 1 million UMEND reads?
+##  What percent of correlated samples were detectable with 1 million MEND reads?
 
 ```{r}
 
@@ -413,7 +422,7 @@ ordered_plot_input <- annotated_fdn_results %>%
 subset(ordered_plot_input, median_of_depth_bin == 0) %>%
   pull(unique_focus_neighbor_id) %>% unique %>% length
 
-# 2% of (real) correlated samples were detectable with 1 million UMEND reads
+# 2% of (real) correlated samples were detectable with 1 million MEND reads
 subset(ordered_plot_input, median_of_depth_bin == 0 &
          sample_is_true_positive_neighbor_in_parent_sample) %>%
   tabyl(first_appears)
@@ -444,7 +453,7 @@ subset(ordered_plot_input, median_of_depth_bin == 0 &
 #   # scale_fill_manual(values= c("black", "white")) +
 #   #scale_fill_manual(gsub("_", " ", "focus_and_neighbor\nhave_same_disease"), values= fill_colors) +
 #   ggtitle(plot_title, paste("parent disease is", subset(parent_sample_metadata, sample_id==this_parent_sample)$diagnosis, "\nTruth is defined as", this_truth_definition) ) + # theme(axis.text.y  = element_blank()) +
-#     scale_x_continuous("UMEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
+#     scale_x_continuous("MEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
 #   facet_grid(parent_sample_label~.,scales="free_y", space="free") +
 #   scale_y_discrete(breaks=ybreaks, labels=names(ybreaks))
 #   if (f_make_supporting_plots) print(p)
@@ -471,7 +480,7 @@ subset(ordered_plot_input, median_of_depth_bin == 0 &
 #   geom_tile(stat = "identity") +
 #   scale_fill_manual(values= plot_colors) +
 #   theme(axis.text.y  = element_blank()) +
-#     scale_x_continuous("UMEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) 
+#     scale_x_continuous("MEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) 
 # 
 # plot2 + facet_grid(parent_sample~.,scales="free_y", space="free")
 # }
@@ -521,7 +530,7 @@ p4 <- ggplot(g_frac_accuracy) +
                fill = hit_type),
            stat = "identity") +  
 	scale_fill_manual(values = plot_colors) +
-  scale_x_continuous("UMEND reads (million)",
+  scale_x_continuous("MEND reads (million)",
                      breaks = outlier_results_x_breaks,
                      labels = outlier_results_x_labels) +
 ggtitle(plot_title, paste("Truth is defined as", this_truth_definition))
@@ -689,8 +698,8 @@ pCIA <- ggplot(ordered_plot_input, aes(x = median_of_depth_bin, y = ordered_neig
   scale_fill_manual("Call", values = plot_colors) +
   # ggtitle(plot_title) + 
   theme(axis.text.y = element_blank()) +
-  scale_x_continuous("UMEND reads (million)", breaks = outlier_results_x_breaks, labels = outlier_results_x_labels) +
-  xlab("UMEND reads (million)") + 
+  scale_x_continuous("MEND reads (million)", breaks = outlier_results_x_breaks, labels = outlier_results_x_labels) +
+  xlab("MEND reads (million)") + 
   ylab("Correlated background sample") +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) + 
   theme(legend.position = "none") + 
@@ -710,7 +719,7 @@ plot_title <- "neighbors - all parent samples"
 pCFA <- ggplot(g_frac_accuracy) +  # correlation fractional accuracy
 	geom_bar(aes(x = median_of_depth_bin, y = fraction_amount, fill = hit_type), stat = "identity") +  
 	scale_fill_manual("Call", values = plot_colors) +
-  scale_x_continuous("UMEND reads (million)", breaks = outlier_results_x_breaks, labels = outlier_results_x_labels) +
+  scale_x_continuous("MEND reads (million)", breaks = outlier_results_x_breaks, labels = outlier_results_x_labels) +
   ylab("Fraction of correlated background samples") +
   theme(
   # axis.text.y  = element_blank(), # un comment when I've fixed the max = 0.8 issue
@@ -743,7 +752,7 @@ pCSS <- ggplot(accuracy_stats_combined_with_no_zeroes,
   scale_color_manual(values = accuracy_line_colors) + 
   theme(legend.position = "none") +
   # ylab("") +
-  xlab("UMEND reads (million)" ) +
+  xlab("MEND reads (million)" ) +
   ylim(0, 1.1) +
   scale_y_continuous("", breaks = seq(0, 1, 0.2))
  
@@ -771,7 +780,9 @@ grobCombo <- arrangeGrob(grobs = list(grobCIA, grobCFA, grobCSS),
                          bottom = textGrob(paste(combined_figure_name, Sys.time(), "GMT"),
                                            x=0,
                                            just = "left",
-                                           gp = gpar(fontsize = 8)))
+                                           gp = gpar(fontsize = 8, alpha = notation_text_alpha)))
+                                           
+
 grid.newpage()
 grid.draw(grobCombo)
 
@@ -787,6 +798,14 @@ ggsave(file = paste0("../figures_and_tables/",
                      ".png"),
        grobCombo,  width = 10, height = 8)
 
+ggsave(file = paste0("../figures_and_tables/",
+                     combined_figure_name,
+                     "_",
+                     gsub(" ", "_", gsub(":", "-", Sys.Date())),
+                     "_",
+                     "UTC",
+                     ".tiff"),
+       grobCombo,  width = 10, height = 8)
 ```
 	
 # Table of accuracy stats - combined across parent samples

@@ -11,6 +11,16 @@ output:
 
 In this analysis, the true expression of a gene is considered to be the expression level found_in_the_deepest_subset made from that parent. An accurate measurement is defined as one that is within 25% percent of the true expression values. 
 
+# Set submittable print options
+
+```{r}
+
+f_final_draft <- TRUE
+notation_text_alpha <- ifelse (f_final_draft, 0, 1 ) 
+
+```
+
+
 ```{r setup, include = FALSE}
 
 library(readr)
@@ -68,7 +78,7 @@ grid_size_minor <- 0.05
 expression_label_data <- highlight_expression %>%
   dplyr::filter(
     parent_id == "TH_Eval_014",
-    target_UMEND_count == max(target_UMEND_count)) %>% 
+    target_MEND_count == max(target_MEND_count)) %>% 
   mutate(vjust_val = ifelse(gene %in% c("JAK2", "TP53"), 2, -0.5))
 
 # max_x=20+10*ceiling(max(expression_label_data$max_depth)/1e7)
@@ -172,7 +182,7 @@ gene_expression_levels <- c(1.5, 3.5, 5.5)
 
 
 n_gene_sample_combos <- gene_abundances_for_bin_detail %>% 
-  filter(target_UMEND_count == max(target_UMEND_count)) %>%
+  filter(target_MEND_count == max(target_MEND_count)) %>%
   group_by(parent_id, expression_bin) %>%
   summarize(n_genes_per_boxplot = n())
 
@@ -338,11 +348,11 @@ grobCombo <- arrangeGrob(grobs = list(grob1, grob2),
                                                c(1,1),
                                                c(2,2),
                                                c(2,2),
-                                               c(2,2)),
+                                                c(2,2)),
                          bottom = textGrob(paste(combined_figure_name, this_time_stamp, "UTC"),
                                            x=0,
                                            just = "left",
-                                           gp = gpar(fontsize = 8)))
+                                           gp = gpar(fontsize = 8, alpha = notation_text_alpha)))
 grid.newpage()
 grid.draw(grobCombo)
 
@@ -357,6 +367,17 @@ ggsave(file = paste0("../figures_and_tables/",
        width = 6,
        height = 8)
 
+
+ggsave(file = paste0("../figures_and_tables/",
+                     combined_figure_name,
+                     "_",
+                     gsub(" ", "_", gsub(":", "-", this_time_stamp)),
+                     "_",
+                     "UTC",
+                     ".tiff"),
+       grobCombo,
+       width = 6,
+       height = 8)
 ```
 
 ## Combine small plots
@@ -380,7 +401,7 @@ grobCombo <- arrangeGrob(grobs = list(grob1, grob2),
                          bottom = textGrob(paste(combined_figure_name, this_time_stamp, "UTC"),
                                            x = 0,
                                            just = "left",
-                                           gp = gpar(fontsize = 8)))
+                                           gp = gpar(fontsize = 8, alpha = notation_text_alpha)))
 grid.newpage()
 grid.draw(grobCombo)
 
@@ -395,6 +416,17 @@ ggsave(file = paste0("../figures_and_tables/",
        width = 8,
        height = 4)
 
+ggsave(file = paste0("../figures_and_tables/",
+                     combined_figure_name,
+                     "_",
+                     gsub(" ", "_", gsub(":", "-", this_time_stamp)),
+                     "_",
+                     "UTC",
+                     ".tiff"),
+       grobCombo,
+       width = 8,
+       height = 4)
+
 ```
 
 # Statements about analysis
@@ -404,25 +436,25 @@ format: With 1 million reads, the values of the five measured genes ranged from 
 ```{r}
 
 
-max_depth=max(highlight_expression$target_UMEND_count)
+max_depth=max(highlight_expression$target_MEND_count)
 
 highlight_expression_for_statements <- 
   highlight_expression %>% 
   group_by(gene, parent_id) %>%
   mutate(
-    expression_at_max_depth = expression[target_UMEND_count==max_depth],
+    expression_at_max_depth = expression[target_MEND_count==max_depth],
     percent_of_max_value = 100*expression/expression_at_max_depth)
 
 
-# 1 million UMEND reads is roughtly 1 million total reads
+# 1 million MEND reads is roughtly 1 million total reads
 this_depth <- 1
 highlight_expression %>%
-  filter(target_UMEND_count==this_depth) %>%
+  filter(target_MEND_count==this_depth) %>%
   pull(total_reads) %>%
   range
 
 highlight_expression_for_statements %>%
-  filter(target_UMEND_count==this_depth) %>%
+  filter(target_MEND_count==this_depth) %>%
   arrange(percent_of_max_value) %>%
   select(-median_of_depth_bin, -sample_id) %>%
   pull(percent_of_max_value) %>%
@@ -430,15 +462,15 @@ highlight_expression_for_statements %>%
   round
 
 
-# 4 million UMEND reads is roughtly 5 million total reads
+# 4 million MEND reads is roughtly 5 million total reads
 this_depth <- 4
 highlight_expression %>%
-  filter(target_UMEND_count==this_depth) %>%
+  filter(target_MEND_count==this_depth) %>%
   pull(total_reads) %>%
   range
 
 highlight_expression_for_statements %>%
-  filter(target_UMEND_count==this_depth) %>%
+  filter(target_MEND_count==this_depth) %>%
   arrange(percent_of_max_value) %>%
   select(-median_of_depth_bin, -sample_id) %>%
   pull(percent_of_max_value) %>%
@@ -446,15 +478,15 @@ highlight_expression_for_statements %>%
   round
 
 
-# 8 million UMEND reads is roughtly 10 million total reads
+# 8 million MEND reads is roughtly 10 million total reads
 this_depth <- 8
 highlight_expression %>%
-  filter(target_UMEND_count==this_depth) %>%
+  filter(target_MEND_count==this_depth) %>%
   pull(total_reads) %>%
   range
 
 highlight_expression_for_statements %>%
-  filter(target_UMEND_count==this_depth) %>%
+  filter(target_MEND_count==this_depth) %>%
   arrange(percent_of_max_value) %>%
   select(-median_of_depth_bin, -sample_id) %>%
   pull(percent_of_max_value) %>%

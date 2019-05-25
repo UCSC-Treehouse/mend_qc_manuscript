@@ -9,6 +9,17 @@ output:
   # fig_caption: yes
 ---
 
+
+# Set submittable print options
+
+```{r}
+
+f_final_draft <- TRUE
+notation_text_alpha <- ifelse (f_final_draft, 0, 1 ) 
+
+```
+
+
 ```{r}
 
 this_truth_definition <- "found_in_3_of_4_biggest_subsets"
@@ -104,19 +115,19 @@ annotated_outlier_results <- lapply(unique(outlier_results_raw$parent_sample), f
 	outlier_results <- left_join(empty_results,
 	                             outliers_found_in_selected_subsamples,
 	                             by = c("parent_sample", "sample_id", "gene")) %>%
-	  mutate(target_UMEND_count = as.numeric(gsub("^.*_est", "",
-	                                              gsub("M_UMEND_seqtk_seed_.*", "", sample_id))),
+	  mutate(target_MEND_count = as.numeric(gsub("^.*_est", "",
+	                                              gsub("M_MEND_seqtk_seed_.*", "", sample_id))),
 	         is_outlier_in_subset = ifelse(is.na(is_outlier_in_subset), FALSE, TRUE))
 	
 	# define true positives
 
 	if (this_truth_definition == "found_in_3_of_4_biggest_subsets") {
-  	biggest_4_subsets <- sort(unique(outlier_results$target_UMEND_count), decreasing = TRUE)[1:4]
+  	biggest_4_subsets <- sort(unique(outlier_results$target_MEND_count), decreasing = TRUE)[1:4]
   	minimum_hits_for_true_outlier <- 3
     
     outlier_frequency <- outlier_results %>% 
       dplyr::filter(is_outlier_in_subset,
-                    target_UMEND_count %in% biggest_4_subsets) %>% 
+                    target_MEND_count %in% biggest_4_subsets) %>% 
       group_by(gene) %>% 
       summarize(n_subsamples_found = length(unique(sample_id)))
     
@@ -129,7 +140,7 @@ annotated_outlier_results <- lapply(unique(outlier_results_raw$parent_sample), f
     true_outliers_in_parent_sample <- subset(outlier_results_raw,
                                              parent_sample == this_parent_sample &
                                                as.numeric(gsub("^.*_est", "",
-                                                               gsub("M_UMEND_seqtk_seed_.*",
+                                                               gsub("M_MEND_seqtk_seed_.*",
                                                                     "",
                                                                     sample_id))) == 50) %>%
       dplyr::filter(is_outlier_in_subset) %>%
@@ -158,14 +169,14 @@ annotated_outlier_results <- lapply(unique(outlier_results_raw$parent_sample), f
 	                          
 	 this_annotated_outlier_results <- outlier_results %>% group_by(gene) %>% 
 		mutate(up_outlier_occurances = sum(as.numeric(is_outlier_in_subset)),
-		       first_appears = min(target_UMEND_count[is_outlier_in_subset]),
+		       first_appears = min(target_MEND_count[is_outlier_in_subset]),
 		       gene_is_true_positive_in_parent_sample = gene %in% true_outliers_in_parent_sample) %>%
 	   left_join(resultsCodes, by = c("is_outlier_in_subset", "gene_is_true_positive_in_parent_sample"))
 	 return(this_annotated_outlier_results)
 }) %>% bind_rows
 
 annotated_outlier_results_intermediate <- annotated_outlier_results %>%
-  left_join(evenly_selected_subsamples %>% select(-target_UMEND_count), 
+  left_join(evenly_selected_subsamples %>% select(-target_MEND_count), 
             by = "sample_id")
 annotated_outlier_results$bin_median <- evenly_selected_subsamples$median_of_depth_bin[match(
   annotated_outlier_results$sample_id, evenly_selected_subsamples$sample_id)]
@@ -315,8 +326,8 @@ pIA<-ggplot(subset(ordered_plot_input, parent_sample=="TH_Eval_019"), aes(x = me
   geom_tile(stat = "identity") +
   scale_fill_manual("Call", values= plot_colors) +
 #  ggtitle(plot_title) + theme(axis.text.y  = element_blank()) +
-  scale_x_continuous("UMEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
-  xlab("UMEND reads (million)") + 
+  scale_x_continuous("MEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
+  xlab("MEND reads (million)") + 
   ylab("Genes") +
   theme(
     axis.text.y  = element_blank(),
@@ -341,7 +352,7 @@ pFA <- ggplot(g_frac_accuracy) +
 	geom_bar(aes(x = median_of_depth_bin, y = fraction_amount / n_parent_ids, fill = hit_type), stat = "identity") +
   scale_fill_manual("Call", values= plot_colors) +
 #   ggtitle(plot_title) + 
-  scale_x_continuous("UMEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
+  scale_x_continuous("MEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
   ylab("Fraction of genes")  + 
   theme(legend.position="none")
 
@@ -361,7 +372,7 @@ plot_title <- "outliers - sensitivity and specificity"
 pOSS <- ggplot(accuracy_stats_sens_spec, aes(y = value, color = measurement, x = median_of_depth_bin)) +
   geom_point() +
   geom_smooth(se = TRUE) + 
-  xlab("UMEND reads (million)") + 
+  xlab("MEND reads (million)") + 
   ylab("") +
   facet_grid(publication_id~ . ) +
   scale_color_manual("Measurement", values = outlier_line_colors) +
@@ -403,8 +414,8 @@ grobCombo <- arrangeGrob(grobs=list(grobIA, grobFA, grobOSS),
                          bottom = textGrob(paste(combined_figure_name, Sys.time(), "GMT"),
                                            x=0,
                                            just = "left",
-                                           gp = gpar(fontsize = 8))
-                         )
+                                           gp = gpar(fontsize = 8, alpha = notation_text_alpha)))
+
 grid.newpage()
 grid.draw(grobCombo)
 
@@ -412,6 +423,10 @@ grid.draw(grobCombo)
 # ggsave(file=paste0("../figures_and_tables/", combined_figure_name, ".png"), grobCombo, width=10, height=6)
 
 ggsave(file=paste0("../figures_and_tables/", combined_figure_name, "_", gsub(" ", "_", gsub(":", "-", this_time_stamp)), "_", "UTC", ".png"), grobCombo,  width=10, height=6)
+
+
+ggsave(file=paste0("../figures_and_tables/", combined_figure_name, "_", gsub(" ", "_", gsub(":", "-", this_time_stamp)), "_", "UTC", ".tiff"), grobCombo,  width=10, height=6)
+
 
 ```
 

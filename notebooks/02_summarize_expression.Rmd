@@ -63,7 +63,7 @@ long_expression_results_anno <- long_expression_results %>%
 ```{r}
 
 long_expression_results_anno_highest_depth <- long_expression_results_anno %>%
-  filter(target_UMEND_count == max(target_UMEND_count))
+  filter(target_MEND_count == max(target_MEND_count))
 
 target_expression <- lapply(gene_expression_levels, function(this_gene_expression_level){
   long_expression_results_anno_highest_depth %>%

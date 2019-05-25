@@ -10,7 +10,7 @@ output:
 ```{r setup, include = FALSE}
 
 knitr::opts_chunk$set(echo = TRUE)
-# knitr::opts_knit$set(root.dir = "/data/projects/gitCode/umend_qc_publication/notebooks")
+# knitr::opts_knit$set(root.dir = "/data/projects/gitCode/mend_qc_publication/notebooks")
 
 library(readr)
 library(tidyr)
@@ -140,7 +140,7 @@ ts_anno <- left_join(ts, read_counts_for_merge) %>%
   mutate(minimum_pipeline_time = median(as.numeric(duration)[grepl("_est1M", sample_id)]),
          adjusted_duration = as.numeric(duration) - minimum_pipeline_time,
          min_per_M_total_reads = adjusted_duration / (total_sequences / 1e6 - 1),
-         min_per_M_UMEND_reads = adjusted_duration / (UMEND / 1e6 - 1))
+         min_per_M_MEND_reads = adjusted_duration / (MEND / 1e6 - 1))
 
 subsamples_to_select <- read_tsv("../data/evenly_selected_subsamples_with_binwidth_4.tsv")
 
@@ -161,9 +161,9 @@ ggplot(selected_ts_anno) +
   scale_fill_brewer(palette = "Set1") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 
-# how variable is the rate per M UMEND reads
+# how variable is the rate per M MEND reads
 ggplot(selected_ts_anno) +
-  geom_histogram(aes(x = min_per_M_UMEND_reads, fill = parent_id)) +
+  geom_histogram(aes(x = min_per_M_MEND_reads, fill = parent_id)) +
   facet_grid(~pipeline) +
   scale_fill_brewer(palette = "Set1") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
@@ -171,15 +171,15 @@ ggplot(selected_ts_anno) +
 ts_summary <- selected_ts_anno %>%
   group_by(pipeline, minimum_pipeline_time) %>%
   summarize(median_min_per_M_total_reads = median(min_per_M_total_reads),
-            median_min_per_M_UMEND_reads = median(min_per_M_UMEND_reads),
+            median_min_per_M_MEND_reads = median(min_per_M_MEND_reads),
             sd_min_per_M_total_reads = sd(min_per_M_total_reads),
-            sd_min_per_M_UMEND_reads = sd(min_per_M_UMEND_reads)) %>%
+            sd_min_per_M_MEND_reads = sd(min_per_M_MEND_reads)) %>%
   select(pipeline,
          minimum_pipeline_time,
          median_min_per_M_total_reads,
          sd_min_per_M_total_reads,
-         median_min_per_M_UMEND_reads,
-         sd_min_per_M_UMEND_reads)
+         median_min_per_M_MEND_reads,
+         sd_min_per_M_MEND_reads)
 
 minutes_per_expression_sample_base=selected_ts_anno %>%
   dplyr::filter(pipeline == "expression") %>%
@@ -211,7 +211,7 @@ estimate_expression_pipeline_duration <-
   (minutes_per_expression_sample_base-minutes_per_million_reads_in_expression_sample) +
   example_total_reads * minutes_per_million_reads_in_expression_sample
 
-estimate_umend_qc_pipeline_duration <-
+estimate_mend_qc_pipeline_duration <-
   (minutes_per_qc_sample_base-minutes_per_million_reads_in_qc_sample) +
   example_total_reads * minutes_per_million_reads_in_qc_sample
 
@@ -232,7 +232,7 @@ minutes_per_expression_sample_base-minutes_per_million_reads_in_expression_sampl
 
 minutes_per_million_reads_in_expression_sample,
 
-"minutes. The UMEND QC pipeline has a minimum duration of",
+"minutes. The MEND QC pipeline has a minimum duration of",
 
 minutes_per_qc_sample_base-minutes_per_million_reads_in_qc_sample,
  
@@ -244,31 +244,36 @@ minutes_per_million_reads_in_qc_sample,
        round(estimate_expression_pipeline_duration),
       "minutes (",
        round(estimate_expression_pipeline_duration/60,1),
-      "hours). Adding UMEND QC would increase the duration by",
-      round(estimate_umend_qc_pipeline_duration),
+      "hours). Adding MEND QC would increase the duration by",
+      round(estimate_mend_qc_pipeline_duration),
       "minutes (",
-      round(estimate_umend_qc_pipeline_duration/60,1),
+      round(estimate_mend_qc_pipeline_duration/60,1),
       "hours), increasing the total time by",
-      round(100*estimate_umend_qc_pipeline_duration/estimate_expression_pipeline_duration),
+      round(100*estimate_mend_qc_pipeline_duration/estimate_expression_pipeline_duration),
       "percent relative to running only the expression pipeline")
 
 print(gsub("\\( ", "(", computing_requirements_statement))
  
 ```
 
-Based on the processing times of 65 subsamples on computers with 64GB of memory and 12 VCPUs, the expression quantification pipeline has a minimum duration of 28.7 minutes, and processing each million total reads requires, on average, an additional 6.4 minutes. The UMEND QC pipeline has a minimum duration of 1.7 minutes plus 2 minutes per million total reads present in the data. For a sample with 70 M total reads, the expression pipeline would be predicted to take to take 515 minutes (8.6 hours). Adding UMEND QC would increase the duration by 154 minutes (2.6 hours).
 
 
-
+## dynamically generated result
 Based on the processing times of `r nrow(timestamps_raw)/8` subsamples, the expression quantification pipeline takes `r minutes_per_expression_sample_base-minutes_per_million_reads_in_expression_sample` minutes for every RNA-Seq sample plus `r minutes_per_million_reads_in_expression_sample ` minutes per million total reads present in the data. 
 
-The umend qc quantification pipeline takes `r minutes_per_qc_sample_base-minutes_per_million_reads_in_qc_sample` minutes for every RNA-Seq sample plus `r minutes_per_million_reads_in_qc_sample ` minutes per million total reads present in the data. 
+The MEND qc quantification pipeline takes `r minutes_per_qc_sample_base-minutes_per_million_reads_in_qc_sample` minutes for every RNA-Seq sample plus `r minutes_per_million_reads_in_qc_sample ` minutes per million total reads present in the data. 
 
-For a sample with `r example_total_reads` M total reads as recommended above, the expression pipeline would be predicted to take  to take `r round(estimate_expression_pipeline_duration)` minutes (`r round(estimate_expression_pipeline_duration/60,1)` hours). To add umend qc would increase the duration by `r round(estimate_umend_qc_pipeline_duration)` minutes  (`r round(estimate_umend_qc_pipeline_duration/60,1)` hours). 
+For a sample with `r example_total_reads` M total reads as recommended above, the expression pipeline would be predicted to take  to take `r round(estimate_expression_pipeline_duration)` minutes (`r round(estimate_expression_pipeline_duration/60,1)` hours). To add MEND qc would increase the duration by `r round(estimate_mend_qc_pipeline_duration)` minutes  (`r round(estimate_mend_qc_pipeline_duration/60,1)` hours). 
 
-We give this number in total reads because the number of UMEND reads can't be known until the pipeline is run, and is therefore not available for estimating how long the pipeline will take. 
+We give this number in total reads because the number of MEND reads can't be known until the pipeline is run, and is therefore not available for estimating how long the pipeline will take. 
 
 Note to self: consider adding SD
+
+
+
+## previous (static) result
+Based on the processing times of 65 subsamples on computers with 64GB of memory and 12 VCPUs, the expression quantification pipeline has a minimum duration of 28.7 minutes, and processing each million total reads requires, on average, an additional 6.4 minutes. The MEND QC pipeline has a minimum duration of 1.7 minutes plus 2 minutes per million total reads present in the data. For a sample with 70 M total reads, the expression pipeline would be predicted to take to take 515 minutes (8.6 hours). Adding MEND QC would increase the duration by 154 minutes (2.6 hours).
+
 
 # Computer size
 

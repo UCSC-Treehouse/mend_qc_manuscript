@@ -7,11 +7,20 @@ output:
     toc: true
 ---
 
+# Set submittable print options
+
+```{r}
+
+f_final_draft <- TRUE
+notation_text_alpha <- ifelse (f_final_draft, 0, 1 ) 
+
+```
+
 
 ```{r setup, include = FALSE}
 
 knitr::opts_chunk$set(echo = TRUE)
-# knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/drafts_of_umend_qc_publication/")
+
 
 library(readr)
 library(tidyr)
@@ -42,15 +51,15 @@ cb_dark_green <- source_palette[4]
 cb_light_green <- source_palette[3]
 
 
-raw_names_for_read_types_mm <-  c("not_mapped", "Multimapped_read_count", "duplicate_reads", "non_exonic_reads", "UMEND")
-intermediate_names_for_read_types_mm = c("Not mapped", "Multi-mapped", "Duplicate reads", "Non exonic reads", "UMEND")
-better_names_for_read_types_mm <- c("Not mapped", "Multi-mapped", "Duplicate", "Non exonic", "UMEND")
+raw_names_for_read_types_mm <-  c("not_mapped", "Multimapped_read_count", "duplicate_reads", "non_exonic_reads", "MEND")
+intermediate_names_for_read_types_mm = c("Not mapped", "Multi-mapped", "Duplicate reads", "Non exonic reads", "MEND")
+better_names_for_read_types_mm <- c("Not mapped", "Multi-mapped", "Duplicate", "Non exonic", "MEND")
 
 
 
-raw_names_for_read_types <-  c("not_mapped",  "duplicate_reads", "non_exonic_reads", "UMEND")
-intermediate_names_for_read_types = c("Not mapped", "Duplicate reads", "Non exonic reads", "UMEND")
-better_names_for_read_types <- c("Not mapped",  "Duplicate", "Non exonic", "UMEND")
+raw_names_for_read_types <-  c("not_mapped",  "duplicate_reads", "non_exonic_reads", "MEND")
+intermediate_names_for_read_types = c("Not mapped", "Duplicate reads", "Non exonic reads", "MEND")
+better_names_for_read_types <- c("Not mapped",  "Duplicate", "Non exonic", "MEND")
 
 
 category_colors <- c(grey(0.5),  cb_light_green, grey(0.7), cb_dark_green) 
@@ -75,7 +84,7 @@ names(multimapper_colors) <- c("Multi-mapped", "Uniquely mapped")
 
 ```{r}
 
-allCountsRaw <- read_tsv(file.path( "../data/raw_read_survey_results_2019_05_13.txt"), 
+allCountsRaw <- read_tsv(file.path( "../data/raw_read_survey_results_2019_05_22.txt"), 
                          col_names = c("sample_id", "count_type", "read_count")) %>%
   spread(count_type, read_count) 
 
@@ -114,8 +123,8 @@ nrow((complete_counts))
 ```{r}
 
 read_counts <- complete_counts %>%
-  rename(UM = Mapped_read_count,
-         UMND = Uniquely_mapped_non_duplicate_read_count)
+  rename(mapped = Mapped_read_count,
+         MND = Mapped_non_duplicate_read_count)
     
 
 ```
@@ -127,12 +136,12 @@ read_counts <- complete_counts %>%
 orderByTotalReads <- read_counts %>% arrange(desc(total_sequences)) %>%	.$sample_id
 read_counts_with_slices <- read_counts %>% 
   arrange(desc(total_sequences)) %>% 
-  mutate(pct_UMEND = UMEND / total_sequences,
-         Percent_duplicates = 1 - (UMND / UM), 
-         not_mapped = total_sequences - UM,
-         duplicate_reads = UM - UMND,
-         non_exonic_reads = UMND - UMEND,
-         sum_slices = UMEND + non_exonic_reads + duplicate_reads + not_mapped)
+  mutate(pct_MEND = MEND / total_sequences,
+         Percent_duplicates = 1 - (MND / mapped), 
+         not_mapped = total_sequences - mapped,
+         duplicate_reads = mapped - MND,
+         non_exonic_reads = MND - MEND,
+         sum_slices = MEND + non_exonic_reads + duplicate_reads + not_mapped)
 
 ```
 
@@ -145,19 +154,19 @@ read_counts_with_percentages <- read_counts_with_slices %>%
 			       not_mapped,
 			       duplicate_reads,
 			       non_exonic_reads,
-			       UMEND,
+			       MEND,
 			       Multimapped_read_count,
-			       UM,
+			       mapped,
 			       Percent_duplicates,
-			       pct_UMEND,
+			       pct_MEND,
 			       total_sequences) %>%
-			gather(read_type, read_count, not_mapped, duplicate_reads, non_exonic_reads, UMEND, Multimapped_read_count) %>%
+			gather(read_type, read_count, not_mapped, duplicate_reads, non_exonic_reads, MEND, Multimapped_read_count) %>%
 			mutate(read_type = intermediate_names_for_read_types_mm[match(read_type, raw_names_for_read_types_mm)],
 			       read_type = factor(read_type,
 			                          levels = intermediate_names_for_read_types_mm),
 			       sample_id = factor(sample_id, levels = orderByTotalReads),
 			       read_countM = read_count / 1e6,
-			       divisor_for_percent = ifelse(read_type=="Multi-mapped", UM, total_sequences),
+			       divisor_for_percent = ifelse(read_type=="Multi-mapped", mapped, total_sequences),
 			       percent_of_total = read_count / divisor_for_percent)
 
 
@@ -195,13 +204,13 @@ print(paste("exclude", length(unique(read_counts_with_percentages$sample_id)) - 
 ```
 # Reference ranges
 
-## Define reference ranges based on mean and sd of samples with typical total read depths and at least 20M umend reads 
+## Define reference ranges based on mean and sd of samples with typical total read depths and at least 20M MEND reads 
 
 ```{r}
 
 read_type_training_set <- read_counts_without_total_seq_outliers %>% 
   group_by(sample_id) %>%
-  dplyr::filter(read_countM[read_type == "UMEND"] > 20)
+  dplyr::filter(read_countM[read_type == "MEND"] > 20)
 
 read_type_mean_and_sd_20U <- read_type_training_set %>% 
   group_by(read_type) %>% 
@@ -214,7 +223,7 @@ read_type_mean_and_sd_20U <- read_type_training_set %>%
   gather(stat, value, -one_sd, -read_type) %>%
   mutate(stat2 = gsub("^.*two_sd", "two_sd", gsub("^.*one_sd", "one_sd", stat)))
 
-# read_types_with_a_lower_bound <- c("UMEND", "Duplicate reads", "Multi-mapped")
+# read_types_with_a_lower_bound <- c("MEND", "Duplicate reads", "Multi-mapped")
 read_types_with_a_lower_bound <- unique(read_type_mean_and_sd_20U$read_type)
 
 read_type_pct_thresholds_raw <- read_type_mean_and_sd_20U %>% 
@@ -256,13 +265,13 @@ samples_within_limits <- read_counts_with_thresholds %>%
   pull(sample_id) %>% unique
 
 depth_status <- read_counts_with_slices %>%
-  select(sample_id, UMEND) %>%
+  select(sample_id, MEND) %>%
   mutate(
-    status=ifelse( UMEND<10E6,
-                   "<10M_UMEND_reads",
-                   ifelse(UMEND<20E6, 
-                          "10-20 UMEND_reads",
-                          ">20M_UMEND_reads")
+    status=ifelse( MEND<10E6,
+                   "<10M_MEND_reads",
+                   ifelse(MEND<20E6, 
+                          "10-20 MEND_reads",
+                          ">20M_MEND_reads")
     ),
   all_read_types_within_read_type_limits = sample_id %in% samples_within_limits,
   within_read_type_limits_label = c( "not_WNL", "WNL")[1 + all_read_types_within_read_type_limits]
@@ -270,7 +279,7 @@ depth_status <- read_counts_with_slices %>%
 tabyl(depth_status, within_read_type_limits_label, status)
 
 
-threshold_codes=c("NM"="Not mapped", "MM"="Multi-mapped", "D"="Duplicate reads", "NE" = "Non exonic reads", "U" = "UMEND")
+threshold_codes=c("NM"="Not mapped", "MM"="Multi-mapped", "D"="Duplicate reads", "NE" = "Non exonic reads", "U" = "MEND")
 
 threshold_failure_annotations <- read_counts_with_thresholds %>% 
   mutate(threshold_code = ifelse(within_limits == "within_limits", NA, names(threshold_codes)[match(read_type, threshold_codes)])) %>%
@@ -323,6 +332,7 @@ while (sum(error_distribution$curated_target_freq_in_subset)<n_samples_to_plot){
   error_distribution$curated_target_freq_in_subset[row_for_passing_samples] = error_distribution$curated_target_freq_in_subset[row_for_passing_samples] + 1
 }
 
+
 # sum(error_distribution$curated_target_freq_in_subset)
 
 random_samples <- apply(error_distribution, 1, function(x){
@@ -332,17 +342,22 @@ random_samples <- apply(error_distribution, 1, function(x){
   if (threshold_code=="Pass") threshold_code = ""
   if (n_to_sample >0){
     set.seed(3)
-    subset(read_counts_with_limits, sample_id %in% reasonably_sized_samples & failed_thresholds == threshold_code) %>% 
+    samples_to_return <- subset(read_counts_with_limits, 
+                                sample_id %in% reasonably_sized_samples & 
+                                ! sample_id %in% parent_sample_data$`Treehouse ID` & 
+                                  failed_thresholds == threshold_code) %>% 
       select(sample_id) %>%
+      distinct %>%
       sample_n(n_to_sample)
+      return(samples_to_return)
   }
 }
 ) %>% bind_rows %>% pull(sample_id)
 
 # read_counts_with_limits %>% filter(sample_id %in% random_samples) %>% pull(total_sequences) %>% range
 
-
 ```
+
 
 
 ## assemble data for small set
@@ -364,6 +379,9 @@ samples_for_small_dataset <- c(selected_parent_samples$THid, random_samples)
 # special_designation=c("other", "From_Fig1")
 # special_designation <- c("", "*")
 # small_plot_data <- subset(read_counts_with_percentages, sample_id %in% samples_for_small_dataset) %>%
+
+length(samples_for_small_dataset)
+length(unique(samples_for_small_dataset))
 
 small_plot_data <- subset(read_counts_with_limits, sample_id %in% samples_for_small_dataset) %>%
   mutate(
@@ -387,24 +405,24 @@ small_plot_data$not_WNL <- ! small_plot_data$sample_id  %in% samples_within_limi
 
 # Rescale data
 
-## Scale UMEND to 20M
+## Scale MEND to 20M
 
 ```{r}
 
 # includes all samples
 
-min_UMEND = 20 * 1e6
+min_MEND = 20 * 1e6
 
 adjusted_read_counts <- read_counts_with_limits %>% 
   filter(read_type !="Multi-mapped") %>%
   group_by(sample_id) %>% 
-  mutate(adjustment_factor = 1 / (read_count[read_type == "UMEND"]/min_UMEND),
+  mutate(adjustment_factor = 1 / (read_count[read_type == "MEND"]/min_MEND),
          adjust_read_count = adjustment_factor * read_count,
          total_adjusted_read_count = sum(adjust_read_count))
 
 ```
 
-## Calculate and record stats for scaling UMEND to all depth thresholds
+## Calculate and record stats for scaling MEND to all depth thresholds
 ```{r}
 
 # includes only samples within the reference ranges
@@ -423,7 +441,7 @@ percentile_to_query=0.95
 
 rescale_and_get_percentile <- function(proposed_threshold, percentile_to_query) {
   read_counts_within_limits %>% 
-    filter(read_type == "UMEND") %>%
+    filter(read_type == "MEND") %>%
     mutate(adjustment_factor = 1 / (read_count / (proposed_threshold * 1e6)),
            adjusted_total = adjustment_factor * total_sequences) %>%
     pull(adjusted_total) %>%
@@ -458,7 +476,7 @@ write_tsv(predictions %>% filter(percentile_to_query==0.95),
 
 ### 2A
 ```{r}
-plot_title <- "Total number of reads in a sample does not predict the number of UMEND reads"
+plot_title <- "Total number of reads in a sample does not predict the number of MEND reads"
 figure_name <- "read_count_and_fractions_figures_v2"
 
 
@@ -476,10 +494,10 @@ p1 <- ggplot(small_plot_data_no_MM) +
   scale_fill_manual("Read type", values = category_colors, labels=better_names_for_read_types) +
   scale_color_grey(end = 0.6) +
   # facet_grid(.~highlight_sample, scales="free_x", space="free") + 
-  xlab(paste0("Samples, n=", length(samples_for_small_dataset))) +
+  xlab(paste0("Samples, n=", length(unique(small_plot_data_no_MM$sample_id)))) +
   ylab("Read count (millions)") +
 #  ylim(0, 175) +
-  geom_text(data=subset(small_plot_data_no_MM, read_type == "UMEND"),
+  geom_text(data=subset(small_plot_data_no_MM, read_type == "MEND"),
                                aes(x = sample_id,
                 y = 1 + total_sequences / 1e6,
                 label = highlight_text),
@@ -502,8 +520,8 @@ p1 <- ggplot(small_plot_data_no_MM) +
   #geom_text(data=selected_small_plot_data, aes(x=sample_id, y=total_sequences), label="*")
 
 p1
-
-dim(subset(threshold_failure_annotations, sample_id %in% small_plot_data_no_MM$sample_id))
+#length(unique(subset(threshold_failure_annotations, sample_id %in% small_plot_data_no_MM$sample_id)$sample_id))
+#dim(subset(threshold_failure_annotations, sample_id %in% small_plot_data_no_MM$sample_id))
 ```
 
 
@@ -514,7 +532,7 @@ dim(subset(threshold_failure_annotations, sample_id %in% small_plot_data_no_MM$s
 read_counts_with_percentages_20U <- read_counts_with_percentages %>% 
   group_by(sample_id) %>%
   dplyr::filter(
-    read_countM[read_type == "UMEND"] > 20,
+    read_countM[read_type == "MEND"] > 20,
     !read_type == "Multi-mapped") %>%
   mutate(read_type = factor(read_type, levels = intermediate_names_for_read_types ))
 
@@ -547,7 +565,7 @@ read_type_pct_thresholds_for_fig2 <- subset(read_type_pct_thresholds, !read_type
   gather(threshold, value, -read_type) %>%
   mutate(
     x = ifelse(threshold=="max_pct", value + padding_from_line, value - padding_from_line),
-#    y = ifelse(read_type %in% c("Duplicate reads", "UMEND"), 200, 50),
+#    y = ifelse(read_type %in% c("Duplicate reads", "MEND"), 200, 50),
     y = 200,
     hjust = ifelse(threshold=="max_pct", "left", "right"),
     label = ifelse(threshold=="max_pct", 
@@ -614,7 +632,7 @@ print(paste("The total number of samples analyzed was",number_of_samples_analyze
 
 
 ###  ABSTRACT: Reference ranges
-We addressed variability in sample composition with reference ranges for four types of reads found in sequencing data: unmapped (0-27%); mapped duplicate (0-57%); mapped non exonic (0-27%) and uniquely mapped, exonic, non-duplicate (UMEND, 21-77%). 
+We addressed variability in sample composition with reference ranges for four types of reads found in sequencing data: unmapped (0-27%); mapped duplicate (0-57%); mapped non exonic (0-27%) and uniquely mapped, exonic, non-duplicate (MEND, 21-77%). 
 
 ```{r}
 
@@ -627,48 +645,43 @@ paste(ref_ranges$statement, collapse = ";")
 
 ```
 
-###  ABSTRACT: "The total number of samples analyzed was 1088 from 29 projects"
-```{r}
-
-```
-
 
 ###  Body
 ```{r}
-number_of_samples_with_more_than_20M_UMEND_reads <- nrow(subset(complete_counts_raw, UMEND> 20E6))
-print(paste( number_of_samples_with_more_than_20M_UMEND_reads, "samples have more than 20M UMEND reads"))
+number_of_samples_with_more_than_20M_MEND_reads <- nrow(subset(complete_counts_raw, MEND> 20E6))
+print(paste( number_of_samples_with_more_than_20M_MEND_reads, "samples have more than 20M MEND reads"))
 
 number_of_samples_within_reference_ranges <- length(samples_within_limits)
 print(paste(number_of_samples_within_reference_ranges,"of the", number_of_samples_analyzed, "samples analyzed had values within the reference range.",number_of_samples_analyzed-number_of_samples_within_reference_ranges, "(", round(100*(1-number_of_samples_within_reference_ranges/number_of_samples_analyzed)), "%) did not."))
 
-nrow(subset(complete_counts_raw, UMEND< 20E6 & ! sample_id %in% samples_within_limits))
+nrow(subset(complete_counts_raw, MEND< 20E6 & ! sample_id %in% samples_within_limits))
 
-median_num_of_UMEND_reads_in_samples_within_limits <- read_counts_with_limits %>% 
+median_num_of_MEND_reads_in_samples_within_limits <- read_counts_with_limits %>% 
   filter(within_limits == "within_limits",
-         read_type == "UMEND") %>%
+         read_type == "MEND") %>%
   pull(read_countM) %>%
   median
   
-print(paste("the median number of UMEND reads in these samples was", round(median_num_of_UMEND_reads_in_samples_within_limits, 1), "million"))
+print(paste("the median number of MEND reads in these samples was", round(median_num_of_MEND_reads_in_samples_within_limits, 1), "million"))
 
 
 ## Additional observations
 # Not all 765 samples in the reference range came from the training set of 831 samples
 
-# 139 of total samples have less than 10M UMEND reads
-# 251 of total samples have less than 20M UMEND reads
+# 139 of total samples have less than 10M MEND reads
+# 251 of total samples have less than 20M MEND reads
 
 # For applying the reference range read type cutoffs, we lose 317 (1082-765) samples
 
 samples_not_in_ref_range = complete_counts_raw$sample_id [ ! complete_counts_raw$sample_id %in% samples_within_limits]
 
-nrow(subset(complete_counts_raw, ( sample_id %in% samples_not_in_ref_range) & UMEND <10E6))
-nrow(subset(complete_counts_raw, (sample_id %in% samples_not_in_ref_range) & UMEND <20E6 & UMEND >10E6))
+nrow(subset(complete_counts_raw, ( sample_id %in% samples_not_in_ref_range) & MEND <10E6))
+nrow(subset(complete_counts_raw, (sample_id %in% samples_not_in_ref_range) & MEND <20E6 & MEND >10E6))
 
 read_counts_with_slices2 <- read_counts_with_slices %>% 
   mutate(
     pct_unmapped = not_mapped / total_sequences,
-    pct_non_exonic = non_exonic_reads - UMND,
+    pct_non_exonic = non_exonic_reads - MND,
     in_ref_range = sample_id %in% samples_within_limits)
 
 
@@ -676,28 +689,28 @@ summary(read_counts_with_slices2$pct_unmapped)
 # read_counts_with_slices2 %>% arrange(desc(pct_unmapped))
 
 # read_counts_with_slices2 %>%
-#   filter(UMEND > 20E6) %>%
+#   filter(MEND > 20E6) %>%
 #   arrange(desc(pct_unmapped))
 
 n_samples_with_gt95pct_unmapped <- sum(read_counts_with_slices2$pct_unmapped > 0.95)
 
 n_samples_with_gt95pct_unmapped <- 
   
-  nrow(subset(read_counts_with_slices2, pct_unmapped > 0.95 & UMEND > 10E6))
-nrow(subset(read_counts_with_slices2, pct_unmapped > 0.95 & UMEND > 20E6))
-#subset(read_counts_with_slices2, pct_unmapped > 0.95 & UMEND > 20E6)$UMEND
+  nrow(subset(read_counts_with_slices2, pct_unmapped > 0.95 & MEND > 10E6))
+nrow(subset(read_counts_with_slices2, pct_unmapped > 0.95 & MEND > 20E6))
+#subset(read_counts_with_slices2, pct_unmapped > 0.95 & MEND > 20E6)$MEND
 
-splitz <- paste("When we apply the reference range cutoffs to the original complete data source, we lose 317 samples. 196 of those samples would be lost to the UMEND threshold even if we didn't apply the reference range. By applying the reference range, we exclude 317-196, 121 samples that wouldn't otherwise be excluded. Some are egregious (e.g.", n_samples_with_gt95pct_unmapped, "have less than 95% of reads mapped to the genome")
+splitz <- paste("When we apply the reference range cutoffs to the original complete data source, we lose 317 samples. 196 of those samples would be lost to the MEND threshold even if we didn't apply the reference range. By applying the reference range, we exclude 317-196, 121 samples that wouldn't otherwise be excluded. Some are egregious (e.g.", n_samples_with_gt95pct_unmapped, "have less than 95% of reads mapped to the genome")
 
 print(splitz)
 
 
 
-# nrow(subset(complete_counts_raw, UMEND> 20E6 & sample_id %in% samples_within_limits)) # 710
+# nrow(subset(complete_counts_raw, MEND> 20E6 & sample_id %in% samples_within_limits)) # 710
 # 
-# total_lost_to_10_UMEND_threshold <-  nrow(subset(complete_counts_raw, UMEND< 10E6)) # 710
+# total_lost_to_10_MEND_threshold <-  nrow(subset(complete_counts_raw, MEND< 10E6)) # 710
 # 
-# pct_lost_to_10_UMEND_threshold <-  total_lost_to_10_UMEND_threshold/number_of_samples_analyzed
+# pct_lost_to_10_MEND_threshold <-  total_lost_to_10_MEND_threshold/number_of_samples_analyzed
 # 
 # total_lost_to_ref_range <- number_of_samples_analyzed - number_of_samples_within_reference_ranges
 # 
@@ -722,7 +735,7 @@ this_plot_data <- subset(adjusted_read_counts,
 
 this_plot_data_for_labels <- this_plot_data %>%
   filter(sample_id %in% selected_parent_samples$THid,
-         read_type == "UMEND") 
+         read_type == "MEND") 
 
 p <- ggplot(this_plot_data) + 
   geom_bar(aes(x = sample_id, 
@@ -747,7 +760,7 @@ p <- ggplot(this_plot_data) +
 
 if (f_label_bars_in_55_sample_plot) {
   p <- p +
-    geom_text(data=subset(this_plot_data, read_type == "UMEND"),
+    geom_text(data=subset(this_plot_data, read_type == "MEND"),
               aes(x = sample_id, y = total_adjusted_read_count / 1e6/2, label = sample_id), 
               angle = 90)
 }
@@ -777,19 +790,19 @@ example_threshold <- 70E6
 
 print(paste(number_of_samples_within_reference_ranges,"samples that had values within the reference range"))
 
-adjusted_UMEND_wnl <- 
+adjusted_MEND_wnl <- 
 adjusted_read_counts %>%
 filter(sample_id %in% samples_within_limits,
-       read_type == "UMEND"
+       read_type == "MEND"
        ) 
 
 
-# t5 is the  nsamples in the reference range require fewer than 70M total reads to contain 20M UMEND reads
+# t5 is the  nsamples in the reference range require fewer than 70M total reads to contain 20M MEND reads
 
-t5 <- adjusted_UMEND_wnl %>% filter(total_adjusted_read_count < example_threshold) %>% nrow
-t5/nrow(adjusted_UMEND_wnl)
+t5 <- adjusted_MEND_wnl %>% filter(total_adjusted_read_count < example_threshold) %>% nrow
+t5/nrow(adjusted_MEND_wnl)
 
-print(paste("All samples in this figure and", round(100*t5/nrow(adjusted_UMEND_wnl), 1), "% of the", number_of_samples_within_reference_ranges, "samples in the reference range require fewer than", round(example_threshold/1E6), "M total reads to contain 20M UMEND reads (dashed horizontal line)."))
+print(paste("All samples in this figure and", round(100*t5/nrow(adjusted_MEND_wnl), 1), "% of the", number_of_samples_within_reference_ranges, "samples in the reference range require fewer than", round(example_threshold/1E6), "M total reads to contain 20M MEND reads (dashed horizontal line)."))
 
 
 ```
@@ -812,7 +825,8 @@ plot_output_125 <-   p125 +
              y = 0,
              vjust = 0,
              hjust = 0,
-             size = 10) #, fontface = 'bold')
+             size = 10,
+             alpha = notation_text_alpha) #, fontface = 'bold')
 
 plot_output_125
 # ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output, height = 10, width = 11)
@@ -830,8 +844,10 @@ plot_output_125
 # plot_output
 
 
-ggsave(paste0("../figures_and_tables/ ", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output_125, height = 12, width = 11)
+ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), plot_output_125, height = 12, width = 11)
 
+
+ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".tiff"), plot_output_125, height = 12, width = 11)
 
 ```
 
@@ -865,8 +881,8 @@ samples_in_mapped_order <- complete_counts_raw %>%
 m_subtype_small_data <- subset(m_subtype_data_raw, sample_id %in% small_plot_data_no_MM$sample_id) %>%
   mutate(mm_read_type = gsub("Multimapped_read_count", "Multi-mapped", gsub("Uniquely_mapped_read_count", "Uniquely mapped", read_type)))
 
-# m_subtype_small_data$sample_id = factor(m_subtype_small_data$sample_id, levels=samples_in_depth_order[samples_in_depth_order %in% m_subtype_small_data$sample_id])
-m_subtype_small_data$sample_id = factor(m_subtype_small_data$sample_id, levels=samples_in_mapped_order[samples_in_mapped_order %in% m_subtype_small_data$sample_id])
+m_subtype_small_data$sample_id = factor(m_subtype_small_data$sample_id, levels=samples_in_depth_order[samples_in_depth_order %in% m_subtype_small_data$sample_id])
+#m_subtype_small_data$sample_id = factor(m_subtype_small_data$sample_id, levels=samples_in_mapped_order[samples_in_mapped_order %in% m_subtype_small_data$sample_id])
 
 
 
@@ -878,6 +894,12 @@ this_plot_data_for_labels <- m_subtype_small_data %>%
   filter(sample_id %in% selected_parent_samples$THid,
          read_type == "Multimapped_read_count") 
 
+
+threshold_failure_annotations_mm <- threshold_failure_annotations %>%
+  filter( sample_id %in% m_subtype_small_data$sample_id) %>%
+  left_join(m_subtype_small_data %>% select(sample_id, total_mapped_reads),
+            by="sample_id")
+
   
  p_mm_per_sample <-  ggplot(m_subtype_small_data) +
   geom_bar(data = m_subtype_small_data,
@@ -887,7 +909,7 @@ this_plot_data_for_labels <- m_subtype_small_data %>%
            size = 1,
            stat = "identity") +
 #  scale_fill_brewer(palette = "Set1") +
-     scale_fill_manual(values=multimapper_colors) +
+     scale_fill_manual("Subtype of mapped reads", values=multimapper_colors) +
   xlab(paste0("Samples, n=", length(unique(m_subtype_small_data$sample_id)))) +
   ylab("Read count (millions)") +
     theme(axis.ticks.x = element_blank(), 
@@ -899,8 +921,18 @@ this_plot_data_for_labels <- m_subtype_small_data %>%
                 y = 1 + total_mapped_reads / 1e6,
                 label = "*"),
             color = "black",
-            size = 5)
+            size = 5)+
+  geom_text(data=threshold_failure_annotations_mm,
+            aes(x = sample_id,
+                y = 1 + total_mapped_reads / 1e6,
+                label = failed_thresholds),
+            angle=90, hjust=0,
+            color = "black",
+            size=3)
+length(small_plot_data_no_MM$sample_id)
+length(unique(small_plot_data_no_MM$sample_id))
 
+p_mm_per_sample
 
 ```
 
@@ -916,10 +948,10 @@ figure_name <- "multimappers"
 
 
 
-read_counts_with_percentages_20U <- read_counts_with_percentages %>% 
+read_counts_with_percentages_20U_mm <- read_counts_with_percentages %>% 
   group_by(sample_id) %>%
   dplyr::filter(
-    read_countM[read_type == "UMEND"] > 20,
+    read_countM[read_type == "MEND"] > 20,
     read_type == "Multi-mapped")
 
 read_type_names <- better_names_for_read_types
@@ -930,24 +962,24 @@ read_type_labeller <- function(variable,value){
 }
 
 
-p20 <-  ggplot(read_counts_with_percentages_20U) + 
+p20 <-  ggplot(read_counts_with_percentages_20U_mm) + 
   geom_histogram(aes(x = percent_of_total, fill = read_type)) + 
  #   geom_histogram(aes(x = percent_of_total), fill = "red") + 
   geom_vline(data = subset(read_type_mean_and_sd_20U, read_type == "Multi-mapped"), 
              aes(xintercept = value,
 #                 color = read_type,,
                  linetype = stat2),
-                  color = "red") +
+                  color = "black") +
   scale_fill_manual(values = multimapper_colors) +
-  scale_color_manual(values = multimapper_colors) +
+  scale_color_manual(values = multimapper_colors)# +
 ##  scale_fill_brewer(palette = "Spectral") +
 #  scale_color_brewer(palette = "Spectral") +
-  facet_wrap(~read_type, nrow=1, labeller=read_type_labeller) 
+#  facet_wrap(~read_type, nrow=1) 
 
 p20b <- p20 + 
   theme(legend.position = "none") +
   ylab("Samples") + 
-  xlab(paste0("Fraction of mapped reads, n=", length(unique(read_counts_with_percentages_20U$sample_id)))) 
+  xlab(paste0("Multi-mapped reads as a fraction of mapped reads, n=", length(unique(read_counts_with_percentages_20U_mm$sample_id)))) 
 
 padding_from_line <- -0.04
 
@@ -955,7 +987,7 @@ read_type_pct_thresholds_for_fig2 <- subset(read_type_pct_thresholds, read_type 
   gather(threshold, value, -read_type) %>%
   mutate(
     x = ifelse(threshold=="max_pct", value + padding_from_line, value - padding_from_line),
-#    y = ifelse(read_type %in% c("Duplicate reads", "UMEND"), 200, 50),
+#    y = ifelse(read_type %in% c("Duplicate reads", "MEND"), 200, 50),
     y = 200,
     hjust = ifelse(threshold=="max_pct", "left", "right"),
     label = ifelse(threshold=="max_pct", 
@@ -990,13 +1022,15 @@ p_S2AB_labeled <-   p_S2AB +
              y = 0,
              vjust = 0,
              hjust = 0,
-             size = 10) #, fontface = 'bold')
+             size = 10,
+             alpha = notation_text_alpha) #, fontface = 'bold')
 
 
 p_S2AB_labeled
 
-ggsave(paste0("../figures_and_tables/ ", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), p_S2AB_labeled, height =8, width = 6)
+ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".png"), p_S2AB_labeled, height =8, width = 6)
 
+ggsave(paste0("../figures_and_tables/", gsub(" ", "_", gsub(":", "-", fig_file_base)), ".tiff"), p_S2AB_labeled, height =8, width = 6)
 
 ```
 
@@ -1012,7 +1046,7 @@ ggsave(paste0("../figures_and_tables/ ", gsub(" ", "_", gsub(":", "-", fig_file_
 ```{r}
 # if (f_run_qc) {
 plot_info_for_problem_samples <- read_counts_with_limits %>% 
-  filter( ! (status==">20M_UMEND_reads" & all_read_types_within_read_type_limits)) %>%
+  filter( ! (status==">20M_MEND_reads" & all_read_types_within_read_type_limits)) %>%
   group_by(status, within_read_type_limits_label) %>%
   mutate(
     depth_status_label = paste0(status, ",", within_read_type_limits_label, " (n=", length(unique(sample_id)), ")" )
@@ -1047,43 +1081,43 @@ ggplot(plot_info_for_problem_samples) +
 
 # detail table  
 plot_info_for_problem_samples %>%
-  rename(UMEND_depth = status) %>%
-  tabyl(read_type, within_limits, UMEND_depth) 
+  rename(MEND_depth = status) %>%
+  tabyl(read_type, within_limits, MEND_depth) 
   
   
 # summary statements
-samples_with_lt_10M_UMEND_reads <- read_counts_with_limits %>%
-  filter(read_type == "UMEND",
+samples_with_lt_10M_MEND_reads <- read_counts_with_limits %>%
+  filter(read_type == "MEND",
          read_count<10E6) %>%
   pull (sample_id)
 
-print(paste(length(samples_with_lt_10M_UMEND_reads), "samples have fewer than 10M UMEND reads"))
+print(paste(length(samples_with_lt_10M_MEND_reads), "samples have fewer than 10M MEND reads"))
 
-samples_with_10_20_M_UMEND_reads <- read_counts_with_limits %>%
-  filter(read_type == "UMEND",
+samples_with_10_20_M_MEND_reads <- read_counts_with_limits %>%
+  filter(read_type == "MEND",
          read_count >= 10E6,
          read_count < 20E6) %>%
   pull (sample_id)
 
-print(paste(length(samples_with_10_20_M_UMEND_reads), "samples have 10-20 M UMEND reads"))
+print(paste(length(samples_with_10_20_M_MEND_reads), "samples have 10-20 M MEND reads"))
 
-samples_with_gt_20_M_UMEND_reads <- read_counts_with_limits %>%
-  filter(read_type == "UMEND",
+samples_with_gt_20_M_MEND_reads <- read_counts_with_limits %>%
+  filter(read_type == "MEND",
          read_count >= 20E6) %>%
   pull (sample_id)
 
-print(paste(length(samples_with_gt_20_M_UMEND_reads), "samples have >20 M UMEND reads"))
+print(paste(length(samples_with_gt_20_M_MEND_reads), "samples have >20 M MEND reads"))
 
 
-samples_with_gt_20_M_UMEND_reads_not_WNL <- read_counts_with_limits %>%
-  filter(read_type == "UMEND",
+samples_with_gt_20_M_MEND_reads_not_WNL <- read_counts_with_limits %>%
+  filter(read_type == "MEND",
          read_count >= 20E6,
          ! all_read_types_within_read_type_limits) %>%
   pull (sample_id)
 
-print(paste(length(samples_with_gt_20_M_UMEND_reads_not_WNL), "of the", length(samples_with_gt_20_M_UMEND_reads), "samples with >20 M UMEND reads are not within reference range for all five read types"))
+print(paste(length(samples_with_gt_20_M_MEND_reads_not_WNL), "of the", length(samples_with_gt_20_M_MEND_reads), "samples with >20 M MEND reads are not within reference range for all five read types"))
 
-print(paste(round(100*length(samples_with_gt_20_M_UMEND_reads_not_WNL)/length(samples_with_gt_20_M_UMEND_reads), 1), "percent"))
+print(paste(round(100*length(samples_with_gt_20_M_MEND_reads_not_WNL)/length(samples_with_gt_20_M_MEND_reads), 1), "percent"))
 
 # how many samples would with within limts if not for 
 
@@ -1107,10 +1141,10 @@ plot_info_for_problem_samples   %>%
   filter(read_type=="Multi-mapped" & within_limits != "within_limits") %>%
   nrow
 # 
-# how many samples above 20M UMEND reads, would otherwise pass, but have excessive multi-mappers?
+# how many samples above 20M MEND reads, would otherwise pass, but have excessive multi-mappers?
 # 30
 plot_info_for_problem_samples   %>%
-  filter(status==">20M_UMEND_reads") %>%
+  filter(status==">20M_MEND_reads") %>%
   group_by(sample_id) %>%
   filter(sum(grepl("within_limits", within_limits)) == 4) %>%
   ungroup %>%
@@ -1142,13 +1176,13 @@ if (f_run_qc) {
 # pct failed samples
 # 
 # read_counts_with_limits %>% 
-#   filter(status==">20M_UMEND_reads") %>%
+#   filter(status==">20M_MEND_reads") %>%
 #   mutate(percent_pass = sum(all_read_types_within_read_type_limits)/(n())) %>%
 #   pull(percent_pass) %>% unique
 # 
 # 
 # small_plot_data %>% 
-#   filter(status==">20M_UMEND_reads") %>%
+#   filter(status==">20M_MEND_reads") %>%
 #   mutate(percent_pass = sum(all_read_types_within_read_type_limits)/(n())) %>%
 #   pull(percent_pass) %>% unique
 
@@ -1160,7 +1194,7 @@ if (f_run_qc) {
 #   select(sample_id, read_type, within_limits) %>%
 #   spread(read_type, within_limits) 
 
-# of the samples i've looked at, a below threshold UMEND value is always accompanied by a value that exceeds the threshold in another category
+# of the samples i've looked at, a below threshold MEND value is always accompanied by a value that exceeds the threshold in another category
 }
 ```
 ## plot for a single sample
@@ -1188,9 +1222,9 @@ this_sample_plot_data <-  subset(allCountsRaw, sample_id == s) %>%
                               "Mapped_reads")
   )
 read_measure_order <- c("total_sequences", "Multimapped_read_count", "Uniquely_mapped_read_count", 
-                        "Uniquely_mapped_non_duplicate_read_count", "UMEND") # unique(this_sample_plot_data$read_measure)[c(2,5,1,4,3)]
+                        "Uniquely_mapped_non_duplicate_read_count", "MEND") # unique(this_sample_plot_data$read_measure)[c(2,5,1,4,3)]
 
-read_cateogry_order <- c("total_sequences", "Mapped_reads", "Uniquely_mapped_non_duplicate_read_count", "UMEND") # unique(this_sample_plot_data$read_category)[c(2,1,4,3)]
+read_cateogry_order <- c("total_sequences", "Mapped_reads", "Uniquely_mapped_non_duplicate_read_count", "MEND") # unique(this_sample_plot_data$read_category)[c(2,1,4,3)]
 
 this_sample_plot_data$read_measure = factor(this_sample_plot_data$read_measure , levels=read_measure_order)
 
@@ -1237,7 +1271,7 @@ if (f_run_qc) {
 read_counts_with_percentages_20U <- read_counts_with_percentages %>% 
   group_by(sample_id) %>%
   dplyr::filter(
-    read_countM[read_type == "UMEND"] > 20,
+    read_countM[read_type == "MEND"] > 20,
     !read_type == "Multi-mapped")
 
 read_type_names <- better_names_for_read_types
@@ -1264,6 +1298,6 @@ dupe_frac_compare <- read_counts_with_percentages_20U %>%
   scale_color_manual(values = category_colors) +
     facet_wrap(~depth_category)
   
-ggplot(dupe_frac_compare) + geom_point(aes(x=total_sequences, y=Percent_duplicates, color=pct_UMEND * total_sequences >40E6))
+ggplot(dupe_frac_compare) + geom_point(aes(x=total_sequences, y=Percent_duplicates, color=pct_MEND * total_sequences >40E6))
 }
 ```

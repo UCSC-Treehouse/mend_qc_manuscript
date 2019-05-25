@@ -10,8 +10,6 @@ output:
 
 ```{r setup, include = FALSE}
 
-#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
-
 library(readr)
 library(tidyr)
 library(dplyr)
@@ -29,6 +27,10 @@ library(forcats)
 read_counts_raw <- read_tsv("../data/read_counts.txt", 
                             col_names = c("sample_id", "measurement", "read_count"))
 
+
+parent_publication_ids <- read_tsv("../data/parent_sample_data_source.tsv") %>%
+  select(Eval_ID, publication_id)
+
 ```
 
 ## Groom read counts
@@ -36,9 +38,19 @@ read_counts_raw <- read_tsv("../data/read_counts.txt",
 ```{r}
 
 read_counts_anno <- read_counts_raw %>% 
-  mutate(target_UMEND_count = as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", sample_id)),
+  mutate(target_MEND_count = as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", sample_id)),
          parent_id = gsub("_est.*$", "", sample_id)) %>%
-  spread(measurement, read_count)
+  spread(measurement, read_count) %>%
+  mutate(Mapped_read_count = Multimapped_read_count + Uniquely_mapped_read_count,
+         MND = Mapped_non_duplicate_read_count,
+         pct_MEND = MEND / total_sequences,
+         not_mapped = total_sequences - Mapped_read_count,
+         duplicate_reads = Mapped_read_count - MND,
+         non_exonic_reads = MND - MEND,
+         pct_MMoM = Multimapped_read_count/Mapped_read_count,
+         seed = substr(sample_id, nchar(sample_id)-3,
+                                        nchar(sample_id))
+  )
 
 ```
 
@@ -46,53 +58,30 @@ read_counts_anno <- read_counts_raw %>%
 
 ```{r}
 
-subsample_fractions <- read_counts_anno
+subsample_fractions <- read_counts_anno %>% 
+  left_join(parent_publication_ids, by=c("parent_id"="Eval_ID")) %>%
+  rename(Sample = publication_id) %>%
+  select(-parent_id)
 
-for (i in 1:nrow(subsample_fractions)) {
-  if (subsample_fractions$parent_id[i] == "TH_Eval_014") {
-    subsample_fractions$parent_id[i] <- "S1"
-  } else if (subsample_fractions$parent_id[i] == "TH_Eval_015") {
-    subsample_fractions$parent_id[i] <- "S2"
-  } else if (subsample_fractions$parent_id[i] == "TH_Eval_016") {
-    subsample_fractions$parent_id[i] <- "S3"
-  } else if (subsample_fractions$parent_id[i] == "TH_Eval_018") {
-    subsample_fractions$parent_id[i] <- "S4"
-  } else if (subsample_fractions$parent_id[i] == "TH_Eval_019") {
-    subsample_fractions$parent_id[i] <- "S5"
-  }
-}
+# subsample_fractions$MEND <- round(subsample_fractions$MEND, digits = 0)
+# subsample_fractions$pct_MEND <- round(subsample_fractions$pct_MEND, digits = 1)
 
-subsample_fractions <- subsample_fractions %>%
-  mutate(seed = substr(sample_id, nchar(sample_id)-3,
-                                        nchar(sample_id)),
-         percent_duplicates = 100 * (1 - (Uniquely_mapped_non_duplicate_read_count / Uniquely_mapped_read_count)),
-         percent_umend = 100 * (UMEND / total_sequences))
+subsample_fractions2 <- subsample_fractions %>%
+select(Sample, `Target MEND Count (M)` = target_MEND_count, Seed = seed, `Total sequences` = total_sequences, `Not mapped` = not_mapped, `Duplicates` = duplicate_reads, `Non-exonic` = non_exonic_reads, MEND,
+         `Percent MEND` = pct_MEND, `Percent MMoM` = pct_MMoM) %>%
+  mutate(`Non-exonic` = format(round(`Non-exonic`), big.mark = ","),
+         `Percent MEND` = round(100 * `Percent MEND`,1),
+         `Percent MMoM` = round(100 * `Percent MMoM`,1),
+         `Total sequences` = format(`Total sequences`, big.mark = ","),
+         `Not mapped` = format(`Not mapped`, big.mark = ","),
+         `Duplicates` = format(round(`Duplicates`), big.mark = ","),
+         `MEND` = format(round(`MEND`), big.mark = ",")
+         ) %>%
+  arrange(Sample, `Target MEND Count (M)`)
+ 
+# [,c(2, 1, 7, 3, 6, 5, 4, 8)]
 
-subsample_fractions$UMEND <- round(subsample_fractions$UMEND, digits = 0)
-subsample_fractions$percent_duplicates <- round(subsample_fractions$percent_duplicates, digits = 1)
-subsample_fractions$percent_umend <- round(subsample_fractions$percent_umend, digits = 1)
-
-subsample_fractions2 <- subsample_fractions[,-1] %>%
-  select(-percent_duplicates) %>%
-  rename(
-    "Sample" = parent_id,
-    "Target UMEND Count (M)" = target_UMEND_count,
-         "Total Reads" = total_sequences,
-         "UMEND Reads" = UMEND,
-         "UMND Reads" = Uniquely_mapped_non_duplicate_read_count,
-         "UM Reads" = Uniquely_mapped_read_count,
-         "Seed" = seed,
-         #         "Percent Duplicate Reads" = percent_duplicates,
-         "Percent UMEND Reads" = percent_umend) %>%
-  mutate(
-    `Total Reads` = format(`Total Reads`, big.mark = ","),
-    `UMEND Reads` = format(`UMEND Reads`, big.mark = ","),
-    `UMND Reads` = format(`UMND Reads`, big.mark = ","),
-    `UM Reads` = format(`UM Reads`, big.mark = ",")
-  ) %>%
-  arrange(Sample, `Target UMEND Count (M)`)
-
-subsample_table <- subsample_fractions2[,c(2, 1, 7, 3, 6, 5, 4, 8)] %>%
+subsample_table <- subsample_fractions2 %>%
   write_tsv("../figures_and_tables/table_S2_subsamples.tsv")
 
 ```

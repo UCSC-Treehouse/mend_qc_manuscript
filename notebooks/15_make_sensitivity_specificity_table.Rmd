@@ -11,7 +11,6 @@ output:
 
 ```{r setup, include = FALSE}
 
-#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
 
 library(readr)
 library(tidyr)
@@ -39,7 +38,7 @@ sens_spec <- left_join(outlier_sens_spec_raw,
                        by = c(median_of_depth_bin = "bin_median")) %>%
   left_join(predicted_required_total_reads, c("median_of_depth_bin" = "proposed_threshold"))
   
-colnames(sens_spec) = c("UMEND reads (million)",
+colnames(sens_spec) = c("MEND reads (million)",
                         "Outlier sensitivity",
                         "Outlier specificity",
                         "Correlation sensitivity",

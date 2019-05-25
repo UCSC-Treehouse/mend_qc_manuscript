@@ -1,4 +1,4 @@
-gene	sample_id	expression	target_UMEND_count	parent_id	median_of_depth_bin	publication_id
+gene	sample_id	expression	target_MEND_count	parent_id	median_of_depth_bin	publication_id
 BRCA2	TH_Eval_018_est28M_UMEND_seqtk_seed_8899	1.88752527074	28	TH_Eval_018	28	S4
 FGFR2	TH_Eval_018_est28M_UMEND_seqtk_seed_8899	0.111031312389	28	TH_Eval_018	28	S4
 JAK2	TH_Eval_018_est28M_UMEND_seqtk_seed_8899	2.6530600171	28	TH_Eval_018	28	S4
