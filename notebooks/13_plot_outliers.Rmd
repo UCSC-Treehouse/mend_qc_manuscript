@@ -373,7 +373,7 @@ pOSS <- ggplot(accuracy_stats_sens_spec, aes(y = value, color = measurement, x =
   geom_point() +
   geom_smooth(se = TRUE) + 
   xlab("MEND reads (million)") + 
-  ylab("") +
+  ylab("Fraction") +
   facet_grid(publication_id~ . ) +
   scale_color_manual("Measurement", values = outlier_line_colors) +
  scale_y_continuous(breaks=c(0.8, 0.9, 1))  + 
