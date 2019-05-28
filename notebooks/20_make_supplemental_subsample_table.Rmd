@@ -28,6 +28,9 @@ read_counts_raw <- read_tsv("../data/read_counts.txt",
                             col_names = c("sample_id", "measurement", "read_count"))
 
 
+evenly_selected_subsamples <- read_tsv(paste0("../data/evenly_selected_subsamples_with_binwidth_4.tsv"))
+
+
 parent_publication_ids <- read_tsv("../data/parent_sample_data_source.tsv") %>%
   select(Eval_ID, publication_id)
 
@@ -38,6 +41,7 @@ parent_publication_ids <- read_tsv("../data/parent_sample_data_source.tsv") %>%
 ```{r}
 
 read_counts_anno <- read_counts_raw %>% 
+  filter(sample_id %in% evenly_selected_subsamples$sample_id) %>%
   mutate(target_MEND_count = as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", sample_id)),
          parent_id = gsub("_est.*$", "", sample_id)) %>%
   spread(measurement, read_count) %>%
