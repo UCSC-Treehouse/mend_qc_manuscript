@@ -279,7 +279,7 @@ depth_status <- read_counts_with_slices %>%
 tabyl(depth_status, within_read_type_limits_label, status)
 
 
-threshold_codes=c("NM"="Not mapped", "MM"="Multi-mapped", "D"="Duplicate reads", "NE" = "Non exonic reads", "U" = "MEND")
+threshold_codes=c("NM"="Not mapped", "MM"="Multi-mapped", "D"="Duplicate reads", "NE" = "Non exonic reads", "M" = "MEND")
 
 threshold_failure_annotations <- read_counts_with_thresholds %>% 
   mutate(threshold_code = ifelse(within_limits == "within_limits", NA, names(threshold_codes)[match(read_type, threshold_codes)])) %>%
