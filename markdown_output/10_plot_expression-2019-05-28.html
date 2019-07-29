@@ -491,9 +491,13 @@ pSmallBin2</code></pre>
 
 library(grid)
 library(gtable)
-library(gridExtra)
-
-grob1 &lt;- ggplotGrob(p3)
+library(gridExtra)</code></pre>
+<pre><code>## 
+## Attaching package: 'gridExtra'</code></pre>
+<pre><code>## The following object is masked from 'package:dplyr':
+## 
+##     combine</code></pre>
+<pre class="r"><code>grob1 &lt;- ggplotGrob(p3)
 grob2 &lt;- ggplotGrob(pBin2)
 
 this_time_stamp &lt;- Sys.time()

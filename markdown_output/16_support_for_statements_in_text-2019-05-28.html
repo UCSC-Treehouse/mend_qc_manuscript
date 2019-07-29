@@ -333,9 +333,13 @@ read_counts %&gt;%
 ##   timestamp = col_character(),
 ##   deleteme = col_logical()
 ## )</code></pre>
-<pre class="r"><code>library(lubridate)
-
-timestamps &lt;- timestamps_raw %&gt;%
+<pre class="r"><code>library(lubridate)</code></pre>
+<pre><code>## 
+## Attaching package: 'lubridate'</code></pre>
+<pre><code>## The following object is masked from 'package:base':
+## 
+##     date</code></pre>
+<pre class="r"><code>timestamps &lt;- timestamps_raw %&gt;%
   mutate(timestamp = ymd_hms(gsub(&quot;T&quot;, &quot; &quot;, gsub(&quot;,&quot;, &quot;&quot;, timestamp))),
          start_stop = gsub(&quot;:&quot;, &quot;&quot;, start_stop)) %&gt;%
   spread(start_stop, timestamp)
