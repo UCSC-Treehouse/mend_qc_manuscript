@@ -1,0 +1,388 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+
+# Set submittable print options
+
+```{r}
+
+f_final_draft <- TRUE
+notation_text_alpha <- ifelse (f_final_draft, 0, 1 ) 
+
+```
+
+
+```{r}
+
+this_truth_definition <- "found_in_3_of_4_biggest_subsets"
+truth_definitions <- c("found_in_at_least_half_the_subsets",
+                       "found_in_the_deepest_subset",
+                       "found_in_3_of_4_biggest_subsets")
+
+f_make_supporting_plots <- FALSE
+```
+
+In this document, truth is defined as "`r gsub("_", " ", this_truth_definition)`"
+
+Specifically, a gene is considered a true outlier in a parent sample
+if it is `r gsub("_", " ", this_truth_definition)` made from that parent.
+
+The available definitions are:
+
+`r paste(truth_definitions, sep = "\n")`
+
+```{r setup, include = FALSE}
+
+#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+
+```
+
+## Load data
+
+```{r}
+
+outlier_results_raw <- read_tsv("../data/outliers.txt") %>% mutate(is_outlier_in_subset = TRUE)
+
+this_bin_width = 4
+
+evenly_selected_subsamples <- read_tsv(paste0("../data/evenly_selected_subsamples_with_binwidth_4.tsv"))
+
+```
+
+## Definitions
+
+```{r}
+
+total_genes_measured <- 58582*0.05
+
+resultsCodes <- tibble(gene_is_true_positive_in_parent_sample = c(T, F, T, F),
+                       is_outlier_in_subset = c(T,T,F,F),
+                       hit_type = c("True positive", "False positive", "False negative", "True negative"))
+
+source_palette <- brewer.pal(12, "Paired")
+
+cb_dark_red <- source_palette[6]
+cb_light_red <- source_palette[5]
+
+cb_dark_blue <- source_palette[2]
+cb_light_blue <- source_palette[1]
+
+plot_colors <- c("False positive" = cb_light_red,
+                "True negative" = cb_dark_red,
+                "True positive" = cb_dark_blue,
+                "False negative" = cb_light_blue)
+
+outlier_line_colors <- c("sensitivity" = as.character(plot_colors["True positive"]),
+                          "specificity" = as.character(plot_colors["True negative"]))
+
+
+```
+
+## Match samples with bins
+
+```{r}
+
+
+annotated_outlier_results <- lapply(unique(outlier_results_raw$parent_sample), function(this_parent_sample) {
+	# this_parent_sample <- unique(outlier_results_raw$parent_sample)[1]
+	outliers_found_in_selected_subsamples <- subset(outlier_results_raw,
+	                                                parent_sample == this_parent_sample &
+	                                                  sample_id %in% evenly_selected_subsamples$sample_id)
+	subsamples <- unique(outliers_found_in_selected_subsamples$sample_id)
+	genes_that_are_outliers_in_any_subset <- unique(outliers_found_in_selected_subsamples$gene)
+	# add data to show a negative result for genes not found in the outlier list
+	empty_results <- tibble(parent_sample = this_parent_sample,
+	                        sample_id = rep(subsamples,
+	                                        each = length(genes_that_are_outliers_in_any_subset)),
+	                        gene = rep(genes_that_are_outliers_in_any_subset,
+	                                   length(subsamples)))
+	outlier_results <- left_join(empty_results,
+	                             outliers_found_in_selected_subsamples,
+	                             by = c("parent_sample", "sample_id", "gene")) %>%
+	  mutate(target_MEND_count = as.numeric(gsub("^.*_est", "",
+	                                              gsub("M_MEND_seqtk_seed_.*", "", sample_id))),
+	         is_outlier_in_subset = ifelse(is.na(is_outlier_in_subset), FALSE, TRUE))
+	
+	# define true positives
+
+	if (this_truth_definition == "found_in_3_of_4_biggest_subsets") {
+  	biggest_4_subsets <- sort(unique(outlier_results$target_MEND_count), decreasing = TRUE)[1:4]
+  	minimum_hits_for_true_outlier <- 3
+    
+    outlier_frequency <- outlier_results %>% 
+      dplyr::filter(is_outlier_in_subset,
+                    target_MEND_count %in% biggest_4_subsets) %>% 
+      group_by(gene) %>% 
+      summarize(n_subsamples_found = length(unique(sample_id)))
+    
+    true_outliers_in_parent_sample <- outlier_frequency %>% 
+      dplyr::filter(n_subsamples_found >= minimum_hits_for_true_outlier) %>% 
+      pull(gene)
+  }
+		
+  if (this_truth_definition == "found_in_the_deepest_subset") {
+    true_outliers_in_parent_sample <- subset(outlier_results_raw,
+                                             parent_sample == this_parent_sample &
+                                               as.numeric(gsub("^.*_est", "",
+                                                               gsub("M_MEND_seqtk_seed_.*",
+                                                                    "",
+                                                                    sample_id))) == 50) %>%
+      dplyr::filter(is_outlier_in_subset) %>%
+      pull(gene)
+  }
+
+ 	if (this_truth_definition == "found_in_at_least_half_the_subsets") {
+    minimum_hits_for_true_outlier <- length(unique(outlier_results$sample_id)) / 2
+
+    outlier_frequency <- outliers_found_in_selected_subsamples %>%
+      dplyr::filter(is_outlier_in_subset) %>%
+      group_by(gene) %>%
+      summarize(n_subsamples_found_in = length(unique(sample_id)))
+
+    true_outliers_in_parent_sample <- outlier_frequency %>%
+      dplyr::filter(n_subsamples_found_in >= minimum_hits_for_true_outlier) %>%
+      pull(gene)
+  }
+	
+	# except when True = present@50, exclude candidate outliers that are never positive in this data set
+  if (this_truth_definition != "found_in_the_deepest_subset") {
+	  outlier_results <- outlier_results %>% 
+  	  group_by(gene) %>%
+  	  dplyr::filter(sum(is_outlier_in_subset) > 0) 
+  }
+	                          
+	 this_annotated_outlier_results <- outlier_results %>% group_by(gene) %>% 
+		mutate(up_outlier_occurances = sum(as.numeric(is_outlier_in_subset)),
+		       first_appears = min(target_MEND_count[is_outlier_in_subset]),
+		       gene_is_true_positive_in_parent_sample = gene %in% true_outliers_in_parent_sample) %>%
+	   left_join(resultsCodes, by = c("is_outlier_in_subset", "gene_is_true_positive_in_parent_sample"))
+	 return(this_annotated_outlier_results)
+}) %>% bind_rows
+
+annotated_outlier_results_intermediate <- annotated_outlier_results %>%
+  left_join(evenly_selected_subsamples %>% select(-target_MEND_count), 
+            by = "sample_id")
+annotated_outlier_results$bin_median <- evenly_selected_subsamples$median_of_depth_bin[match(
+  annotated_outlier_results$sample_id, evenly_selected_subsamples$sample_id)] # should this line be modifying annotated_outlier_results_intermediate, not annotated_outlier_results?
+
+ordered_plot_input <- annotated_outlier_results_intermediate %>% 
+  arrange(gene_is_true_positive_in_parent_sample, up_outlier_occurances, rev(first_appears)) %>%
+  ungroup %>%
+  mutate(unique_parent_gene_id = paste(parent_sample, gene, sep = "_"),
+         ordered_gene = factor(unique_parent_gene_id, levels = rev(unique(unique_parent_gene_id)))) %>%
+  group_by(parent_sample) %>%
+  mutate(parent_sample_label = paste0(parent_sample, " (n=", length(unique(unique_parent_gene_id)), ")"))
+
+#head(ordered_plot_input)
+
+
+
+```
+
+
+# gather parent outliers
+```{r}
+
+parent_metadata <- read_tsv("../data/parent_sample_data_source.tsv")
+
+
+parent_outliers <- annotated_outlier_results %>% 
+  filter(gene_is_true_positive_in_parent_sample) %>% 
+  select(Eval_ID=parent_sample, gene) %>%
+  distinct %>% 
+  left_join(parent_metadata %>% select(Eval_ID, Disease), by=c("Eval_ID")) %>%
+  select(Disease, everything()) %>%
+  arrange(Disease, Eval_ID, gene)
+
+write_tsv(parent_outliers, "../ancillary/parent_outliers.tsv")
+
+```
+
+# look for literature connecting outliers to genes
+```{r}
+
+library("reutils")
+
+control_values = tibble(Disease = "synovial sarcoma", gene = "brca1")
+
+
+
+literature_search_inputs <- parent_outliers %>% 
+  select(Disease, gene) %>% 
+  distinct %>%
+  bind_rows(control_values, .) %>%
+  mutate(query_text = paste0(Disease," AND ", gene, "[Gene]"))
+
+# "COI[Gene] AND Gastropoda[ORGN]"
+
+```
+
+```{r}
+
+
+
+# literature_search_inputs
+
+pub_tib <- lapply(literature_search_inputs$query_text, function(query_t){
+  # query_t = "Tanaka TU Stark"
+  # query_t = literature_search_inputs$query_text[2]
+  # query_t = "breast cancer brca1"
+  # query_t = "synovial sarcoma brca1"
+  pmids <- esearch(query_t, "pubmed", usehistory = TRUE)
+  if ( ! pmids$xmlValue("/eSearchResult/Count")==0) {
+    es <- esummary(pmids,  db="pubmed")
+    parseeee <- content(es, "parsed")
+    pub_list <- lapply(names(parseeee), function(pub_id){
+      # one_cite = parseeee [[1]]
+      one_cite <- parseeee[[pub_id]]
+      names_keys = grepl("Authors.Author.Name", names(one_cite))
+      concat_names = one_cite[names_keys] %>% unlist %>% paste(collapse=", ")
+      # one_cite[["Authors.Author.Name"]]
+      #    one_cite[c("FullJournalName", "Title")] %>% unlist %>% as_tibble
+      tibble(journal = unlist(one_cite[["FullJournalName"]]),
+             article_title = unlist(one_cite[["Title"]]),
+             authors=concat_names,
+             publication_date = unlist(one_cite[["PubDate"]]),
+             reference_count = unlist(one_cite[["PmcRefCount"]]),
+             PMID = pub_id
+      )
+    }) %>% bind_rows
+  }
+}) %>% bind_rows
+# 
+# es$xmlValue("//Source")
+# es$xmlValue("//PmcRefCount")
+# es$xmlValue("//Title")
+# es$xmlValue("//PubDate")
+# es$xmlValue("//Name")
+# 
+# })
+# 
+# query <- "embryonal rhabdomyosarcoma BOD1"
+# query <- "BOD1"
+# pmids <- esearch(query, "pubmed", usehistory = TRUE)
+# 
+# pmids$xmlValue("/eSearchResult/Count")
+# 
+# if (pmids$xmlValue("/eSearchResult/Count"))
+# 
+# articles <- efetch(pmids)
+# 
+# # example hit for BOD1
+# # Nat Rev Mol Cell Biol. 2005 Dec;6(12):929-42.
+# # Kinetochore capture and bi-orientation on the mitotic spindle.
+# # Tanaka TU1, Stark MJ, Tanaka K.
+# # PMID 16341079
+# es <- esummary("16341079",  db="pubmed")
+# 
+# es$xmlValue("//Source")
+# es$xmlValue("//PmcRefCount")
+# es$xmlValue("//Title")
+# es$xmlValue("//PubDate")
+# es$xmlValue("//Name")
+# 
+# 
+# x_content <- content(es, as="xml")
+# 
+# 9704407
+
+```
+
+```{r}
+reutils.api.key=api_key="4dbd53170c366f5822df4c854696f99f1808"
+set_entrez_key(reutils.api.key)
+Sys.getenv("ENTREZ_KEY")
+```
+
+
+```{r}
+# install.packages("rentrez")
+library("rentrez")
+
+
+# https://ropensci.org/tutorials/rentrez_tutorial/
+
+
+pubmed_results_list <- lapply(literature_search_inputs$query_text, function(query_t){
+  # query_t = "Tanaka TU Stark"
+  # query_t = literature_search_inputs$query_text[2]
+  # query_t = "breast cancer brca1"
+  # query_t = "synovial sarcoma brca1"
+  # query_t = "embryonal rhabdomyosarcoma AND DES[Gene]"
+  print(query_t)
+  this_search <- entrez_search(db="pubmed", 
+                               term=query_t,
+                               retmax=20)
+  Sys.sleep(0.2)
+  if (this_search$count>0){
+    multi_summs <- entrez_summary(db="pubmed", id=this_search$ids)
+    
+    t5 <- extract_from_esummary(multi_summs, c("pmcrefcount", "title", "source", "pubdate" )) %>%
+      t %>% 
+      apply(1, as_tibble) 
+    
+    t6 <- lapply(t5,  function(x) mutate_all(x, as.character))  %>%
+      bind_rows(.id = "PMid" ) %>%
+      mutate(query_text = query_t) %>%
+      select(query_text, everything())
+    
+      return(t6)
+  } else {
+#    return(tibble(PMid = NA,  pubdate= NA, pmcrefcount = NA, title = NA, query_text = query_t))
+        return(tibble(query_text = query_t))
+  }
+}) 
+
+# %>% bind_rows
+
+if (is.null(dim(pubmed_results_list))){
+  pubmed_results <- lapply(pubmed_results_list, function(x) mutate_all(x, as.character)) %>% bind_rows
+} else {
+  pubmed_results <- pubmed_results_list
+}  
+
+
+pubmed_results_no_controls <- subset(pubmed_results, ! query_text == "synovial sarcoma brca1") %>%
+#  select(-PMID, query_text, title,  source, PMid, pubdate, pmcrefcount) %>% 
+  arrange(query_text, desc(pmcrefcount))
+  
+write_tsv(pubmed_results_no_controls, "../ancillary/all_pubmed_search_results_for_outliers_by_disease.txt")  
+write_tsv(subset(pubmed_results_no_controls,! is.na(pubdate)), "../ancillary/positive_pubmed_search_results_for_outliers_by_disease.txt")  
+#        
+#        (pubmed_results)
+# can't be converted from integer to character
+# esummary(this_search)
+#  
+#  
+# r_search$ids
+
+```
+
+```{r}
+search_year <- function(year, term){
+    query <- paste(term, "AND (", year, "[PDAT])")
+    entrez_search(db="pubmed", term=query, retmax=0)$count
+}
+
+year <- 2008:2018
+papers <- sapply(year, search_year, term="synovial sarcoma", USE.NAMES=FALSE)
+
+plot(year, papers, type='b', main="synovial sarcoma")
+```
+
