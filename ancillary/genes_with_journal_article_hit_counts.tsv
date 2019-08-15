@@ -1,0 +1,97 @@
+disease	gene	n_hits_per_gene
+primitive neuroectodermal tumor of the central nervous system	PTCH1	20
+glioma (astrocytoma)	TYR	19
+primitive neuroectodermal tumor of the central nervous system	NGF	19
+embryonal rhabdomyosarcoma	MYOD1	18
+medulloblastoma	GFAP	18
+embryonal rhabdomyosarcoma	IGF2	17
+embryonal rhabdomyosarcoma	MYOG	17
+glioma (astrocytoma)	CD163	17
+medulloblastoma	OTX2	17
+primitive neuroectodermal tumor of the central nervous system	LARGE	17
+glioma (astrocytoma)	DDIT3	14
+glioma (astrocytoma)	PAX6	13
+glioma (astrocytoma)	MT3	6
+glioma (astrocytoma)	SQSTM1	6
+medulloblastoma	NEUROD1	6
+embryonal rhabdomyosarcoma	FGFR4	5
+embryonal rhabdomyosarcoma	HMGA2	5
+glioma (astrocytoma)	GNS	5
+glioma (astrocytoma)	ORAI1	5
+medulloblastoma	CRX	5
+medulloblastoma	HK2	5
+medulloblastoma	INSM1	5
+embryonal rhabdomyosarcoma	MYF6	4
+medulloblastoma	NEUROD2	4
+primitive neuroectodermal tumor of the central nervous system	ZIC1	4
+embryonal rhabdomyosarcoma	DLK1	3
+embryonal rhabdomyosarcoma	HRAS	3
+glioma (astrocytoma)	IL13RA2	3
+medulloblastoma	NPR3	3
+primitive neuroectodermal tumor of the central nervous system	CDKN2C	3
+primitive neuroectodermal tumor of the central nervous system	CRMP1	3
+primitive neuroectodermal tumor of the central nervous system	HIC1	3
+undifferentiated spindle cell sarcoma	PDGFRB	3
+embryonal rhabdomyosarcoma	GPC3	2
+embryonal rhabdomyosarcoma	MSC	2
+glioma (astrocytoma)	DLD	2
+glioma (astrocytoma)	SDCBP	2
+glioma (astrocytoma)	SDHB	2
+glioma (astrocytoma)	TRPM3	2
+glioma (astrocytoma)	TTR	2
+glioma (astrocytoma)	TYRP1	2
+medulloblastoma	CRMP1	2
+medulloblastoma	DNMT3A	2
+medulloblastoma	L1CAM	2
+medulloblastoma	NNAT	2
+synovial sarcoma	brca1	2
+undifferentiated spindle cell sarcoma	ENG	2
+undifferentiated spindle cell sarcoma	IGF2	2
+embryonal rhabdomyosarcoma	DES	1
+embryonal rhabdomyosarcoma	MAP2K1	1
+embryonal rhabdomyosarcoma	MEG3	1
+embryonal rhabdomyosarcoma	MEST	1
+embryonal rhabdomyosarcoma	SGCA	1
+embryonal rhabdomyosarcoma	SPRY2	1
+embryonal rhabdomyosarcoma	VGLL2	1
+glioma (astrocytoma)	ALOX15	1
+glioma (astrocytoma)	ATP1A3	1
+glioma (astrocytoma)	GSTM5	1
+glioma (astrocytoma)	LYVE1	1
+glioma (astrocytoma)	OTX2	1
+glioma (astrocytoma)	PFKFB2	1
+glioma (astrocytoma)	PIK3R3	1
+glioma (astrocytoma)	SOAT1	1
+glioma (astrocytoma)	UROS	1
+glioma (astrocytoma)	VSIG4	1
+medulloblastoma	ASXL1	1
+medulloblastoma	ATP1A3	1
+medulloblastoma	CADPS	1
+medulloblastoma	EPHA8	1
+medulloblastoma	GABRA5	1
+medulloblastoma	HDAC10	1
+medulloblastoma	MAGEA3	1
+medulloblastoma	MCC	1
+medulloblastoma	MYT1L	1
+medulloblastoma	NFIB	1
+medulloblastoma	NRL	1
+medulloblastoma	SNHG1	1
+medulloblastoma	STK25	1
+medulloblastoma	SYP	1
+medulloblastoma	TBR1	1
+medulloblastoma	XRCC1	1
+primitive neuroectodermal tumor of the central nervous system	ABCA5	1
+primitive neuroectodermal tumor of the central nervous system	AMPH	1
+primitive neuroectodermal tumor of the central nervous system	ARNTL	1
+primitive neuroectodermal tumor of the central nervous system	CCNG1	1
+primitive neuroectodermal tumor of the central nervous system	CDC14B	1
+primitive neuroectodermal tumor of the central nervous system	CRY1	1
+primitive neuroectodermal tumor of the central nervous system	GPC3	1
+primitive neuroectodermal tumor of the central nervous system	RASGRP3	1
+primitive neuroectodermal tumor of the central nervous system	SHC3	1
+primitive neuroectodermal tumor of the central nervous system	SNCAIP	1
+undifferentiated spindle cell sarcoma	ERF	1
+undifferentiated spindle cell sarcoma	ETV1	1
+undifferentiated spindle cell sarcoma	GFRA1	1
+undifferentiated spindle cell sarcoma	NTRK1	1
+undifferentiated spindle cell sarcoma	PRKAR1A	1

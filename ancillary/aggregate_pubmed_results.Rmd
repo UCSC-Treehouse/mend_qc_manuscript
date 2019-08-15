@@ -1,0 +1,44 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+```{r}
+
+library(tidyverse); citation("tidyverse")
+library(forcats); citation("forcats")
+library(knitr); citation("knitr")
+
+```
+
+# Load data
+
+```{r}
+
+results_raw <- read_tsv("all_pubmed_search_results_for_expression_and_outliers_by_disease.txt") %>%
+  mutate(disease = gsub(" AND.*$", "", query_text),
+         gene = gsub("^.*ssion AND ", "", gsub("\\[Gene\\]$", "", query_text))
+  )
+
+
+hits_per_gene <- results_raw %>% 
+  na.omit %>%
+  group_by(disease, gene) %>%
+  summarize(n_hits_per_gene = n()) %>%
+  arrange(desc(n_hits_per_gene))
+
+hits_per_gene %>%
+  write_tsv(paste0("genes_with_journal_article_hit_counts.tsv"))
+
+min_hits <- 10
+hits_per_gene %>%
+  filter(n_hits_per_gene> min_hits) %>%
+  write_tsv(paste0("genes_with_gt_", min_hits, "_journal_articles.tsv"))
+  
+```
