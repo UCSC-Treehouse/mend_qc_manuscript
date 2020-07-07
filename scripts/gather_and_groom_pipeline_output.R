@@ -77,14 +77,16 @@ rsem_col_defs <- cols_only(
 
 gene_lengths <-  lapply(samples$sample_id, function(sample_id) {
   raw_gene_lengths <- read_tsv(paste0(base_dir, sample_id, gene_lengths_path, "/rsem_genes.hugo.results"), col_types=rsem_col_defs) %>%
-    rename(effective_gene_length = effective_length, gene = gene_name) %>%
+    group_by(gene_name) %>%
+    summarize(effective_gene_length = mean(effective_length)) %>%
+    select(gene = gene_name, effective_gene_length) %>%
     mutate(
       parent_sample=gsub("_est.*$", "", sample_id),
       sample_id= sample_id
     ) 
 })  %>% bind_rows
 
-write_tsv(gene_lengths, "data/gene_lengths.txt")
+write_tsv(gene_lengths, "data/gene_lengths.txt.gz")
 
 ### OUTLIERS
 outliers <- lapply(expression_data_raw, function(expression_matrix){
