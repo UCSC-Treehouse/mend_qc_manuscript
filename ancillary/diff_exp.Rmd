@@ -1,0 +1,209 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+  toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+```{r}
+
+run_type <- "use toy data" # c("use full data", "use toy data", "make toy data")
+
+```
+
+```{r setup, include = FALSE}
+
+library(tidyverse)
+# library(tidyr)
+# library(dplyr)
+# library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+# library(cowplot)
+library(gridExtra)
+require(purrr) 
+library(jsonlite)
+```
+
+## Load sample data
+```{r}
+
+qc_sample_disease_info <- read_tsv("../data/parent_sample_data_source.tsv") %>%
+  mutate(analysis_disease = ifelse(Disease == "glioma (astrocytoma)", "glioma", Disease))
+
+qc_sample_disease_info %>% select(Disease, analysis_disease)
+         
+```
+
+# Load data required for all analysis pathways
+```{r}
+
+gene_id_conversion_info <- read_tsv("https://xena.treehouse.gi.ucsc.edu:443/download/gencode.v23.annotation.gene.probemap")
+
+```
+
+
+## Load full compendium data 
+
+```{r}
+
+if (run_type != "use toy data") {
+  local_file <- "~/downloads/TreehousePEDv9_unique_ensembl_expected_count.2019-03-15.tsv.gz"
+  remote_file <- "https://xena.treehouse.gi.ucsc.edu/download/TreehousePEDv9_unique_ensembl_expected_count.2019-03-15.tsv"
+  if (! exists("compendium_v9_counts")){
+    if (file.exists(local_file)){
+      compendium_v9_counts <- read_tsv(local_file)
+    } else {
+      compendium_v9_counts <- read_tsv(remote_file)
+    }
+  }
+  
+  compendium_v9_clinical_data <- read_tsv("https://xena.treehouse.gi.ucsc.edu:443/download/TreehousePEDv9_clinical_metadata.2019-03-15.tsv")
+
+  these_counts <- compendium_v9_counts
+  
+  this_clinical_info <- compendium_v9_clinical_data
+  
+    
+}
+
+```
+
+# Make toy data
+```{r}
+
+if (run_type == "make toy data"){
+  
+  samples_with_relevant_diseases <- compendium_v9_clinical_data %>%
+    filter(disease %in% qc_sample_disease_info$analysis_disease) %>%
+    mutate(set="case")
+  set.seed(2)
+  # other_samples <- compendium_v9_clinical_data %>%
+  #   filter(! disease %in% qc_sample_disease_info$analysis_disease) %>%
+  #   sample_n(nrow(samples_with_relevant_diseases)) %>%
+  #   mutate(set = "control")
+  
+  max_samples_per_disease <- 20
+  other_samples <- compendium_v9_clinical_data %>%
+    filter(! disease %in% qc_sample_disease_info$analysis_disease) %>%
+    # filter(disease %in% c("thyroid carcinoma")) %>%
+    split(.$disease) %>%
+    map(function(x) if (nrow(x) <= max_samples_per_disease) sample_n(size = nrow(x), replace = F, x) else sample_n(size = max_samples_per_disease, replace = F,x)) %>%
+    bind_rows
+    
+# example
+    # diamonds %>% split(.$clarity) %>% 
+    #          map(function(x) if (nrow(x) <= 5066) sample_n(size = nrow(x), replace = F,x) else sample_n(size = 5000, replace = F,x)) %>% bind_rows()
+    
+    sample_n(nrow(samples_with_relevant_diseases)) %>%
+    mutate(set = "control")
+
+    samples_for_toy_data <- c(samples_with_relevant_diseases$th_sampleid, other_samples$th_sampleid)
+  
+  cancer_genes <- scan("/Users/hbeale/Documents/Dropbox/ucsc/projects/gitCode/synovial_sarcoma_subtypes/synovial_sarcoma_outliers/aggregatedCancerGenes_2018-01-04_12.20.15PM.txt", what="list")
+  
+  genes_for_toy_data <- subset(gene_id_conversion_info, gene %in%  cancer_genes)$id
+  
+  compendium_v9_toy_counts <- compendium_v9_counts %>% 
+    filter(Gene %in% genes_for_toy_data) %>%
+    select(c("Gene", samples_for_toy_data))
+  
+  write_tsv(compendium_v9_toy_counts, "compendium_v9_toy_counts.tsv")
+  
+  write_tsv(bind_rows(samples_with_relevant_diseases, other_samples), "compendium_v9_toy_clinical_info.tsv")
+  
+}
+```
+
+# Load toy data
+```{r}
+
+if (run_type == "use toy data") {
+  
+  these_counts <- read_tsv("compendium_v9_toy_counts.tsv")
+
+  this_clinical_info <- read_tsv("compendium_v9_toy_clinical_info.tsv")
+}
+
+```
+
+# Select samples
+```{r}
+
+# c("disease","medulloblastoma","other"))
+this_disease = "medulloblastoma"
+
+this_contrast_clinical_info <- this_clinical_info %>%
+  mutate(simplified_disease = ifelse(disease %in% qc_sample_disease_info$analysis_disease, disease, "other")) %>%
+  filter(simplified_disease %in% c(this_disease, "other"))
+
+this_contrast_counts <- these_counts %>%
+  select("Gene", this_contrast_clinical_info$th_sampleid)
+
+
+```
+
+
+
+# Format data for DESeq
+```{r}
+# DESeqDataSetFromMatrix
+
+this_contrast_rounded_counts <- this_contrast_counts %>% 
+  gather(key, value, -Gene) %>%
+  mutate(value = round(value)) %>%
+  spread(key, value)
+
+cts <- as.matrix(this_contrast_rounded_counts[,-1])
+rownames(cts) <- this_contrast_rounded_counts$Gene
+
+coldata <- as.data.frame(this_contrast_clinical_info[,c("simplified_disease", "pedaya")])
+coldata$disease[!coldata$simplified_disease %in% qc_sample_disease_info$analysis_disease] = "other"
+rownames(coldata) = this_contrast_clinical_info$th_sampleid
+
+# impose order
+cts <- cts[, rownames(coldata)]
+# this should be true if they are in the same order
+all(rownames(coldata) == colnames(cts))
+
+
+library("DESeq2")
+dds <- DESeqDataSetFromMatrix(countData = cts,
+                              colData = coldata,
+                              design = ~ simplified_disease)
+dds
+```
+
+
+
+```{r}
+dds <- DESeq(dds)
+resultsNames(dds)
+res <- results(dds)
+# res <- results(dds, contrast=c("disease","medulloblastoma","other"))
+res
+resOrdered <- res[order(res$pvalue),]
+sum(res$padj < 0.1, na.rm=TRUE)
+
+resLFC <- lfcShrink(dds, coef="simplified_disease_other_vs_medulloblastoma", type="apeglm")
+
+
+res05 <- results(dds, alpha=0.05)
+summary(res05)
+sum(res05$padj < 0.05, na.rm=TRUE)
+
+```
+
+
+```{r}
+plotMA(res)# , ylim=c(-2,2))
+plotMA(res05)#, ylim=c(-2,2))
+
+plotMA(resLFC)#, ylim=c(-2,2))
+```
+

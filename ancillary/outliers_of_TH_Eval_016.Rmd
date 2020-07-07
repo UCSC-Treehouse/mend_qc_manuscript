@@ -1,0 +1,88 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+
+# Set submittable print options
+
+```{r}
+
+f_final_draft <- TRUE
+notation_text_alpha <- ifelse (f_final_draft, 0, 1 ) 
+
+```
+
+
+```{r setup, include = FALSE}
+
+#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+
+```
+
+## Load data
+
+```{r}
+
+outlier_support_summary <- read_tsv("outlier_suport_summary_outlier_defines_disease_by_ttest_rs_3.tsv")
+
+# dput(subset(outlier_support_summary, parent_sample == "TH_Eval_016" & n_outlier_support < 4)$gene)
+
+this_parent_sample =  "TH_Eval_016"
+
+dput(subset(outlier_support_summary, parent_sample ==this_parent_sample)$gene)
+
+
+outlier_results_raw <- read_tsv("../data/some_outlier_results.txt")
+
+```
+
+```{r}
+
+TH_Eval_016_outlier_support_summary <- outlier_support_summary %>%
+  filter(parent_sample == "TH_Eval_016") %>%
+  select(-parent_sample)
+
+outlier_results <- outlier_results_raw %>% 
+  left_join(TH_Eval_016_outlier_support_summary, by = "gene") %>%
+  mutate(
+    mend_depth =as.numeric(gsub("^.*est([0-9]*)M_.*$", "\\1",  sample_id)),
+    pc_outlier = ifelse(is.na(pc_outlier), "no", pc_outlier),
+    is_top_5 = ifelse(is.na(is_top_5), "no", is_top_5),
+    above_pc_up_threshold = c("expression is below pc_up threshold", "expression is above pc_up threshold")[1+(expression_in_log2tpm1>pc_high)],
+    outlier_support_level =  c("gene has weak outlier support", "gene has strong outlier support")[1+(n_outlier_support>3)]
+    )
+
+# table(outlier_results$mend_depth)
+
+
+```
+
+```{r}
+
+plot_title = paste(length(unique(outlier_results$gene)), "outlier genes  with t-test support in", this_parent_sample)
+
+ggplot(outlier_results) + 
+  geom_point(aes(x=mend_depth, y=expression_in_log2tpm1, color=is_top_5)) +
+  scale_color_brewer(palette = "Set1") + 
+  facet_grid(above_pc_up_threshold~outlier_support_level) +
+  ggtitle(plot_title)
+
+```
+
+
+

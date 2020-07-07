@@ -82,7 +82,7 @@ outlier_line_colors <- c("sensitivity" = as.character(plot_colors["True positive
 ```{r}
 
 
-annotated_outlier_results <- lapply(unique(outlier_results_raw$parent_sample)[2:5], function(this_parent_sample) {
+annotated_outlier_results <- lapply(unique(outlier_results_raw$parent_sample), function(this_parent_sample) {
 	# this_parent_sample <- unique(outlier_results_raw$parent_sample)[2]
 	outliers_found_in_selected_subsamples <- subset(outlier_results_raw,
 	                                                parent_sample == this_parent_sample &

@@ -13,6 +13,9 @@ base_dir="/private/groups/treehouse/archive/projects/qc_paper/round3/downstream/
 
 json20="/tertiary/treehouse-protocol-14.0.1-765565a/compendium-TreehousePEDv9/2.0.json"
 outlier_results="/tertiary/treehouse-protocol-14.0.1-765565a/compendium-TreehousePEDv9/outlier_results_"
+gene_lengths_path <- "/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/RSEM/Hugo/"
+
+
 
 # Correlated samples
 correlated_samples <- lapply(samples$sample_id, function(sample_id) {
@@ -28,8 +31,7 @@ correlated_samples <- lapply(samples$sample_id, function(sample_id) {
 bind_rows(correlated_samples) %>% write_tsv("data/correlated_samples.txt")
 	
 
-# outliers and expression values
-
+### EXPRESSION VALUES
 
 col_spec=cols(
   Gene = col_character(),
@@ -66,7 +68,25 @@ expression_data<-lapply(expression_data_raw, function(x) {
 	add_column(gene= expression_data_raw[[1]]$gene, .before=1)
 expression_data %>% write_tsv("data/expression_log2tpm1.txt.gz")
 
+### GENE LENGTHS
 
+rsem_col_defs <- cols_only(
+  gene_name = col_character(),
+  effective_length = col_double()
+  )
+
+gene_lengths <-  lapply(samples$sample_id, function(sample_id) {
+  raw_gene_lengths <- read_tsv(paste0(base_dir, sample_id, gene_lengths_path, "/rsem_genes.hugo.results"), col_types=rsem_col_defs) %>%
+    rename(effective_gene_length = effective_length, gene = gene_name) %>%
+    mutate(
+      parent_sample=gsub("_est.*$", "", sample_id),
+      sample_id= sample_id
+    ) 
+})  %>% bind_rows
+
+write_tsv(gene_lengths, "data/gene_lengths.txt")
+
+### OUTLIERS
 outliers <- lapply(expression_data_raw, function(expression_matrix){
 	expression_matrix  %>%
 	dplyr::filter(pc_outlier=="pc_up") %>% 

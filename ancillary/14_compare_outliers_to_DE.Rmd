@@ -1,0 +1,156 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+# truth
+```{r}
+
+this_truth_definition <- "found_in_3_of_4_biggest_subsets"
+
+```
+
+
+```{r setup, include = FALSE}
+
+#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
+
+library(tidyverse)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+library(ggpubr)
+
+```
+
+## Load data
+
+```{r}
+
+outlier_results_raw <- read_tsv("../data/outliers.txt") %>% mutate(is_outlier_in_subset = TRUE)
+
+this_bin_width = 4
+
+evenly_selected_subsamples <- read_tsv(paste0("../data/evenly_selected_subsamples_with_binwidth_4.tsv"))
+
+parent_metadata <- read_tsv("../data/parent_sample_data_source.tsv")
+
+disease_matching_key <- parent_metadata %>% 
+  select(Eval_ID, Disease) %>% 
+  mutate(analysis_disease = ifelse(Disease == "glioma (astrocytoma)", "glioma", Disease))
+
+```
+
+## Definitions
+
+```{r}
+
+total_genes_measured <- 58582*0.05
+
+resultsCodes <- tibble(gene_is_true_positive_in_parent_sample = c(T, F, T, F),
+                       is_outlier_in_subset = c(T,T,F,F),
+                       hit_type = c("True positive", "False positive", "False negative", "True negative"))
+
+source_palette <- brewer.pal(12, "Paired")
+
+cb_dark_red <- source_palette[6]
+cb_light_red <- source_palette[5]
+
+cb_dark_blue <- source_palette[2]
+cb_light_blue <- source_palette[1]
+
+plot_colors <- c("False positive" = cb_light_red,
+                "True negative" = cb_dark_red,
+                "True positive" = cb_dark_blue,
+                "False negative" = cb_light_blue)
+
+outlier_line_colors <- c("sensitivity" = as.character(plot_colors["True positive"]),
+                          "specificity" = as.character(plot_colors["True negative"]))
+
+
+```
+
+```{r}
+
+
+annotated_outlier_results <- read_tsv( "outliers_with_truth_defined_as_3_of_4_deepest_subsets.txt")
+
+diseases <- tibble(disease = c("glioma", "embryonal rhabdomyosarcoma", "medulloblastoma"))
+
+
+DE_results <- diseases %>% 
+  mutate(file_contents = map(
+    paste0(gsub(" ", "_", disease), "_DE_results.prefiltered.nsamp10.ncounts15.txt.gz"),
+    read_tsv)) %>% #  col_types = cols(.default = "c")
+  unnest(cols = c(file_contents)) %>%
+  mutate(log2FoldChangeAT = abs(log2FoldChange)>1)
+
+DE_results %>%
+  mutate(padj_lt05 = c("not_sig", "sig")[1+as.numeric(padj<0.0005)]) %>%
+  tabyl(disease, padj_lt05, log2FoldChangeAT)
+# scp /private/groups/treehouse/archive/projects/qc_paper/round3/downstream/TH_Eval_018_est12M_UMEND_seqtk_seed_3263/tertiary/treehouse-protocol-14.0.1-765565a/compendium-TreehousePEDv9/outlier_results_TH_Eval_018_est12M_UMEND_seqtk_seed_3263
+
+outlier_results_one_sample <- read_tsv("outlier_results_TH_Eval_018_est12M_UMEND_seqtk_seed_3263")
+
+gene_conversions <- read_tsv("EnsGeneID_Hugo_Observed_Conversions.txt")
+
+```
+
+```{r}
+
+# Genes that were filtered out in v9 polyA
+genes_not_filtered_out_in_v9polyA <- outlier_results_one_sample %>% 
+  filter(is.na(pc_is_filtered)) %>%
+  pull(Gene)
+
+true_positives_per_3_of_4 <- annotated_outlier_results %>% 
+  filter(gene_is_true_positive_in_parent_sample) %>%
+  select(parent_sample, gene, gene_is_true_positive_in_parent_sample) 
+  
+```
+
+
+# Groom
+```{r}
+
+DE_results_anno <- DE_results %>% 
+  left_join(gene_conversions, by=c("Ensg_ID"="EnsGeneID")) %>%
+  left_join(disease_matching_key %>% select(-Disease), 
+            by=c("disease"="analysis_disease")) %>%
+  left_join(true_positives_per_3_of_4, 
+            by= c("HugoID"="gene", "Eval_ID"="parent_sample")) %>% 
+  filter(HugoID %in% genes_not_filtered_out_in_v9polyA) %>%
+  mutate(
+    gene_is_true_positive_in_parent_sample=coalesce(gene_is_true_positive_in_parent_sample, FALSE),
+    neg_log_padj = -1*log10(padj),
+         not_filtered_in_v9polyA = HugoID %in% genes_not_filtered_in_v9polyA)
+
+table(DE_results_anno$gene_is_true_positive_in_parent_sample, useNA="always")
+
+
+DE_results_anno %>%
+  tabyl(disease, gene_is_true_positive_in_parent_sample)
+
+ggplot(DE_results_anno) + 
+  geom_boxplot(aes(y=neg_log_padj, x=gene_is_true_positive_in_parent_sample)) +
+  facet_wrap(~disease)
+
+
+ggplot(DE_results_anno, aes(y=padj, x=gene_is_true_positive_in_parent_sample)) + 
+  geom_boxplot() +
+  facet_wrap(~disease) + 
+#  stat_compare_means(label =  "p.signif", label.x = 1.5) 
+  stat_compare_means(label = "p.format")
+
+
+the mean p values of the genes that we consider true outliers are different than the mean p values we consider genes that are not true outliers. This shows that outliers present in a single sample and identified as true by being present in 3 of 4 deepest also have evidence of being genes that are differentially expressed in samples with that disease compared to all other samples. 
+
+
+```
+

@@ -1,0 +1,122 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+  toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+
+```{r setup, include = FALSE}
+
+library(tidyverse)
+# library(tidyr)
+# library(dplyr)
+# library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+# library(cowplot)
+library(gridExtra)
+require(purrr) 
+library(jsonlite)
+```
+
+```{r}
+
+annotated_outlier_results <- read_tsv( "outliers_with_truth_defined_as_3_of_4_deepest_subsets.txt")
+
+```
+
+```{r}
+
+## to run:
+library(biomaRt)
+
+```
+
+```{r}
+
+## where do I want to look
+ensembl = useEnsembl(biomart="ensembl", dataset="hsapiens_gene_ensembl") # default is hg38
+
+listAttributes(ensembl,page="feature_page")[1:50,]
+listAttributes(ensembl,page="structure")[1:50,]
+
+
+## what do I want to know
+
+geneIDs <- unique(annotated_outlier_results$gene)
+
+ensGeneIds=as_tibble(getBM(attributes=c("ensembl_gene_id", "hgnc_symbol", "description", "gene_biotype"), filters ="hgnc_symbol", values= geneIDs, mart=ensembl))
+
+
+table(ensGeneIds$gene_biotype, useNA = "always")
+
+
+annotated_outlier_results2 <- annotated_outlier_results %>%
+  left_join(ensGeneIds %>% as_tibble %>% dplyr::select(hgnc_symbol, gene_biotype),
+       by= c("gene"="hgnc_symbol"))
+
+
+annotated_outlier_results2 %>% dplyr::select(gene, gene_biotype) %>%
+  distinct %>% na.omit %>% nrow
+
+# 1068 v 952
+
+```
+
+DE genes
+```{r}
+gene_conversions <- read_tsv("EnsGeneID_Hugo_Observed_Conversions.txt")
+
+DE_results <- diseases %>% 
+  mutate(file_contents = map(
+    paste0(gsub(" ", "_", disease), "_DE_results.prefiltered.nsamp10.ncounts15.txt.gz"),
+    read_tsv)) %>% #  col_types = cols(.default = "c")
+  unnest(cols = c(file_contents)) %>%
+  mutate(log2FoldChangeAT = abs(log2FoldChange)>1)
+
+DE_results %>%
+  mutate(padj_lt05 = c("not_sig", "sig")[1+as.numeric(padj<0.0005)]) %>%
+  tabyl(disease, padj_lt05, log2FoldChangeAT)
+
+DE_results_with_hugo <- DE_results %>% 
+  left_join(gene_conversions, by=c("Ensg_ID"="EnsGeneID"))
+
+```
+
+biotypes of DE genes
+```{r}
+
+## where do I want to look
+ensembl = useEnsembl(biomart="ensembl", dataset="hsapiens_gene_ensembl") # default is hg38
+
+listAttributes(ensembl,page="feature_page")[1:50,]
+listAttributes(ensembl,page="structure")[1:50,]
+
+
+## what do I want to know
+
+geneIDs <- unique(DE_results_with_hugo$HugoID)
+
+ensGeneIds=as_tibble(getBM(attributes=c("ensembl_gene_id", "hgnc_symbol", "description", "gene_biotype"), filters ="hgnc_symbol", values= geneIDs, mart=ensembl))
+
+
+table(ensGeneIds$gene_biotype, useNA = "always")
+
+
+annotated_outlier_results2 <- annotated_outlier_results %>%
+  left_join(ensGeneIds %>% as_tibble %>% dplyr::select(hgnc_symbol, gene_biotype),
+       by= c("gene"="hgnc_symbol"))
+
+
+annotated_outlier_results2 %>% dplyr::select(gene, gene_biotype) %>%
+  distinct %>% na.omit %>% nrow
+
+# 1068 v 952
+```
+

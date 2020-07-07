@@ -1,0 +1,89 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+  toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+```{r setup, include = FALSE}
+
+library(DESeq2)
+library(tidyverse)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+# library(cowplot)
+library(gridExtra)
+require(purrr) 
+library(jsonlite)
+```
+
+
+```{r}
+this_disease = "embryonal rhabdomyosarcoma"
+data_dir <- "/Users/hbeale/downloads/"
+fn <- paste0("DE_analysis_of_simplified_disease_other_vs_", this_disease, "_use main dataset_2")
+load(file.path(data_dir, fn))
+
+```
+
+```{r}
+resultsNames(dds)
+
+these_results <- as_tibble(res, rownames = "Ensg_ID")
+
+dim(these_results)
+
+write_tsv(these_results,
+          paste0(gsub(" ", "_", this_disease), "_DE_results.txt.gz"))
+
+```
+
+
+
+```{r}
+this_disease = "glioma"
+data_dir <- "/Users/hbeale/downloads/"
+fn <- paste0("DE_analysis_of_simplified_disease_other_vs_", this_disease, "_use main dataset_2")
+load(file.path(data_dir, fn))
+
+```
+
+```{r}
+resultsNames(dds)
+
+these_results <- as_tibble(res, rownames = "Ensg_ID")
+
+dim(these_results)
+
+write_tsv(these_results,
+          paste0(gsub(" ", "_", this_disease), "_DE_results.txt.gz"))
+
+```
+
+
+```{r}
+this_disease = "medulloblastoma"
+data_dir <- "/Users/hbeale/downloads/"
+fn <- paste0("DE_analysis_of_simplified_disease_other_vs_", this_disease, "_use main dataset_2")
+load(file.path(data_dir, fn))
+
+```
+
+```{r}
+resultsNames(dds)
+
+these_results <- as_tibble(res, rownames = "Ensg_ID")
+
+dim(these_results)
+
+write_tsv(these_results,
+          paste0(gsub(" ", "_", this_disease), "_DE_results.txt.gz"))
+
+```
+
+

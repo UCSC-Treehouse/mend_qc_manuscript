@@ -116,7 +116,7 @@ annotated_outlier_results <- lapply(unique(outlier_results_raw$parent_sample), f
 	                             outliers_found_in_selected_subsamples,
 	                             by = c("parent_sample", "sample_id", "gene")) %>%
 	  mutate(target_MEND_count = as.numeric(gsub("^.*_est", "",
-	                                              gsub("M_MEND_seqtk_seed_.*", "", sample_id))),
+	                                              gsub("M_UMEND_seqtk_seed_.*", "", sample_id))),
 	         is_outlier_in_subset = ifelse(is.na(is_outlier_in_subset), FALSE, TRUE))
 	
 	# define true positives

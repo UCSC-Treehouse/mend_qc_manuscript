@@ -1,0 +1,50 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+  toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+```{r setup, include = FALSE}
+
+library(DESeq2)
+library(tidyverse)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+# library(cowplot)
+library(gridExtra)
+require(purrr) 
+library(jsonlite)
+```
+
+
+```{r}
+# diseases <- c("glioma", "embryonal rhabdomyosarcoma", "medulloblastoma")
+diseases <- tibble(disease = c("glioma", "embryonal rhabdomyosarcoma", "medulloblastoma"))
+this_disease = "embryonal rhabdomyosarcoma"
+data_dir <- "/Users/hbeale/downloads/"
+fn <- paste0("DE_analysis_of_simplified_disease_other_vs_", this_disease, "_use main dataset_2")
+load(file.path(data_dir, fn))
+
+```
+
+```{r}
+
+DE_results <- diseases %>% 
+  mutate(file_contents = map(
+    paste0(gsub(" ", "_", disease), "_DE_results.txt.gz"),
+    read_tsv, col_types = cols(.default = "c"))) %>%
+  unnest(cols = c(file_contents))
+  
+
+
+these_results <- read_tsv(paste0(gsub(" ", "_", this_disease),
+                                 "_DE_results.txt.gz"))
+
+```
+

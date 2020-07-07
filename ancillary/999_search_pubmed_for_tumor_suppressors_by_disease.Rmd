@@ -1,0 +1,157 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+
+
+```{r setup, include = FALSE}
+
+#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+
+```
+
+## Load data
+
+```{r}
+
+tumor_suppressor_genes <- scan("tumor_suppressor_genes_cgc_July2018.txt", what="list")
+
+```
+
+## Diseases with meaningful bodies of literature
+```{r}
+
+diseases_to_search = c("embryonal rhabdomyosarcoma", "medulloblastoma", "glioma")        
+
+```
+
+
+# Format data
+```{r}
+
+search_inputs <- tibble(Disease = rep(diseases_to_search, times=length(tumor_suppressor_genes)),
+                        gene = rep(tumor_suppressor_genes, each = length(diseases_to_search))) %>% 
+  select(Disease, gene) %>% 
+  distinct %>%
+  mutate(query_text = paste0(Disease," AND expression AND ", gene, "[Gene]"))
+
+```
+
+
+
+# look for literature connecting outliers to genes
+```{r}
+
+library("reutils")
+library("rentrez") # https://ropensci.org/tutorials/rentrez_tutorial/
+
+        
+reutils.api.key=api_key="4dbd53170c366f5822df4c854696f99f1808"
+set_entrez_key(reutils.api.key)
+Sys.getenv("ENTREZ_KEY")
+
+# "COI[Gene] AND Gastropoda[ORGN]"
+
+```
+
+```{r}
+
+pubmed_results_list <- lapply(search_inputs$query_text, function(query_t){
+  # query_t = "Tanaka TU Stark"
+  # query_t = literature_search_inputs$query_text[2]
+  # query_t = "breast cancer brca1"
+  # query_t = "synovial sarcoma brca1"
+  # query_t = "embryonal rhabdomyosarcoma AND DES[Gene]"
+  print(query_t)
+  this_search <- entrez_search(db="pubmed", 
+                               term=query_t,
+                               retmax=20)
+  Sys.sleep(0.2)
+  if (this_search$count>0){
+    multi_summs <- entrez_summary(db="pubmed", id=this_search$ids)
+    
+    t5 <- extract_from_esummary(multi_summs, c("title", "source", "pmcrefcount", "pubdate" )) %>%
+      t %>% 
+      apply(1, as_tibble) 
+    
+    t6 <- lapply(t5,  function(x) mutate_all(x, as.character))  %>%
+      bind_rows(.id = "PMid" ) %>%
+      mutate(query_text = query_t) %>%
+      select(query_text, everything())
+    
+      return(t6)
+  } else {
+#    return(tibble(PMid = NA,  pubdate= NA, pmcrefcount = NA, title = NA, query_text = query_t))
+        return(tibble(query_text = query_t))
+  }
+}) 
+
+# %>% bind_rows
+
+if (is.null(dim(pubmed_results_list))){
+  pubmed_results <- lapply(pubmed_results_list, function(x) mutate_all(x, as.character)) %>% bind_rows
+} else {
+  pubmed_results <- pubmed_results_list
+}  
+
+
+pubmed_results_no_controls <- pubmed_results %>%
+  # filter(
+  #   ! grepl(" DES[Gene]", query_text)
+  #   ) %>%
+    arrange(query_text, desc(pmcrefcount)) %>%
+  rename(time_article_has_been_cited=pmcrefcount)
+  
+subset(pubmed_results_no_controls,! is.na(pubdate)) %>% View
+
+
+write_tsv(pubmed_results_no_controls, "../ancillary/all_pubmed_search_results_for_expression_and_tumor_suppressors_by_disease.txt")  
+write_tsv(subset(pubmed_results_no_controls,! is.na(pubdate)), "../ancillary/positive_pubmed_search_results_for_expression_and_tumor_suppressors_by_disease.txt")  
+
+```
+```{r}
+subset(pubmed_results_no_controls,! is.na(pubdate)) %>%
+  mutate(disease = ifelse(grepl("embryonal rhabdomyosarcoma AND", query_text), "eRMS", 
+                                      ifelse(grepl("glioma AND", query_text), "glioma",
+                                             ifelse(grepl("medulloblastoma  AND", query_text), "MB",
+                                                    NA))),
+         gene = gsub("^.*AND ", "", gsub("\\[Gene\\]$", "", query_text))
+         ) %>%
+  select(-query_text) %>%
+  write_tsv("positive_pubmed_search_results_for_expression_and_tumor_suppressors_by_disease2.txt")
+
+
+
+
+
+
+
+```
+
+```{r}
+search_year <- function(year, term){
+    query <- paste(term, "AND (", year, "[PDAT])")
+    entrez_search(db="pubmed", term=query, retmax=0)$count
+}
+
+year <- 2008:2018
+papers <- sapply(year, search_year, term="synovial sarcoma", USE.NAMES=FALSE)
+
+plot(year, papers, type='b', main="synovial sarcoma")
+```
+

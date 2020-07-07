@@ -1,0 +1,272 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+  toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+```{r}
+
+# BiocManager::install(version="devel")
+
+run_type <- "use main dataset" # c("make main dataset", "use main dataset", "use toy dataset", "make toy dataset")
+
+```
+
+```{r setup, include = FALSE}
+
+library(DESeq2)
+library(tidyverse)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+# library(cowplot)
+library(gridExtra)
+require(purrr) 
+library(jsonlite)
+```
+
+## Load sample data
+```{r}
+
+qc_sample_disease_info <- read_tsv("../data/parent_sample_data_source.tsv") %>%
+  mutate(analysis_disease = ifelse(Disease == "glioma (astrocytoma)", "glioma", Disease))
+
+qc_sample_disease_info %>% select(Disease, analysis_disease)
+         
+```
+
+# Load data required for all analysis pathways
+```{r}
+
+gene_id_conversion_info <- read_tsv("https://xena.treehouse.gi.ucsc.edu:443/download/gencode.v23.annotation.gene.probemap")
+
+```
+
+
+## Load full compendium data 
+
+```{r}
+
+if (run_type == "make main dataset") {
+  local_file <- "~/downloads/TreehousePEDv9_unique_ensembl_expected_count.2019-03-15.tsv.gz"
+  remote_file <- "https://xena.treehouse.gi.ucsc.edu/download/TreehousePEDv9_unique_ensembl_expected_count.2019-03-15.tsv"
+  if (! exists("compendium_v9_counts")){
+    if (file.exists(local_file)){
+      compendium_v9_counts <- read_tsv(local_file)
+    } else {
+      compendium_v9_counts <- read_tsv(remote_file)
+    }
+  }
+  
+  compendium_v9_clinical_data <- read_tsv("https://xena.treehouse.gi.ucsc.edu:443/download/TreehousePEDv9_clinical_metadata.2019-03-15.tsv")
+  
+  # select case samples
+  samples_with_relevant_diseases <- compendium_v9_clinical_data %>%
+    filter(disease %in% qc_sample_disease_info$analysis_disease) %>%
+    mutate(set="case")
+  
+  # select representative control samples
+  set.seed(2)
+  max_samples_per_disease <- 20
+  representative_samples <- compendium_v9_clinical_data %>%
+    filter(! disease %in% qc_sample_disease_info$analysis_disease) %>%
+    # filter(disease %in% c("thyroid carcinoma")) %>%
+    split(.$disease) %>%
+    map(function(x) if (nrow(x) <= max_samples_per_disease) sample_n(size = nrow(x), replace = F, x) else sample_n(size = max_samples_per_disease, replace = F,x)) %>%
+    bind_rows %>%
+    mutate(set = "control")
+  
+  samples_for_de <- c(samples_with_relevant_diseases$th_sampleid, representative_samples$th_sampleid)
+  
+  samples_for_de <- samples_for_de[! samples_for_de == "TCGA-HC-A632-01"] # for some reason this samples isn't there
+  
+  these_counts <- compendium_v9_counts %>% select(c("Gene", samples_for_de))
+  #these_counts <- compendium_v9_counts %>% select(c("Gene", "TCGA-HC-A632-01")) #samples_for_de))
+  # Error: Unknown column `TCGA-HC-A632-01` 
+  this_clinical_info <- bind_rows(samples_with_relevant_diseases, representative_samples) %>%
+    filter(th_sampleid %in% samples_for_de)
+  
+  write_tsv(these_counts, "selected_compendium_v9_expression_data_for_de.txt.gz")
+  write_tsv(this_clinical_info, "selected_clinical_data_for_de.txt")
+}
+
+```
+
+# Make toy data
+```{r}
+
+if (run_type == "make toy data"){
+  
+  samples_with_relevant_diseases <- compendium_v9_clinical_data %>%
+    filter(disease %in% qc_sample_disease_info$analysis_disease) %>%
+    mutate(set="case")
+  set.seed(2)
+  other_samples <- compendium_v9_clinical_data %>%
+    filter(! disease %in% qc_sample_disease_info$analysis_disease) %>%
+    sample_n(nrow(samples_with_relevant_diseases)) %>%
+    mutate(set = "control")
+  
+    samples_for_toy_data <- c(samples_with_relevant_diseases$th_sampleid, other_samples$th_sampleid)
+  
+  cancer_genes <- scan("/Users/hbeale/Documents/Dropbox/ucsc/projects/gitCode/synovial_sarcoma_subtypes/synovial_sarcoma_outliers/aggregatedCancerGenes_2018-01-04_12.20.15PM.txt", what="list")
+  
+  genes_for_toy_data <- subset(gene_id_conversion_info, gene %in%  cancer_genes)$id
+  
+  compendium_v9_toy_counts <- compendium_v9_counts %>% 
+    filter(Gene %in% genes_for_toy_data) %>%
+    select(c("Gene", samples_for_toy_data))
+  
+  write_tsv(compendium_v9_toy_counts, "compendium_v9_toy_counts.tsv")
+  
+  write_tsv(bind_rows(samples_with_relevant_diseases, other_samples), "compendium_v9_toy_clinical_info.tsv")
+  
+}
+```
+
+# Load main data
+```{r}
+
+if (run_type == "use main dataset") {
+  
+  these_counts <- read_tsv("selected_compendium_v9_expression_data_for_de.txt.gz")
+
+  this_clinical_info <- read_tsv("selected_clinical_data_for_de.txt")
+}
+
+```
+
+
+# Load toy data
+```{r}
+
+if (run_type == "use toy dataset") {
+  
+  these_counts <- read_tsv("compendium_v9_toy_counts.tsv")
+
+  this_clinical_info <- read_tsv("compendium_v9_toy_clinical_info.tsv")
+}
+
+```
+
+# Select samples
+```{r}
+
+# c("disease","medulloblastoma","other", "glioma", "embryonal rhabdomyosarcoma"))
+this_disease = "medulloblastoma"
+
+this_contrast_clinical_info <- this_clinical_info %>%
+  mutate(simplified_disease = ifelse(disease %in% qc_sample_disease_info$analysis_disease, disease, "other")) %>%
+  filter(simplified_disease %in% c(this_disease, "other"))
+
+this_contrast_counts <- these_counts %>%
+  select("Gene", this_contrast_clinical_info$th_sampleid)
+
+
+```
+
+
+
+# Format data for DESeq
+```{r}
+# DESeqDataSetFromMatrix
+
+this_contrast_rounded_counts <- this_contrast_counts %>% 
+  gather(key, value, -Gene) %>%
+  mutate(value = round(value)) %>%
+  spread(key, value)
+
+cts <- as.matrix(this_contrast_rounded_counts[,-1])
+rownames(cts) <- this_contrast_rounded_counts$Gene
+
+coldata <- as.data.frame(this_contrast_clinical_info[,c("simplified_disease", "pedaya")])
+coldata$disease[!coldata$simplified_disease %in% qc_sample_disease_info$analysis_disease] = "other"
+rownames(coldata) = this_contrast_clinical_info$th_sampleid
+
+# impose order
+cts <- cts[, rownames(coldata)]
+# this should be true if they are in the same order
+all(rownames(coldata) == colnames(cts))
+
+
+dds <- DESeqDataSetFromMatrix(countData = cts,
+                              colData = coldata,
+                              design = ~ simplified_disease)
+dds
+```
+
+# pre-filtering on normalized counts
+# it can speed things up a lot because there are many genes with small counts
+
+```{r}
+dds <- estimateSizeFactors(dds)
+# here filtering on moderate counts in 10 samples out of 300
+nsamp <- 10
+ncounts <- 15
+keep <- rowSums(counts(dds, normalized=TRUE) >= ncounts) >= nsamp
+table(keep)
+dds <- dds[keep,] 
+```
+
+```{r}
+
+library("BiocParallel")
+dds <- DESeq(dds, parallel=TRUE, BPPARAM=MulticoreParam(4))
+resultsNames(dds)
+system.time(res <- results(dds, parallel=TRUE, BPPARAM=MulticoreParam(4)))
+# res <- results(dds, contrast=c("disease","medulloblastoma","other"))
+res
+
+```
+
+# Save output
+```{r}
+
+these_results <- as_tibble(res, rownames = "Ensg_ID")
+
+
+write_tsv(these_results,
+          paste0(gsub(" ", "_", this_disease), "_DE_results.prefiltered.nsamp",
+                 nsamp, ".ncounts", ncounts, ".txt.gz"))
+
+```
+
+```{r}
+# 
+# 
+# resOrdered <- res[order(res$pvalue),]
+# sum(res$padj < 0.1, na.rm=TRUE)
+# 
+# res05 <- results(dds, alpha=0.05)
+# summary(res05)
+# sum(res05$padj < 0.05, na.rm=TRUE)
+# 
+# # takes 1 min
+# system.time(resLFC <- lfcShrink(dds, 
+#  coef=gsub(" ", ".", paste0("simplified_disease_other_vs_", this_disease)), 
+#  type="apeglm", parallel=TRUE, BPPARAM=MulticoreParam(4)))
+# 
+# summary(resLFC)
+# sum(resLFC$padj < 0.05, na.rm=TRUE)
+# 
+# 
+# 
+# sum(resLFC$padj < 0.05*1e-10, na.rm=TRUE)
+
+```
+
+
+```{r}
+# plotMA(res)# , ylim=c(-2,2))
+# plotMA(res05)#, ylim=c(-2,2))
+# 
+# plotMA(resLFC)#, ylim=c(-2,2))
+# ```
+# ```{r}
+# system.time(save.image(paste0("~/downloads/DE_analysis_of_simplified_disease_other_vs_", this_disease, "_", run_type, "_2")))
+```
+

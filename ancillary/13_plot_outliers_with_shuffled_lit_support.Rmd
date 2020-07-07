@@ -1,0 +1,213 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+# truth
+```{r}
+
+this_truth_definition <- "found_in_3_of_4_biggest_subsets"
+
+```
+
+
+```{r setup, include = FALSE}
+
+#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+
+```
+
+## Load data
+
+```{r}
+
+outlier_results_raw <- read_tsv("../data/outliers.txt") %>% mutate(is_outlier_in_subset = TRUE)
+
+this_bin_width = 4
+
+evenly_selected_subsamples <- read_tsv(paste0("../data/evenly_selected_subsamples_with_binwidth_4.tsv"))
+
+parent_metadata <- read_tsv("../data/parent_sample_data_source.tsv")
+
+literature_outliers <- read_tsv("../ancillary/genes_with_journal_article_hit_counts.tsv") %>%
+  left_join(parent_metadata %>% select(Eval_ID, Disease), by=c("disease"="Disease"))
+
+```
+
+## Definitions
+
+```{r}
+
+total_genes_measured <- 58582*0.05
+
+resultsCodes <- tibble(gene_is_true_positive_in_parent_sample = c(T, F, T, F),
+                       is_outlier_in_subset = c(T,T,F,F),
+                       hit_type = c("True positive", "False positive", "False negative", "True negative"))
+
+source_palette <- brewer.pal(12, "Paired")
+
+cb_dark_red <- source_palette[6]
+cb_light_red <- source_palette[5]
+
+cb_dark_blue <- source_palette[2]
+cb_light_blue <- source_palette[1]
+
+plot_colors <- c("False positive" = cb_light_red,
+                "True negative" = cb_dark_red,
+                "True positive" = cb_dark_blue,
+                "False negative" = cb_light_blue)
+
+outlier_line_colors <- c("sensitivity" = as.character(plot_colors["True positive"]),
+                          "specificity" = as.character(plot_colors["True negative"]))
+
+
+```
+
+## Identify putative true outliers
+
+```{r}
+
+
+annotated_outlier_results <- lapply(unique(outlier_results_raw$parent_sample), function(this_parent_sample) {
+	# this_parent_sample <- unique(outlier_results_raw$parent_sample)[2]
+	outliers_found_in_selected_subsamples <- subset(outlier_results_raw,
+	                                                parent_sample == this_parent_sample &
+	                                                  sample_id %in% evenly_selected_subsamples$sample_id)
+	subsamples <- unique(outliers_found_in_selected_subsamples$sample_id)
+	genes_that_are_outliers_in_any_subset <- unique(outliers_found_in_selected_subsamples$gene)
+	# add data to show a negative result for genes not found in the outlier list
+	empty_results <- tibble(parent_sample = this_parent_sample,
+	                        sample_id = rep(subsamples,
+	                                        each = length(genes_that_are_outliers_in_any_subset)),
+	                        gene = rep(genes_that_are_outliers_in_any_subset,
+	                                   length(subsamples)))
+	outlier_results <- left_join(empty_results,
+	                             outliers_found_in_selected_subsamples,
+	                             by = c("parent_sample", "sample_id", "gene")) %>%
+	  mutate(target_MEND_count = as.numeric(gsub("^.*_est", "",
+	                                              gsub("M_.MEND_seqtk_seed_.*", "", sample_id))),
+	         is_outlier_in_subset = ifelse(is.na(is_outlier_in_subset), FALSE, TRUE))
+	
+	# define true positives
+
+	if (this_truth_definition == "found_in_3_of_4_biggest_subsets") {
+  	biggest_4_subsets <- sort(unique(outlier_results$target_MEND_count), decreasing = TRUE)[1:4]
+  	minimum_hits_for_true_outlier <- 3
+    
+    outlier_frequency <- outlier_results %>% 
+      dplyr::filter(is_outlier_in_subset,
+                    target_MEND_count %in% biggest_4_subsets) %>% 
+      group_by(gene) %>% 
+      summarize(n_subsamples_found = length(unique(sample_id)))
+    
+    true_outliers_in_parent_sample <- outlier_frequency %>% 
+      dplyr::filter(n_subsamples_found >= minimum_hits_for_true_outlier) %>% 
+      pull(gene)
+  }
+		
+	# except when True = present@50, exclude candidate outliers that are never positive in this data set
+  if (this_truth_definition != "found_in_the_deepest_subset") {
+	  outlier_results <- outlier_results %>% 
+  	  group_by(gene) %>%
+  	  dplyr::filter(sum(is_outlier_in_subset) > 0) 
+  }
+	                          
+	 this_annotated_outlier_results <- outlier_results %>% group_by(gene) %>% 
+		mutate(up_outlier_occurances = sum(as.numeric(is_outlier_in_subset)),
+		       first_appears = min(target_MEND_count[is_outlier_in_subset]),
+		       gene_is_true_positive_in_parent_sample = gene %in% true_outliers_in_parent_sample) %>%
+	   left_join(resultsCodes, by = c("is_outlier_in_subset", "gene_is_true_positive_in_parent_sample"))
+	 return(this_annotated_outlier_results)
+}) %>% bind_rows
+```
+
+
+# Add literature support info
+```{r}
+annotated_outlier_results_intermediate <- annotated_outlier_results %>%
+  left_join(evenly_selected_subsamples %>% select(-target_MEND_count), 
+            by = "sample_id") %>%
+  left_join(literature_outliers, by=c("parent_sample" = "Eval_ID", "gene"))
+
+# annotated_outlier_results$bin_median <- evenly_selected_subsamples$median_of_depth_bin[match(
+#   annotated_outlier_results$sample_id, evenly_selected_subsamples$sample_id)]
+
+ordered_plot_input <- annotated_outlier_results_intermediate %>% 
+  arrange(gene_is_true_positive_in_parent_sample, up_outlier_occurances, rev(first_appears)) %>%
+  ungroup %>%
+  mutate(unique_parent_gene_id = paste(parent_sample, gene, n_hits_per_gene, sep = "_"),
+         ordered_gene = factor(unique_parent_gene_id, levels = rev(unique(unique_parent_gene_id)))) %>%
+  group_by(parent_sample) %>%
+  mutate(parent_sample_label = paste0(parent_sample, " (n=", length(unique(unique_parent_gene_id)), ")"))
+
+#head(ordered_plot_input)
+
+
+
+```
+
+
+
+# plot specifications 
+```{r}
+
+
+outlier_results_x_breaks=seq(
+        0, 
+        max(ordered_plot_input$median_of_depth_bin),
+        by=this_bin_width
+      )
+outlier_results_x_labels=gsub("^0$", 1, outlier_results_x_breaks)
+
+```
+
+
+### outliers - each row is a gene
+```{r fig.height=12, fig.width=10}
+
+
+plot_title="outliers - each row is a gene"  
+# pIA<-
+  
+  ggplot(subset(ordered_plot_input, n_hits_per_gene>0), aes(x = median_of_depth_bin, y = ordered_gene, fill = hit_type)) + 
+  geom_tile(stat = "identity") +
+  scale_fill_manual("Call", values= plot_colors) +
+#  ggtitle(plot_title) + theme(axis.text.y  = element_blank())+
+#  scale_x_continuous("MEND reads (million)", breaks=outlier_results_x_breaks, labels=outlier_results_x_labels) +
+  xlab("MEND reads (million)") + 
+  ylab("Genes") + 
+  facet_grid(parent_sample ~ . , scales="free_y", space="free") +
+  theme(
+   # axis.text.y  = element_blank(),
+    axis.ticks.y  = element_blank()
+  )  + 
+  theme(legend.position="none")
+  
+  
+# pIA
+# ggsave(paste0("figures_and_tables/", plot_title,".", Sys.Date(),  ".png"), plot=pIA, width=3, height=3)
+```
+
+
+## disease and sample
+```{r}
+parent_metadata %>% select(Eval_ID, Disease) %>% kable
+
+
+```
+
+

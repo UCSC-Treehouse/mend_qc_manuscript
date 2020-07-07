@@ -22,10 +22,7 @@ notation_text_alpha <- ifelse (f_final_draft, 0, 1 )
 knitr::opts_chunk$set(echo = TRUE)
 
 
-library(readr)
-library(tidyr)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 library(gridGraphics)
 library(RColorBrewer)
 library(viridis)
@@ -290,6 +287,69 @@ read_counts_with_limits <- read_counts_with_thresholds %>%
   left_join(depth_status, by="sample_id") %>%
   left_join(threshold_failure_annotations %>% select(-total_sequences), by="sample_id")
  
+```
+```{r}
+
+# how many fail
+long_fail_status %>%
+  pull(sample_id) %>%
+  unique %>%
+  length
+
+# exclude multimap fails
+long_fail_status %>%
+  filter (fail_code != "MM") %>%
+  pull(sample_id) %>%
+  unique %>%
+  length
+
+# what does multi-mapper distribution look like?
+read_counts_with_limits %>% filter(read_type == "Multi-mapped") %>%
+  ggplot + geom_boxplot(aes(y=percent_of_total, x=read_type))
+
+# Why do they fail?
+# threshold_codes=c("NM"="Not mapped", "MM"="Multi-mapped", "D"="Duplicate reads", "NE" = "Non exonic reads", "M" = "MEND")
+
+
+read_counts_with_limits %>% select(sample_id, status) %>% distinct %>% pull(status) %>% table
+
+fail_analysis <- read_counts_with_limits %>% select(sample_id, failed_thresholds) %>% distinct
+
+fail_analysis %>%
+  tabyl(failed_thresholds) %>%
+  arrange(desc(n))
+
+long_fail_status <- fail_analysis %>% 
+  mutate(fail_code = strsplit(failed_thresholds, ", ")) %>%
+  unnest(fail_code) %>%
+  select(-failed_thresholds) 
+
+long_fail_status %>%
+  tabyl(fail_code) %>%
+  arrange(percent)
+
+
+  tabyl(fail_code) %>%
+  arrange(percent)
+
+
+wide_fail_status <- long_fail_status %>%
+  mutate(present = TRUE) %>%
+  spread(fail_code, present, fill = FALSE)
+
+
+ggplot(long_fail_status %>% mutate(present = TRUE)) + 
+  geom_tile(aes(x=sample_id, y=fail_code, fill = present))
+
+# how many fail codes
+fails_per_sample <- wide_fail_status %>% 
+  select(-sample_id) %>%
+  mutate(n_fails = rowSums(.))
+
+# most failing samples exceeded the reference ranges of more than one type of read.
+table(fails_per_sample$n_fails>1)
+tabyl(fails_per_sample, n_fails)
+
 ```
 
 

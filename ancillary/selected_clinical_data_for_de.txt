@@ -1,0 +1,1840 @@
+th_sampleid	disease	age_at_dx	pedaya	gender	site_donor_id	site_sampleid	set
+THR33_1000_S01	medulloblastoma	7	Yes, age < 30 years	female	N/A	N/A	case
+THR33_1001_S01	medulloblastoma	5	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1002_S01	medulloblastoma	5	Yes, age < 30 years	female	N/A	N/A	case
+THR33_1003_S01	medulloblastoma	3	Yes, age < 30 years	female	N/A	N/A	case
+THR33_1004_S01	medulloblastoma	26	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1005_S01	medulloblastoma	10	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1006_S01	medulloblastoma	3	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1007_S01	medulloblastoma	27	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1008_S01	medulloblastoma	4	Yes, age < 30 years	female	N/A	N/A	case
+THR33_1115_S01	medulloblastoma	20	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1116_S01	medulloblastoma	31	No	female	N/A	N/A	case
+THR33_1117_S01	medulloblastoma	42	No	female	N/A	N/A	case
+THR33_1119_S01	medulloblastoma	19	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1120_S01	medulloblastoma	32	No	female	N/A	N/A	case
+THR33_1122_S01	medulloblastoma	23	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1123_S01	medulloblastoma	28	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1124_S01	medulloblastoma	50	No	male	N/A	N/A	case
+THR33_1125_S01	medulloblastoma	27	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1127_S01	medulloblastoma	18	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1128_S01	medulloblastoma	22	Yes, age < 30 years	female	N/A	N/A	case
+THR33_1130_S01	medulloblastoma	28	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1131_S01	medulloblastoma	20	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1134_S01	medulloblastoma	12	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1135_S01	medulloblastoma	5	Yes, age < 30 years	female	N/A	N/A	case
+THR33_1136_S01	medulloblastoma	4	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1137_S01	medulloblastoma	2	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1139_S01	medulloblastoma	11	Yes, age < 30 years	female	N/A	N/A	case
+THR33_1142_S01	medulloblastoma	10	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1143_S01	medulloblastoma	15	Yes, age < 30 years	female	N/A	N/A	case
+THR33_1145_S01	medulloblastoma	3	Yes, age < 30 years	male	N/A	N/A	case
+THR33_1146_S01	medulloblastoma	8	Yes, age < 30 years	male	N/A	N/A	case
+TH34_1163_S01	embryonal rhabdomyosarcoma	18	Yes, age < 30 years	male	N/A	N/A	case
+TH27_1164_S01	embryonal rhabdomyosarcoma	4	Yes, age < 30 years	male	N/A	N/A	case
+TH27_1164_S02	embryonal rhabdomyosarcoma	4	Yes, age < 30 years	male	N/A	N/A	case
+TH03_0117_S01	glioma	0.9	Yes, age < 30 years	not reported	N/A	N/A	case
+TH06_1175_S01	glioma	17	Yes, age < 30 years	female	N/A	N/A	case
+THR14_1235_S02	medulloblastoma	15.2	Yes, age < 30 years	female	C25830	7316-333-T, aliquot 398057, cohort CPF1505001	case
+TH27_1241_S01	glioma	NA	Unknown	unknown	N/A	N/A	case
+TH27_1272_S01	embryonal rhabdomyosarcoma	1	Yes, age < 30 years	male	N/A	N/A	case
+TH27_1272_S02	embryonal rhabdomyosarcoma	1	Yes, age < 30 years	male	N/A	N/A	case
+TH34_1380_S01	embryonal rhabdomyosarcoma	15	Yes, age < 30 years	male	N/A	N/A	case
+TH34_1380_S02	embryonal rhabdomyosarcoma	15	Yes, age < 30 years	male	N/A	N/A	case
+THR31_1390_S01	embryonal rhabdomyosarcoma	NA	No	female	N/A	SRR4306840	case
+TH03_0020_S01	medulloblastoma	16	Yes, age < 30 years	male	N/A	N/A	case
+TH04_0021_S01	glioma	14	Yes, age < 30 years	male	N/A	N/A	case
+THR11_0244_S01	glioma	14	Yes, age < 30 years	male	LGG001259	SJLGG001259_D1-H7FBPADXX	case
+THR11_0245_S01	glioma	6	Yes, age < 30 years	male	LGG001270	SJLGG001270_D1-D12NVACXX	case
+THR11_0246_S01	glioma	15	Yes, age < 30 years	female	LGG001271	SJLGG001271_D1-C4BCBACXX	case
+THR11_0247_S01	glioma	13	Yes, age < 30 years	male	LGG001272	SJLGG001272_D1-C4BCBACXX	case
+THR11_0249_S01	glioma	3	Yes, age < 30 years	female	LGG010130	SJLGG010130_D1-C4BCBACXX	case
+THR11_0261_S01	glioma	5	Yes, age < 30 years	male	LGG011283	SJLGG011283_D1-C4GBJACXX	case
+THR11_0262_S01	glioma	19	Yes, age < 30 years	female	LGG011284	SJLGG011284_D1-C4BCBACXX	case
+THR11_0263_S01	glioma	1	Yes, age < 30 years	female	LGG011285	SJLGG011285_D1-C4BCBACXX	case
+THR11_0264_S01	glioma	18	Yes, age < 30 years	male	LGG011286	SJLGG011286_D1-C4BCBACXX	case
+THR11_0266_S01	glioma	8	Yes, age < 30 years	female	LGG011288	SJLGG011288_D1-C4BCBACXX	case
+THR11_0267_S01	glioma	13	Yes, age < 30 years	male	LGG011289	SJLGG011289_D1-C4BCBACXX	case
+THR11_0268_S01	glioma	16	Yes, age < 30 years	male	LGG011290	SJLGG011290_D1-C4BCBACXX	case
+TH03_0290_S01	glioma	5	Yes, age < 30 years	female	N/A	N/A	case
+THR14_0297_S01	glioma	11.7	Yes, age < 30 years	male	C176874	7316-1057-T, aliquot 401550, cohort CPF1505001	case
+THR14_0298_S01	glioma	1.7	Yes, age < 30 years	female	C15990	7316-1455-T, aliquot 400856, cohort CPF1505001	case
+THR14_0299_S01	primitive neuroectodermal tumor of the central nervous system	2.8	Yes, age < 30 years	female	C36777	7316-155-T, aliquot 406957, cohort CPF1505001	case
+THR14_0300_S01	primitive neuroectodermal tumor of the central nervous system	17.8	Yes, age < 30 years	male	C36285	7316-158-T, aliquot 398452, cohort CPF1505001	case
+THR14_0301_S01	glioma	16.2	Yes, age < 30 years	male	C34809	7316-161-T, aliquot 406959, cohort CPF1505001	case
+THR14_0302_S01	glioma	6.8	Yes, age < 30 years	female	C47478	7316-194-RNA_406978 , cohort CPF1505001	case
+THR14_0303_S01	glioma	13.5	Yes, age < 30 years	female	C57441	7316-204-T, aliquot 398058, cohort CPF1505001	case
+THR14_0304_S01	glioma	16.7	Yes, age < 30 years	female	C42066	7316-255-T, aliquot 401560, cohort CPF1505001	case
+THR14_0305_S01	glioma	14.4	Yes, age < 30 years	male	C54612	7316-287-T, aliquot 398451, cohort CPF1505001	case
+THR14_0306_S01	glioma	14.7	Yes, age < 30 years	female	C54735	7316-288-T, aliquot 398450, cohort CPF1505001	case
+THR14_0308_S01	glioma	17.7	Yes, age < 30 years	female	C71709	7316-343-T, aliquot 401742, cohort CPF1505001	case
+THR14_0309_S01	glioma	5.2	Yes, age < 30 years	female	C340710	7316-388-T, aliquot 398449, cohort CPF1505001	case
+THR14_0310_S01	glioma	15.4	Yes, age < 30 years	male	C88806	7316-392-T, aliquot 401743, cohort CPF1505001	case
+THR14_0311_S01	glioma	11.6	Yes, age < 30 years	female	C89052	7316-409-T, aliquot 398448, cohort CPF1505001	case
+THR14_0312_S01	glioma	18.5	Yes, age < 30 years	male	C94956	7316-445-T, aliquot 401741, cohort CPF1505001	case
+THR14_0313_S01	glioma	7.1	Yes, age < 30 years	male	C99753	7316-466-T, aliquot 401561, cohort CPF1505001	case
+THR14_0314_S01	primitive neuroectodermal tumor of the central nervous system	7.6	Yes, age < 30 years	female	C109470	7316-512-T, aliquot 401962, cohort CPF1505001	case
+THR14_0315_S01	primitive neuroectodermal tumor of the central nervous system	9	Yes, age < 30 years	female	C113775	7316-536-T, aliquot 400788, cohort CPF1505001	case
+THR14_0316_S01	glioma	NA	Yes, age < 30 years	female	C119310	7316-619-T, aliquot 400121, cohort CPF1505001	case
+THR14_0317_S01	glioma	NA	Yes, age < 30 years	female	C119433	7316-620-T, aliquot 400120, cohort CPF1505001	case
+THR14_0318_S01	glioma	NA	Yes, age < 30 years	male	C119679	7316-622-T, aliquot 400789, cohort CPF1505001	case
+THR14_0319_S01	glioma	NA	Yes, age < 30 years	female	C119925	7316-624-T, aliquot 400268, cohort CPF1505001	case
+THR14_0320_S01	glioma	1.4	Yes, age < 30 years	male	C124599	7316-716-T, aliquot 400787, cohort CPF1505001	case
+THR14_0321_S01	primitive neuroectodermal tumor of the central nervous system	1.8	Yes, age < 30 years	female	C134562	7316-784-T, aliquot 401961, cohort CPF1505001	case
+THR14_0324_S01	glioma	2.5	Yes, age < 30 years	male	C28290	7316-85-T, aliquot 398059, cohort CPF1505001	case
+THR14_0325_S01	primitive neuroectodermal tumor of the central nervous system	1.4	Yes, age < 30 years	male	C26199	7316-87-T, aliquot 401963, cohort CPF1505001	case
+THR14_0326_S01	glioma	10.2	Yes, age < 30 years	female	C116727	7316-870-T, aliquot 398453, cohort CPF1505001	case
+THR14_0327_S01	glioma	11.4	Yes, age < 30 years	female	C70848	7316-942-T, aliquot 400855, cohort CPF1505001	case
+THR17_0387_S01	medulloblastoma	5	Yes, age < 30 years	male	icgc/_EGAZ00001000198_81MHLABXX_2_withJunctionsOnGenome_dupsFlagged	EGAZ00001000198_81MHLABXX_2_withJunctionsOnGenome_dupsFlagged, MB-0182, MYC-2	case
+THR17_0388_S01	medulloblastoma	29	Yes, age < 30 years	male	icgc/_EGAZ00001000199_81MHLABXX_4_withJunctionsOnGenome_dupsFlagged	EGAZ00001000199_81MHLABXX_4_withJunctionsOnGenome_dupsFlagged, MB-412, MYC-4	case
+THR17_0389_S01	medulloblastoma	3	Yes, age < 30 years	male	icgc/_EGAZ00001000200_81MHLABXX_5_withJunctionsOnGenome_dupsFlagged	EGAZ00001000200_81MHLABXX_5_withJunctionsOnGenome_dupsFlagged, MB-549, MYC-5	case
+THR17_0390_S01	medulloblastoma	7	Yes, age < 30 years	male	icgc/_EGAZ00001000201_81MHLABXX_6_withJunctionsOnGenome_dupsFlagged	EGAZ00001000201_81MHLABXX_6_withJunctionsOnGenome_dupsFlagged, MB-591, MYC-6	case
+THR17_0391_S01	medulloblastoma	4	Yes, age < 30 years	male	icgc/_EGAZ00001000202_81MHLABXX_8_withJunctionsOnGenome_dupsFlagged	EGAZ00001000202_81MHLABXX_8_withJunctionsOnGenome_dupsFlagged, MB-759, MYC-8	case
+THR17_0392_S01	medulloblastoma	4.5	Yes, age < 30 years	male	icgc/_EGAZ00001000212_81CMBABXX_3_withJunctionsOnGenome_dupsFlagged	EGAZ00001000212_81CMBABXX_3_withJunctionsOnGenome_dupsFlagged, MB-0586, Primary/Met-10	case
+THR17_0393_S01	medulloblastoma	4	Yes, age < 30 years	female	icgc/_EGAZ00001000218_81MAGABXX_3_withJunctionsOnGenome_dupsFlagged	EGAZ00001000218_81MAGABXX_3_withJunctionsOnGenome_dupsFlagged, MB-0329, GroupC-1	case
+THR17_0394_S01	medulloblastoma	8	Yes, age < 30 years	male	icgc/_EGAZ00001000219_81MAGABXX_4_withJunctionsOnGenome_dupsFlagged	EGAZ00001000219_81MAGABXX_4_withJunctionsOnGenome_dupsFlagged, MB-0333, GroupC-2	case
+THR17_0395_S01	medulloblastoma	4.9	Yes, age < 30 years	male	icgc/_EGAZ00001000221_81MAGABXX_6_withJunctionsOnGenome_dupsFlagged	EGAZ00001000221_81MAGABXX_6_withJunctionsOnGenome_dupsFlagged, MB-0511, GroupC-4	case
+THR17_0396_S01	medulloblastoma	3.2	Yes, age < 30 years	male	icgc/_EGAZ00001000223_81MAGABXX_8_withJunctionsOnGenome_dupsFlagged	EGAZ00001000223_81MAGABXX_8_withJunctionsOnGenome_dupsFlagged, MB-0532, GroupC-6	case
+THR17_0397_S01	medulloblastoma	NA	Yes, age < 30 years	N/A	icgc/_EGAZ00001000226_81MAGABXX_1_withJunctionsOnGenome_dupsFlagged	EGAZ00001000226_81MAGABXX_1_withJunctionsOnGenome_dupsFlagged, MB-0594, GroupC-9	case
+THR17_0398_S01	medulloblastoma	4	Yes, age < 30 years	male	icgc/_EGAZ00001000227_81MAGABXX_2_withJunctionsOnGenome_dupsFlagged	EGAZ00001000227_81MAGABXX_2_withJunctionsOnGenome_dupsFlagged, MB-0607, GroupC-10	case
+THR17_0399_S01	medulloblastoma	4	Yes, age < 30 years	male	icgc/_EGAZ00001000232_81MK3ABXX_3_withJunctionsOnGenome_dupsFlagged	EGAZ00001000232_81MK3ABXX_3_withJunctionsOnGenome_dupsFlagged, MB-0439, GroupD-5	case
+THR17_0400_S01	medulloblastoma	11	Yes, age < 30 years	male	icgc/_EGAZ00001000233_81MK3ABXX_4_withJunctionsOnGenome_dupsFlagged	EGAZ00001000233_81MK3ABXX_4_withJunctionsOnGenome_dupsFlagged, MB-0447, GroupD-6	case
+THR17_0401_S01	medulloblastoma	8	Yes, age < 30 years	male	icgc/_EGAZ00001000236_81MK3ABXX_7_withJunctionsOnGenome_dupsFlagged	EGAZ00001000236_81MK3ABXX_7_withJunctionsOnGenome_dupsFlagged, MB-0569, GroupD-9	case
+THR17_0402_S01	medulloblastoma	9	Yes, age < 30 years	female	icgc/_EGAZ00001000237_81MK3ABXX_8_withJunctionsOnGenome_dupsFlagged	EGAZ00001000237_81MK3ABXX_8_withJunctionsOnGenome_dupsFlagged, MB-0600, GroupD-10	case
+THR17_0403_S01	medulloblastoma	10	Yes, age < 30 years	male	icgc/EGAZ00001000235	EGAZ00001000235_81MK3ABXX_6_withJunctionsOnGenome_dupsFlagged, MB-0563, GroupD-8	case
+THR18_0404_S01	medulloblastoma	8	Yes, age < 30 years	male	icgc/_EGAR00001049879_RNA_tumor_ICGC_MB26	EGAR00001049879_RNA_tumor_ICGC_MB26	case
+THR18_0405_S01	medulloblastoma	4	Yes, age < 30 years	female	icgc/_EGAR00001049884_RNA_tumor_ICGC_MB35	EGAR00001049884_RNA_tumor_ICGC_MB35	case
+THR18_0406_S01	medulloblastoma	1	Yes, age < 30 years	female	icgc/_EGAR00001049886_RNA_tumor_ICGC_MB37	EGAR00001049886_RNA_tumor_ICGC_MB37	case
+THR18_0407_S01	medulloblastoma	6	Yes, age < 30 years	male	icgc/_EGAR00001049887_RNA_tumor_ICGC_MB38	EGAR00001049887_RNA_tumor_ICGC_MB38	case
+THR18_0408_S01	medulloblastoma	3	Yes, age < 30 years	male	icgc/_EGAR00001049889_RNA_tumor_ICGC_MB45	EGAR00001049889_RNA_tumor_ICGC_MB45	case
+THR18_0409_S01	medulloblastoma	10	Yes, age < 30 years	male	icgc/_EGAR00001049891_RNA_tumor_ICGC_MB49	EGAR00001049891_RNA_tumor_ICGC_MB49	case
+THR19_0440_S01	glioma	23	Yes, age < 30 years	female	icgc/_EGAR00001124529_RNA-seq_PAIRED_ICGC_PA20_s_120110_6	EGAR00001124529_RNA-seq_PAIRED_ICGC_PA20_s_120110_6	case
+THR19_0441_S01	glioma	2	Yes, age < 30 years	male	icgc/_EGAR00001124530_RNA-seq_PAIRED_ICGC_PA24_s_120110_4	EGAR00001124530_RNA-seq_PAIRED_ICGC_PA24_s_120110_4	case
+THR19_0442_S01	glioma	3	Yes, age < 30 years	male	icgc/_EGAR00001124531_RNA-seq_PAIRED_ICGC_PA25_s_111201_2b	EGAR00001124531_RNA-seq_PAIRED_ICGC_PA25_s_111201_2b	case
+THR19_0443_S01	glioma	2	Yes, age < 30 years	male	icgc/_EGAR00001124532_RNA-seq_PAIRED_ICGC_PA34_s_110809_4	EGAR00001124532_RNA-seq_PAIRED_ICGC_PA34_s_110809_4	case
+THR19_0444_S01	glioma	9	Yes, age < 30 years	male	icgc/_EGAR00001124533_RNA-seq_PAIRED_ICGC_PA37_s_110809_2	EGAR00001124533_RNA-seq_PAIRED_ICGC_PA37_s_110809_2	case
+THR19_0445_S01	glioma	15	Yes, age < 30 years	female	icgc/_EGAR00001124534_RNA-seq_PAIRED_ICGC_PA41_s_110818_1	EGAR00001124534_RNA-seq_PAIRED_ICGC_PA41_s_110818_1	case
+THR19_0446_S01	glioma	3	Yes, age < 30 years	male	icgc/_EGAR00001124535_RNA-seq_PAIRED_ICGC_PA42_s_110908_3	EGAR00001124535_RNA-seq_PAIRED_ICGC_PA42_s_110908_3	case
+THR19_0447_S01	glioma	9	Yes, age < 30 years	male	icgc/_EGAR00001124536_RNA-seq_PAIRED_ICGC_PA46_s_110818_2	EGAR00001124536_RNA-seq_PAIRED_ICGC_PA46_s_110818_2	case
+THR19_0449_S01	glioma	10	Yes, age < 30 years	male	icgc/_EGAR00001124538_RNA-seq_PAIRED_ICGC_PA53_s_111201_1a	EGAR00001124538_RNA-seq_PAIRED_ICGC_PA53_s_111201_1a	case
+THR19_0450_S01	glioma	5	Yes, age < 30 years	female	icgc/_EGAR00001124539_RNA-seq_PAIRED_ICGC_PA55_s_111201_2b	EGAR00001124539_RNA-seq_PAIRED_ICGC_PA55_s_111201_2b	case
+THR19_0451_S01	glioma	9	Yes, age < 30 years	male	icgc/_EGAR00001124540_RNA-seq_PAIRED_ICGC_PA56_s_111201_3b	EGAR00001124540_RNA-seq_PAIRED_ICGC_PA56_s_111201_3b	case
+THR19_0452_S01	glioma	13	Yes, age < 30 years	male	icgc/_EGAR00001124541_RNA-seq_PAIRED_ICGC_PA58_s_111201_4a	EGAR00001124541_RNA-seq_PAIRED_ICGC_PA58_s_111201_4a	case
+THR19_0453_S01	glioma	5	Yes, age < 30 years	female	icgc/_EGAR00001124542_RNA-seq_PAIRED_ICGC_PA59_s_111201_4b	EGAR00001124542_RNA-seq_PAIRED_ICGC_PA59_s_111201_4b	case
+THR19_0454_S01	glioma	4	Yes, age < 30 years	female	icgc/_EGAR00001124543_RNA-seq_PAIRED_ICGC_PA62_s_111201_5b	EGAR00001124543_RNA-seq_PAIRED_ICGC_PA62_s_111201_5b	case
+THR19_0455_S01	glioma	17	Yes, age < 30 years	female	icgc/_EGAR00001124544_RNA-seq_PAIRED_ICGC_PA63_s_111201_5a	EGAR00001124544_RNA-seq_PAIRED_ICGC_PA63_s_111201_5a	case
+THR19_0456_S01	glioma	4	Yes, age < 30 years	male	icgc/_EGAR00001124545_RNA-seq_PAIRED_ICGC_PA64_s_111201_6a	EGAR00001124545_RNA-seq_PAIRED_ICGC_PA64_s_111201_6a	case
+THR19_0457_S01	glioma	16	Yes, age < 30 years	male	icgc/_EGAR00001124546_RNA-seq_PAIRED_ICGC_PA65_s_111201_6b	EGAR00001124546_RNA-seq_PAIRED_ICGC_PA65_s_111201_6b	case
+THR19_0458_S01	glioma	6	Yes, age < 30 years	female	icgc/_EGAR00001124547_RNA-seq_PAIRED_ICGC_PA69_s_111201_7b	EGAR00001124547_RNA-seq_PAIRED_ICGC_PA69_s_111201_7b	case
+THR19_0459_S01	glioma	6	Yes, age < 30 years	male	icgc/_EGAR00001124548_RNA-seq_PAIRED_ICGC_PA70_s_111201_7a	EGAR00001124548_RNA-seq_PAIRED_ICGC_PA70_s_111201_7a	case
+THR19_0460_S01	glioma	2	Yes, age < 30 years	female	icgc/_EGAR00001124549_RNA-seq_PAIRED_ICGC_PA71_s_111201_8a	EGAR00001124549_RNA-seq_PAIRED_ICGC_PA71_s_111201_8a	case
+THR19_0461_S01	glioma	9	Yes, age < 30 years	male	icgc/_EGAR00001124550_RNA-seq_PAIRED_ICGC_PA73_s_111201_8b	EGAR00001124550_RNA-seq_PAIRED_ICGC_PA73_s_111201_8b	case
+THR19_0462_S01	glioma	6	Yes, age < 30 years	male	icgc/_EGAR00001124551_RNA-seq_PAIRED_ICGC_PA79_s_111201_1a	EGAR00001124551_RNA-seq_PAIRED_ICGC_PA79_s_111201_1a	case
+THR19_0463_S01	glioma	14	Yes, age < 30 years	male	icgc/_EGAR00001124552_RNA-seq_PAIRED_ICGC_PA81_s_111201_2a	EGAR00001124552_RNA-seq_PAIRED_ICGC_PA81_s_111201_2a	case
+THR20_0481_S01	medulloblastoma	17	Yes, age < 30 years	male	icgc/_EGAR00001049871_RNA_tumor_ICGC_MB15	EGAR00001049871_RNA_tumor_ICGC_MB15	case
+THR20_0482_S01	medulloblastoma	3	Yes, age < 30 years	male	icgc/_EGAR00001049872_RNA_tumor_ICGC_MB16	EGAR00001049872_RNA_tumor_ICGC_MB16	case
+THR20_0483_S01	medulloblastoma	6	Yes, age < 30 years	female	icgc/_EGAR00001049874_RNA_tumor_ICGC_MB1	EGAR00001049874_RNA_tumor_ICGC_MB1	case
+THR20_0484_S01	medulloblastoma	9	Yes, age < 30 years	female	icgc/_EGAR00001049875_RNA_tumor_ICGC_MB20	EGAR00001049875_RNA_tumor_ICGC_MB20	case
+THR20_0485_S01	medulloblastoma	4	Yes, age < 30 years	female	icgc/_EGAR00001049876_RNA_tumor_ICGC_MB21	EGAR00001049876_RNA_tumor_ICGC_MB21	case
+THR20_0486_S01	medulloblastoma	10	Yes, age < 30 years	female	icgc/_EGAR00001049877_RNA_tumor_ICGC_MB23	EGAR00001049877_RNA_tumor_ICGC_MB23	case
+THR20_0487_S01	medulloblastoma	7	Yes, age < 30 years	male	icgc/_EGAR00001049878_RNA_tumor_ICGC_MB24	EGAR00001049878_RNA_tumor_ICGC_MB24	case
+THR20_0488_S01	medulloblastoma	7	Yes, age < 30 years	male	icgc/_EGAR00001049880_RNA_tumor_ICGC_MB2	EGAR00001049880_RNA_tumor_ICGC_MB2	case
+THR20_0489_S01	medulloblastoma	14	Yes, age < 30 years	female	icgc/_EGAR00001049881_RNA_tumor_ICGC_MB31	EGAR00001049881_RNA_tumor_ICGC_MB31	case
+THR20_0490_S01	medulloblastoma	8	Yes, age < 30 years	female	icgc/_EGAR00001049882_RNA_tumor_ICGC_MB32	EGAR00001049882_RNA_tumor_ICGC_MB32	case
+THR20_0491_S01	medulloblastoma	13	Yes, age < 30 years	female	icgc/_EGAR00001049883_RNA_tumor_ICGC_MB34	EGAR00001049883_RNA_tumor_ICGC_MB34	case
+THR20_0492_S01	medulloblastoma	4	Yes, age < 30 years	male	icgc/_EGAR00001049885_RNA_tumor_ICGC_MB36	EGAR00001049885_RNA_tumor_ICGC_MB36	case
+THR20_0493_S01	medulloblastoma	4	Yes, age < 30 years	male	icgc/_EGAR00001049888_RNA_tumor_ICGC_MB39	EGAR00001049888_RNA_tumor_ICGC_MB39	case
+THR20_0494_S01	medulloblastoma	6	Yes, age < 30 years	female	icgc/_EGAR00001049890_RNA_tumor_ICGC_MB46	EGAR00001049890_RNA_tumor_ICGC_MB46	case
+THR20_0495_S01	medulloblastoma	10	Yes, age < 30 years	female	icgc/_EGAR00001049892_RNA_tumor_ICGC_MB50	EGAR00001049892_RNA_tumor_ICGC_MB50	case
+THR20_0496_S01	medulloblastoma	7	Yes, age < 30 years	male	icgc/_EGAR00001049893_RNA_tumor_ICGC_MB51	EGAR00001049893_RNA_tumor_ICGC_MB51	case
+THR20_0497_S01	medulloblastoma	6	Yes, age < 30 years	female	icgc/_EGAR00001049894_RNA_tumor_ICGC_MB5	EGAR00001049894_RNA_tumor_ICGC_MB5	case
+THR20_0498_S01	medulloblastoma	14	Yes, age < 30 years	female	icgc/_EGAR00001049895_RNA_tumor_ICGC_MB6	EGAR00001049895_RNA_tumor_ICGC_MB6	case
+THR20_0499_S01	medulloblastoma	9	Yes, age < 30 years	female	icgc/_EGAR00001352522_RNA-Seq_paired-end_ICGC_MB176_s_130514_2	EGAR00001352522_RNA-Seq_paired-end_ICGC_MB176_s_130514_2	case
+THR20_0500_S01	medulloblastoma	NA	Yes, age < 30 years	unknown	icgc/_EGAR00001352523_RNA-Seq_paired-end_ICGC_MB200_s_130611_7	EGAR00001352523_RNA-Seq_paired-end_ICGC_MB200_s_130611_7	case
+THR20_0501_S01	medulloblastoma	1	Yes, age < 30 years	male	icgc/_EGAR00001352526_RNA-Seq_paired-end_ICGC_MB28_s_131010_7	EGAR00001352526_RNA-Seq_paired-end_ICGC_MB28_s_131010_7	case
+THR20_0502_S01	medulloblastoma	5	Yes, age < 30 years	female	icgc/_EGAR00001352529_RNA-Seq_paired-end_ICGC_MB206_s_130705_8	EGAR00001352529_RNA-Seq_paired-end_ICGC_MB206_s_130705_8	case
+THR20_0503_S01	medulloblastoma	8	Yes, age < 30 years	male	icgc/_EGAR00001352536_RNA-Seq_paired-end_MB-1M21_s_140401_5	EGAR00001352536_RNA-Seq_paired-end_MB-1M21_s_140401_5	case
+THR20_0504_S01	medulloblastoma	NA	Yes, age < 30 years	unknown	icgc/_EGAR00001352537_RNA-Seq_paired-end_MB-4M23_s_140401_3	EGAR00001352537_RNA-Seq_paired-end_MB-4M23_s_140401_3	case
+THR20_0505_S01	medulloblastoma	NA	Yes, age < 30 years	unknown	icgc/_EGAR00001352538_RNA-Seq_paired-end_MB-4M26_s_140401_6	EGAR00001352538_RNA-Seq_paired-end_MB-4M26_s_140401_6	case
+THR20_0506_S01	medulloblastoma	NA	Yes, age < 30 years	unknown	icgc/_EGAR00001352539_RNA-Seq_paired-end_MB-4M77_s_140401_4	EGAR00001352539_RNA-Seq_paired-end_MB-4M77_s_140401_4	case
+THR20_0507_S01	medulloblastoma	13	Yes, age < 30 years	female	icgc/_EGAR00001352541_RNA-Seq_paired-end_ICGC_MB19_s_131010_4	EGAR00001352541_RNA-Seq_paired-end_ICGC_MB19_s_131010_4	case
+THR20_0508_S01	medulloblastoma	18	Yes, age < 30 years	male	icgc/_EGAR00001352546_RNA-Seq_paired-end_ICGC_MB64_s_130308_8	EGAR00001352546_RNA-Seq_paired-end_ICGC_MB64_s_130308_8	case
+THR20_0509_S01	medulloblastoma	NA	Yes, age < 30 years	unknown	icgc/_EGAR00001352551_RNA-Seq_paired-end_MB-1M1_s_140401_2	EGAR00001352551_RNA-Seq_paired-end_MB-1M1_s_140401_2	case
+THR20_0510_S01	medulloblastoma	10	Yes, age < 30 years	female	icgc/EGAD00001001620_ICGC_MB110	EGAD00001001620_ICGC_MB110	case
+THR20_0511_S01	medulloblastoma	14	Yes, age < 30 years	female	icgc/EGAD00001001620_ICGC_MB113	EGAD00001001620_ICGC_MB113	case
+THR20_0512_S01	medulloblastoma	3	Yes, age < 30 years	male	icgc/EGAD00001001620_ICGC_MB12	EGAD00001001620_ICGC_MB12	case
+THR20_0513_S01	medulloblastoma	13	Yes, age < 30 years	female	icgc/EGAD00001001620_ICGC_MB18	EGAD00001001620_ICGC_MB18	case
+THR20_0514_S01	medulloblastoma	3	Yes, age < 30 years	male	icgc/EGAD00001001620_ICGC_MB40	EGAD00001001620_ICGC_MB40	case
+THR20_0515_S01	medulloblastoma	9	Yes, age < 30 years	male	icgc/EGAD00001001620_ICGC_MB7	EGAD00001001620_ICGC_MB7	case
+THR20_0516_S01	medulloblastoma	6	Yes, age < 30 years	male	icgc/EGAD00001001620_ICGC_MB9	EGAD00001001620_ICGC_MB9	case
+THR20_0517_S01	medulloblastoma	2	Yes, age < 30 years	male	icgc/EGAD00001001620_ICGC_MB90	EGAD00001001620_ICGC_MB90	case
+THR20_0518_S01	medulloblastoma	15	Yes, age < 30 years	male	icgc/EGAD00001001620_ICGC_MB91	EGAD00001001620_ICGC_MB91	case
+THR20_0519_S01	medulloblastoma	3	Yes, age < 30 years	male	icgc/EGAD00001001620_ICGC_MB95	EGAD00001001620_ICGC_MB95	case
+TH06_0647_S01	glioma	5	Yes, age < 30 years	male	N/A	N/A	case
+THR28_0686_S01	embryonal rhabdomyosarcoma	2	Yes, age < 30 years	unknown	RMS8	SRS579793, SRR1201251	case
+THR28_0687_S01	embryonal rhabdomyosarcoma	21	Yes, age < 30 years	unknown	RMS1	SRS579795, SRR1201252	case
+THR28_0688_S01	embryonal rhabdomyosarcoma	15	Yes, age < 30 years	unknown	RMS66	SRS579794, SRR1201253	case
+THR29_0722_S01	embryonal rhabdomyosarcoma	NA	Yes, age < 30 years	male	RMS_008	RMS_008_tumor, SRR5144180	case
+THR29_0725_S01	embryonal rhabdomyosarcoma	NA	Yes, age < 30 years	female	RMS_055	RMS_055_tumor, SRR5144183	case
+THR29_0728_S01	embryonal rhabdomyosarcoma	NA	Yes, age < 30 years	male	RMS_2015	RMS_2015_tumor, SRR5144186	case
+THR29_0730_S01	embryonal rhabdomyosarcoma	13	Yes, age < 30 years	male	RMS_2024	RMS_2024_tumor, SRR5144187	case
+THR29_0732_S01	embryonal rhabdomyosarcoma	1	Yes, age < 30 years	female	RMS_2029	RMS_2029_tumor, SRR5144189	case
+THR29_0733_S01	embryonal rhabdomyosarcoma	6	Yes, age < 30 years	female	RMS_2030	RMS_2030_tumor, SRR5144191	case
+THR29_0735_S01	embryonal rhabdomyosarcoma	5	Yes, age < 30 years	male	RMS_2032	RMS_2032_tumor, SRR5144193	case
+THR29_0736_S01	embryonal rhabdomyosarcoma	5	Yes, age < 30 years	male	RMS_2034	RMS_2034_tumor, SRR5144194	case
+THR29_0740_S01	embryonal rhabdomyosarcoma	6	Yes, age < 30 years	female	RMS_2040	RMS_2040_tumor, SRR5144198	case
+THR29_0741_S01	embryonal rhabdomyosarcoma	2	Yes, age < 30 years	female	RMS_2041	RMS_2041_tumor, SRR5144199	case
+THR29_0745_S01	embryonal rhabdomyosarcoma	12	Yes, age < 30 years	male	RMS_205	RMS_205_tumor, SRR5144209	case
+THR29_0747_S01	embryonal rhabdomyosarcoma	5	Yes, age < 30 years	female	RMS_2052	RMS_2052_tumor, SRR5144204	case
+THR29_0748_S01	embryonal rhabdomyosarcoma	0	Yes, age < 30 years	male	RMS_2053	RMS_2053_tumor, SRR5144205	case
+THR29_0749_S01	embryonal rhabdomyosarcoma	6	Yes, age < 30 years	male	RMS_2054	RMS_2054_tumor, SRR5144206	case
+THR29_0750_S01	embryonal rhabdomyosarcoma	3	Yes, age < 30 years	male	RMS_2056	RMS_2056_tumor, SRR5144207	case
+THR29_0752_S01	embryonal rhabdomyosarcoma	8	Yes, age < 30 years	male	RMS_206	RMS_206_tumor, SRR5144213	case
+THR29_0759_S01	embryonal rhabdomyosarcoma	4	Yes, age < 30 years	male	RMS_2075	RMS_2075_tumor, SRR5144217	case
+THR29_0761_S01	embryonal rhabdomyosarcoma	3	Yes, age < 30 years	female	RMS_2078	RMS_2078_tumor, SRR5144219	case
+THR29_0763_S01	embryonal rhabdomyosarcoma	6	Yes, age < 30 years	male	RMS_208	RMS_208_tumor, SRR5144226	case
+THR29_0765_S01	embryonal rhabdomyosarcoma	5	Yes, age < 30 years	male	RMS_2081	RMS_2081_tumor, SRR5144222	case
+THR29_0767_S01	embryonal rhabdomyosarcoma	11	Yes, age < 30 years	male	RMS_2084	RMS_2084_tumor, SRR5144224	case
+THR29_0768_S01	embryonal rhabdomyosarcoma	2	Yes, age < 30 years	female	RMS_2085	RMS_2085_tumor, SRR5144225	case
+THR29_0770_S01	embryonal rhabdomyosarcoma	4	Yes, age < 30 years	male	RMS_2090	RMS_2090_tumor, SRR5144227	case
+THR29_0777_S01	embryonal rhabdomyosarcoma	5	Yes, age < 30 years	female	RMS_211	RMS_211_tumor, SRR5144239	case
+THR29_0778_S01	embryonal rhabdomyosarcoma	1	Yes, age < 30 years	female	RMS_2110	RMS_2110_tumor, SRR5144235	case
+THR29_0780_S01	embryonal rhabdomyosarcoma	17	Yes, age < 30 years	male	RMS_2114	RMS_2114_tumor, SRR5144237	case
+THR29_0782_S01	embryonal rhabdomyosarcoma	0	Yes, age < 30 years	female	RMS_212	RMS_212_tumor, SRR5144240	case
+THR29_0783_S01	embryonal rhabdomyosarcoma	17	Yes, age < 30 years	male	RMS_214	RMS_214_tumor, SRR5144241	case
+THR29_0784_S01	embryonal rhabdomyosarcoma	3	Yes, age < 30 years	female	RMS_216	RMS_216_tumor, SRR5144242	case
+THR29_0785_S01	embryonal rhabdomyosarcoma	3	Yes, age < 30 years	male	RMS_217	RMS_217_tumor, SRR5144243	case
+THR29_0786_S01	embryonal rhabdomyosarcoma	1	Yes, age < 30 years	female	RMS_223	RMS_223_tumor, SRR5144245	case
+THR29_0789_S01	embryonal rhabdomyosarcoma	4	Yes, age < 30 years	male	RMS_226	RMS_226_tumor, SRR5144248	case
+THR29_0791_S01	embryonal rhabdomyosarcoma	8	Yes, age < 30 years	male	RMS_228	RMS_228_tumor, SRR5144250	case
+THR29_0792_S01	embryonal rhabdomyosarcoma	4	Yes, age < 30 years	female	RMS_230	RMS_230_tumor, SRR5144251	case
+THR29_0793_S01	embryonal rhabdomyosarcoma	8	Yes, age < 30 years	female	RMS_231	RMS_231_tumor, SRR5144252	case
+THR29_0797_S01	embryonal rhabdomyosarcoma	2	Yes, age < 30 years	female	RMS_239	RMS_239_tumor, SRR5144256	case
+THR29_0798_S01	embryonal rhabdomyosarcoma	7	Yes, age < 30 years	male	RMS_240	RMS_240_tumor, SRR5144257	case
+THR29_0799_S01	embryonal rhabdomyosarcoma	9	Yes, age < 30 years	female	RMS_242	RMS_242_tumor, SRR5144258	case
+THR31_0892_S01	undifferentiated spindle cell sarcoma	NA	Yes, age < 30 years	female	N/A	SRR4305839	case
+THR31_0904_S01	medulloblastoma	NA	Yes, age < 30 years	female	N/A	SRR4305891	case
+THR31_0918_S01	glioma	NA	Yes, age < 30 years	female	N/A	SRR4305992	case
+THR31_0919_S01	embryonal rhabdomyosarcoma	NA	Yes, age < 30 years	female	N/A	SRR4306008	case
+THR31_0936_S01	undifferentiated spindle cell sarcoma	NA	Yes, age < 30 years	female	N/A	SRR4307087	case
+THR32_0941_S01	primitive neuroectodermal tumor of the central nervous system	3	Yes, age < 30 years	female	N/A	N/A	case
+THR32_0942_S01	primitive neuroectodermal tumor of the central nervous system	10	Yes, age < 30 years	male	N/A	N/A	case
+THR32_0943_S01	primitive neuroectodermal tumor of the central nervous system	2	Yes, age < 30 years	female	N/A	N/A	case
+THR32_0944_S01	primitive neuroectodermal tumor of the central nervous system	16	Yes, age < 30 years	male	N/A	N/A	case
+THR32_0945_S01	primitive neuroectodermal tumor of the central nervous system	2	Yes, age < 30 years	female	N/A	N/A	case
+THR32_0946_S01	primitive neuroectodermal tumor of the central nervous system	11	Yes, age < 30 years	male	N/A	N/A	case
+THR32_0948_S01	primitive neuroectodermal tumor of the central nervous system	8	Yes, age < 30 years	female	N/A	N/A	case
+THR32_0949_S01	primitive neuroectodermal tumor of the central nervous system	2	Yes, age < 30 years	female	N/A	N/A	case
+THR32_0950_S01	primitive neuroectodermal tumor of the central nervous system	2	Yes, age < 30 years	male	N/A	N/A	case
+THR32_0951_S01	primitive neuroectodermal tumor of the central nervous system	3	Yes, age < 30 years	female	N/A	N/A	case
+THR32_0952_S01	primitive neuroectodermal tumor of the central nervous system	4	Yes, age < 30 years	female	N/A	N/A	case
+THR32_0961_S01	medulloblastoma	2	Yes, age < 30 years	female	N/A	N/A	case
+THR32_0962_S01	medulloblastoma	2	Yes, age < 30 years	female	N/A	N/A	case
+THR13_0963_S01	glioma	3	Yes, age < 30 years	female	VU-DIPG.A	SRR1988361, VU-DIPG.A-RNA	case
+THR13_0964_S01	glioma	4	Yes, age < 30 years	female	SU-DIPG-XII	SRR1988360, SU-DIPG-XII-RNA	case
+THR13_0968_S01	glioma	7	Yes, age < 30 years	female	SU-DIPG-VI	SRR1988354, SU-DIPG-VI-RNA	case
+THR13_0969_S01	glioma	13	Yes, age < 30 years	male	SU-DIPG-IX	SRR1988344, SU-DIPG-IX-RNA	case
+THR13_0971_S01	glioma	12	Yes, age < 30 years	male	SU-DIPG-III	SRR1988333, SU-DIPG-III-RNA	case
+THR13_0973_S01	glioma	5	Yes, age < 30 years	male	SU-DIPG-I	SRR1988329, SU-DIPG-I-RNA	case
+THR33_0979_S01	medulloblastoma	39	No	female	N/A	N/A	case
+THR33_0980_S01	medulloblastoma	23	Yes, age < 30 years	female	N/A	N/A	case
+THR33_0981_S01	medulloblastoma	35	No	male	N/A	N/A	case
+THR33_0982_S01	medulloblastoma	3	Yes, age < 30 years	male	N/A	N/A	case
+THR33_0983_S01	medulloblastoma	15	Yes, age < 30 years	male	N/A	N/A	case
+THR33_0984_S01	medulloblastoma	10	Yes, age < 30 years	male	N/A	N/A	case
+THR33_0986_S01	medulloblastoma	4	Yes, age < 30 years	female	N/A	N/A	case
+THR33_0987_S01	medulloblastoma	7	Yes, age < 30 years	male	N/A	N/A	case
+THR33_0989_S01	medulloblastoma	8	Yes, age < 30 years	male	N/A	N/A	case
+THR33_0990_S01	medulloblastoma	16	Yes, age < 30 years	male	N/A	N/A	case
+THR33_0991_S01	medulloblastoma	13	Yes, age < 30 years	female	N/A	N/A	case
+THR33_0992_S01	medulloblastoma	11	Yes, age < 30 years	male	N/A	N/A	case
+THR33_0993_S01	medulloblastoma	5	Yes, age < 30 years	female	N/A	N/A	case
+THR33_0994_S01	medulloblastoma	8	Yes, age < 30 years	male	N/A	N/A	case
+THR33_0995_S01	medulloblastoma	11	Yes, age < 30 years	male	N/A	N/A	case
+THR33_0996_S01	medulloblastoma	17	Yes, age < 30 years	female	N/A	N/A	case
+THR33_0997_S01	medulloblastoma	46	No	male	N/A	N/A	case
+THR33_0998_S01	medulloblastoma	16	Yes, age < 30 years	male	N/A	N/A	case
+TCGA-CS-4938-01	glioma	31	No	female	TCGA-CS-4938	TCGA-CS-4938-01	case
+TCGA-CS-4941-01	glioma	67	No	male	TCGA-CS-4941	TCGA-CS-4941-01	case
+TCGA-CS-4942-01	glioma	44	No	female	TCGA-CS-4942	TCGA-CS-4942-01	case
+TCGA-CS-4943-01	glioma	37	No	male	TCGA-CS-4943	TCGA-CS-4943-01	case
+TCGA-CS-4944-01	glioma	50	No	male	TCGA-CS-4944	TCGA-CS-4944-01	case
+TCGA-CS-5390-01	glioma	47	No	female	TCGA-CS-5390	TCGA-CS-5390-01	case
+TCGA-CS-5393-01	glioma	39	No	male	TCGA-CS-5393	TCGA-CS-5393-01	case
+TCGA-CS-5394-01	glioma	40	No	male	TCGA-CS-5394	TCGA-CS-5394-01	case
+TCGA-CS-5395-01	glioma	43	No	male	TCGA-CS-5395	TCGA-CS-5395-01	case
+TCGA-CS-5396-01	glioma	53	No	female	TCGA-CS-5396	TCGA-CS-5396-01	case
+TCGA-CS-5397-01	glioma	54	No	female	TCGA-CS-5397	TCGA-CS-5397-01	case
+TCGA-CS-6186-01	glioma	58	No	male	TCGA-CS-6186	TCGA-CS-6186-01	case
+TCGA-CS-6188-01	glioma	48	No	male	TCGA-CS-6188	TCGA-CS-6188-01	case
+TCGA-CS-6290-01	glioma	31	No	male	TCGA-CS-6290	TCGA-CS-6290-01	case
+TCGA-CS-6666-01	glioma	22	Yes, age < 30 years	male	TCGA-CS-6666	TCGA-CS-6666-01	case
+TCGA-CS-6667-01	glioma	39	No	female	TCGA-CS-6667	TCGA-CS-6667-01	case
+TCGA-CS-6668-01	glioma	57	No	female	TCGA-CS-6668	TCGA-CS-6668-01	case
+TCGA-CS-6669-01	glioma	26	Yes, age < 30 years	female	TCGA-CS-6669	TCGA-CS-6669-01	case
+TCGA-CS-6670-01	glioma	43	No	male	TCGA-CS-6670	TCGA-CS-6670-01	case
+TCGA-DB-5270-01	glioma	38	No	female	TCGA-DB-5270	TCGA-DB-5270-01	case
+TCGA-DB-5273-01	glioma	33	No	male	TCGA-DB-5273	TCGA-DB-5273-01	case
+TCGA-DB-5274-01	glioma	37	No	female	TCGA-DB-5274	TCGA-DB-5274-01	case
+TCGA-DB-5275-01	glioma	36	No	male	TCGA-DB-5275	TCGA-DB-5275-01	case
+TCGA-DB-5276-01	glioma	32	No	male	TCGA-DB-5276	TCGA-DB-5276-01	case
+TCGA-DB-5277-01	glioma	34	No	male	TCGA-DB-5277	TCGA-DB-5277-01	case
+TCGA-DB-5278-01	glioma	17	Yes, age < 30 years	male	TCGA-DB-5278	TCGA-DB-5278-01	case
+TCGA-DB-5279-01	glioma	59	No	male	TCGA-DB-5279	TCGA-DB-5279-01	case
+TCGA-DB-5280-01	glioma	43	No	male	TCGA-DB-5280	TCGA-DB-5280-01	case
+TCGA-DB-5281-01	glioma	61	No	male	TCGA-DB-5281	TCGA-DB-5281-01	case
+TCGA-DB-A4X9-01	glioma	33	No	female	TCGA-DB-A4X9	TCGA-DB-A4X9-01	case
+TCGA-DB-A4XA-01	glioma	30	No	male	TCGA-DB-A4XA	TCGA-DB-A4XA-01	case
+TCGA-DB-A4XB-01	glioma	38	No	male	TCGA-DB-A4XB	TCGA-DB-A4XB-01	case
+TCGA-DB-A4XC-01	glioma	26	Yes, age < 30 years	male	TCGA-DB-A4XC	TCGA-DB-A4XC-01	case
+TCGA-DB-A4XD-01	glioma	32	No	male	TCGA-DB-A4XD	TCGA-DB-A4XD-01	case
+TCGA-DB-A4XE-01	glioma	27	Yes, age < 30 years	female	TCGA-DB-A4XE	TCGA-DB-A4XE-01	case
+TCGA-DB-A4XF-01	glioma	41	No	female	TCGA-DB-A4XF	TCGA-DB-A4XF-01	case
+TCGA-DB-A4XG-01	glioma	34	No	male	TCGA-DB-A4XG	TCGA-DB-A4XG-01	case
+TCGA-DB-A4XH-01	glioma	53	No	female	TCGA-DB-A4XH	TCGA-DB-A4XH-01	case
+TCGA-DB-A64L-01	glioma	67	No	female	TCGA-DB-A64L	TCGA-DB-A64L-01	case
+TCGA-DB-A64O-01	glioma	59	No	male	TCGA-DB-A64O	TCGA-DB-A64O-01	case
+TCGA-DB-A64P-01	glioma	40	No	male	TCGA-DB-A64P	TCGA-DB-A64P-01	case
+TCGA-DB-A64Q-01	glioma	31	No	female	TCGA-DB-A64Q	TCGA-DB-A64Q-01	case
+TCGA-DB-A64R-01	glioma	24	Yes, age < 30 years	female	TCGA-DB-A64R	TCGA-DB-A64R-01	case
+TCGA-DB-A64S-01	glioma	20	Yes, age < 30 years	male	TCGA-DB-A64S	TCGA-DB-A64S-01	case
+TCGA-DB-A64U-01	glioma	38	No	female	TCGA-DB-A64U	TCGA-DB-A64U-01	case
+TCGA-DB-A64V-01	glioma	54	No	male	TCGA-DB-A64V	TCGA-DB-A64V-01	case
+TCGA-DB-A64W-01	glioma	65	No	female	TCGA-DB-A64W	TCGA-DB-A64W-01	case
+TCGA-DB-A64X-01	glioma	56	No	female	TCGA-DB-A64X	TCGA-DB-A64X-01	case
+TCGA-DB-A75K-01	glioma	55	No	female	TCGA-DB-A75K	TCGA-DB-A75K-01	case
+TCGA-DB-A75L-01	glioma	36	No	female	TCGA-DB-A75L	TCGA-DB-A75L-01	case
+TCGA-DB-A75M-01	glioma	47	No	male	TCGA-DB-A75M	TCGA-DB-A75M-01	case
+TCGA-DB-A75O-01	glioma	29	Yes, age < 30 years	male	TCGA-DB-A75O	TCGA-DB-A75O-01	case
+TCGA-DB-A75P-01	glioma	25	Yes, age < 30 years	female	TCGA-DB-A75P	TCGA-DB-A75P-01	case
+TCGA-DH-5140-01	glioma	38	No	female	TCGA-DH-5140	TCGA-DH-5140-01	case
+TCGA-DH-5141-01	glioma	32	No	male	TCGA-DH-5141	TCGA-DH-5141-01	case
+TCGA-DH-5142-01	glioma	29	Yes, age < 30 years	male	TCGA-DH-5142	TCGA-DH-5142-01	case
+TCGA-DH-5143-01	glioma	30	No	male	TCGA-DH-5143	TCGA-DH-5143-01	case
+TCGA-DH-5144-01	glioma	56	No	female	TCGA-DH-5144	TCGA-DH-5144-01	case
+TCGA-DH-A669-01	glioma	70	No	male	TCGA-DH-A669	TCGA-DH-A669-01	case
+TCGA-DH-A669-02	glioma	70	No	male	TCGA-DH-A669	TCGA-DH-A669-02	case
+TCGA-DH-A66B-01	glioma	52	No	male	TCGA-DH-A66B	TCGA-DH-A66B-01	case
+TCGA-DH-A66D-01	glioma	43	No	female	TCGA-DH-A66D	TCGA-DH-A66D-01	case
+TCGA-DH-A66F-01	glioma	49	No	male	TCGA-DH-A66F	TCGA-DH-A66F-01	case
+TCGA-DH-A7UR-01	glioma	59	No	female	TCGA-DH-A7UR	TCGA-DH-A7UR-01	case
+TCGA-DH-A7US-01	glioma	50	No	male	TCGA-DH-A7US	TCGA-DH-A7US-01	case
+TCGA-DH-A7UT-01	glioma	30	No	male	TCGA-DH-A7UT	TCGA-DH-A7UT-01	case
+TCGA-DH-A7UU-01	glioma	43	No	male	TCGA-DH-A7UU	TCGA-DH-A7UU-01	case
+TCGA-DH-A7UV-01	glioma	49	No	male	TCGA-DH-A7UV	TCGA-DH-A7UV-01	case
+TCGA-DU-5847-01	glioma	34	No	female	TCGA-DU-5847	TCGA-DU-5847-01	case
+TCGA-DU-5849-01	glioma	48	No	male	TCGA-DU-5849	TCGA-DU-5849-01	case
+TCGA-DU-5852-01	glioma	61	No	female	TCGA-DU-5852	TCGA-DU-5852-01	case
+TCGA-DU-5853-01	glioma	29	Yes, age < 30 years	male	TCGA-DU-5853	TCGA-DU-5853-01	case
+TCGA-DU-5854-01	glioma	57	No	female	TCGA-DU-5854	TCGA-DU-5854-01	case
+TCGA-DU-5855-01	glioma	49	No	female	TCGA-DU-5855	TCGA-DU-5855-01	case
+TCGA-DU-5870-01	glioma	34	No	female	TCGA-DU-5870	TCGA-DU-5870-01	case
+TCGA-DU-5870-02	glioma	34	No	female	TCGA-DU-5870	TCGA-DU-5870-02	case
+TCGA-DU-5871-01	glioma	37	No	female	TCGA-DU-5871	TCGA-DU-5871-01	case
+TCGA-DU-5872-01	glioma	43	No	female	TCGA-DU-5872	TCGA-DU-5872-01	case
+TCGA-DU-5872-02	glioma	43	No	female	TCGA-DU-5872	TCGA-DU-5872-02	case
+TCGA-DU-5874-01	glioma	62	No	female	TCGA-DU-5874	TCGA-DU-5874-01	case
+TCGA-DU-6392-01	glioma	35	No	female	TCGA-DU-6392	TCGA-DU-6392-01	case
+TCGA-DU-6393-01	glioma	66	No	male	TCGA-DU-6393	TCGA-DU-6393-01	case
+TCGA-DU-6394-01	glioma	53	No	male	TCGA-DU-6394	TCGA-DU-6394-01	case
+TCGA-DU-6395-01	glioma	31	No	male	TCGA-DU-6395	TCGA-DU-6395-01	case
+TCGA-DU-6396-01	glioma	31	No	female	TCGA-DU-6396	TCGA-DU-6396-01	case
+TCGA-DU-6397-02	glioma	45	No	male	TCGA-DU-6397	TCGA-DU-6397-02	case
+TCGA-DU-6399-01	glioma	54	No	male	TCGA-DU-6399	TCGA-DU-6399-01	case
+TCGA-DU-6400-01	glioma	66	No	female	TCGA-DU-6400	TCGA-DU-6400-01	case
+TCGA-DU-6401-01	glioma	31	No	female	TCGA-DU-6401	TCGA-DU-6401-01	case
+TCGA-DU-6402-01	glioma	52	No	male	TCGA-DU-6402	TCGA-DU-6402-01	case
+TCGA-DU-6403-01	glioma	60	No	female	TCGA-DU-6403	TCGA-DU-6403-01	case
+TCGA-DU-6404-01	glioma	24	Yes, age < 30 years	female	TCGA-DU-6404	TCGA-DU-6404-01	case
+TCGA-DU-6404-02	glioma	24	Yes, age < 30 years	female	TCGA-DU-6404	TCGA-DU-6404-02	case
+TCGA-DU-6405-01	glioma	51	No	female	TCGA-DU-6405	TCGA-DU-6405-01	case
+TCGA-DU-6406-01	glioma	59	No	female	TCGA-DU-6406	TCGA-DU-6406-01	case
+TCGA-DU-6407-01	glioma	35	No	female	TCGA-DU-6407	TCGA-DU-6407-01	case
+TCGA-DU-6407-02	glioma	35	No	female	TCGA-DU-6407	TCGA-DU-6407-02	case
+TCGA-DU-6408-01	glioma	23	Yes, age < 30 years	female	TCGA-DU-6408	TCGA-DU-6408-01	case
+TCGA-DU-6410-01	glioma	56	No	male	TCGA-DU-6410	TCGA-DU-6410-01	case
+TCGA-DU-6542-01	glioma	25	Yes, age < 30 years	male	TCGA-DU-6542	TCGA-DU-6542-01	case
+TCGA-DU-7006-01	glioma	60	No	female	TCGA-DU-7006	TCGA-DU-7006-01	case
+TCGA-DU-7007-01	glioma	33	No	male	TCGA-DU-7007	TCGA-DU-7007-01	case
+TCGA-DU-7008-01	glioma	41	No	female	TCGA-DU-7008	TCGA-DU-7008-01	case
+TCGA-DU-7009-01	glioma	32	No	female	TCGA-DU-7009	TCGA-DU-7009-01	case
+TCGA-DU-7010-01	glioma	58	No	female	TCGA-DU-7010	TCGA-DU-7010-01	case
+TCGA-DU-7011-01	glioma	25	Yes, age < 30 years	male	TCGA-DU-7011	TCGA-DU-7011-01	case
+TCGA-DU-7012-01	glioma	74	No	female	TCGA-DU-7012	TCGA-DU-7012-01	case
+TCGA-DU-7013-01	glioma	59	No	male	TCGA-DU-7013	TCGA-DU-7013-01	case
+TCGA-DU-7014-01	glioma	59	No	male	TCGA-DU-7014	TCGA-DU-7014-01	case
+TCGA-DU-7015-01	glioma	41	No	female	TCGA-DU-7015	TCGA-DU-7015-01	case
+TCGA-DU-7018-01	glioma	57	No	female	TCGA-DU-7018	TCGA-DU-7018-01	case
+TCGA-DU-7019-01	glioma	39	No	male	TCGA-DU-7019	TCGA-DU-7019-01	case
+TCGA-DU-7290-01	glioma	45	No	female	TCGA-DU-7290	TCGA-DU-7290-01	case
+TCGA-DU-7292-01	glioma	69	No	male	TCGA-DU-7292	TCGA-DU-7292-01	case
+TCGA-DU-7294-01	glioma	53	No	female	TCGA-DU-7294	TCGA-DU-7294-01	case
+TCGA-DU-7298-01	glioma	38	No	female	TCGA-DU-7298	TCGA-DU-7298-01	case
+TCGA-DU-7299-01	glioma	33	No	male	TCGA-DU-7299	TCGA-DU-7299-01	case
+TCGA-DU-7300-01	glioma	53	No	female	TCGA-DU-7300	TCGA-DU-7300-01	case
+TCGA-DU-7301-01	glioma	53	No	male	TCGA-DU-7301	TCGA-DU-7301-01	case
+TCGA-DU-7302-01	glioma	48	No	female	TCGA-DU-7302	TCGA-DU-7302-01	case
+TCGA-DU-7304-02	glioma	43	No	male	TCGA-DU-7304	TCGA-DU-7304-02	case
+TCGA-DU-7306-01	glioma	67	No	male	TCGA-DU-7306	TCGA-DU-7306-01	case
+TCGA-DU-7309-01	glioma	41	No	female	TCGA-DU-7309	TCGA-DU-7309-01	case
+TCGA-DU-8158-01	glioma	57	No	female	TCGA-DU-8158	TCGA-DU-8158-01	case
+TCGA-DU-8161-01	glioma	63	No	female	TCGA-DU-8161	TCGA-DU-8161-01	case
+TCGA-DU-8162-01	glioma	61	No	female	TCGA-DU-8162	TCGA-DU-8162-01	case
+TCGA-DU-8163-01	glioma	29	Yes, age < 30 years	male	TCGA-DU-8163	TCGA-DU-8163-01	case
+TCGA-DU-8164-01	glioma	51	No	male	TCGA-DU-8164	TCGA-DU-8164-01	case
+TCGA-DU-8165-01	glioma	60	No	female	TCGA-DU-8165	TCGA-DU-8165-01	case
+TCGA-DU-8166-01	glioma	29	Yes, age < 30 years	female	TCGA-DU-8166	TCGA-DU-8166-01	case
+TCGA-DU-8167-01	glioma	69	No	female	TCGA-DU-8167	TCGA-DU-8167-01	case
+TCGA-DU-8168-01	glioma	55	No	female	TCGA-DU-8168	TCGA-DU-8168-01	case
+TCGA-DU-A5TP-01	glioma	33	No	male	TCGA-DU-A5TP	TCGA-DU-A5TP-01	case
+TCGA-DU-A5TR-01	glioma	51	No	male	TCGA-DU-A5TR	TCGA-DU-A5TR-01	case
+TCGA-DU-A5TS-01	glioma	42	No	male	TCGA-DU-A5TS	TCGA-DU-A5TS-01	case
+TCGA-DU-A5TT-01	glioma	70	No	male	TCGA-DU-A5TT	TCGA-DU-A5TT-01	case
+TCGA-DU-A5TU-01	glioma	62	No	female	TCGA-DU-A5TU	TCGA-DU-A5TU-01	case
+TCGA-DU-A5TW-01	glioma	33	No	female	TCGA-DU-A5TW	TCGA-DU-A5TW-01	case
+TCGA-DU-A5TY-01	glioma	46	No	female	TCGA-DU-A5TY	TCGA-DU-A5TY-01	case
+TCGA-DU-A6S2-01	glioma	37	No	female	TCGA-DU-A6S2	TCGA-DU-A6S2-01	case
+TCGA-DU-A6S3-01	glioma	60	No	male	TCGA-DU-A6S3	TCGA-DU-A6S3-01	case
+TCGA-DU-A6S6-01	glioma	35	No	female	TCGA-DU-A6S6	TCGA-DU-A6S6-01	case
+TCGA-DU-A6S7-01	glioma	27	Yes, age < 30 years	female	TCGA-DU-A6S7	TCGA-DU-A6S7-01	case
+TCGA-DU-A6S8-01	glioma	74	No	female	TCGA-DU-A6S8	TCGA-DU-A6S8-01	case
+TCGA-DU-A76K-01	glioma	87	No	male	TCGA-DU-A76K	TCGA-DU-A76K-01	case
+TCGA-DU-A76L-01	glioma	54	No	male	TCGA-DU-A76L	TCGA-DU-A76L-01	case
+TCGA-DU-A76O-01	glioma	30	No	male	TCGA-DU-A76O	TCGA-DU-A76O-01	case
+TCGA-DU-A76R-01	glioma	51	No	male	TCGA-DU-A76R	TCGA-DU-A76R-01	case
+TCGA-DU-A7T6-01	glioma	73	No	female	TCGA-DU-A7T6	TCGA-DU-A7T6-01	case
+TCGA-DU-A7T8-01	glioma	35	No	male	TCGA-DU-A7T8	TCGA-DU-A7T8-01	case
+TCGA-DU-A7TA-01	glioma	32	No	male	TCGA-DU-A7TA	TCGA-DU-A7TA-01	case
+TCGA-DU-A7TB-01	glioma	56	No	male	TCGA-DU-A7TB	TCGA-DU-A7TB-01	case
+TCGA-DU-A7TC-01	glioma	32	No	male	TCGA-DU-A7TC	TCGA-DU-A7TC-01	case
+TCGA-DU-A7TD-01	glioma	52	No	male	TCGA-DU-A7TD	TCGA-DU-A7TD-01	case
+TCGA-DU-A7TG-01	glioma	40	No	male	TCGA-DU-A7TG	TCGA-DU-A7TG-01	case
+TCGA-DU-A7TI-01	glioma	32	No	male	TCGA-DU-A7TI	TCGA-DU-A7TI-01	case
+TCGA-DU-A7TJ-01	glioma	55	No	male	TCGA-DU-A7TJ	TCGA-DU-A7TJ-01	case
+TCGA-E1-5302-01	glioma	41	No	male	TCGA-E1-5302	TCGA-E1-5302-01	case
+TCGA-E1-5303-01	glioma	38	No	male	TCGA-E1-5303	TCGA-E1-5303-01	case
+TCGA-E1-5304-01	glioma	42	No	male	TCGA-E1-5304	TCGA-E1-5304-01	case
+TCGA-E1-5305-01	glioma	34	No	male	TCGA-E1-5305	TCGA-E1-5305-01	case
+TCGA-E1-5307-01	glioma	62	No	female	TCGA-E1-5307	TCGA-E1-5307-01	case
+TCGA-E1-5311-01	glioma	31	No	male	TCGA-E1-5311	TCGA-E1-5311-01	case
+TCGA-E1-5318-01	glioma	42	No	female	TCGA-E1-5318	TCGA-E1-5318-01	case
+TCGA-E1-5319-01	glioma	48	No	female	TCGA-E1-5319	TCGA-E1-5319-01	case
+TCGA-E1-5322-01	glioma	38	No	female	TCGA-E1-5322	TCGA-E1-5322-01	case
+TCGA-E1-A7YD-01	glioma	57	No	male	TCGA-E1-A7YD	TCGA-E1-A7YD-01	case
+TCGA-E1-A7YE-01	glioma	32	No	female	TCGA-E1-A7YE	TCGA-E1-A7YE-01	case
+TCGA-E1-A7YH-01	glioma	47	No	female	TCGA-E1-A7YH	TCGA-E1-A7YH-01	case
+TCGA-E1-A7YI-01	glioma	33	No	female	TCGA-E1-A7YI	TCGA-E1-A7YI-01	case
+TCGA-E1-A7YJ-01	glioma	55	No	male	TCGA-E1-A7YJ	TCGA-E1-A7YJ-01	case
+TCGA-E1-A7YK-01	glioma	52	No	male	TCGA-E1-A7YK	TCGA-E1-A7YK-01	case
+TCGA-E1-A7YL-01	glioma	46	No	male	TCGA-E1-A7YL	TCGA-E1-A7YL-01	case
+TCGA-E1-A7YM-01	glioma	63	No	male	TCGA-E1-A7YM	TCGA-E1-A7YM-01	case
+TCGA-E1-A7YN-01	glioma	63	No	female	TCGA-E1-A7YN	TCGA-E1-A7YN-01	case
+TCGA-E1-A7YO-01	glioma	45	No	male	TCGA-E1-A7YO	TCGA-E1-A7YO-01	case
+TCGA-E1-A7YQ-01	glioma	58	No	female	TCGA-E1-A7YQ	TCGA-E1-A7YQ-01	case
+TCGA-E1-A7YS-01	glioma	71	No	male	TCGA-E1-A7YS	TCGA-E1-A7YS-01	case
+TCGA-E1-A7YU-01	glioma	42	No	male	TCGA-E1-A7YU	TCGA-E1-A7YU-01	case
+TCGA-E1-A7YV-01	glioma	26	Yes, age < 30 years	female	TCGA-E1-A7YV	TCGA-E1-A7YV-01	case
+TCGA-E1-A7YW-01	glioma	28	Yes, age < 30 years	male	TCGA-E1-A7YW	TCGA-E1-A7YW-01	case
+TCGA-E1-A7YY-01	glioma	27	Yes, age < 30 years	female	TCGA-E1-A7YY	TCGA-E1-A7YY-01	case
+TCGA-E1-A7Z2-01	glioma	58	No	female	TCGA-E1-A7Z2	TCGA-E1-A7Z2-01	case
+TCGA-E1-A7Z3-01	glioma	31	No	female	TCGA-E1-A7Z3	TCGA-E1-A7Z3-01	case
+TCGA-E1-A7Z4-01	glioma	35	No	male	TCGA-E1-A7Z4	TCGA-E1-A7Z4-01	case
+TCGA-E1-A7Z6-01	glioma	41	No	female	TCGA-E1-A7Z6	TCGA-E1-A7Z6-01	case
+TCGA-EZ-7264-01	glioma	47	No	female	TCGA-EZ-7264	TCGA-EZ-7264-01	case
+TCGA-F6-A8O3-01	glioma	34	No	male	TCGA-F6-A8O3	TCGA-F6-A8O3-01	case
+TCGA-F6-A8O4-01	glioma	44	No	male	TCGA-F6-A8O4	TCGA-F6-A8O4-01	case
+TCGA-FG-5962-01	glioma	54	No	male	TCGA-FG-5962	TCGA-FG-5962-01	case
+TCGA-FG-5963-01	glioma	23	Yes, age < 30 years	male	TCGA-FG-5963	TCGA-FG-5963-01	case
+TCGA-FG-5963-02	glioma	23	Yes, age < 30 years	male	TCGA-FG-5963	TCGA-FG-5963-02	case
+TCGA-FG-5964-01	glioma	62	No	male	TCGA-FG-5964	TCGA-FG-5964-01	case
+TCGA-FG-5965-01	glioma	39	No	female	TCGA-FG-5965	TCGA-FG-5965-01	case
+TCGA-FG-5965-02	glioma	39	No	female	TCGA-FG-5965	TCGA-FG-5965-02	case
+TCGA-FG-6688-01	glioma	59	No	female	TCGA-FG-6688	TCGA-FG-6688-01	case
+TCGA-FG-6689-01	glioma	30	No	male	TCGA-FG-6689	TCGA-FG-6689-01	case
+TCGA-FG-6690-01	glioma	70	No	male	TCGA-FG-6690	TCGA-FG-6690-01	case
+TCGA-FG-6691-01	glioma	23	Yes, age < 30 years	female	TCGA-FG-6691	TCGA-FG-6691-01	case
+TCGA-FG-6692-01	glioma	63	No	male	TCGA-FG-6692	TCGA-FG-6692-01	case
+TCGA-FG-7634-01	glioma	28	Yes, age < 30 years	male	TCGA-FG-7634	TCGA-FG-7634-01	case
+TCGA-FG-7636-01	glioma	48	No	male	TCGA-FG-7636	TCGA-FG-7636-01	case
+TCGA-FG-7637-01	glioma	49	No	male	TCGA-FG-7637	TCGA-FG-7637-01	case
+TCGA-FG-7638-01	glioma	31	No	female	TCGA-FG-7638	TCGA-FG-7638-01	case
+TCGA-FG-7641-01	glioma	31	No	male	TCGA-FG-7641	TCGA-FG-7641-01	case
+TCGA-FG-7643-01	glioma	49	No	female	TCGA-FG-7643	TCGA-FG-7643-01	case
+TCGA-FG-8181-01	glioma	23	Yes, age < 30 years	male	TCGA-FG-8181	TCGA-FG-8181-01	case
+TCGA-FG-8182-01	glioma	35	No	male	TCGA-FG-8182	TCGA-FG-8182-01	case
+TCGA-FG-8185-01	glioma	37	No	male	TCGA-FG-8185	TCGA-FG-8185-01	case
+TCGA-FG-8186-01	glioma	42	No	female	TCGA-FG-8186	TCGA-FG-8186-01	case
+TCGA-FG-8187-01	glioma	31	No	male	TCGA-FG-8187	TCGA-FG-8187-01	case
+TCGA-FG-8188-01	glioma	41	No	male	TCGA-FG-8188	TCGA-FG-8188-01	case
+TCGA-FG-8189-01	glioma	33	No	female	TCGA-FG-8189	TCGA-FG-8189-01	case
+TCGA-FG-8191-01	glioma	30	No	male	TCGA-FG-8191	TCGA-FG-8191-01	case
+TCGA-FG-A4MT-01	glioma	27	Yes, age < 30 years	female	TCGA-FG-A4MT	TCGA-FG-A4MT-01	case
+TCGA-FG-A4MT-02	glioma	27	Yes, age < 30 years	female	TCGA-FG-A4MT	TCGA-FG-A4MT-02	case
+TCGA-FG-A4MU-01	glioma	58	No	male	TCGA-FG-A4MU	TCGA-FG-A4MU-01	case
+TCGA-FG-A4MW-01	glioma	63	No	male	TCGA-FG-A4MW	TCGA-FG-A4MW-01	case
+TCGA-FG-A4MX-01	glioma	47	No	male	TCGA-FG-A4MX	TCGA-FG-A4MX-01	case
+TCGA-FG-A4MY-01	glioma	44	No	female	TCGA-FG-A4MY	TCGA-FG-A4MY-01	case
+TCGA-FG-A60J-01	glioma	47	No	female	TCGA-FG-A60J	TCGA-FG-A60J-01	case
+TCGA-FG-A60K-01	glioma	34	No	female	TCGA-FG-A60K	TCGA-FG-A60K-01	case
+TCGA-FG-A60L-01	glioma	34	No	female	TCGA-FG-A60L	TCGA-FG-A60L-01	case
+TCGA-FG-A6IZ-01	glioma	60	No	male	TCGA-FG-A6IZ	TCGA-FG-A6IZ-01	case
+TCGA-FG-A6J1-01	glioma	44	No	female	TCGA-FG-A6J1	TCGA-FG-A6J1-01	case
+TCGA-FG-A6J3-01	glioma	52	No	female	TCGA-FG-A6J3	TCGA-FG-A6J3-01	case
+TCGA-FG-A70Y-01	glioma	20	Yes, age < 30 years	female	TCGA-FG-A70Y	TCGA-FG-A70Y-01	case
+TCGA-FG-A70Z-01	glioma	53	No	female	TCGA-FG-A70Z	TCGA-FG-A70Z-01	case
+TCGA-FG-A710-01	glioma	50	No	female	TCGA-FG-A710	TCGA-FG-A710-01	case
+TCGA-FG-A711-01	glioma	33	No	female	TCGA-FG-A711	TCGA-FG-A711-01	case
+TCGA-FG-A713-01	glioma	74	No	female	TCGA-FG-A713	TCGA-FG-A713-01	case
+TCGA-FG-A87N-01	glioma	37	No	female	TCGA-FG-A87N	TCGA-FG-A87N-01	case
+TCGA-FG-A87Q-01	glioma	61	No	female	TCGA-FG-A87Q	TCGA-FG-A87Q-01	case
+TCGA-FN-7833-01	glioma	25	Yes, age < 30 years	male	TCGA-FN-7833	TCGA-FN-7833-01	case
+TCGA-HT-7467-01	glioma	54	No	male	TCGA-HT-7467	TCGA-HT-7467-01	case
+TCGA-HT-7468-01	glioma	30	No	male	TCGA-HT-7468	TCGA-HT-7468-01	case
+TCGA-HT-7469-01	glioma	30	No	male	TCGA-HT-7469	TCGA-HT-7469-01	case
+TCGA-HT-7470-01	glioma	37	No	male	TCGA-HT-7470	TCGA-HT-7470-01	case
+TCGA-HT-7471-01	glioma	37	No	female	TCGA-HT-7471	TCGA-HT-7471-01	case
+TCGA-HT-7472-01	glioma	38	No	male	TCGA-HT-7472	TCGA-HT-7472-01	case
+TCGA-HT-7473-01	glioma	28	Yes, age < 30 years	male	TCGA-HT-7473	TCGA-HT-7473-01	case
+TCGA-HT-7474-01	glioma	52	No	male	TCGA-HT-7474	TCGA-HT-7474-01	case
+TCGA-HT-7475-01	glioma	67	No	male	TCGA-HT-7475	TCGA-HT-7475-01	case
+TCGA-HT-7476-01	glioma	26	Yes, age < 30 years	male	TCGA-HT-7476	TCGA-HT-7476-01	case
+TCGA-HT-7477-01	glioma	62	No	male	TCGA-HT-7477	TCGA-HT-7477-01	case
+TCGA-HT-7478-01	glioma	36	No	male	TCGA-HT-7478	TCGA-HT-7478-01	case
+TCGA-HT-7479-01	glioma	44	No	male	TCGA-HT-7479	TCGA-HT-7479-01	case
+TCGA-HT-7480-01	glioma	33	No	male	TCGA-HT-7480	TCGA-HT-7480-01	case
+TCGA-HT-7481-01	glioma	39	No	male	TCGA-HT-7481	TCGA-HT-7481-01	case
+TCGA-HT-7482-01	glioma	18	Yes, age < 30 years	female	TCGA-HT-7482	TCGA-HT-7482-01	case
+TCGA-HT-7483-01	glioma	14	Yes, age < 30 years	male	TCGA-HT-7483	TCGA-HT-7483-01	case
+TCGA-HT-7485-01	glioma	42	No	male	TCGA-HT-7485	TCGA-HT-7485-01	case
+TCGA-HT-7601-01	glioma	30	No	female	TCGA-HT-7601	TCGA-HT-7601-01	case
+TCGA-HT-7602-01	glioma	21	Yes, age < 30 years	male	TCGA-HT-7602	TCGA-HT-7602-01	case
+TCGA-HT-7603-01	glioma	29	Yes, age < 30 years	male	TCGA-HT-7603	TCGA-HT-7603-01	case
+TCGA-HT-7604-01	glioma	50	No	male	TCGA-HT-7604	TCGA-HT-7604-01	case
+TCGA-HT-7605-01	glioma	38	No	male	TCGA-HT-7605	TCGA-HT-7605-01	case
+TCGA-HT-7606-01	glioma	30	No	female	TCGA-HT-7606	TCGA-HT-7606-01	case
+TCGA-HT-7607-01	glioma	61	No	female	TCGA-HT-7607	TCGA-HT-7607-01	case
+TCGA-HT-7608-01	glioma	61	No	male	TCGA-HT-7608	TCGA-HT-7608-01	case
+TCGA-HT-7609-01	glioma	34	No	male	TCGA-HT-7609	TCGA-HT-7609-01	case
+TCGA-HT-7610-01	glioma	25	Yes, age < 30 years	female	TCGA-HT-7610	TCGA-HT-7610-01	case
+TCGA-HT-7611-01	glioma	36	No	male	TCGA-HT-7611	TCGA-HT-7611-01	case
+TCGA-HT-7616-01	glioma	75	No	male	TCGA-HT-7616	TCGA-HT-7616-01	case
+TCGA-HT-7620-01	glioma	40	No	male	TCGA-HT-7620	TCGA-HT-7620-01	case
+TCGA-HT-7676-01	glioma	26	Yes, age < 30 years	male	TCGA-HT-7676	TCGA-HT-7676-01	case
+TCGA-HT-7677-01	glioma	53	No	male	TCGA-HT-7677	TCGA-HT-7677-01	case
+TCGA-HT-7680-01	glioma	32	No	female	TCGA-HT-7680	TCGA-HT-7680-01	case
+TCGA-HT-7681-01	glioma	29	Yes, age < 30 years	female	TCGA-HT-7681	TCGA-HT-7681-01	case
+TCGA-HT-7684-01	glioma	58	No	male	TCGA-HT-7684	TCGA-HT-7684-01	case
+TCGA-HT-7686-01	glioma	29	Yes, age < 30 years	female	TCGA-HT-7686	TCGA-HT-7686-01	case
+TCGA-HT-7687-01	glioma	74	No	male	TCGA-HT-7687	TCGA-HT-7687-01	case
+TCGA-HT-7688-01	glioma	59	No	male	TCGA-HT-7688	TCGA-HT-7688-01	case
+TCGA-HT-7689-01	glioma	58	No	female	TCGA-HT-7689	TCGA-HT-7689-01	case
+TCGA-HT-7690-01	glioma	29	Yes, age < 30 years	male	TCGA-HT-7690	TCGA-HT-7690-01	case
+TCGA-HT-7691-01	glioma	31	No	female	TCGA-HT-7691	TCGA-HT-7691-01	case
+TCGA-HT-7692-01	glioma	43	No	male	TCGA-HT-7692	TCGA-HT-7692-01	case
+TCGA-HT-7693-01	glioma	51	No	female	TCGA-HT-7693	TCGA-HT-7693-01	case
+TCGA-HT-7694-01	glioma	60	No	male	TCGA-HT-7694	TCGA-HT-7694-01	case
+TCGA-HT-7695-01	glioma	29	Yes, age < 30 years	female	TCGA-HT-7695	TCGA-HT-7695-01	case
+TCGA-HT-7854-01	glioma	62	No	male	TCGA-HT-7854	TCGA-HT-7854-01	case
+TCGA-HT-7855-01	glioma	39	No	male	TCGA-HT-7855	TCGA-HT-7855-01	case
+TCGA-HT-7856-01	glioma	35	No	male	TCGA-HT-7856	TCGA-HT-7856-01	case
+TCGA-HT-7857-01	glioma	24	Yes, age < 30 years	female	TCGA-HT-7857	TCGA-HT-7857-01	case
+TCGA-HT-7858-01	glioma	28	Yes, age < 30 years	male	TCGA-HT-7858	TCGA-HT-7858-01	case
+TCGA-HT-7860-01	glioma	60	No	female	TCGA-HT-7860	TCGA-HT-7860-01	case
+TCGA-HT-7873-01	glioma	29	Yes, age < 30 years	male	TCGA-HT-7873	TCGA-HT-7873-01	case
+TCGA-HT-7874-01	glioma	41	No	female	TCGA-HT-7874	TCGA-HT-7874-01	case
+TCGA-HT-7875-01	glioma	56	No	male	TCGA-HT-7875	TCGA-HT-7875-01	case
+TCGA-HT-7877-01	glioma	20	Yes, age < 30 years	female	TCGA-HT-7877	TCGA-HT-7877-01	case
+TCGA-HT-7879-01	glioma	31	No	male	TCGA-HT-7879	TCGA-HT-7879-01	case
+TCGA-HT-7880-01	glioma	30	No	male	TCGA-HT-7880	TCGA-HT-7880-01	case
+TCGA-HT-7881-01	glioma	38	No	male	TCGA-HT-7881	TCGA-HT-7881-01	case
+TCGA-HT-7882-01	glioma	66	No	male	TCGA-HT-7882	TCGA-HT-7882-01	case
+TCGA-HT-7884-01	glioma	44	No	female	TCGA-HT-7884	TCGA-HT-7884-01	case
+TCGA-HT-7902-01	glioma	30	No	female	TCGA-HT-7902	TCGA-HT-7902-01	case
+TCGA-HT-8010-01	glioma	64	No	female	TCGA-HT-8010	TCGA-HT-8010-01	case
+TCGA-HT-8011-01	glioma	55	No	male	TCGA-HT-8011	TCGA-HT-8011-01	case
+TCGA-HT-8012-01	glioma	30	No	female	TCGA-HT-8012	TCGA-HT-8012-01	case
+TCGA-HT-8015-01	glioma	21	Yes, age < 30 years	male	TCGA-HT-8015	TCGA-HT-8015-01	case
+TCGA-HT-8018-01	glioma	40	No	female	TCGA-HT-8018	TCGA-HT-8018-01	case
+TCGA-HT-8019-01	glioma	34	No	female	TCGA-HT-8019	TCGA-HT-8019-01	case
+TCGA-HT-8104-01	glioma	51	No	female	TCGA-HT-8104	TCGA-HT-8104-01	case
+TCGA-HT-8105-01	glioma	54	No	male	TCGA-HT-8105	TCGA-HT-8105-01	case
+TCGA-HT-8106-01	glioma	53	No	male	TCGA-HT-8106	TCGA-HT-8106-01	case
+TCGA-HT-8107-01	glioma	62	No	male	TCGA-HT-8107	TCGA-HT-8107-01	case
+TCGA-HT-8108-01	glioma	26	Yes, age < 30 years	female	TCGA-HT-8108	TCGA-HT-8108-01	case
+TCGA-HT-8109-01	glioma	64	No	male	TCGA-HT-8109	TCGA-HT-8109-01	case
+TCGA-HT-8110-01	glioma	57	No	male	TCGA-HT-8110	TCGA-HT-8110-01	case
+TCGA-HT-8111-01	glioma	32	No	male	TCGA-HT-8111	TCGA-HT-8111-01	case
+TCGA-HT-8113-01	glioma	49	No	female	TCGA-HT-8113	TCGA-HT-8113-01	case
+TCGA-HT-8114-01	glioma	36	No	male	TCGA-HT-8114	TCGA-HT-8114-01	case
+TCGA-HT-8558-01	glioma	29	Yes, age < 30 years	female	TCGA-HT-8558	TCGA-HT-8558-01	case
+TCGA-HT-8563-01	glioma	30	No	female	TCGA-HT-8563	TCGA-HT-8563-01	case
+TCGA-HT-8564-01	glioma	47	No	male	TCGA-HT-8564	TCGA-HT-8564-01	case
+TCGA-HT-A4DS-01	glioma	55	No	female	TCGA-HT-A4DS	TCGA-HT-A4DS-01	case
+TCGA-HT-A4DV-01	glioma	51	No	female	TCGA-HT-A4DV	TCGA-HT-A4DV-01	case
+TCGA-HT-A5R5-01	glioma	33	No	female	TCGA-HT-A5R5	TCGA-HT-A5R5-01	case
+TCGA-HT-A5R7-01	glioma	33	No	female	TCGA-HT-A5R7	TCGA-HT-A5R7-01	case
+TCGA-HT-A5R9-01	glioma	48	No	female	TCGA-HT-A5R9	TCGA-HT-A5R9-01	case
+TCGA-HT-A5RA-01	glioma	65	No	female	TCGA-HT-A5RA	TCGA-HT-A5RA-01	case
+TCGA-HT-A5RB-01	glioma	24	Yes, age < 30 years	male	TCGA-HT-A5RB	TCGA-HT-A5RB-01	case
+TCGA-HT-A5RC-01	glioma	70	No	female	TCGA-HT-A5RC	TCGA-HT-A5RC-01	case
+TCGA-HT-A614-01	glioma	47	No	male	TCGA-HT-A614	TCGA-HT-A614-01	case
+TCGA-HT-A615-01	glioma	38	No	female	TCGA-HT-A615	TCGA-HT-A615-01	case
+TCGA-HT-A616-01	glioma	36	No	female	TCGA-HT-A616	TCGA-HT-A616-01	case
+TCGA-HT-A617-01	glioma	47	No	male	TCGA-HT-A617	TCGA-HT-A617-01	case
+TCGA-HT-A618-01	glioma	37	No	female	TCGA-HT-A618	TCGA-HT-A618-01	case
+TCGA-HT-A619-01	glioma	51	No	female	TCGA-HT-A619	TCGA-HT-A619-01	case
+TCGA-HT-A61A-01	glioma	20	Yes, age < 30 years	female	TCGA-HT-A61A	TCGA-HT-A61A-01	case
+TCGA-HT-A61B-01	glioma	22	Yes, age < 30 years	male	TCGA-HT-A61B	TCGA-HT-A61B-01	case
+TCGA-HT-A61C-01	glioma	66	No	male	TCGA-HT-A61C	TCGA-HT-A61C-01	case
+TCGA-HT-A74H-01	glioma	62	No	male	TCGA-HT-A74H	TCGA-HT-A74H-01	case
+TCGA-HT-A74J-01	glioma	33	No	male	TCGA-HT-A74J	TCGA-HT-A74J-01	case
+TCGA-HT-A74K-01	glioma	58	No	female	TCGA-HT-A74K	TCGA-HT-A74K-01	case
+TCGA-HT-A74L-01	glioma	22	Yes, age < 30 years	female	TCGA-HT-A74L	TCGA-HT-A74L-01	case
+TCGA-HT-A74O-01	glioma	34	No	male	TCGA-HT-A74O	TCGA-HT-A74O-01	case
+TCGA-HW-7486-01	glioma	37	No	male	TCGA-HW-7486	TCGA-HW-7486-01	case
+TCGA-HW-7487-01	glioma	39	No	male	TCGA-HW-7487	TCGA-HW-7487-01	case
+TCGA-HW-7489-01	glioma	38	No	male	TCGA-HW-7489	TCGA-HW-7489-01	case
+TCGA-HW-7490-01	glioma	41	No	male	TCGA-HW-7490	TCGA-HW-7490-01	case
+TCGA-HW-7491-01	glioma	35	No	male	TCGA-HW-7491	TCGA-HW-7491-01	case
+TCGA-HW-7493-01	glioma	40	No	female	TCGA-HW-7493	TCGA-HW-7493-01	case
+TCGA-HW-7495-01	glioma	45	No	female	TCGA-HW-7495	TCGA-HW-7495-01	case
+TCGA-HW-8319-01	glioma	34	No	female	TCGA-HW-8319	TCGA-HW-8319-01	case
+TCGA-HW-8320-01	glioma	36	No	male	TCGA-HW-8320	TCGA-HW-8320-01	case
+TCGA-HW-8321-01	glioma	31	No	male	TCGA-HW-8321	TCGA-HW-8321-01	case
+TCGA-HW-8322-01	glioma	39	No	male	TCGA-HW-8322	TCGA-HW-8322-01	case
+TCGA-HW-A5KJ-01	glioma	68	No	male	TCGA-HW-A5KJ	TCGA-HW-A5KJ-01	case
+TCGA-HW-A5KK-01	glioma	64	No	male	TCGA-HW-A5KK	TCGA-HW-A5KK-01	case
+TCGA-HW-A5KL-01	glioma	42	No	female	TCGA-HW-A5KL	TCGA-HW-A5KL-01	case
+TCGA-HW-A5KM-01	glioma	35	No	male	TCGA-HW-A5KM	TCGA-HW-A5KM-01	case
+TCGA-IK-7675-01	glioma	43	No	male	TCGA-IK-7675	TCGA-IK-7675-01	case
+TCGA-IK-8125-01	glioma	62	No	male	TCGA-IK-8125	TCGA-IK-8125-01	case
+TCGA-KT-A74X-01	glioma	26	Yes, age < 30 years	male	TCGA-KT-A74X	TCGA-KT-A74X-01	case
+TCGA-KT-A7W1-01	glioma	45	No	female	TCGA-KT-A7W1	TCGA-KT-A7W1-01	case
+TCGA-P5-A5ET-01	glioma	27	Yes, age < 30 years	male	TCGA-P5-A5ET	TCGA-P5-A5ET-01	case
+TCGA-P5-A5EU-01	glioma	35	No	male	TCGA-P5-A5EU	TCGA-P5-A5EU-01	case
+TCGA-P5-A5EV-01	glioma	39	No	male	TCGA-P5-A5EV	TCGA-P5-A5EV-01	case
+TCGA-P5-A5EW-01	glioma	20	Yes, age < 30 years	female	TCGA-P5-A5EW	TCGA-P5-A5EW-01	case
+TCGA-P5-A5EX-01	glioma	41	No	female	TCGA-P5-A5EX	TCGA-P5-A5EX-01	case
+TCGA-P5-A5EY-01	glioma	21	Yes, age < 30 years	male	TCGA-P5-A5EY	TCGA-P5-A5EY-01	case
+TCGA-P5-A5EZ-01	glioma	39	No	male	TCGA-P5-A5EZ	TCGA-P5-A5EZ-01	case
+TCGA-P5-A5F0-01	glioma	33	No	male	TCGA-P5-A5F0	TCGA-P5-A5F0-01	case
+TCGA-P5-A5F1-01	glioma	30	No	male	TCGA-P5-A5F1	TCGA-P5-A5F1-01	case
+TCGA-P5-A5F2-01	glioma	36	No	female	TCGA-P5-A5F2	TCGA-P5-A5F2-01	case
+TCGA-P5-A5F4-01	glioma	35	No	female	TCGA-P5-A5F4	TCGA-P5-A5F4-01	case
+TCGA-P5-A5F6-01	glioma	26	Yes, age < 30 years	male	TCGA-P5-A5F6	TCGA-P5-A5F6-01	case
+TCGA-P5-A72U-01	glioma	71	No	female	TCGA-P5-A72U	TCGA-P5-A72U-01	case
+TCGA-P5-A72W-01	glioma	35	No	male	TCGA-P5-A72W	TCGA-P5-A72W-01	case
+TCGA-P5-A72X-01	glioma	21	Yes, age < 30 years	male	TCGA-P5-A72X	TCGA-P5-A72X-01	case
+TCGA-P5-A72Z-01	glioma	64	No	female	TCGA-P5-A72Z	TCGA-P5-A72Z-01	case
+TCGA-P5-A730-01	glioma	22	Yes, age < 30 years	male	TCGA-P5-A730	TCGA-P5-A730-01	case
+TCGA-P5-A731-01	glioma	59	No	female	TCGA-P5-A731	TCGA-P5-A731-01	case
+TCGA-P5-A733-01	glioma	52	No	female	TCGA-P5-A733	TCGA-P5-A733-01	case
+TCGA-P5-A735-01	glioma	38	No	female	TCGA-P5-A735	TCGA-P5-A735-01	case
+TCGA-P5-A736-01	glioma	44	No	female	TCGA-P5-A736	TCGA-P5-A736-01	case
+TCGA-P5-A737-01	glioma	47	No	male	TCGA-P5-A737	TCGA-P5-A737-01	case
+TCGA-P5-A77W-01	glioma	37	No	female	TCGA-P5-A77W	TCGA-P5-A77W-01	case
+TCGA-P5-A77X-01	glioma	55	No	female	TCGA-P5-A77X	TCGA-P5-A77X-01	case
+TCGA-P5-A780-01	glioma	44	No	female	TCGA-P5-A780	TCGA-P5-A780-01	case
+TCGA-P5-A781-01	glioma	34	No	female	TCGA-P5-A781	TCGA-P5-A781-01	case
+TCGA-QH-A65R-01	glioma	38	No	female	TCGA-QH-A65R	TCGA-QH-A65R-01	case
+TCGA-QH-A65S-01	glioma	32	No	female	TCGA-QH-A65S	TCGA-QH-A65S-01	case
+TCGA-QH-A65V-01	glioma	43	No	female	TCGA-QH-A65V	TCGA-QH-A65V-01	case
+TCGA-QH-A65X-01	glioma	28	Yes, age < 30 years	female	TCGA-QH-A65X	TCGA-QH-A65X-01	case
+TCGA-QH-A65Z-01	glioma	54	No	male	TCGA-QH-A65Z	TCGA-QH-A65Z-01	case
+TCGA-QH-A6CS-01	glioma	41	No	male	TCGA-QH-A6CS	TCGA-QH-A6CS-01	case
+TCGA-QH-A6CU-01	glioma	52	No	female	TCGA-QH-A6CU	TCGA-QH-A6CU-01	case
+TCGA-QH-A6CV-01	glioma	51	No	male	TCGA-QH-A6CV	TCGA-QH-A6CV-01	case
+TCGA-QH-A6CW-01	glioma	43	No	male	TCGA-QH-A6CW	TCGA-QH-A6CW-01	case
+TCGA-QH-A6CX-01	glioma	66	No	male	TCGA-QH-A6CX	TCGA-QH-A6CX-01	case
+TCGA-QH-A6CY-01	glioma	38	No	male	TCGA-QH-A6CY	TCGA-QH-A6CY-01	case
+TCGA-QH-A6CZ-01	glioma	38	No	male	TCGA-QH-A6CZ	TCGA-QH-A6CZ-01	case
+TCGA-QH-A6X3-01	glioma	27	Yes, age < 30 years	male	TCGA-QH-A6X3	TCGA-QH-A6X3-01	case
+TCGA-QH-A6X4-01	glioma	47	No	male	TCGA-QH-A6X4	TCGA-QH-A6X4-01	case
+TCGA-QH-A6X5-01	glioma	58	No	female	TCGA-QH-A6X5	TCGA-QH-A6X5-01	case
+TCGA-QH-A6X8-01	glioma	56	No	female	TCGA-QH-A6X8	TCGA-QH-A6X8-01	case
+TCGA-QH-A6X9-01	glioma	73	No	female	TCGA-QH-A6X9	TCGA-QH-A6X9-01	case
+TCGA-QH-A6XA-01	glioma	23	Yes, age < 30 years	female	TCGA-QH-A6XA	TCGA-QH-A6XA-01	case
+TCGA-QH-A6XC-01	glioma	48	No	male	TCGA-QH-A6XC	TCGA-QH-A6XC-01	case
+TCGA-QH-A86X-01	glioma	33	No	male	TCGA-QH-A86X	TCGA-QH-A86X-01	case
+TCGA-QH-A870-01	glioma	38	No	female	TCGA-QH-A870	TCGA-QH-A870-01	case
+TCGA-R8-A6MK-01	glioma	40	No	male	TCGA-R8-A6MK	TCGA-R8-A6MK-01	case
+TCGA-R8-A6ML-01	glioma	52	No	male	TCGA-R8-A6ML	TCGA-R8-A6ML-01	case
+TCGA-R8-A6MO-01	glioma	53	No	female	TCGA-R8-A6MO	TCGA-R8-A6MO-01	case
+TCGA-R8-A6YH-01	glioma	NA	Unknown	unknown	TCGA-R8-A6YH	TCGA-R8-A6YH-01	case
+TCGA-R8-A73M-01	glioma	48	No	female	TCGA-R8-A73M	TCGA-R8-A73M-01	case
+TCGA-RY-A83X-01	glioma	46	No	female	TCGA-RY-A83X	TCGA-RY-A83X-01	case
+TCGA-RY-A83Y-01	glioma	45	No	male	TCGA-RY-A83Y	TCGA-RY-A83Y-01	case
+TCGA-RY-A83Z-01	glioma	54	No	female	TCGA-RY-A83Z	TCGA-RY-A83Z-01	case
+TCGA-RY-A840-01	glioma	47	No	male	TCGA-RY-A840	TCGA-RY-A840-01	case
+TCGA-RY-A843-01	glioma	30	No	male	TCGA-RY-A843	TCGA-RY-A843-01	case
+TCGA-RY-A845-01	glioma	40	No	female	TCGA-RY-A845	TCGA-RY-A845-01	case
+TCGA-RY-A847-01	glioma	45	No	male	TCGA-RY-A847	TCGA-RY-A847-01	case
+TCGA-S9-A6TS-01	glioma	48	No	female	TCGA-S9-A6TS	TCGA-S9-A6TS-01	case
+TCGA-S9-A6TU-01	glioma	38	No	male	TCGA-S9-A6TU	TCGA-S9-A6TU-01	case
+TCGA-S9-A6TV-01	glioma	50	No	male	TCGA-S9-A6TV	TCGA-S9-A6TV-01	case
+TCGA-S9-A6TW-01	glioma	40	No	male	TCGA-S9-A6TW	TCGA-S9-A6TW-01	case
+TCGA-S9-A6TX-01	glioma	46	No	male	TCGA-S9-A6TX	TCGA-S9-A6TX-01	case
+TCGA-S9-A6TY-01	glioma	50	No	male	TCGA-S9-A6TY	TCGA-S9-A6TY-01	case
+TCGA-S9-A6TZ-01	glioma	39	No	female	TCGA-S9-A6TZ	TCGA-S9-A6TZ-01	case
+TCGA-S9-A6U0-01	glioma	46	No	male	TCGA-S9-A6U0	TCGA-S9-A6U0-01	case
+TCGA-S9-A6U1-01	glioma	22	Yes, age < 30 years	female	TCGA-S9-A6U1	TCGA-S9-A6U1-01	case
+TCGA-S9-A6U2-01	glioma	48	No	female	TCGA-S9-A6U2	TCGA-S9-A6U2-01	case
+TCGA-S9-A6U5-01	glioma	33	No	male	TCGA-S9-A6U5	TCGA-S9-A6U5-01	case
+TCGA-S9-A6U6-01	glioma	28	Yes, age < 30 years	male	TCGA-S9-A6U6	TCGA-S9-A6U6-01	case
+TCGA-S9-A6U8-01	glioma	24	Yes, age < 30 years	male	TCGA-S9-A6U8	TCGA-S9-A6U8-01	case
+TCGA-S9-A6U9-01	glioma	36	No	male	TCGA-S9-A6U9	TCGA-S9-A6U9-01	case
+TCGA-S9-A6UA-01	glioma	66	No	male	TCGA-S9-A6UA	TCGA-S9-A6UA-01	case
+TCGA-S9-A6UB-01	glioma	52	No	male	TCGA-S9-A6UB	TCGA-S9-A6UB-01	case
+TCGA-S9-A6WD-01	glioma	58	No	male	TCGA-S9-A6WD	TCGA-S9-A6WD-01	case
+TCGA-S9-A6WE-01	glioma	34	No	male	TCGA-S9-A6WE	TCGA-S9-A6WE-01	case
+TCGA-S9-A6WG-01	glioma	31	No	male	TCGA-S9-A6WG	TCGA-S9-A6WG-01	case
+TCGA-S9-A6WH-01	glioma	73	No	female	TCGA-S9-A6WH	TCGA-S9-A6WH-01	case
+TCGA-S9-A6WI-01	glioma	56	No	female	TCGA-S9-A6WI	TCGA-S9-A6WI-01	case
+TCGA-S9-A6WL-01	glioma	52	No	male	TCGA-S9-A6WL	TCGA-S9-A6WL-01	case
+TCGA-S9-A6WM-01	glioma	59	No	female	TCGA-S9-A6WM	TCGA-S9-A6WM-01	case
+TCGA-S9-A6WN-01	glioma	38	No	female	TCGA-S9-A6WN	TCGA-S9-A6WN-01	case
+TCGA-S9-A6WO-01	glioma	29	Yes, age < 30 years	male	TCGA-S9-A6WO	TCGA-S9-A6WO-01	case
+TCGA-S9-A6WP-01	glioma	42	No	male	TCGA-S9-A6WP	TCGA-S9-A6WP-01	case
+TCGA-S9-A7IQ-01	glioma	45	No	female	TCGA-S9-A7IQ	TCGA-S9-A7IQ-01	case
+TCGA-S9-A7IS-01	glioma	33	No	female	TCGA-S9-A7IS	TCGA-S9-A7IS-01	case
+TCGA-S9-A7IX-01	glioma	57	No	male	TCGA-S9-A7IX	TCGA-S9-A7IX-01	case
+TCGA-S9-A7IY-01	glioma	39	No	male	TCGA-S9-A7IY	TCGA-S9-A7IY-01	case
+TCGA-S9-A7IZ-01	glioma	48	No	female	TCGA-S9-A7IZ	TCGA-S9-A7IZ-01	case
+TCGA-S9-A7J0-01	glioma	30	No	female	TCGA-S9-A7J0	TCGA-S9-A7J0-01	case
+TCGA-S9-A7J1-01	glioma	43	No	male	TCGA-S9-A7J1	TCGA-S9-A7J1-01	case
+TCGA-S9-A7J2-01	glioma	25	Yes, age < 30 years	male	TCGA-S9-A7J2	TCGA-S9-A7J2-01	case
+TCGA-S9-A7J3-01	glioma	52	No	female	TCGA-S9-A7J3	TCGA-S9-A7J3-01	case
+TCGA-S9-A7QW-01	glioma	54	No	female	TCGA-S9-A7QW	TCGA-S9-A7QW-01	case
+TCGA-S9-A7QX-01	glioma	36	No	female	TCGA-S9-A7QX	TCGA-S9-A7QX-01	case
+TCGA-S9-A7QY-01	glioma	35	No	female	TCGA-S9-A7QY	TCGA-S9-A7QY-01	case
+TCGA-S9-A7QZ-01	glioma	41	No	male	TCGA-S9-A7QZ	TCGA-S9-A7QZ-01	case
+TCGA-S9-A7R1-01	glioma	35	No	male	TCGA-S9-A7R1	TCGA-S9-A7R1-01	case
+TCGA-S9-A7R2-01	glioma	69	No	male	TCGA-S9-A7R2	TCGA-S9-A7R2-01	case
+TCGA-S9-A7R3-01	glioma	28	Yes, age < 30 years	female	TCGA-S9-A7R3	TCGA-S9-A7R3-01	case
+TCGA-S9-A7R4-01	glioma	46	No	male	TCGA-S9-A7R4	TCGA-S9-A7R4-01	case
+TCGA-S9-A7R7-01	glioma	27	Yes, age < 30 years	male	TCGA-S9-A7R7	TCGA-S9-A7R7-01	case
+TCGA-S9-A7R8-01	glioma	44	No	female	TCGA-S9-A7R8	TCGA-S9-A7R8-01	case
+TCGA-S9-A89V-01	glioma	70	No	male	TCGA-S9-A89V	TCGA-S9-A89V-01	case
+TCGA-S9-A89Z-01	glioma	40	No	male	TCGA-S9-A89Z	TCGA-S9-A89Z-01	case
+TCGA-TM-A7C3-01	glioma	43	No	female	TCGA-TM-A7C3	TCGA-TM-A7C3-01	case
+TCGA-TM-A7C4-01	glioma	39	No	female	TCGA-TM-A7C4	TCGA-TM-A7C4-01	case
+TCGA-TM-A7C5-01	glioma	30	No	male	TCGA-TM-A7C5	TCGA-TM-A7C5-01	case
+TCGA-TM-A7CA-01	glioma	44	No	male	TCGA-TM-A7CA	TCGA-TM-A7CA-01	case
+TCGA-TM-A7CF-01	glioma	41	No	female	TCGA-TM-A7CF	TCGA-TM-A7CF-01	case
+TCGA-TM-A7CF-02	glioma	41	No	female	TCGA-TM-A7CF	TCGA-TM-A7CF-02	case
+TCGA-TM-A84B-01	glioma	40	No	male	TCGA-TM-A84B	TCGA-TM-A84B-01	case
+TCGA-TM-A84C-01	glioma	32	No	male	TCGA-TM-A84C	TCGA-TM-A84C-01	case
+TCGA-TM-A84F-01	glioma	48	No	male	TCGA-TM-A84F	TCGA-TM-A84F-01	case
+TCGA-TM-A84G-01	glioma	54	No	female	TCGA-TM-A84G	TCGA-TM-A84G-01	case
+TCGA-TM-A84H-01	glioma	44	No	female	TCGA-TM-A84H	TCGA-TM-A84H-01	case
+TCGA-TM-A84I-01	glioma	30	No	male	TCGA-TM-A84I	TCGA-TM-A84I-01	case
+TCGA-TM-A84J-01	glioma	63	No	male	TCGA-TM-A84J	TCGA-TM-A84J-01	case
+TCGA-TM-A84L-01	glioma	31	No	male	TCGA-TM-A84L	TCGA-TM-A84L-01	case
+TCGA-TM-A84M-01	glioma	40	No	male	TCGA-TM-A84M	TCGA-TM-A84M-01	case
+TCGA-TM-A84O-01	glioma	61	No	female	TCGA-TM-A84O	TCGA-TM-A84O-01	case
+TCGA-TM-A84Q-01	glioma	31	No	male	TCGA-TM-A84Q	TCGA-TM-A84Q-01	case
+TCGA-TM-A84R-01	glioma	46	No	male	TCGA-TM-A84R	TCGA-TM-A84R-01	case
+TCGA-TM-A84S-01	glioma	36	No	male	TCGA-TM-A84S	TCGA-TM-A84S-01	case
+TCGA-TM-A84T-01	glioma	19	Yes, age < 30 years	male	TCGA-TM-A84T	TCGA-TM-A84T-01	case
+TCGA-TQ-A7RF-01	glioma	27	Yes, age < 30 years	female	TCGA-TQ-A7RF	TCGA-TQ-A7RF-01	case
+TCGA-TQ-A7RG-01	glioma	36	No	male	TCGA-TQ-A7RG	TCGA-TQ-A7RG-01	case
+TCGA-TQ-A7RH-01	glioma	39	No	male	TCGA-TQ-A7RH	TCGA-TQ-A7RH-01	case
+TCGA-TQ-A7RI-01	glioma	37	No	female	TCGA-TQ-A7RI	TCGA-TQ-A7RI-01	case
+TCGA-TQ-A7RJ-01	glioma	25	Yes, age < 30 years	female	TCGA-TQ-A7RJ	TCGA-TQ-A7RJ-01	case
+TCGA-TQ-A7RK-01	glioma	29	Yes, age < 30 years	male	TCGA-TQ-A7RK	TCGA-TQ-A7RK-01	case
+TCGA-TQ-A7RK-02	glioma	29	Yes, age < 30 years	male	TCGA-TQ-A7RK	TCGA-TQ-A7RK-02	case
+TCGA-TQ-A7RM-01	glioma	41	No	female	TCGA-TQ-A7RM	TCGA-TQ-A7RM-01	case
+TCGA-TQ-A7RN-01	glioma	32	No	male	TCGA-TQ-A7RN	TCGA-TQ-A7RN-01	case
+TCGA-TQ-A7RO-01	glioma	29	Yes, age < 30 years	male	TCGA-TQ-A7RO	TCGA-TQ-A7RO-01	case
+TCGA-TQ-A7RP-01	glioma	66	No	male	TCGA-TQ-A7RP	TCGA-TQ-A7RP-01	case
+TCGA-TQ-A7RQ-01	glioma	38	No	female	TCGA-TQ-A7RQ	TCGA-TQ-A7RQ-01	case
+TCGA-TQ-A7RR-01	glioma	38	No	male	TCGA-TQ-A7RR	TCGA-TQ-A7RR-01	case
+TCGA-TQ-A7RS-01	glioma	25	Yes, age < 30 years	female	TCGA-TQ-A7RS	TCGA-TQ-A7RS-01	case
+TCGA-TQ-A7RU-01	glioma	51	No	male	TCGA-TQ-A7RU	TCGA-TQ-A7RU-01	case
+TCGA-TQ-A7RV-01	glioma	27	Yes, age < 30 years	male	TCGA-TQ-A7RV	TCGA-TQ-A7RV-01	case
+TCGA-TQ-A7RV-02	glioma	27	Yes, age < 30 years	male	TCGA-TQ-A7RV	TCGA-TQ-A7RV-02	case
+TCGA-TQ-A7RW-01	glioma	32	No	male	TCGA-TQ-A7RW	TCGA-TQ-A7RW-01	case
+TCGA-TQ-A8XE-01	glioma	42	No	female	TCGA-TQ-A8XE	TCGA-TQ-A8XE-01	case
+TCGA-TQ-A8XE-02	glioma	42	No	female	TCGA-TQ-A8XE	TCGA-TQ-A8XE-02	case
+TCGA-VM-A8C8-01	glioma	50	No	female	TCGA-VM-A8C8	TCGA-VM-A8C8-01	case
+TCGA-VM-A8C9-01	glioma	37	No	female	TCGA-VM-A8C9	TCGA-VM-A8C9-01	case
+TCGA-VM-A8CA-01	glioma	54	No	male	TCGA-VM-A8CA	TCGA-VM-A8CA-01	case
+TCGA-VM-A8CB-01	glioma	33	No	male	TCGA-VM-A8CB	TCGA-VM-A8CB-01	case
+TCGA-VM-A8CD-01	glioma	58	No	male	TCGA-VM-A8CD	TCGA-VM-A8CD-01	case
+TCGA-VM-A8CE-01	glioma	25	Yes, age < 30 years	male	TCGA-VM-A8CE	TCGA-VM-A8CE-01	case
+TCGA-VM-A8CF-01	glioma	44	No	female	TCGA-VM-A8CF	TCGA-VM-A8CF-01	case
+TCGA-VM-A8CH-01	glioma	24	Yes, age < 30 years	female	TCGA-VM-A8CH	TCGA-VM-A8CH-01	case
+TCGA-VV-A829-01	glioma	44	No	male	TCGA-VV-A829	TCGA-VV-A829-01	case
+TCGA-VV-A86M-01	glioma	36	No	female	TCGA-VV-A86M	TCGA-VV-A86M-01	case
+TCGA-VW-A7QS-01	glioma	35	No	female	TCGA-VW-A7QS	TCGA-VW-A7QS-01	case
+TCGA-VW-A8FI-01	glioma	66	No	male	TCGA-VW-A8FI	TCGA-VW-A8FI-01	case
+TCGA-W9-A837-01	glioma	47	No	male	TCGA-W9-A837	TCGA-W9-A837-01	case
+TCGA-WH-A86K-01	glioma	65	No	male	TCGA-WH-A86K	TCGA-WH-A86K-01	case
+TCGA-WY-A858-01	glioma	32	No	female	TCGA-WY-A858	TCGA-WY-A858-01	case
+TCGA-WY-A859-01	glioma	34	No	female	TCGA-WY-A859	TCGA-WY-A859-01	case
+TCGA-WY-A85A-01	glioma	20	Yes, age < 30 years	male	TCGA-WY-A85A	TCGA-WY-A85A-01	case
+TCGA-WY-A85B-01	glioma	24	Yes, age < 30 years	male	TCGA-WY-A85B	TCGA-WY-A85B-01	case
+TCGA-WY-A85C-01	glioma	36	No	male	TCGA-WY-A85C	TCGA-WY-A85C-01	case
+TCGA-WY-A85D-01	glioma	60	No	male	TCGA-WY-A85D	TCGA-WY-A85D-01	case
+TCGA-WY-A85E-01	glioma	48	No	female	TCGA-WY-A85E	TCGA-WY-A85E-01	case
+TH27_1167_S01	acinar cell carcinoma	13	Yes, age < 30 years	male	N/A	N/A	control
+TH27_0694_S01	acute leukemia	21	Yes, age < 30 years	female	N/A	N/A	control
+TH26_0657_S06	acute leukemia	NA	No	unknown	N/A	N/A	control
+TH26_0657_S01	acute leukemia	NA	No	unknown	N/A	N/A	control
+TH26_0657_S05	acute leukemia	NA	No	unknown	N/A	N/A	control
+TH26_0657_S04	acute leukemia	NA	No	unknown	N/A	N/A	control
+TH26_0657_S02	acute leukemia	NA	No	unknown	N/A	N/A	control
+TH26_0657_S03	acute leukemia	NA	No	unknown	N/A	N/A	control
+TH03_0010_S01	acute leukemia of ambiguous lineage	11	Yes, age < 30 years	female	N/A	N/A	control
+TH03_0010_S02	acute leukemia of ambiguous lineage	11	Yes, age < 30 years	female	N/A	N/A	control
+THR31_0920_S01	acute lymphoblastic leukemia	NA	Yes, age < 30 years	male	N/A	SRR4306015	control
+TARGET-10-PAPAGK-09	acute lymphoblastic leukemia	2.3	Yes, age < 30 years	female	TARGET-10-PAPAGK	TARGET-10-PAPAGK-09	control
+TH03_0289_S01	acute lymphoblastic leukemia	17	Yes, age < 30 years	male	N/A	N/A	control
+TARGET-10-PAPBSY-09	acute lymphoblastic leukemia	2.42	Yes, age < 30 years	male	TARGET-10-PAPBSY	TARGET-10-PAPBSY-09	control
+TARGET-10-PARJZZ-09	acute lymphoblastic leukemia	4.2	Yes, age < 30 years	male	TARGET-10-PARJZZ	TARGET-10-PARJZZ-09	control
+THR08_0200_S01	acute lymphoblastic leukemia	0.2	Yes, age < 30 years	unknown	SJINF075	SJINF075_D-HAMJ5ADXX	control
+TARGET-10-PANUSN-03	acute lymphoblastic leukemia	2.9	Yes, age < 30 years	male	TARGET-10-PANUSN	TARGET-10-PANUSN-03	control
+TARGET-10-PAPJHB-04	acute lymphoblastic leukemia	5.5	Yes, age < 30 years	female	TARGET-10-PAPJHB	TARGET-10-PAPJHB-04	control
+THR08_0186_S02	acute lymphoblastic leukemia	0.2	Yes, age < 30 years	unknown	SJINF060	SJINF060_D-HAMJ5ADXX	control
+TARGET-10-PANTSM-09	acute lymphoblastic leukemia	7.1	Yes, age < 30 years	male	TARGET-10-PANTSM	TARGET-10-PANTSM-09	control
+TARGET-10-PAPDWT-04	acute lymphoblastic leukemia	5.88	Yes, age < 30 years	female	TARGET-10-PAPDWT	TARGET-10-PAPDWT-04	control
+THR08_0192_S01	acute lymphoblastic leukemia	0.9	Yes, age < 30 years	unknown	SJINF066	SJINF066_D-H8RMVADXX	control
+TARGET-10-PARMXF-04	acute lymphoblastic leukemia	4	Yes, age < 30 years	female	TARGET-10-PARMXF	TARGET-10-PARMXF-04	control
+TARGET-10-PARACA-09	acute lymphoblastic leukemia	2.66	Yes, age < 30 years	male	TARGET-10-PARACA	TARGET-10-PARACA-09	control
+TARGET-10-PAPBES-03	acute lymphoblastic leukemia	2.22	Yes, age < 30 years	male	TARGET-10-PAPBES	TARGET-10-PAPBES-03	control
+TARGET-10-PANDWE-03	acute lymphoblastic leukemia	14.28	Yes, age < 30 years	female	TARGET-10-PANDWE	TARGET-10-PANDWE-03	control
+TH27_1411_S01	acute lymphoblastic leukemia	3	Yes, age < 30 years	male	N/A	N/A	control
+TARGET-10-PANXDR-09	acute lymphoblastic leukemia	3.26	Yes, age < 30 years	male	TARGET-10-PANXDR	TARGET-10-PANXDR-09	control
+TARGET-10-PAPSPN-09	acute lymphoblastic leukemia	11.4	Yes, age < 30 years	male	TARGET-10-PAPSPN	TARGET-10-PAPSPN-09	control
+TARGET-10-PAPJHR-09	acute lymphoblastic leukemia	11	Yes, age < 30 years	male	TARGET-10-PAPJHR	TARGET-10-PAPJHR-09	control
+TCGA-AB-2959-03	acute myeloid leukemia	71	No	male	TCGA-AB-2959	TCGA-AB-2959-03	control
+TCGA-AB-2972-03	acute myeloid leukemia	82	No	female	TCGA-AB-2972	TCGA-AB-2972-03	control
+TCGA-AB-2919-03	acute myeloid leukemia	54	No	female	TCGA-AB-2919	TCGA-AB-2919-03	control
+TARGET-20-PARPDS-09	acute myeloid leukemia	10.34	Yes, age < 30 years	female	TARGET-20-PARPDS	TARGET-20-PARPDS-09	control
+TCGA-AB-2949-03	acute myeloid leukemia	58	No	male	TCGA-AB-2949	TCGA-AB-2949-03	control
+TARGET-21-PATJMY-41	acute myeloid leukemia	NA	Yes, age < 30 years	male	TARGET-21-PATJMY	TARGET-21-PATJMY-41	control
+TH03_0149_S01	acute myeloid leukemia	14	Yes, age < 30 years	male	N/A	N/A	control
+TARGET-20-PARMZF-09	acute myeloid leukemia	8.67	Yes, age < 30 years	female	TARGET-20-PARMZF	TARGET-20-PARMZF-09	control
+TCGA-AB-2867-03	acute myeloid leukemia	66	No	female	TCGA-AB-2867	TCGA-AB-2867-03	control
+TCGA-AB-2859-03	acute myeloid leukemia	40	No	male	TCGA-AB-2859	TCGA-AB-2859-03	control
+TCGA-AB-2863-03	acute myeloid leukemia	63	No	male	TCGA-AB-2863	TCGA-AB-2863-03	control
+TCGA-AB-2849-03	acute myeloid leukemia	39	No	male	TCGA-AB-2849	TCGA-AB-2849-03	control
+TCGA-AB-2834-03	acute myeloid leukemia	33	No	male	TCGA-AB-2834	TCGA-AB-2834-03	control
+THR08_0214_S01	acute myeloid leukemia	11.1	Yes, age < 30 years	unknown	SJMLL018	SJMLL018_D-H8RMJADXX	control
+TARGET-20-PASFEW-09	acute myeloid leukemia	1.17	Yes, age < 30 years	female	TARGET-20-PASFEW	TARGET-20-PASFEW-09	control
+TCGA-AB-3009-03	acute myeloid leukemia	23	Yes, age < 30 years	male	TCGA-AB-3009	TCGA-AB-3009-03	control
+TARGET-20-PAKERZ-04	acute myeloid leukemia	2.8	Yes, age < 30 years	female	TARGET-20-PAKERZ	TARGET-20-PAKERZ-04	control
+TARGET-21-PASFJJ-09	acute myeloid leukemia	NA	Yes, age < 30 years	female	TARGET-21-PASFJJ	TARGET-21-PASFJJ-09	control
+TARGET-20-PARYFN-03	acute myeloid leukemia	4.4	Yes, age < 30 years	female	TARGET-20-PARYFN	TARGET-20-PARYFN-03	control
+TCGA-AB-2948-03	acute myeloid leukemia	67	No	male	TCGA-AB-2948	TCGA-AB-2948-03	control
+THR08_0201_S01	acute undifferentiated leukemia	15.8	Yes, age < 30 years	unknown	SJMLL001	SJMLL001_D-HAM3AADXX	control
+THR10_0228_S01	adrenocortical adenoma	4.98	Yes, age < 30 years	female	ACT004	SJACT004_D	control
+TCGA-OR-A5LK-01	adrenocortical cancer	62	No	male	TCGA-OR-A5LK	TCGA-OR-A5LK-01	control
+TCGA-OR-A5KV-01	adrenocortical cancer	17	Yes, age < 30 years	female	TCGA-OR-A5KV	TCGA-OR-A5KV-01	control
+TCGA-OR-A5JL-01	adrenocortical cancer	36	No	female	TCGA-OR-A5JL	TCGA-OR-A5JL-01	control
+TCGA-OR-A5JV-01	adrenocortical cancer	55	No	male	TCGA-OR-A5JV	TCGA-OR-A5JV-01	control
+TCGA-OR-A5LP-01	adrenocortical cancer	37	No	female	TCGA-OR-A5LP	TCGA-OR-A5LP-01	control
+TCGA-OR-A5J9-01	adrenocortical cancer	22	Yes, age < 30 years	female	TCGA-OR-A5J9	TCGA-OR-A5J9-01	control
+TCGA-OR-A5KY-01	adrenocortical cancer	23	Yes, age < 30 years	female	TCGA-OR-A5KY	TCGA-OR-A5KY-01	control
+TCGA-OR-A5L4-01	adrenocortical cancer	48	No	female	TCGA-OR-A5L4	TCGA-OR-A5L4-01	control
+TCGA-OR-A5LT-01	adrenocortical cancer	57	No	male	TCGA-OR-A5LT	TCGA-OR-A5LT-01	control
+TCGA-OR-A5L9-01	adrenocortical cancer	53	No	female	TCGA-OR-A5L9	TCGA-OR-A5L9-01	control
+TCGA-OR-A5L5-01	adrenocortical cancer	77	No	female	TCGA-OR-A5L5	TCGA-OR-A5L5-01	control
+TCGA-OR-A5JF-01	adrenocortical cancer	69	No	female	TCGA-OR-A5JF	TCGA-OR-A5JF-01	control
+TCGA-OR-A5JD-01	adrenocortical cancer	57	No	female	TCGA-OR-A5JD	TCGA-OR-A5JD-01	control
+TCGA-OR-A5K3-01	adrenocortical cancer	53	No	male	TCGA-OR-A5K3	TCGA-OR-A5K3-01	control
+TCGA-OR-A5J8-01	adrenocortical cancer	66	No	male	TCGA-OR-A5J8	TCGA-OR-A5J8-01	control
+TCGA-OR-A5LS-01	adrenocortical cancer	34	No	female	TCGA-OR-A5LS	TCGA-OR-A5LS-01	control
+TCGA-OR-A5LH-01	adrenocortical cancer	36	No	female	TCGA-OR-A5LH	TCGA-OR-A5LH-01	control
+TCGA-OR-A5JZ-01	adrenocortical cancer	60	No	male	TCGA-OR-A5JZ	TCGA-OR-A5JZ-01	control
+TCGA-OR-A5LN-01	adrenocortical cancer	31	No	female	TCGA-OR-A5LN	TCGA-OR-A5LN-01	control
+TCGA-OR-A5JI-01	adrenocortical cancer	22	Yes, age < 30 years	male	TCGA-OR-A5JI	TCGA-OR-A5JI-01	control
+THR10_0231_S01	adrenocortical carcinoma	8.58	Yes, age < 30 years	male	ACT007	SJACT007_D	control
+THR10_0232_S01	adrenocortical carcinoma	3.24	Yes, age < 30 years	female	ACT060	SJACT060_D	control
+THR10_0225_S01	adrenocortical carcinoma	2.98	Yes, age < 30 years	female	ACT001	SJACT001_D	control
+THR10_0236_S01	adrenocortical carcinoma	2.95	Yes, age < 30 years	female	ACT064	SJACT064_D	control
+THR10_0235_S01	adrenocortical carcinoma	1.36	Yes, age < 30 years	female	ACT063	SJACT063_D	control
+THR31_0928_S01	adrenocortical carcinoma	NA	Yes, age < 30 years	female	N/A	SRR4306201	control
+THR10_0234_S01	adrenocortical carcinoma	4.72	Yes, age < 30 years	female	ACT062	SJACT062_D	control
+THR10_0230_S01	adrenocortical carcinoma	11.72	Yes, age < 30 years	female	ACT006	SJACT006_D	control
+THR31_0917_S01	adrenocortical carcinoma	NA	Yes, age < 30 years	female	N/A	SRR4305988	control
+THR31_0926_S01	adrenocortical carcinoma	NA	Yes, age < 30 years	female	N/A	SRR4306162	control
+TH03_0024_S01	adrenocortical carcinoma	12	Yes, age < 30 years	not reported	N/A	N/A	control
+THR10_0238_S01	adrenocortical carcinoma	1.58	Yes, age < 30 years	female	ACT066	SJACT066_D	control
+THR10_0229_S01	adrenocortical carcinoma	15.39	Yes, age < 30 years	female	ACT005	SJACT005_D	control
+THR10_0233_S01	adrenocortical carcinoma	3.21	Yes, age < 30 years	female	ACT061	SJACT061_D	control
+THR10_0237_S01	adrenocortical carcinoma	1.43	Yes, age < 30 years	female	ACT065	SJACT065_D	control
+THR10_0226_S01	adrenocortical carcinoma	2.63	Yes, age < 30 years	female	ACT002	SJACT002_D	control
+THR10_0243_S01	adrenocortical carcinoma	1.48	Yes, age < 30 years	female	ACT071	SJACT071_D	control
+THR29_0794_S01	alveolar rhabdomyosarcoma	16	Yes, age < 30 years	female	RMS_232	RMS_232_tumor, SRR5144253	control
+THR29_0803_S01	alveolar rhabdomyosarcoma	4	Yes, age < 30 years	female	RMS_248	RMS_248_tumor, SRR5144262	control
+THR29_0729_S01	alveolar rhabdomyosarcoma	5	Yes, age < 30 years	male	RMS_202	RMS_202_tumor, SRR5144190	control
+THR29_0757_S01	alveolar rhabdomyosarcoma	9	Yes, age < 30 years	female	RMS_2072	RMS_2072_tumor, SRR5144215	control
+THR29_0801_S01	alveolar rhabdomyosarcoma	15	Yes, age < 30 years	female	RMS_246	RMS_246_tumor, SRR5144260	control
+THR29_0755_S01	alveolar rhabdomyosarcoma	4	Yes, age < 30 years	male	RMS_2065	RMS_2065_tumor, SRR5144212	control
+THR29_0769_S01	alveolar rhabdomyosarcoma	13	Yes, age < 30 years	female	RMS_209	RMS_209_tumor, SRR5144230	control
+THR29_0751_S01	alveolar rhabdomyosarcoma	1	Yes, age < 30 years	female	RMS_2058	RMS_2058_tumor, SRR5144208	control
+TH06_1174_S01	alveolar rhabdomyosarcoma	16	Yes, age < 30 years	female	N/A	N/A	control
+TH06_0623_S01	alveolar rhabdomyosarcoma	13	Yes, age < 30 years	male	N/A	N/A	control
+THR29_0754_S01	alveolar rhabdomyosarcoma	0	Yes, age < 30 years	male	RMS_2063	RMS_2063_tumor, SRR5144211	control
+THR29_0756_S01	alveolar rhabdomyosarcoma	7	Yes, age < 30 years	male	RMS_2071	RMS_2071_tumor, SRR5144214	control
+THR29_0800_S01	alveolar rhabdomyosarcoma	1	Yes, age < 30 years	female	RMS_244	RMS_244_tumor, SRR5144259	control
+THR29_0771_S01	alveolar rhabdomyosarcoma	6	Yes, age < 30 years	male	RMS_2093	RMS_2093_tumor, SRR5144228	control
+THR29_0720_S01	alveolar rhabdomyosarcoma	14	Yes, age < 30 years	male	NCI_0040	NCI_0040_tumor, SRR5144178	control
+THR29_0796_S01	alveolar rhabdomyosarcoma	3	Yes, age < 30 years	male	RMS_238	RMS_238_tumor, SRR5144255	control
+THR29_0795_S01	alveolar rhabdomyosarcoma	1	Yes, age < 30 years	male	RMS_235	RMS_235_tumor, SRR5144254	control
+THR29_0737_S01	alveolar rhabdomyosarcoma	3	Yes, age < 30 years	male	RMS_2037	RMS_2037_tumor, SRR5144195	control
+THR29_0721_S01	alveolar rhabdomyosarcoma	NA	Yes, age < 30 years	male	RMS_007	RMS_007_tumor, SRR5144179	control
+THR29_0739_S01	alveolar rhabdomyosarcoma	15	Yes, age < 30 years	female	RMS_2039	RMS_2039_tumor, SRR5144197	control
+TH27_1408_S01	alveolar soft part sarcoma	NA	NA	male	N/A	N/A	control
+TH06_0619_S01	angiosarcoma	4	Yes, age < 30 years	female	N/A	N/A	control
+TH03_0016_S01	atypical teratoid/rhabdoid tumor	1.4	Yes, age < 30 years	male	N/A	N/A	control
+TH06_0613_S02	atypical teratoid/rhabdoid tumor	0	Yes, age < 30 years	male	N/A	N/A	control
+TH06_0613_S01	atypical teratoid/rhabdoid tumor	0	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-DK-AA6X-01	bladder urothelial carcinoma	63	No	male	TCGA-DK-AA6X	TCGA-DK-AA6X-01	control
+TCGA-E7-A6MF-01	bladder urothelial carcinoma	37	No	male	TCGA-E7-A6MF	TCGA-E7-A6MF-01	control
+TCGA-E7-A97Q-01	bladder urothelial carcinoma	60	No	female	TCGA-E7-A97Q	TCGA-E7-A97Q-01	control
+TCGA-DK-A1AA-01	bladder urothelial carcinoma	57	No	male	TCGA-DK-A1AA	TCGA-DK-A1AA-01	control
+TCGA-XF-A9T8-01	bladder urothelial carcinoma	64	No	male	TCGA-XF-A9T8	TCGA-XF-A9T8-01	control
+TCGA-G2-A2ES-01	bladder urothelial carcinoma	85	No	male	TCGA-G2-A2ES	TCGA-G2-A2ES-01	control
+TCGA-FD-A5BU-01	bladder urothelial carcinoma	76	No	female	TCGA-FD-A5BU	TCGA-FD-A5BU-01	control
+TCGA-E7-A3X6-01	bladder urothelial carcinoma	70	No	male	TCGA-E7-A3X6	TCGA-E7-A3X6-01	control
+TCGA-BL-A0C8-01	bladder urothelial carcinoma	73	No	male	TCGA-BL-A0C8	TCGA-BL-A0C8-01	control
+TCGA-CF-A9FF-01	bladder urothelial carcinoma	52	No	male	TCGA-CF-A9FF	TCGA-CF-A9FF-01	control
+TCGA-FD-A5C1-01	bladder urothelial carcinoma	61	No	female	TCGA-FD-A5C1	TCGA-FD-A5C1-01	control
+TCGA-K4-AAQO-01	bladder urothelial carcinoma	56	No	male	TCGA-K4-AAQO	TCGA-K4-AAQO-01	control
+TCGA-ZF-A9RE-01	bladder urothelial carcinoma	78	No	female	TCGA-ZF-A9RE	TCGA-ZF-A9RE-01	control
+TCGA-BT-A20T-01	bladder urothelial carcinoma	63	No	male	TCGA-BT-A20T	TCGA-BT-A20T-01	control
+TCGA-2F-A9KO-01	bladder urothelial carcinoma	63	No	male	TCGA-2F-A9KO	TCGA-2F-A9KO-01	control
+TCGA-FD-A3NA-01	bladder urothelial carcinoma	60	No	male	TCGA-FD-A3NA	TCGA-FD-A3NA-01	control
+TCGA-ZF-A9R3-01	bladder urothelial carcinoma	53	No	female	TCGA-ZF-A9R3	TCGA-ZF-A9R3-01	control
+TCGA-UY-A9PA-01	bladder urothelial carcinoma	48	No	male	TCGA-UY-A9PA	TCGA-UY-A9PA-01	control
+TCGA-KQ-A41S-01	bladder urothelial carcinoma	87	No	female	TCGA-KQ-A41S	TCGA-KQ-A41S-01	control
+TCGA-XF-A9SM-01	bladder urothelial carcinoma	76	No	male	TCGA-XF-A9SM	TCGA-XF-A9SM-01	control
+TCGA-E2-A1BC-01	breast invasive carcinoma	63	No	female	TCGA-E2-A1BC	TCGA-E2-A1BC-01	control
+TCGA-AO-A12A-01	breast invasive carcinoma	47	No	female	TCGA-AO-A12A	TCGA-AO-A12A-01	control
+TCGA-E9-A1NF-01	breast invasive carcinoma	60	No	female	TCGA-E9-A1NF	TCGA-E9-A1NF-01	control
+TCGA-E2-A15G-01	breast invasive carcinoma	76	No	female	TCGA-E2-A15G	TCGA-E2-A15G-01	control
+TCGA-B6-A1KC-01	breast invasive carcinoma	67	No	female	TCGA-B6-A1KC	TCGA-B6-A1KC-01	control
+TCGA-BH-A0W5-01	breast invasive carcinoma	77	No	female	TCGA-BH-A0W5	TCGA-BH-A0W5-01	control
+TCGA-OL-A5RY-01	breast invasive carcinoma	52	No	female	TCGA-OL-A5RY	TCGA-OL-A5RY-01	control
+TCGA-A8-A06Z-01	breast invasive carcinoma	84	No	female	TCGA-A8-A06Z	TCGA-A8-A06Z-01	control
+TCGA-GI-A2C8-01	breast invasive carcinoma	63	No	female	TCGA-GI-A2C8	TCGA-GI-A2C8-01	control
+TCGA-D8-A1JL-01	breast invasive carcinoma	72	No	female	TCGA-D8-A1JL	TCGA-D8-A1JL-01	control
+TCGA-A2-A04V-01	breast invasive carcinoma	39	No	female	TCGA-A2-A04V	TCGA-A2-A04V-01	control
+TCGA-AR-A0U4-01	breast invasive carcinoma	54	No	female	TCGA-AR-A0U4	TCGA-AR-A0U4-01	control
+TCGA-BH-A0DO-01	breast invasive carcinoma	78	No	female	TCGA-BH-A0DO	TCGA-BH-A0DO-01	control
+TCGA-A8-A086-01	breast invasive carcinoma	59	No	female	TCGA-A8-A086	TCGA-A8-A086-01	control
+TCGA-E9-A226-01	breast invasive carcinoma	45	No	female	TCGA-E9-A226	TCGA-E9-A226-01	control
+TCGA-E2-A107-01	breast invasive carcinoma	54	No	female	TCGA-E2-A107	TCGA-E2-A107-01	control
+TCGA-AO-A128-01	breast invasive carcinoma	61	No	female	TCGA-AO-A128	TCGA-AO-A128-01	control
+TCGA-EW-A1PF-01	breast invasive carcinoma	50	No	female	TCGA-EW-A1PF	TCGA-EW-A1PF-01	control
+TCGA-BH-A0HL-01	breast invasive carcinoma	56	No	female	TCGA-BH-A0HL	TCGA-BH-A0HL-01	control
+TCGA-A8-A08R-01	breast invasive carcinoma	52	No	female	TCGA-A8-A08R	TCGA-A8-A08R-01	control
+TCGA-EA-A5FO-01	cervical & endocervical cancer	59	No	female	TCGA-EA-A5FO	TCGA-EA-A5FO-01	control
+TCGA-C5-A1BL-01	cervical & endocervical cancer	32	No	female	TCGA-C5-A1BL	TCGA-C5-A1BL-01	control
+TCGA-Q1-A6DW-01	cervical & endocervical cancer	44	No	female	TCGA-Q1-A6DW	TCGA-Q1-A6DW-01	control
+TCGA-MA-AA43-01	cervical & endocervical cancer	48	No	female	TCGA-MA-AA43	TCGA-MA-AA43-01	control
+TCGA-C5-A7X3-01	cervical & endocervical cancer	70	No	female	TCGA-C5-A7X3	TCGA-C5-A7X3-01	control
+TCGA-DR-A0ZM-01	cervical & endocervical cancer	61	No	female	TCGA-DR-A0ZM	TCGA-DR-A0ZM-01	control
+TCGA-LP-A4AU-01	cervical & endocervical cancer	35	No	female	TCGA-LP-A4AU	TCGA-LP-A4AU-01	control
+TCGA-C5-A7UI-01	cervical & endocervical cancer	42	No	female	TCGA-C5-A7UI	TCGA-C5-A7UI-01	control
+TCGA-RA-A741-01	cervical & endocervical cancer	34	No	female	TCGA-RA-A741	TCGA-RA-A741-01	control
+TCGA-VS-A8EL-01	cervical & endocervical cancer	38	No	female	TCGA-VS-A8EL	TCGA-VS-A8EL-01	control
+TCGA-IR-A3LB-01	cervical & endocervical cancer	53	No	female	TCGA-IR-A3LB	TCGA-IR-A3LB-01	control
+TCGA-EA-A3HT-01	cervical & endocervical cancer	68	No	female	TCGA-EA-A3HT	TCGA-EA-A3HT-01	control
+TCGA-EK-A2H0-01	cervical & endocervical cancer	24	Yes, age < 30 years	female	TCGA-EK-A2H0	TCGA-EK-A2H0-01	control
+TCGA-FU-A57G-01	cervical & endocervical cancer	49	No	female	TCGA-FU-A57G	TCGA-FU-A57G-01	control
+TCGA-IR-A3LK-01	cervical & endocervical cancer	69	No	female	TCGA-IR-A3LK	TCGA-IR-A3LK-01	control
+TCGA-EA-A50E-01	cervical & endocervical cancer	45	No	female	TCGA-EA-A50E	TCGA-EA-A50E-01	control
+TCGA-VS-A957-01	cervical & endocervical cancer	64	No	female	TCGA-VS-A957	TCGA-VS-A957-01	control
+TCGA-VS-A8QF-01	cervical & endocervical cancer	42	No	female	TCGA-VS-A8QF	TCGA-VS-A8QF-01	control
+TCGA-C5-A1BN-01	cervical & endocervical cancer	26	Yes, age < 30 years	female	TCGA-C5-A1BN	TCGA-C5-A1BN-01	control
+TCGA-C5-A7X8-01	cervical & endocervical cancer	35	No	female	TCGA-C5-A7X8	TCGA-C5-A7X8-01	control
+TCGA-ZD-A8I3-01	cholangiocarcinoma	73	No	female	TCGA-ZD-A8I3	TCGA-ZD-A8I3-01	control
+TCGA-W5-AA2O-01	cholangiocarcinoma	57	No	male	TCGA-W5-AA2O	TCGA-W5-AA2O-01	control
+TCGA-W6-AA0S-01	cholangiocarcinoma	46	No	female	TCGA-W6-AA0S	TCGA-W6-AA0S-01	control
+TCGA-W5-AA2I-01	cholangiocarcinoma	66	No	male	TCGA-W5-AA2I	TCGA-W5-AA2I-01	control
+TCGA-W5-AA33-01	cholangiocarcinoma	60	No	male	TCGA-W5-AA33	TCGA-W5-AA33-01	control
+TCGA-W5-AA38-01	cholangiocarcinoma	55	No	female	TCGA-W5-AA38	TCGA-W5-AA38-01	control
+TCGA-W5-AA2R-01	cholangiocarcinoma	77	No	female	TCGA-W5-AA2R	TCGA-W5-AA2R-01	control
+TCGA-W5-AA36-01	cholangiocarcinoma	51	No	female	TCGA-W5-AA36	TCGA-W5-AA36-01	control
+TCGA-3X-AAVE-01	cholangiocarcinoma	60	No	male	TCGA-3X-AAVE	TCGA-3X-AAVE-01	control
+TCGA-W5-AA2U-01	cholangiocarcinoma	78	No	female	TCGA-W5-AA2U	TCGA-W5-AA2U-01	control
+TCGA-ZH-A8Y2-01	cholangiocarcinoma	59	No	female	TCGA-ZH-A8Y2	TCGA-ZH-A8Y2-01	control
+TCGA-ZH-A8Y4-01	cholangiocarcinoma	58	No	male	TCGA-ZH-A8Y4	TCGA-ZH-A8Y4-01	control
+TCGA-4G-AAZO-01	cholangiocarcinoma	71	No	female	TCGA-4G-AAZO	TCGA-4G-AAZO-01	control
+TCGA-ZH-A8Y5-01	cholangiocarcinoma	69	No	male	TCGA-ZH-A8Y5	TCGA-ZH-A8Y5-01	control
+TCGA-WD-A7RX-01	cholangiocarcinoma	71	No	female	TCGA-WD-A7RX	TCGA-WD-A7RX-01	control
+TCGA-YR-A95A-01	cholangiocarcinoma	52	No	male	TCGA-YR-A95A	TCGA-YR-A95A-01	control
+TCGA-W5-AA39-01	cholangiocarcinoma	81	No	male	TCGA-W5-AA39	TCGA-W5-AA39-01	control
+TCGA-W5-AA2Q-01	cholangiocarcinoma	68	No	male	TCGA-W5-AA2Q	TCGA-W5-AA2Q-01	control
+TCGA-ZU-A8S4-01	cholangiocarcinoma	52	No	male	TCGA-ZU-A8S4	TCGA-ZU-A8S4-01	control
+TCGA-W5-AA2X-01	cholangiocarcinoma	67	No	male	TCGA-W5-AA2X	TCGA-W5-AA2X-01	control
+TH06_1177_S01	choroid plexus carcinoma	3	Yes, age < 30 years	female	N/A	N/A	control
+TH27_0704_S01	clear cell carcinoma of cervix	15	Yes, age < 30 years	female	N/A	N/A	control
+TCGA-CK-5913-01	colon adenocarcinoma	58	No	female	TCGA-CK-5913	TCGA-CK-5913-01	control
+TCGA-CM-5344-01	colon adenocarcinoma	39	No	female	TCGA-CM-5344	TCGA-CM-5344-01	control
+TCGA-5M-AATA-01	colon adenocarcinoma	NA	Unknown	unknown	TCGA-5M-AATA	TCGA-5M-AATA-01	control
+TCGA-D5-6920-01	colon adenocarcinoma	77	No	female	TCGA-D5-6920	TCGA-D5-6920-01	control
+TCGA-AZ-4315-01	colon adenocarcinoma	61	No	male	TCGA-AZ-4315	TCGA-AZ-4315-01	control
+TCGA-AA-3712-01	colon adenocarcinoma	65	No	male	TCGA-AA-3712	TCGA-AA-3712-01	control
+TCGA-D5-5540-01	colon adenocarcinoma	73	No	male	TCGA-D5-5540	TCGA-D5-5540-01	control
+TCGA-CM-4751-01	colon adenocarcinoma	62	No	male	TCGA-CM-4751	TCGA-CM-4751-01	control
+TCGA-D5-6530-01	colon adenocarcinoma	53	No	male	TCGA-D5-6530	TCGA-D5-6530-01	control
+TCGA-D5-6536-01	colon adenocarcinoma	73	No	male	TCGA-D5-6536	TCGA-D5-6536-01	control
+TCGA-G4-6588-01	colon adenocarcinoma	58	No	female	TCGA-G4-6588	TCGA-G4-6588-01	control
+TCGA-G4-6314-01	colon adenocarcinoma	76	No	female	TCGA-G4-6314	TCGA-G4-6314-01	control
+TCGA-CM-5349-01	colon adenocarcinoma	68	No	female	TCGA-CM-5349	TCGA-CM-5349-01	control
+TCGA-AA-3502-01	colon adenocarcinoma	73	No	male	TCGA-AA-3502	TCGA-AA-3502-01	control
+TCGA-QG-A5YW-01	colon adenocarcinoma	55	No	female	TCGA-QG-A5YW	TCGA-QG-A5YW-01	control
+TCGA-D5-6929-01	colon adenocarcinoma	49	No	female	TCGA-D5-6929	TCGA-D5-6929-01	control
+TCGA-G4-6626-01	colon adenocarcinoma	90	No	male	TCGA-G4-6626	TCGA-G4-6626-01	control
+TCGA-D5-6931-01	colon adenocarcinoma	77	No	male	TCGA-D5-6931	TCGA-D5-6931-01	control
+TCGA-NH-A6GA-01	colon adenocarcinoma	58	No	male	TCGA-NH-A6GA	TCGA-NH-A6GA-01	control
+TCGA-A6-2675-01	colon adenocarcinoma	78	No	male	TCGA-A6-2675	TCGA-A6-2675-01	control
+TH06_0611_S01	craniopharyngioma	3	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-DX-A2J1-01	dedifferentiated liposarcoma	53	No	male	TCGA-DX-A2J1	TCGA-DX-A2J1-01	control
+TCGA-DX-A48N-01	dedifferentiated liposarcoma	47	No	male	TCGA-DX-A48N	TCGA-DX-A48N-01	control
+TCGA-DX-AB35-01	dedifferentiated liposarcoma	65	No	male	TCGA-DX-AB35	TCGA-DX-AB35-01	control
+TCGA-DX-A3U6-01	dedifferentiated liposarcoma	63	No	female	TCGA-DX-A3U6	TCGA-DX-A3U6-01	control
+TCGA-3B-A9HS-01	dedifferentiated liposarcoma	60	No	male	TCGA-3B-A9HS	TCGA-3B-A9HS-01	control
+TCGA-DX-A1L4-01	dedifferentiated liposarcoma	60	No	male	TCGA-DX-A1L4	TCGA-DX-A1L4-01	control
+TCGA-DX-A3LY-01	dedifferentiated liposarcoma	66	No	male	TCGA-DX-A3LY	TCGA-DX-A3LY-01	control
+TCGA-DX-AB2F-01	dedifferentiated liposarcoma	76	No	female	TCGA-DX-AB2F	TCGA-DX-AB2F-01	control
+TCGA-3R-A8YX-01	dedifferentiated liposarcoma	66	No	male	TCGA-3R-A8YX	TCGA-3R-A8YX-01	control
+TCGA-DX-A2J4-01	dedifferentiated liposarcoma	60	No	male	TCGA-DX-A2J4	TCGA-DX-A2J4-01	control
+TCGA-DX-A3LS-01	dedifferentiated liposarcoma	78	No	female	TCGA-DX-A3LS	TCGA-DX-A3LS-01	control
+TCGA-DX-A1KW-01	dedifferentiated liposarcoma	67	No	male	TCGA-DX-A1KW	TCGA-DX-A1KW-01	control
+TCGA-DX-A1KY-01	dedifferentiated liposarcoma	66	No	male	TCGA-DX-A1KY	TCGA-DX-A1KY-01	control
+TCGA-WK-A8XO-01	dedifferentiated liposarcoma	66	No	female	TCGA-WK-A8XO	TCGA-WK-A8XO-01	control
+TCGA-PC-A5DN-01	dedifferentiated liposarcoma	77	No	female	TCGA-PC-A5DN	TCGA-PC-A5DN-01	control
+TCGA-DX-A3LT-01	dedifferentiated liposarcoma	62	No	male	TCGA-DX-A3LT	TCGA-DX-A3LT-01	control
+TCGA-DX-A1L1-01	dedifferentiated liposarcoma	60	No	male	TCGA-DX-A1L1	TCGA-DX-A1L1-01	control
+TCGA-DX-A23T-01	dedifferentiated liposarcoma	40	No	female	TCGA-DX-A23T	TCGA-DX-A23T-01	control
+TCGA-DX-A6BG-01	dedifferentiated liposarcoma	51	No	male	TCGA-DX-A6BG	TCGA-DX-A6BG-01	control
+TCGA-DX-A23Y-01	dedifferentiated liposarcoma	80	No	male	TCGA-DX-A23Y	TCGA-DX-A23Y-01	control
+TH34_1399_S01	desmoplastic small round cell tumor	14	Yes, age < 30 years	male	N/A	N/A	control
+TH27_1158_S02	desmoplastic small round cell tumor	18	Yes, age < 30 years	male	N/A	N/A	control
+THR31_0931_S01	desmoplastic small round cell tumor	NA	Yes, age < 30 years	male	N/A	SRR4306645	control
+THR31_0927_S01	desmoplastic small round cell tumor	NA	Yes, age < 30 years	female	N/A	SRR4306186	control
+TH27_1158_S01	desmoplastic small round cell tumor	18	Yes, age < 30 years	male	N/A	N/A	control
+TH34_1412_S01	desmoplastic small round cell tumor	23	Yes, age < 30 years	male	N/A	N/A	control
+THR31_0935_S01	desmoplastic small round cell tumor	NA	Yes, age < 30 years	male	N/A	SRR4306880	control
+THR31_0932_S01	desmoplastic small round cell tumor	NA	Yes, age < 30 years	male	N/A	SRR4306669	control
+TCGA-FF-A7CW-01	diffuse large B-cell lymphoma	72	No	male	TCGA-FF-A7CW	TCGA-FF-A7CW-01	control
+TCGA-G8-6909-01	diffuse large B-cell lymphoma	67	No	male	TCGA-G8-6909	TCGA-G8-6909-01	control
+TCGA-G8-6914-01	diffuse large B-cell lymphoma	67	No	male	TCGA-G8-6914	TCGA-G8-6914-01	control
+TCGA-FA-A4XK-01	diffuse large B-cell lymphoma	40	No	male	TCGA-FA-A4XK	TCGA-FA-A4XK-01	control
+TCGA-G8-6907-01	diffuse large B-cell lymphoma	57	No	female	TCGA-G8-6907	TCGA-G8-6907-01	control
+TCGA-FF-8046-01	diffuse large B-cell lymphoma	51	No	male	TCGA-FF-8046	TCGA-FF-8046-01	control
+TCGA-FA-A4BB-01	diffuse large B-cell lymphoma	67	No	male	TCGA-FA-A4BB	TCGA-FA-A4BB-01	control
+TCGA-VB-A8QN-01	diffuse large B-cell lymphoma	55	No	male	TCGA-VB-A8QN	TCGA-VB-A8QN-01	control
+TCGA-GR-7353-01	diffuse large B-cell lymphoma	36	No	male	TCGA-GR-7353	TCGA-GR-7353-01	control
+TCGA-FF-A7CX-01	diffuse large B-cell lymphoma	46	No	male	TCGA-FF-A7CX	TCGA-FF-A7CX-01	control
+TCGA-GR-A4D6-01	diffuse large B-cell lymphoma	54	No	female	TCGA-GR-A4D6	TCGA-GR-A4D6-01	control
+TCGA-G8-6906-01	diffuse large B-cell lymphoma	58	No	male	TCGA-G8-6906	TCGA-G8-6906-01	control
+TCGA-FA-A7Q1-01	diffuse large B-cell lymphoma	61	No	female	TCGA-FA-A7Q1	TCGA-FA-A7Q1-01	control
+TCGA-RQ-AAAT-01	diffuse large B-cell lymphoma	63	No	female	TCGA-RQ-AAAT	TCGA-RQ-AAAT-01	control
+TCGA-FA-A86F-01	diffuse large B-cell lymphoma	64	No	female	TCGA-FA-A86F	TCGA-FA-A86F-01	control
+TCGA-GR-A4D5-01	diffuse large B-cell lymphoma	46	No	female	TCGA-GR-A4D5	TCGA-GR-A4D5-01	control
+TCGA-FA-A6HO-01	diffuse large B-cell lymphoma	58	No	female	TCGA-FA-A6HO	TCGA-FA-A6HO-01	control
+TCGA-GS-A9TY-01	diffuse large B-cell lymphoma	82	No	female	TCGA-GS-A9TY	TCGA-GS-A9TY-01	control
+TCGA-RQ-A6JB-01	diffuse large B-cell lymphoma	62	No	female	TCGA-RQ-A6JB	TCGA-RQ-A6JB-01	control
+TCGA-GS-A9TV-01	diffuse large B-cell lymphoma	40	No	female	TCGA-GS-A9TV	TCGA-GS-A9TV-01	control
+THR11_0256_S01	dysembryoplastic neuroepithelial tumor	17	Yes, age < 30 years	female	LGG010676	SJLGG010676_D1-C2E05ACXX	control
+THR11_0257_S01	dysembryoplastic neuroepithelial tumor	17	Yes, age < 30 years	male	LGG010677	SJLGG010677_D1-C2E05ACXX	control
+THR11_0276_S01	dysembryoplastic neuroepithelial tumor	9	Yes, age < 30 years	female	LGG065	SJLGG065_D-H7FBPADXX	control
+THR11_0251_S01	dysembryoplastic neuroepithelial tumor	5	Yes, age < 30 years	male	LGG010670	SJLGG010670_D1-C2E05ACXX	control
+THR11_0258_S01	dysembryoplastic neuroepithelial tumor	11	Yes, age < 30 years	female	LGG010678	SJLGG010678_D1-C2E05ACXX	control
+THR11_0275_S01	dysembryoplastic neuroepithelial tumor	13	Yes, age < 30 years	female	LGG064	SJLGG064_D-H7FBPADXX	control
+TH27_1407_S01	dysembryoplastic neuroepithelial tumor	NA	NA	female	N/A	N/A	control
+THR11_0260_S01	dysembryoplastic neuroepithelial tumor	12	Yes, age < 30 years	male	LGG010680	SJLGG010680_D1-C2E05ACXX	control
+THR11_0255_S01	dysembryoplastic neuroepithelial tumor	5	Yes, age < 30 years	female	LGG010675	SJLGG010675_D1-C2E05ACXX	control
+THR11_0259_S01	dysembryoplastic neuroepithelial tumor	15	Yes, age < 30 years	female	LGG010679	SJLGG010679_D1-C2E05ACXX	control
+THR11_0253_S01	dysembryoplastic neuroepithelial tumor	17	Yes, age < 30 years	female	LGG010672	SJLGG010672_D1-C2E05ACXX	control
+THR11_0254_S01	dysembryoplastic neuroepithelial tumor	10	Yes, age < 30 years	female	LGG010673	SJLGG010673_D1-C2E05ACXX	control
+THR11_0252_S01	dysembryoplastic neuroepithelial tumor	15	Yes, age < 30 years	female	LGG010671	SJLGG010671_D1-C2E05ACXX	control
+THR11_0250_S01	dysembryoplastic neuroepithelial tumor	9	Yes, age < 30 years	male	LGG010669	SJLGG010669_D1-C2E05ACXX	control
+THR32_0957_S01	embryonal tumor with multilayered rosettes	NA	Yes, age < 30 years	male	N/A	N/A	control
+THR37_1302_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849178	SRS1778825, GSM2372327	control
+THR37_1305_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849184	SRS1778829, GSM2372330	control
+THR37_1297_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849170	SRS1778821, GSM2372322	control
+THR37_1307_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849188	SRS1778831, GSM2372332	control
+THR32_0953_S01	ependymoma	5	Yes, age < 30 years	male	N/A	N/A	control
+THR37_1296_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849168	SRS1778819, GSM2372321	control
+THR32_0955_S01	ependymoma	15	Yes, age < 30 years	female	N/A	N/A	control
+THR37_1304_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849182	SRS1778828, GSM2372329	control
+THR37_1299_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849173	SRS1778822, GSM2372324	control
+THR37_1306_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849186	SRS1778830, GSM2372331	control
+THR37_1301_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849176	SRS1778826, GSM2372326	control
+THR32_0956_S01	ependymoma	12	Yes, age < 30 years	male	N/A	N/A	control
+THR31_0940_S01	ependymoma	NA	Yes, age < 30 years	male	N/A	SRR4307868	control
+TH03_0291_S01	ependymoma	9	Yes, age < 30 years	female	N/A	N/A	control
+THR37_1295_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849166	SRS1778818, GSM2372320	control
+THR32_0954_S01	ependymoma	4	Yes, age < 30 years	female	N/A	N/A	control
+THR37_1303_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849180	SRS1778827, GSM2372328	control
+TH06_0617_S01	ependymoma	5	Yes, age < 30 years	male	N/A	N/A	control
+TH34_1381_S01	ependymoma	2.5	Yes, age < 30 years	female	N/A	N/A	control
+THR37_1308_S01	ependymoma	NA	Yes, age < 30 years	NA	SRR4849190	SRS1778832, GSM2372333	control
+TH03_0294_S02	epithelioid hemangioendothelioma	12	Yes, age < 30 years	male	N/A	N/A	control
+THR31_0894_S01	epithelioid sarcoma	NA	Yes, age < 30 years	female	N/A	SRR4305847	control
+TCGA-L5-A88Y-01	esophageal carcinoma	76	No	male	TCGA-L5-A88Y	TCGA-L5-A88Y-01	control
+TCGA-JY-A6FB-01	esophageal carcinoma	77	No	male	TCGA-JY-A6FB	TCGA-JY-A6FB-01	control
+TCGA-IG-A50L-01	esophageal carcinoma	58	No	male	TCGA-IG-A50L	TCGA-IG-A50L-01	control
+TCGA-2H-A9GQ-01	esophageal carcinoma	80	No	male	TCGA-2H-A9GQ	TCGA-2H-A9GQ-01	control
+TCGA-L7-A56G-01	esophageal carcinoma	65	No	male	TCGA-L7-A56G	TCGA-L7-A56G-01	control
+TCGA-L5-A43E-01	esophageal carcinoma	74	No	male	TCGA-L5-A43E	TCGA-L5-A43E-01	control
+TCGA-LN-A4A6-01	esophageal carcinoma	65	No	male	TCGA-LN-A4A6	TCGA-LN-A4A6-01	control
+TCGA-L5-A4OI-01	esophageal carcinoma	79	No	male	TCGA-L5-A4OI	TCGA-L5-A4OI-01	control
+TCGA-JY-A93F-01	esophageal carcinoma	58	No	female	TCGA-JY-A93F	TCGA-JY-A93F-01	control
+TCGA-LN-A7HX-01	esophageal carcinoma	72	No	male	TCGA-LN-A7HX	TCGA-LN-A7HX-01	control
+TCGA-2H-A9GN-01	esophageal carcinoma	70	No	male	TCGA-2H-A9GN	TCGA-2H-A9GN-01	control
+TCGA-R6-A6XQ-01	esophageal carcinoma	58	No	male	TCGA-R6-A6XQ	TCGA-R6-A6XQ-01	control
+TCGA-LN-A7HV-01	esophageal carcinoma	58	No	male	TCGA-LN-A7HV	TCGA-LN-A7HV-01	control
+TCGA-XP-A8T8-01	esophageal carcinoma	49	No	male	TCGA-XP-A8T8	TCGA-XP-A8T8-01	control
+TCGA-RE-A7BO-01	esophageal carcinoma	72	No	female	TCGA-RE-A7BO	TCGA-RE-A7BO-01	control
+TCGA-LN-A7HY-01	esophageal carcinoma	50	No	male	TCGA-LN-A7HY	TCGA-LN-A7HY-01	control
+TCGA-LN-A8I0-01	esophageal carcinoma	52	No	male	TCGA-LN-A8I0	TCGA-LN-A8I0-01	control
+TCGA-R6-A8W5-01	esophageal carcinoma	60	No	male	TCGA-R6-A8W5	TCGA-R6-A8W5-01	control
+TCGA-V5-A7RC-06	esophageal carcinoma	55	No	male	TCGA-V5-A7RC	TCGA-V5-A7RC-06	control
+TCGA-L5-A43M-01	esophageal carcinoma	84	No	female	TCGA-L5-A43M	TCGA-L5-A43M-01	control
+THR31_0906_S01	Ewing sarcoma	NA	Yes, age < 30 years	female	N/A	SRR4305898	control
+THR30_0824_S01	Ewing sarcoma	8	Yes, age < 30 years	female	EWS116	SRR5163685, EWS116_tumor	control
+THR30_0848_S01	Ewing sarcoma	NA	Yes, age < 30 years	unknown	EWS2013	SRR5163709, EWS2013_tumor	control
+THR30_0861_S01	Ewing sarcoma	16	Yes, age < 30 years	male	NCI0135	SRR5163722, NCI0135_tumor	control
+THR30_0864_S01	Ewing sarcoma	16	Yes, age < 30 years	female	NCI0167	SRR5163725, NCI0167_tumor	control
+THR30_0852_S01	Ewing sarcoma	0.58	Yes, age < 30 years	male	NCI0021	SRR5163713, NCI0021_tumor	control
+THR30_0865_S01	Ewing sarcoma	18	Yes, age < 30 years	female	NCI0198	SRR5163726, NCI0198_tumor	control
+THR30_0829_S01	Ewing sarcoma	10	Yes, age < 30 years	female	EWS122	SRR5163690, EWS122_tumor	control
+THR30_0818_S01	Ewing sarcoma	4	Yes, age < 30 years	male	EWS109	SRR5163679, EWS109_tumor	control
+TH34_1150_S01	Ewing sarcoma	16	Yes, age < 30 years	male	N/A	N/A	control
+THR30_0820_S01	Ewing sarcoma	12	Yes, age < 30 years	male	EWS111	SRR5163681, EWS111_tumor	control
+THR30_0832_S01	Ewing sarcoma	6	Yes, age < 30 years	female	EWS126	SRR5163693, EWS126_tumor	control
+THR30_0840_S01	Ewing sarcoma	1	Yes, age < 30 years	male	EWS136	SRR5163700, EWS136_tumor	control
+THR30_0843_S01	Ewing sarcoma	11	Yes, age < 30 years	female	EWS140	SRR5163704, EWS140_tumor	control
+THR30_0851_S01	Ewing sarcoma	NA	Yes, age < 30 years	unknown	EWS2023	SRR5163712, EWS2023_tumor	control
+THR30_0812_S01	Ewing sarcoma	12	Yes, age < 30 years	female	EWS103	SRR5163673, EWS103_tumor	control
+THR30_0821_S01	Ewing sarcoma	4	Yes, age < 30 years	female	EWS112	SRR5163682, EWS112_tumor	control
+THR30_0817_S01	Ewing sarcoma	4	Yes, age < 30 years	male	EWS108	SRR5163678, EWS108_tumor	control
+TH27_0691_S01	Ewing sarcoma	6	Yes, age < 30 years	male	N/A	N/A	control
+THR30_0827_S01	Ewing sarcoma	7	Yes, age < 30 years	female	EWS120	SRR5163688, EWS120_tumor	control
+TCGA-RC-A6M5-01	fibrolamellar hepatocellular carcinoma	20	Yes, age < 30 years	female	TCGA-RC-A6M5	TCGA-RC-A6M5-01	control
+THR31_1387_S01	fibrolamellar hepatocellular carcinoma	NA	No	female	N/A	SRR4306425	control
+TH03_0019_S01	fibrolamellar hepatocellular carcinoma	15	Yes, age < 30 years	male	N/A	N/A	control
+TH03_0114_S01	fibrolamellar hepatocellular carcinoma	11	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-DD-A4NB-01	fibrolamellar hepatocellular carcinoma	25	Yes, age < 30 years	male	TCGA-DD-A4NB	TCGA-DD-A4NB-01	control
+THR31_0933_S01	fibrolamellar hepatocellular carcinoma	NA	Yes, age < 30 years	female	N/A	SRR4306790	control
+TCGA-MR-A8JO-01	fibrolamellar hepatocellular carcinoma	34	No	male	TCGA-MR-A8JO	TCGA-MR-A8JO-01	control
+THR31_0880_S01	fibrolamellar hepatocellular carcinoma	NA	Yes, age < 30 years	male	N/A	SRR4305778	control
+THR31_0915_S01	fibromatosis	NA	Yes, age < 30 years	female	N/A	SRR4305980	control
+TH06_0626_S01	fibromatosis	1	Yes, age < 30 years	female	N/A	N/A	control
+TH06_0625_S01	fibromatosis	9	Yes, age < 30 years	female	N/A	N/A	control
+THR31_1385_S01	gastrointestinal stromal tumor	NA	No	male	N/A	SRR4306304	control
+THR31_1389_S01	gastrointestinal stromal tumor	NA	No	male	N/A	SRR4306599	control
+THR31_1388_S01	gastrointestinal stromal tumor	NA	No	female	N/A	SRR4306438	control
+TH34_1349_S02	gastrointestinal stromal tumor	11	Yes, age < 30 years	male	N/A	N/A	control
+TH34_1349_S01	gastrointestinal stromal tumor	11	Yes, age < 30 years	male	N/A	N/A	control
+THR31_1391_S01	gastrointestinal stromal tumor	NA	No	female	N/A	SRR4306953	control
+THR31_0873_S01	germ cell tumor	NA	Yes, age < 30 years	male	N/A	SRR4305731	control
+TCGA-28-5213-01	glioblastoma multiforme	72	No	male	TCGA-28-5213	TCGA-28-5213-01	control
+TCGA-26-5136-01	glioblastoma multiforme	78	No	female	TCGA-26-5136	TCGA-26-5136-01	control
+TCGA-02-2485-01	glioblastoma multiforme	53	No	male	TCGA-02-2485	TCGA-02-2485-01	control
+TCGA-32-4213-01	glioblastoma multiforme	47	No	female	TCGA-32-4213	TCGA-32-4213-01	control
+TCGA-41-5651-01	glioblastoma multiforme	59	No	female	TCGA-41-5651	TCGA-41-5651-01	control
+TCGA-06-0171-02	glioblastoma multiforme	65	No	male	TCGA-06-0171	TCGA-06-0171-02	control
+TCGA-06-2569-01	glioblastoma multiforme	24	Yes, age < 30 years	female	TCGA-06-2569	TCGA-06-2569-01	control
+THR32_0958_S01	glioblastoma multiforme	16	Yes, age < 30 years	female	N/A	N/A	control
+TCGA-41-2571-01	glioblastoma multiforme	89	No	male	TCGA-41-2571	TCGA-41-2571-01	control
+TCGA-06-0238-01	glioblastoma multiforme	46	No	male	TCGA-06-0238	TCGA-06-0238-01	control
+TCGA-27-1837-01	glioblastoma multiforme	36	No	male	TCGA-27-1837	TCGA-27-1837-01	control
+TCGA-28-1747-01	glioblastoma multiforme	44	No	male	TCGA-28-1747	TCGA-28-1747-01	control
+TCGA-26-1442-01	glioblastoma multiforme	43	No	male	TCGA-26-1442	TCGA-26-1442-01	control
+TCGA-32-2615-01	glioblastoma multiforme	62	No	male	TCGA-32-2615	TCGA-32-2615-01	control
+TCGA-76-4925-01	glioblastoma multiforme	76	No	male	TCGA-76-4925	TCGA-76-4925-01	control
+TCGA-41-4097-01	glioblastoma multiforme	63	No	female	TCGA-41-4097	TCGA-41-4097-01	control
+TCGA-06-5414-01	glioblastoma multiforme	61	No	male	TCGA-06-5414	TCGA-06-5414-01	control
+TCGA-06-0745-01	glioblastoma multiforme	59	No	male	TCGA-06-0745	TCGA-06-0745-01	control
+TCGA-26-5134-01	glioblastoma multiforme	74	No	male	TCGA-26-5134	TCGA-26-5134-01	control
+TCGA-06-2558-01	glioblastoma multiforme	75	No	female	TCGA-06-2558	TCGA-06-2558-01	control
+TH06_0620_S01	gliomatosis cerebri	16	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-CV-A6JM-01	head & neck squamous cell carcinoma	85	No	male	TCGA-CV-A6JM	TCGA-CV-A6JM-01	control
+TCGA-CN-6012-01	head & neck squamous cell carcinoma	66	No	male	TCGA-CN-6012	TCGA-CN-6012-01	control
+TCGA-CV-7407-01	head & neck squamous cell carcinoma	67	No	female	TCGA-CV-7407	TCGA-CV-7407-01	control
+TCGA-CN-4741-01	head & neck squamous cell carcinoma	75	No	male	TCGA-CN-4741	TCGA-CN-4741-01	control
+TCGA-BB-A5HY-01	head & neck squamous cell carcinoma	64	No	male	TCGA-BB-A5HY	TCGA-BB-A5HY-01	control
+TCGA-CV-7422-01	head & neck squamous cell carcinoma	60	No	female	TCGA-CV-7422	TCGA-CV-7422-01	control
+TCGA-BB-7872-01	head & neck squamous cell carcinoma	63	No	male	TCGA-BB-7872	TCGA-BB-7872-01	control
+TCGA-UF-A719-01	head & neck squamous cell carcinoma	54	No	male	TCGA-UF-A719	TCGA-UF-A719-01	control
+TCGA-C9-A480-01	head & neck squamous cell carcinoma	45	No	female	TCGA-C9-A480	TCGA-C9-A480-01	control
+TCGA-CN-4742-01	head & neck squamous cell carcinoma	48	No	female	TCGA-CN-4742	TCGA-CN-4742-01	control
+TCGA-RS-A6TO-01	head & neck squamous cell carcinoma	82	No	female	TCGA-RS-A6TO	TCGA-RS-A6TO-01	control
+TCGA-P3-A6T5-01	head & neck squamous cell carcinoma	79	No	female	TCGA-P3-A6T5	TCGA-P3-A6T5-01	control
+TCGA-CV-7446-01	head & neck squamous cell carcinoma	66	No	male	TCGA-CV-7446	TCGA-CV-7446-01	control
+TCGA-CV-A6JE-01	head & neck squamous cell carcinoma	78	No	male	TCGA-CV-A6JE	TCGA-CV-A6JE-01	control
+TCGA-DQ-5625-01	head & neck squamous cell carcinoma	52	No	female	TCGA-DQ-5625	TCGA-DQ-5625-01	control
+TCGA-T2-A6WZ-01	head & neck squamous cell carcinoma	53	No	male	TCGA-T2-A6WZ	TCGA-T2-A6WZ-01	control
+TCGA-CR-6477-01	head & neck squamous cell carcinoma	56	No	female	TCGA-CR-6477	TCGA-CR-6477-01	control
+TCGA-CV-7255-01	head & neck squamous cell carcinoma	32	No	female	TCGA-CV-7255	TCGA-CV-7255-01	control
+TCGA-CQ-5331-01	head & neck squamous cell carcinoma	73	No	female	TCGA-CQ-5331	TCGA-CQ-5331-01	control
+TCGA-CQ-A4C7-01	head & neck squamous cell carcinoma	88	No	male	TCGA-CQ-A4C7	TCGA-CQ-A4C7-01	control
+TH03_0017_S02	hepatoblastoma	14	Yes, age < 30 years	female	N/A	N/A	control
+THR31_0884_S01	hepatoblastoma	NA	Yes, age < 30 years	male	N/A	SRR4305794	control
+TH03_0017_S01	hepatoblastoma	14	Yes, age < 30 years	female	N/A	N/A	control
+TH27_0697_S01	hepatoblastoma	NA	Unknown	female	N/A	N/A	control
+TH03_0004_S02	hepatoblastoma	2	Yes, age < 30 years	male	N/A	N/A	control
+TH34_1379_S01	hepatoblastoma	4	Yes, age < 30 years	male	N/A	N/A	control
+TH27_0705_S01	hepatoblastoma	NA	Unknown	male	N/A	N/A	control
+TH03_0116_S01	hepatoblastoma	1.7	Yes, age < 30 years	not reported	N/A	N/A	control
+TH03_0104_S01	hepatoblastoma	0.33	Yes, age < 30 years	not reported	N/A	N/A	control
+TH03_0107_S01	hepatoblastoma	1	Yes, age < 30 years	not reported	N/A	N/A	control
+TH03_0004_S04	hepatoblastoma	2	Yes, age < 30 years	male	N/A	N/A	control
+TH03_0004_S03	hepatoblastoma	2	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-DD-A3A4-01	hepatocellular carcinoma	37	No	male	TCGA-DD-A3A4	TCGA-DD-A3A4-01	control
+TCGA-G3-A5SM-01	hepatocellular carcinoma	58	No	male	TCGA-G3-A5SM	TCGA-G3-A5SM-01	control
+TCGA-DD-A73B-01	hepatocellular carcinoma	72	No	female	TCGA-DD-A73B	TCGA-DD-A73B-01	control
+TCGA-CC-A7IJ-01	hepatocellular carcinoma	56	No	male	TCGA-CC-A7IJ	TCGA-CC-A7IJ-01	control
+TCGA-BC-A3KF-01	hepatocellular carcinoma	66	No	female	TCGA-BC-A3KF	TCGA-BC-A3KF-01	control
+TCGA-DD-AA3A-01	hepatocellular carcinoma	81	No	female	TCGA-DD-AA3A	TCGA-DD-AA3A-01	control
+TCGA-HP-A5N0-01	hepatocellular carcinoma	90	No	female	TCGA-HP-A5N0	TCGA-HP-A5N0-01	control
+TCGA-DD-AAVZ-01	hepatocellular carcinoma	38	No	male	TCGA-DD-AAVZ	TCGA-DD-AAVZ-01	control
+TCGA-G3-AAV7-01	hepatocellular carcinoma	38	No	male	TCGA-G3-AAV7	TCGA-G3-AAV7-01	control
+TCGA-DD-AAVX-01	hepatocellular carcinoma	38	No	male	TCGA-DD-AAVX	TCGA-DD-AAVX-01	control
+TCGA-2Y-A9GW-01	hepatocellular carcinoma	64	No	male	TCGA-2Y-A9GW	TCGA-2Y-A9GW-01	control
+TCGA-DD-AACT-01	hepatocellular carcinoma	69	No	female	TCGA-DD-AACT	TCGA-DD-AACT-01	control
+TCGA-CC-A5UE-01	hepatocellular carcinoma	48	No	male	TCGA-CC-A5UE	TCGA-CC-A5UE-01	control
+TCGA-BW-A5NP-01	hepatocellular carcinoma	26	Yes, age < 30 years	female	TCGA-BW-A5NP	TCGA-BW-A5NP-01	control
+TCGA-DD-A73G-01	hepatocellular carcinoma	73	No	female	TCGA-DD-A73G	TCGA-DD-A73G-01	control
+TCGA-LG-A9QD-01	hepatocellular carcinoma	68	No	male	TCGA-LG-A9QD	TCGA-LG-A9QD-01	control
+TCGA-FV-A496-01	hepatocellular carcinoma	84	No	female	TCGA-FV-A496	TCGA-FV-A496-01	control
+TCGA-ZP-A9D0-01	hepatocellular carcinoma	67	No	female	TCGA-ZP-A9D0	TCGA-ZP-A9D0-01	control
+TCGA-CC-A7IE-01	hepatocellular carcinoma	57	No	male	TCGA-CC-A7IE	TCGA-CC-A7IE-01	control
+TCGA-FV-A23B-01	hepatocellular carcinoma	70	No	female	TCGA-FV-A23B	TCGA-FV-A23B-01	control
+TH27_1354_S01	infantile fibrosarcoma	0.5	Yes, age < 30 years	male	N/A	N/A	control
+TH27_1160_S01	infantile fibrosarcoma	0.0027	Yes, age < 30 years	male	N/A	N/A	control
+TH34_1149_S02	INI-deficient soft tissue sarcoma NOS	3	Yes, age < 30 years	male	N/A	N/A	control
+TH34_1149_S01	INI-deficient soft tissue sarcoma NOS	3	Yes, age < 30 years	male	N/A	N/A	control
+TH34_1350_S01	juvenile myelomonocytic leukemia	0.75	Yes, age < 30 years	female	N/A	N/A	control
+THR31_0910_S01	juvenile myelomonocytic leukemia	NA	Yes, age < 30 years	female	N/A	SRR4305922	control
+TH03_0285_S01	juvenile myelomonocytic leukemia	NA	Yes, age < 30 years	not reported	N/A	N/A	control
+TCGA-KN-8427-01	kidney chromophobe	54	No	male	TCGA-KN-8427	TCGA-KN-8427-01	control
+TCGA-KN-8435-01	kidney chromophobe	59	No	male	TCGA-KN-8435	TCGA-KN-8435-01	control
+TCGA-KO-8410-01	kidney chromophobe	74	No	female	TCGA-KO-8410	TCGA-KO-8410-01	control
+TCGA-KL-8345-01	kidney chromophobe	75	No	male	TCGA-KL-8345	TCGA-KL-8345-01	control
+TCGA-KM-8438-01	kidney chromophobe	45	No	female	TCGA-KM-8438	TCGA-KM-8438-01	control
+TCGA-KL-8330-01	kidney chromophobe	44	No	female	TCGA-KL-8330	TCGA-KL-8330-01	control
+TCGA-KO-8411-01	kidney chromophobe	58	No	male	TCGA-KO-8411	TCGA-KO-8411-01	control
+TCGA-KN-8421-01	kidney chromophobe	47	No	female	TCGA-KN-8421	TCGA-KN-8421-01	control
+TCGA-KM-8443-01	kidney chromophobe	57	No	male	TCGA-KM-8443	TCGA-KM-8443-01	control
+TCGA-KL-8329-01	kidney chromophobe	57	No	female	TCGA-KL-8329	TCGA-KL-8329-01	control
+TCGA-KL-8326-01	kidney chromophobe	69	No	male	TCGA-KL-8326	TCGA-KL-8326-01	control
+TCGA-KL-8323-01	kidney chromophobe	57	No	female	TCGA-KL-8323	TCGA-KL-8323-01	control
+TCGA-KN-8423-01	kidney chromophobe	44	No	male	TCGA-KN-8423	TCGA-KN-8423-01	control
+TCGA-KN-8437-01	kidney chromophobe	42	No	female	TCGA-KN-8437	TCGA-KN-8437-01	control
+TCGA-KO-8408-01	kidney chromophobe	47	No	male	TCGA-KO-8408	TCGA-KO-8408-01	control
+TCGA-KN-8419-01	kidney chromophobe	43	No	male	TCGA-KN-8419	TCGA-KN-8419-01	control
+TCGA-KN-8434-01	kidney chromophobe	65	No	female	TCGA-KN-8434	TCGA-KN-8434-01	control
+TCGA-KO-8406-01	kidney chromophobe	17	Yes, age < 30 years	female	TCGA-KO-8406	TCGA-KO-8406-01	control
+TCGA-KO-8414-01	kidney chromophobe	50	No	female	TCGA-KO-8414	TCGA-KO-8414-01	control
+TCGA-KL-8339-01	kidney chromophobe	67	No	male	TCGA-KL-8339	TCGA-KL-8339-01	control
+TCGA-B0-4824-01	kidney clear cell carcinoma	49	No	female	TCGA-B0-4824	TCGA-B0-4824-01	control
+TCGA-CJ-5682-01	kidney clear cell carcinoma	60	No	male	TCGA-CJ-5682	TCGA-CJ-5682-01	control
+TCGA-B0-5120-01	kidney clear cell carcinoma	72	No	female	TCGA-B0-5120	TCGA-B0-5120-01	control
+TCGA-B8-5158-01	kidney clear cell carcinoma	56	No	male	TCGA-B8-5158	TCGA-B8-5158-01	control
+TCGA-BP-5184-01	kidney clear cell carcinoma	54	No	male	TCGA-BP-5184	TCGA-BP-5184-01	control
+TCGA-B4-5838-01	kidney clear cell carcinoma	52	No	male	TCGA-B4-5838	TCGA-B4-5838-01	control
+TCGA-CW-6087-01	kidney clear cell carcinoma	61	No	male	TCGA-CW-6087	TCGA-CW-6087-01	control
+TCGA-B0-5698-01	kidney clear cell carcinoma	77	No	male	TCGA-B0-5698	TCGA-B0-5698-01	control
+TCGA-A3-3343-01	kidney clear cell carcinoma	79	No	male	TCGA-A3-3343	TCGA-A3-3343-01	control
+TCGA-B0-4836-01	kidney clear cell carcinoma	61	No	male	TCGA-B0-4836	TCGA-B0-4836-01	control
+TCGA-B0-4699-01	kidney clear cell carcinoma	74	No	male	TCGA-B0-4699	TCGA-B0-4699-01	control
+TCGA-CZ-4854-01	kidney clear cell carcinoma	68	No	male	TCGA-CZ-4854	TCGA-CZ-4854-01	control
+TCGA-B0-4713-01	kidney clear cell carcinoma	76	No	female	TCGA-B0-4713	TCGA-B0-4713-01	control
+TCGA-BP-4766-01	kidney clear cell carcinoma	43	No	female	TCGA-BP-4766	TCGA-BP-4766-01	control
+TCGA-CJ-4885-01	kidney clear cell carcinoma	64	No	male	TCGA-CJ-4885	TCGA-CJ-4885-01	control
+TCGA-BP-4765-01	kidney clear cell carcinoma	43	No	male	TCGA-BP-4765	TCGA-BP-4765-01	control
+TCGA-CW-6097-01	kidney clear cell carcinoma	32	No	male	TCGA-CW-6097	TCGA-CW-6097-01	control
+TCGA-A3-3374-01	kidney clear cell carcinoma	51	No	female	TCGA-A3-3374	TCGA-A3-3374-01	control
+TCGA-BP-5190-01	kidney clear cell carcinoma	61	No	male	TCGA-BP-5190	TCGA-BP-5190-01	control
+TCGA-AK-3440-01	kidney clear cell carcinoma	58	No	male	TCGA-AK-3440	TCGA-AK-3440-01	control
+TCGA-UZ-A9PL-01	kidney papillary cell carcinoma	59	No	male	TCGA-UZ-A9PL	TCGA-UZ-A9PL-01	control
+TCGA-BQ-7048-01	kidney papillary cell carcinoma	64	No	male	TCGA-BQ-7048	TCGA-BQ-7048-01	control
+TCGA-DW-5561-01	kidney papillary cell carcinoma	51	No	male	TCGA-DW-5561	TCGA-DW-5561-01	control
+TCGA-B3-3926-01	kidney papillary cell carcinoma	59	No	female	TCGA-B3-3926	TCGA-B3-3926-01	control
+TCGA-BQ-5879-01	kidney papillary cell carcinoma	32	No	female	TCGA-BQ-5879	TCGA-BQ-5879-01	control
+TCGA-DW-7834-01	kidney papillary cell carcinoma	53	No	male	TCGA-DW-7834	TCGA-DW-7834-01	control
+TCGA-A4-8515-01	kidney papillary cell carcinoma	47	No	male	TCGA-A4-8515	TCGA-A4-8515-01	control
+TCGA-B1-A656-01	kidney papillary cell carcinoma	64	No	male	TCGA-B1-A656	TCGA-B1-A656-01	control
+TCGA-5P-A9KE-01	kidney papillary cell carcinoma	70	No	male	TCGA-5P-A9KE	TCGA-5P-A9KE-01	control
+TCGA-5P-A9K6-01	kidney papillary cell carcinoma	64	No	male	TCGA-5P-A9K6	TCGA-5P-A9K6-01	control
+TCGA-A4-7732-01	kidney papillary cell carcinoma	55	No	male	TCGA-A4-7732	TCGA-A4-7732-01	control
+TCGA-5P-A9JY-01	kidney papillary cell carcinoma	79	No	male	TCGA-5P-A9JY	TCGA-5P-A9JY-01	control
+TCGA-UZ-A9PS-05	kidney papillary cell carcinoma	62	No	female	TCGA-UZ-A9PS	TCGA-UZ-A9PS-05	control
+TCGA-4A-A93Y-01	kidney papillary cell carcinoma	63	No	female	TCGA-4A-A93Y	TCGA-4A-A93Y-01	control
+TCGA-B9-A8YI-01	kidney papillary cell carcinoma	79	No	male	TCGA-B9-A8YI	TCGA-B9-A8YI-01	control
+TCGA-IA-A40U-01	kidney papillary cell carcinoma	56	No	male	TCGA-IA-A40U	TCGA-IA-A40U-01	control
+TCGA-Y8-A8RY-01	kidney papillary cell carcinoma	63	No	male	TCGA-Y8-A8RY	TCGA-Y8-A8RY-01	control
+TCGA-B3-8121-01	kidney papillary cell carcinoma	48	No	female	TCGA-B3-8121	TCGA-B3-8121-01	control
+TCGA-A4-7734-01	kidney papillary cell carcinoma	53	No	female	TCGA-A4-7734	TCGA-A4-7734-01	control
+TCGA-IA-A40Y-01	kidney papillary cell carcinoma	60	No	female	TCGA-IA-A40Y	TCGA-IA-A40Y-01	control
+TCGA-DX-A6B7-01	leiomyosarcoma	55	No	male	TCGA-DX-A6B7	TCGA-DX-A6B7-01	control
+TCGA-DX-A3U9-01	leiomyosarcoma	84	No	male	TCGA-DX-A3U9	TCGA-DX-A3U9-01	control
+TCGA-FX-A76Y-01	leiomyosarcoma	49	No	female	TCGA-FX-A76Y	TCGA-FX-A76Y-01	control
+TCGA-HB-A43Z-01	leiomyosarcoma	58	No	female	TCGA-HB-A43Z	TCGA-HB-A43Z-01	control
+TCGA-DX-A48U-01	leiomyosarcoma	57	No	male	TCGA-DX-A48U	TCGA-DX-A48U-01	control
+TCGA-IW-A3M6-01	leiomyosarcoma	59	No	female	TCGA-IW-A3M6	TCGA-IW-A3M6-01	control
+TCGA-DX-A7EM-01	leiomyosarcoma	61	No	male	TCGA-DX-A7EM	TCGA-DX-A7EM-01	control
+TCGA-X6-A7WD-01	leiomyosarcoma	63	No	female	TCGA-X6-A7WD	TCGA-X6-A7WD-01	control
+TCGA-IF-A4AJ-01	leiomyosarcoma	80	No	male	TCGA-IF-A4AJ	TCGA-IF-A4AJ-01	control
+TCGA-X9-A971-01	leiomyosarcoma	52	No	female	TCGA-X9-A971	TCGA-X9-A971-01	control
+TCGA-QQ-A5VC-01	leiomyosarcoma	63	No	female	TCGA-QQ-A5VC	TCGA-QQ-A5VC-01	control
+TCGA-DX-A3UD-01	leiomyosarcoma	56	No	male	TCGA-DX-A3UD	TCGA-DX-A3UD-01	control
+TCGA-HB-A3L4-01	leiomyosarcoma	46	No	female	TCGA-HB-A3L4	TCGA-HB-A3L4-01	control
+TCGA-IS-A3K6-01	leiomyosarcoma	55	No	female	TCGA-IS-A3K6	TCGA-IS-A3K6-01	control
+TCGA-3B-A9HZ-01	leiomyosarcoma	66	No	male	TCGA-3B-A9HZ	TCGA-3B-A9HZ-01	control
+TCGA-DX-A48R-01	leiomyosarcoma	41	No	male	TCGA-DX-A48R	TCGA-DX-A48R-01	control
+TCGA-JV-A5VE-01	leiomyosarcoma	60	No	female	TCGA-JV-A5VE	TCGA-JV-A5VE-01	control
+TCGA-3B-A9HQ-01	leiomyosarcoma	66	No	female	TCGA-3B-A9HQ	TCGA-3B-A9HQ-01	control
+TCGA-KD-A5QT-01	leiomyosarcoma	69	No	female	TCGA-KD-A5QT	TCGA-KD-A5QT-01	control
+TCGA-3B-A9HU-01	leiomyosarcoma	53	No	female	TCGA-3B-A9HU	TCGA-3B-A9HU-01	control
+TH27_0682_S02	leukemia	NA	Yes, age < 30 years	unknown	N/A	N/A	control
+TH27_0682_S01	leukemia	NA	Yes, age < 30 years	unknown	N/A	N/A	control
+TCGA-05-4250-01	lung adenocarcinoma	79	No	female	TCGA-05-4250	TCGA-05-4250-01	control
+TCGA-MP-A4TK-01	lung adenocarcinoma	56	No	female	TCGA-MP-A4TK	TCGA-MP-A4TK-01	control
+TCGA-05-4397-01	lung adenocarcinoma	65	No	male	TCGA-05-4397	TCGA-05-4397-01	control
+TCGA-44-7670-01	lung adenocarcinoma	47	No	female	TCGA-44-7670	TCGA-44-7670-01	control
+TCGA-49-AARR-01	lung adenocarcinoma	68	No	male	TCGA-49-AARR	TCGA-49-AARR-01	control
+TCGA-44-6146-01	lung adenocarcinoma	64	No	male	TCGA-44-6146	TCGA-44-6146-01	control
+TCGA-55-A4DG-01	lung adenocarcinoma	71	No	male	TCGA-55-A4DG	TCGA-55-A4DG-01	control
+TCGA-35-5375-01	lung adenocarcinoma	61	No	male	TCGA-35-5375	TCGA-35-5375-01	control
+TCGA-55-7727-01	lung adenocarcinoma	70	No	male	TCGA-55-7727	TCGA-55-7727-01	control
+TCGA-95-A4VK-01	lung adenocarcinoma	74	No	female	TCGA-95-A4VK	TCGA-95-A4VK-01	control
+TCGA-50-5941-01	lung adenocarcinoma	55	No	female	TCGA-50-5941	TCGA-50-5941-01	control
+TCGA-55-8302-01	lung adenocarcinoma	54	No	male	TCGA-55-8302	TCGA-55-8302-01	control
+TCGA-05-4424-01	lung adenocarcinoma	70	No	male	TCGA-05-4424	TCGA-05-4424-01	control
+TCGA-35-4122-01	lung adenocarcinoma	69	No	male	TCGA-35-4122	TCGA-35-4122-01	control
+TCGA-35-3615-01	lung adenocarcinoma	57	No	male	TCGA-35-3615	TCGA-35-3615-01	control
+TCGA-91-6848-01	lung adenocarcinoma	59	No	male	TCGA-91-6848	TCGA-91-6848-01	control
+TCGA-86-8074-01	lung adenocarcinoma	62	No	female	TCGA-86-8074	TCGA-86-8074-01	control
+TCGA-55-8505-01	lung adenocarcinoma	62	No	male	TCGA-55-8505	TCGA-55-8505-01	control
+TCGA-97-A4M0-01	lung adenocarcinoma	60	No	female	TCGA-97-A4M0	TCGA-97-A4M0-01	control
+TCGA-53-7624-01	lung adenocarcinoma	40	No	female	TCGA-53-7624	TCGA-53-7624-01	control
+TCGA-58-A46K-01	lung squamous cell carcinoma	59	No	male	TCGA-58-A46K	TCGA-58-A46K-01	control
+TCGA-56-7823-01	lung squamous cell carcinoma	58	No	female	TCGA-56-7823	TCGA-56-7823-01	control
+TCGA-NC-A5HG-01	lung squamous cell carcinoma	59	No	male	TCGA-NC-A5HG	TCGA-NC-A5HG-01	control
+TCGA-85-8355-01	lung squamous cell carcinoma	63	No	male	TCGA-85-8355	TCGA-85-8355-01	control
+TCGA-56-8308-01	lung squamous cell carcinoma	79	No	male	TCGA-56-8308	TCGA-56-8308-01	control
+TCGA-60-2698-01	lung squamous cell carcinoma	62	No	male	TCGA-60-2698	TCGA-60-2698-01	control
+TCGA-56-7221-01	lung squamous cell carcinoma	79	No	male	TCGA-56-7221	TCGA-56-7221-01	control
+TCGA-60-2721-01	lung squamous cell carcinoma	73	No	male	TCGA-60-2721	TCGA-60-2721-01	control
+TCGA-63-A5MW-01	lung squamous cell carcinoma	76	No	male	TCGA-63-A5MW	TCGA-63-A5MW-01	control
+TCGA-O2-A52S-01	lung squamous cell carcinoma	57	No	female	TCGA-O2-A52S	TCGA-O2-A52S-01	control
+TCGA-LA-A446-01	lung squamous cell carcinoma	68	No	male	TCGA-LA-A446	TCGA-LA-A446-01	control
+TCGA-77-A5GB-01	lung squamous cell carcinoma	90	No	male	TCGA-77-A5GB	TCGA-77-A5GB-01	control
+TCGA-43-2576-01	lung squamous cell carcinoma	62	No	female	TCGA-43-2576	TCGA-43-2576-01	control
+TCGA-43-A56U-01	lung squamous cell carcinoma	76	No	female	TCGA-43-A56U	TCGA-43-A56U-01	control
+TCGA-85-A513-01	lung squamous cell carcinoma	60	No	female	TCGA-85-A513	TCGA-85-A513-01	control
+TCGA-60-2697-01	lung squamous cell carcinoma	41	No	male	TCGA-60-2697	TCGA-60-2697-01	control
+TCGA-39-5040-01	lung squamous cell carcinoma	59	No	male	TCGA-39-5040	TCGA-39-5040-01	control
+TCGA-51-4079-01	lung squamous cell carcinoma	73	No	female	TCGA-51-4079	TCGA-51-4079-01	control
+TCGA-90-A4EE-01	lung squamous cell carcinoma	53	No	male	TCGA-90-A4EE	TCGA-90-A4EE-01	control
+TCGA-60-2710-01	lung squamous cell carcinoma	67	No	female	TCGA-60-2710	TCGA-60-2710-01	control
+THR09_0224_S01	lymphoma	4	Yes, age < 30 years	male	EGAR00001077876_tumor_4194218	4194218	control
+THR22_0588_S01	lymphoma	56	No	male	tumor_4170686	4170686	control
+THR22_0581_S01	lymphoma	48	No	female	tumor_4120193	4120193	control
+THR09_0576_S01	lymphoma	17	Yes, age < 30 years	male	EGAR00001092808_tumor_4193278	4193278	control
+THR22_0589_S01	lymphoma	72	No	male	tumor_4174905	4174905	control
+THR09_0223_S01	lymphoma	13	Yes, age < 30 years	male	EGAR00001077875_tumor_4189998	4189998	control
+THR09_0574_S01	lymphoma	10	Yes, age < 30 years	male	EGAR00001092806_tumor_4177856	4177856	control
+THR09_0564_S01	lymphoma	15	Yes, age < 30 years	male	EGAR00001076558_tumor_4190495	4190495	control
+THR09_0222_S01	lymphoma	75	No	female	EGAR00001077874_tumor_4163639	4163639	control
+THR31_0901_S01	lymphoma	NA	Yes, age < 30 years	male	N/A	SRR4305875	control
+THR22_0587_S01	lymphoma	62	No	male	tumor_4166706	4166706	control
+THR09_0567_S01	lymphoma	66	No	male	EGAR00001092799_tumor_4108101	4108101	control
+THR09_0566_S01	lymphoma	40	No	female	EGAR00001092798_tumor_4105105	4105105	control
+THR22_0600_S01	lymphoma	72	No	male	tumor_4131257	4131257	control
+THR09_0563_S01	lymphoma	11	Yes, age < 30 years	male	EGAR00001076557_tumor_4182393	4182393	control
+THR22_0579_S01	lymphoma	16	Yes, age < 30 years	male	tumor_4104893	4104893	control
+THR22_0595_S01	lymphoma	16	Yes, age < 30 years	male	tumor_4191799	4191799	control
+THR22_0584_S01	lymphoma	70	No	male	tumor_4139696	4139696	control
+THR22_0585_S01	lymphoma	14	Yes, age < 30 years	male	tumor_4146289	4146289	control
+THR09_0568_S01	lymphoma	18	Yes, age < 30 years	female	EGAR00001092800_tumor_4112512	4112512	control
+TH06_0645_S01	malignant peripheral nerve sheath tumor	1	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-SI-AA8C-01	malignant peripheral nerve sheath tumor	20	Yes, age < 30 years	female	TCGA-SI-AA8C	TCGA-SI-AA8C-01	control
+TCGA-SI-A71P-01	malignant peripheral nerve sheath tumor	50	No	male	TCGA-SI-A71P	TCGA-SI-A71P-01	control
+TH06_1178_S01	malignant peripheral nerve sheath tumor	20	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-RN-A68Q-01	malignant peripheral nerve sheath tumor	62	No	female	TCGA-RN-A68Q	TCGA-RN-A68Q-01	control
+TCGA-QQ-A8VH-01	malignant peripheral nerve sheath tumor	31	No	female	TCGA-QQ-A8VH	TCGA-QQ-A8VH-01	control
+TCGA-SI-A71Q-01	malignant peripheral nerve sheath tumor	34	No	female	TCGA-SI-A71Q	TCGA-SI-A71Q-01	control
+TH27_0977_S01	malignant peripheral nerve sheath tumor	7	Yes, age < 30 years	male	N/A	N/A	control
+TH27_0977_S02	malignant peripheral nerve sheath tumor	7	Yes, age < 30 years	male	N/A	N/A	control
+THR31_0913_S01	melanotic neuroectodermal tumor	NA	Yes, age < 30 years	female	N/A	SRR4305966	control
+THR31_0867_S01	meningioma	NA	Yes, age < 30 years	female	N/A	SRR4305699	control
+TCGA-MQ-A4LM-01	mesothelioma	67	No	male	TCGA-MQ-A4LM	TCGA-MQ-A4LM-01	control
+TCGA-3H-AB3M-01	mesothelioma	53	No	unknown	TCGA-3H-AB3M	TCGA-3H-AB3M-01	control
+TCGA-TS-A7P8-01	mesothelioma	80	No	unknown	TCGA-TS-A7P8	TCGA-TS-A7P8-01	control
+TCGA-LK-A4NW-01	mesothelioma	60	No	unknown	TCGA-LK-A4NW	TCGA-LK-A4NW-01	control
+TCGA-TS-A7OU-01	mesothelioma	56	No	unknown	TCGA-TS-A7OU	TCGA-TS-A7OU-01	control
+TCGA-3U-A98G-01	mesothelioma	71	No	unknown	TCGA-3U-A98G	TCGA-3U-A98G-01	control
+TCGA-MQ-A6BS-01	mesothelioma	55	No	unknown	TCGA-MQ-A6BS	TCGA-MQ-A6BS-01	control
+TCGA-SH-A9CT-01	mesothelioma	67	No	unknown	TCGA-SH-A9CT	TCGA-SH-A9CT-01	control
+TCGA-UD-AAC6-01	mesothelioma	67	No	unknown	TCGA-UD-AAC6	TCGA-UD-AAC6-01	control
+TCGA-3U-A98D-01	mesothelioma	80	No	unknown	TCGA-3U-A98D	TCGA-3U-A98D-01	control
+TCGA-SH-A7BC-01	mesothelioma	66	No	unknown	TCGA-SH-A7BC	TCGA-SH-A7BC-01	control
+TCGA-SC-A6LQ-01	mesothelioma	60	No	unknown	TCGA-SC-A6LQ	TCGA-SC-A6LQ-01	control
+TCGA-UT-A88E-01	mesothelioma	74	No	male	TCGA-UT-A88E	TCGA-UT-A88E-01	control
+TCGA-NQ-A638-01	mesothelioma	66	No	male	TCGA-NQ-A638	TCGA-NQ-A638-01	control
+TCGA-UT-A88C-01	mesothelioma	62	No	male	TCGA-UT-A88C	TCGA-UT-A88C-01	control
+TCGA-TS-A7OZ-01	mesothelioma	67	No	unknown	TCGA-TS-A7OZ	TCGA-TS-A7OZ-01	control
+TCGA-3H-AB3X-01	mesothelioma	62	No	male	TCGA-3H-AB3X	TCGA-3H-AB3X-01	control
+TCGA-ZN-A9VP-01	mesothelioma	51	No	male	TCGA-ZN-A9VP	TCGA-ZN-A9VP-01	control
+TCGA-3H-AB3U-01	mesothelioma	71	No	unknown	TCGA-3H-AB3U	TCGA-3H-AB3U-01	control
+TCGA-MQ-A4LP-01	mesothelioma	67	No	unknown	TCGA-MQ-A4LP	TCGA-MQ-A4LP-01	control
+TH27_1359_S01	myeloid neoplasm NOS	0.19	Yes, age < 30 years	female	N/A	N/A	control
+TH03_0113_S01	myoepithelial carcinoma	1.9	Yes, age < 30 years	male	N/A	N/A	control
+TH34_1352_S01	myoepithelial carcinoma	0.96	Yes, age < 30 years	male	N/A	N/A	control
+TH03_0113_S02	myoepithelial carcinoma	1.9	Yes, age < 30 years	male	N/A	N/A	control
+THR31_0896_S01	myofibromatosis	NA	Yes, age < 30 years	male	N/A	SRR4305855	control
+THR31_0916_S01	myofibromatosis	NA	Yes, age < 30 years	male	N/A	SRR4305984	control
+TCGA-DX-A6YU-01	myxofibrosarcoma	50	No	female	TCGA-DX-A6YU	TCGA-DX-A6YU-01	control
+TCGA-DX-A6Z0-01	myxofibrosarcoma	78	No	female	TCGA-DX-A6Z0	TCGA-DX-A6Z0-01	control
+TCGA-DX-AB2T-01	myxofibrosarcoma	54	No	female	TCGA-DX-AB2T	TCGA-DX-AB2T-01	control
+TCGA-IE-A6BZ-01	myxofibrosarcoma	65	No	female	TCGA-IE-A6BZ	TCGA-IE-A6BZ-01	control
+TCGA-DX-A6YX-01	myxofibrosarcoma	68	No	female	TCGA-DX-A6YX	TCGA-DX-A6YX-01	control
+TCGA-X6-A8C3-01	myxofibrosarcoma	59	No	female	TCGA-X6-A8C3	TCGA-X6-A8C3-01	control
+TCGA-X6-A7W8-01	myxofibrosarcoma	89	No	male	TCGA-X6-A7W8	TCGA-X6-A7W8-01	control
+TCGA-DX-A8BR-01	myxofibrosarcoma	63	No	female	TCGA-DX-A8BR	TCGA-DX-A8BR-01	control
+TCGA-DX-AB2E-01	myxofibrosarcoma	60	No	male	TCGA-DX-AB2E	TCGA-DX-AB2E-01	control
+TCGA-DX-AB2X-01	myxofibrosarcoma	73	No	female	TCGA-DX-AB2X	TCGA-DX-AB2X-01	control
+TCGA-DX-A8BH-01	myxofibrosarcoma	86	No	male	TCGA-DX-A8BH	TCGA-DX-A8BH-01	control
+TCGA-DX-A8BL-01	myxofibrosarcoma	59	No	male	TCGA-DX-A8BL	TCGA-DX-A8BL-01	control
+TCGA-MJ-A68J-01	myxofibrosarcoma	55	No	female	TCGA-MJ-A68J	TCGA-MJ-A68J-01	control
+TCGA-DX-A6YQ-01	myxofibrosarcoma	86	No	female	TCGA-DX-A6YQ	TCGA-DX-A6YQ-01	control
+TCGA-DX-AB2V-01	myxofibrosarcoma	81	No	male	TCGA-DX-AB2V	TCGA-DX-AB2V-01	control
+TCGA-DX-A8BV-01	myxofibrosarcoma	57	No	male	TCGA-DX-A8BV	TCGA-DX-A8BV-01	control
+TCGA-DX-A6YR-01	myxofibrosarcoma	75	No	male	TCGA-DX-A6YR	TCGA-DX-A6YR-01	control
+THR31_0907_S01	nasopharyngeal carcinoma	NA	Yes, age < 30 years	male	N/A	SRR4305903	control
+TH03_0005_S01	nasopharyngeal carcinoma	20	Yes, age < 30 years	not reported	N/A	N/A	control
+THR31_0934_S01	nasopharyngeal carcinoma	NA	Yes, age < 30 years	female	N/A	SRR4306848	control
+TARGET-30-PATEPF-01	neuroblastoma	3.93	Yes, age < 30 years	male	TARGET-30-PATEPF	TARGET-30-PATEPF-01	control
+TARGET-30-PARNNC-01	neuroblastoma	0.11	Yes, age < 30 years	female	TARGET-30-PARNNC	TARGET-30-PARNNC-01	control
+TARGET-30-PAPKXS-01	neuroblastoma	6.98	Yes, age < 30 years	female	TARGET-30-PAPKXS	TARGET-30-PAPKXS-01	control
+TARGET-30-PANNMS-01	neuroblastoma	2.96	Yes, age < 30 years	female	TARGET-30-PANNMS	TARGET-30-PANNMS-01	control
+TARGET-30-PASSWW-01	neuroblastoma	0.02	Yes, age < 30 years	male	TARGET-30-PASSWW	TARGET-30-PASSWW-01	control
+TARGET-30-PAPUEB-01	neuroblastoma	4.37	Yes, age < 30 years	female	TARGET-30-PAPUEB	TARGET-30-PAPUEB-01	control
+TARGET-30-PASTKC-01	neuroblastoma	8.32	Yes, age < 30 years	male	TARGET-30-PASTKC	TARGET-30-PASTKC-01	control
+TARGET-30-PAMNLH-01	neuroblastoma	4.19	Yes, age < 30 years	female	TARGET-30-PAMNLH	TARGET-30-PAMNLH-01	control
+TARGET-30-PASMNT-01	neuroblastoma	13.16	Yes, age < 30 years	female	TARGET-30-PASMNT	TARGET-30-PASMNT-01	control
+TARGET-30-PANSBN-01	neuroblastoma	6.38	Yes, age < 30 years	male	TARGET-30-PANSBN	TARGET-30-PANSBN-01	control
+TARGET-30-PARKGJ-01	neuroblastoma	4.43	Yes, age < 30 years	male	TARGET-30-PARKGJ	TARGET-30-PARKGJ-01	control
+TARGET-30-PATDXG-01	neuroblastoma	1.88	Yes, age < 30 years	male	TARGET-30-PATDXG	TARGET-30-PATDXG-01	control
+TARGET-30-PARZCJ-01	neuroblastoma	0.7	Yes, age < 30 years	male	TARGET-30-PARZCJ	TARGET-30-PARZCJ-01	control
+TARGET-30-PASXIE-01	neuroblastoma	2.29	Yes, age < 30 years	male	TARGET-30-PASXIE	TARGET-30-PASXIE-01	control
+TARGET-30-PASHFA-01	neuroblastoma	1.11	Yes, age < 30 years	female	TARGET-30-PASHFA	TARGET-30-PASHFA-01	control
+TARGET-30-PAMMXF-01	neuroblastoma	4.55	Yes, age < 30 years	male	TARGET-30-PAMMXF	TARGET-30-PAMMXF-01	control
+TARGET-30-PANRHJ-01	neuroblastoma	3.06	Yes, age < 30 years	female	TARGET-30-PANRHJ	TARGET-30-PANRHJ-01	control
+TARGET-30-PATBMM-01	neuroblastoma	3.05	Yes, age < 30 years	male	TARGET-30-PATBMM	TARGET-30-PATBMM-01	control
+TARGET-30-PARHAM-02	neuroblastoma	0.9	Yes, age < 30 years	female	TARGET-30-PARHAM	TARGET-30-PARHAM-02	control
+TARGET-30-PATFXV-01	neuroblastoma	1.78	Yes, age < 30 years	female	TARGET-30-PATFXV	TARGET-30-PATFXV-01	control
+THR31_0925_S01	neuroendocrine carcinoma	NA	Yes, age < 30 years	female	N/A	SRR4306092	control
+TH06_0633_S01	neurofibroma	1	Yes, age < 30 years	male	N/A	N/A	control
+TH06_0646_S01	neurofibroma	2	Yes, age < 30 years	male	N/A	N/A	control
+TH06_0629_S01	neurofibromatosis type 1	2	Yes, age < 30 years	male	N/A	N/A	control
+TH06_0618_S01	NUT midline carcinoma	8	Yes, age < 30 years	male	N/A	N/A	control
+TARGET-40-PASYUK-01A-01R	osteosarcoma	16.25	Yes, age < 30 years	female	TARGET-40-PASYUK	SRR1811067,SRR1811074,SRR1811143	control
+TARGET-40-0A4I9K-01A-01R	osteosarcoma	22.57	Yes, age < 30 years	male	TARGET-40-0A4I9K	SRR1811154	control
+THR15_0343_S01	osteosarcoma	NA	Yes, age < 30 years	female	BZ19-Tumor	SRR1701343	control
+THR15_0353_S01	osteosarcoma	NA	Yes, age < 30 years	male	BZ30-Tumor	SRR1701777	control
+TH27_0703_S01	osteosarcoma	13	Yes, age < 30 years	female	N/A	N/A	control
+THR15_0334_S01	osteosarcoma	NA	Yes, age < 30 years	female	BZ08-Tumor	SRR1701622	control
+TH27_0693_S01	osteosarcoma	13	Yes, age < 30 years	female	N/A	N/A	control
+TH27_1357_S01	osteosarcoma	13	Yes, age < 30 years	male	N/A	N/A	control
+TARGET-40-PALHRL-01A-01R	osteosarcoma	16.49	Yes, age < 30 years	male	TARGET-40-PALHRL	SRR1811045,SRR1811028	control
+THR15_0329_S01	osteosarcoma	NA	Yes, age < 30 years	female	BZ02-Tumor	SRR1701812	control
+TH27_0689_S01	osteosarcoma	18	Yes, age < 30 years	male	N/A	N/A	control
+TH03_0025_S02	osteosarcoma	15	Yes, age < 30 years	not reported	N/A	N/A	control
+TARGET-40-PANSEN-01A-01R	osteosarcoma	14.34	Yes, age < 30 years	male	TARGET-40-PANSEN	SRR1811038,SRR1811033	control
+TARGET-40-PATMIF-01A-01R	osteosarcoma	12.01	Yes, age < 30 years	female	TARGET-40-PATMIF	SRR1811151	control
+TH27_0699_S02	osteosarcoma	24	Yes, age < 30 years	male	N/A	N/A	control
+THR31_0895_S01	osteosarcoma	NA	Yes, age < 30 years	female	N/A	SRR4305851	control
+TARGET-40-PALECC-01A-01R	osteosarcoma	10.03	Yes, age < 30 years	female	TARGET-40-PALECC	SRR1811109,SRR1811099	control
+THR15_0348_S01	osteosarcoma	NA	Yes, age < 30 years	male	BZ24-Tumor	SRR1701454	control
+TARGET-40-PATMXR-01A-01R	osteosarcoma	20.91	Yes, age < 30 years	female	TARGET-40-PATMXR	SRR1811130,SRR1811121	control
+TARGET-40-0A4HMC-01A-01R	osteosarcoma	27.96	Yes, age < 30 years	male	TARGET-40-0A4HMC	SRR1811159	control
+TCGA-29-1697-01	ovarian serous cystadenocarcinoma	62	No	female	TCGA-29-1697	TCGA-29-1697-01	control
+TCGA-04-1530-01	ovarian serous cystadenocarcinoma	68	No	female	TCGA-04-1530	TCGA-04-1530-01	control
+TCGA-59-2350-01	ovarian serous cystadenocarcinoma	44	No	female	TCGA-59-2350	TCGA-59-2350-01	control
+TCGA-09-1674-01	ovarian serous cystadenocarcinoma	79	No	female	TCGA-09-1674	TCGA-09-1674-01	control
+TCGA-23-1032-01	ovarian serous cystadenocarcinoma	73	No	female	TCGA-23-1032	TCGA-23-1032-01	control
+TCGA-29-1776-01	ovarian serous cystadenocarcinoma	63	No	female	TCGA-29-1776	TCGA-29-1776-01	control
+TCGA-20-1685-01	ovarian serous cystadenocarcinoma	45	No	female	TCGA-20-1685	TCGA-20-1685-01	control
+TCGA-13-0906-01	ovarian serous cystadenocarcinoma	50	No	female	TCGA-13-0906	TCGA-13-0906-01	control
+TCGA-25-1630-01	ovarian serous cystadenocarcinoma	73	No	female	TCGA-25-1630	TCGA-25-1630-01	control
+TCGA-24-1104-01	ovarian serous cystadenocarcinoma	56	No	female	TCGA-24-1104	TCGA-24-1104-01	control
+TCGA-04-1365-01	ovarian serous cystadenocarcinoma	87	No	female	TCGA-04-1365	TCGA-04-1365-01	control
+TCGA-24-1553-01	ovarian serous cystadenocarcinoma	53	No	female	TCGA-24-1553	TCGA-24-1553-01	control
+TCGA-61-2102-01	ovarian serous cystadenocarcinoma	74	No	female	TCGA-61-2102	TCGA-61-2102-01	control
+TCGA-09-1662-01	ovarian serous cystadenocarcinoma	58	No	female	TCGA-09-1662	TCGA-09-1662-01	control
+TCGA-61-1741-01	ovarian serous cystadenocarcinoma	76	No	female	TCGA-61-1741	TCGA-61-1741-01	control
+TCGA-25-1326-01	ovarian serous cystadenocarcinoma	61	No	female	TCGA-25-1326	TCGA-25-1326-01	control
+TCGA-13-2060-01	ovarian serous cystadenocarcinoma	51	No	female	TCGA-13-2060	TCGA-13-2060-01	control
+TCGA-13-0888-01	ovarian serous cystadenocarcinoma	78	No	female	TCGA-13-0888	TCGA-13-0888-01	control
+TCGA-25-2042-01	ovarian serous cystadenocarcinoma	60	No	female	TCGA-25-2042	TCGA-25-2042-01	control
+TCGA-13-0913-02	ovarian serous cystadenocarcinoma	53	No	female	TCGA-13-0913	TCGA-13-0913-02	control
+TCGA-HZ-8001-01	pancreatic adenocarcinoma	69	No	male	TCGA-HZ-8001	TCGA-HZ-8001-01	control
+TCGA-3A-A9IL-01	pancreatic adenocarcinoma	39	No	female	TCGA-3A-A9IL	TCGA-3A-A9IL-01	control
+TCGA-F2-A7TX-01	pancreatic adenocarcinoma	77	No	male	TCGA-F2-A7TX	TCGA-F2-A7TX-01	control
+TCGA-IB-7897-01	pancreatic adenocarcinoma	53	No	female	TCGA-IB-7897	TCGA-IB-7897-01	control
+TCGA-2J-AABK-01	pancreatic adenocarcinoma	71	No	male	TCGA-2J-AABK	TCGA-2J-AABK-01	control
+TCGA-3A-A9IS-01	pancreatic adenocarcinoma	67	No	male	TCGA-3A-A9IS	TCGA-3A-A9IS-01	control
+TCGA-IB-7891-01	pancreatic adenocarcinoma	49	No	female	TCGA-IB-7891	TCGA-IB-7891-01	control
+TCGA-US-A779-01	pancreatic adenocarcinoma	54	No	female	TCGA-US-A779	TCGA-US-A779-01	control
+TCGA-IB-7647-01	pancreatic adenocarcinoma	41	No	male	TCGA-IB-7647	TCGA-IB-7647-01	control
+TCGA-HZ-7918-01	pancreatic adenocarcinoma	72	No	male	TCGA-HZ-7918	TCGA-HZ-7918-01	control
+TCGA-2J-AABU-01	pancreatic adenocarcinoma	56	No	male	TCGA-2J-AABU	TCGA-2J-AABU-01	control
+TCGA-HZ-7922-01	pancreatic adenocarcinoma	61	No	female	TCGA-HZ-7922	TCGA-HZ-7922-01	control
+TCGA-H6-8124-01	pancreatic adenocarcinoma	56	No	female	TCGA-H6-8124	TCGA-H6-8124-01	control
+TCGA-RL-AAAS-01	pancreatic adenocarcinoma	60	No	female	TCGA-RL-AAAS	TCGA-RL-AAAS-01	control
+TCGA-HZ-A8P0-01	pancreatic adenocarcinoma	76	No	male	TCGA-HZ-A8P0	TCGA-HZ-A8P0-01	control
+TCGA-YY-A8LH-01	pancreatic adenocarcinoma	61	No	female	TCGA-YY-A8LH	TCGA-YY-A8LH-01	control
+TCGA-F2-A44H-01	pancreatic adenocarcinoma	65	No	male	TCGA-F2-A44H	TCGA-F2-A44H-01	control
+TCGA-HZ-7920-01	pancreatic adenocarcinoma	71	No	male	TCGA-HZ-7920	TCGA-HZ-7920-01	control
+TCGA-F2-A8YN-01	pancreatic adenocarcinoma	76	No	male	TCGA-F2-A8YN	TCGA-F2-A8YN-01	control
+TCGA-IB-8126-01	pancreatic adenocarcinoma	79	No	female	TCGA-IB-8126	TCGA-IB-8126-01	control
+THR31_0874_S01	PEComa	NA	Yes, age < 30 years	female	N/A	SRR4305737	control
+TCGA-RW-A680-01	pheochromocytoma & paraganglioma	57	No	female	TCGA-RW-A680	TCGA-RW-A680-01	control
+TCGA-SP-A6QG-01	pheochromocytoma & paraganglioma	35	No	female	TCGA-SP-A6QG	TCGA-SP-A6QG-01	control
+TCGA-RW-A688-01	pheochromocytoma & paraganglioma	69	No	female	TCGA-RW-A688	TCGA-RW-A688-01	control
+TCGA-QR-A6GW-01	pheochromocytoma & paraganglioma	53	No	female	TCGA-QR-A6GW	TCGA-QR-A6GW-01	control
+TCGA-QT-A5XK-01	pheochromocytoma & paraganglioma	56	No	female	TCGA-QT-A5XK	TCGA-QT-A5XK-01	control
+TCGA-TT-A6YK-01	pheochromocytoma & paraganglioma	61	No	male	TCGA-TT-A6YK	TCGA-TT-A6YK-01	control
+TCGA-QR-A70J-01	pheochromocytoma & paraganglioma	42	No	female	TCGA-QR-A70J	TCGA-QR-A70J-01	control
+TCGA-WB-A817-01	pheochromocytoma & paraganglioma	27	Yes, age < 30 years	male	TCGA-WB-A817	TCGA-WB-A817-01	control
+TCGA-QT-A5XO-01	pheochromocytoma & paraganglioma	63	No	female	TCGA-QT-A5XO	TCGA-QT-A5XO-01	control
+TCGA-RW-A68C-01	pheochromocytoma & paraganglioma	43	No	male	TCGA-RW-A68C	TCGA-RW-A68C-01	control
+TCGA-WB-A80M-01	pheochromocytoma & paraganglioma	63	No	male	TCGA-WB-A80M	TCGA-WB-A80M-01	control
+TCGA-RT-A6YC-01	pheochromocytoma & paraganglioma	31	No	male	TCGA-RT-A6YC	TCGA-RT-A6YC-01	control
+TCGA-SR-A6MP-01	pheochromocytoma & paraganglioma	30	No	female	TCGA-SR-A6MP	TCGA-SR-A6MP-01	control
+TCGA-P8-A6RY-01	pheochromocytoma & paraganglioma	55	No	male	TCGA-P8-A6RY	TCGA-P8-A6RY-01	control
+TCGA-WB-A80N-01	pheochromocytoma & paraganglioma	54	No	male	TCGA-WB-A80N	TCGA-WB-A80N-01	control
+TCGA-WB-A81P-01	pheochromocytoma & paraganglioma	73	No	female	TCGA-WB-A81P	TCGA-WB-A81P-01	control
+TCGA-W2-A7HB-01	pheochromocytoma & paraganglioma	24	Yes, age < 30 years	male	TCGA-W2-A7HB	TCGA-W2-A7HB-01	control
+TCGA-WB-A81V-01	pheochromocytoma & paraganglioma	57	No	male	TCGA-WB-A81V	TCGA-WB-A81V-01	control
+TCGA-SP-A6QK-01	pheochromocytoma & paraganglioma	46	No	female	TCGA-SP-A6QK	TCGA-SP-A6QK-01	control
+TCGA-SP-A6QH-01	pheochromocytoma & paraganglioma	35	No	female	TCGA-SP-A6QH	TCGA-SP-A6QH-01	control
+TH06_1173_S01	pineal parenchymal tumor	18	Yes, age < 30 years	female	N/A	N/A	control
+THR31_0905_S01	pleuropulmonary blastoma	NA	Yes, age < 30 years	male	N/A	SRR4305894	control
+TCGA-XK-AAJ3-01	prostate adenocarcinoma	56	No	male	TCGA-XK-AAJ3	TCGA-XK-AAJ3-01	control
+TCGA-ZG-A8QY-01	prostate adenocarcinoma	67	No	male	TCGA-ZG-A8QY	TCGA-ZG-A8QY-01	control
+TCGA-EJ-A7NF-01	prostate adenocarcinoma	56	No	male	TCGA-EJ-A7NF	TCGA-EJ-A7NF-01	control
+TCGA-HI-7171-01	prostate adenocarcinoma	56	No	male	TCGA-HI-7171	TCGA-HI-7171-01	control
+TCGA-HC-7748-01	prostate adenocarcinoma	60	No	male	TCGA-HC-7748	TCGA-HC-7748-01	control
+TCGA-YL-A9WL-01	prostate adenocarcinoma	59	No	male	TCGA-YL-A9WL	TCGA-YL-A9WL-01	control
+TCGA-YL-A9WY-01	prostate adenocarcinoma	57	No	male	TCGA-YL-A9WY	TCGA-YL-A9WY-01	control
+TCGA-KK-A8IG-01	prostate adenocarcinoma	55	No	male	TCGA-KK-A8IG	TCGA-KK-A8IG-01	control
+TCGA-ZG-A8QZ-01	prostate adenocarcinoma	65	No	male	TCGA-ZG-A8QZ	TCGA-ZG-A8QZ-01	control
+TCGA-HC-A6HX-01	prostate adenocarcinoma	55	No	male	TCGA-HC-A6HX	TCGA-HC-A6HX-01	control
+TCGA-KK-A7AU-01	prostate adenocarcinoma	63	No	male	TCGA-KK-A7AU	TCGA-KK-A7AU-01	control
+TCGA-HC-A9TH-01	prostate adenocarcinoma	58	No	male	TCGA-HC-A9TH	TCGA-HC-A9TH-01	control
+TCGA-YL-A8SK-01	prostate adenocarcinoma	67	No	male	TCGA-YL-A8SK	TCGA-YL-A8SK-01	control
+TCGA-EJ-8474-01	prostate adenocarcinoma	69	No	male	TCGA-EJ-8474	TCGA-EJ-8474-01	control
+TCGA-EJ-5506-01	prostate adenocarcinoma	67	No	male	TCGA-EJ-5506	TCGA-EJ-5506-01	control
+TCGA-KK-A7B4-01	prostate adenocarcinoma	64	No	male	TCGA-KK-A7B4	TCGA-KK-A7B4-01	control
+TCGA-KK-A8IH-01	prostate adenocarcinoma	50	No	male	TCGA-KK-A8IH	TCGA-KK-A8IH-01	control
+TCGA-VN-A88P-01	prostate adenocarcinoma	60	No	male	TCGA-VN-A88P	TCGA-VN-A88P-01	control
+TCGA-KK-A6E6-01	prostate adenocarcinoma	69	No	male	TCGA-KK-A6E6	TCGA-KK-A6E6-01	control
+TCGA-DC-6156-01	rectum adenocarcinoma	62	No	male	TCGA-DC-6156	TCGA-DC-6156-01	control
+TCGA-F5-6464-01	rectum adenocarcinoma	77	No	female	TCGA-F5-6464	TCGA-F5-6464-01	control
+TCGA-DY-A1H8-01	rectum adenocarcinoma	77	No	female	TCGA-DY-A1H8	TCGA-DY-A1H8-01	control
+TCGA-F5-6811-01	rectum adenocarcinoma	72	No	female	TCGA-F5-6811	TCGA-F5-6811-01	control
+TCGA-AH-6897-01	rectum adenocarcinoma	48	No	male	TCGA-AH-6897	TCGA-AH-6897-01	control
+TCGA-AG-3732-01	rectum adenocarcinoma	78	No	female	TCGA-AG-3732	TCGA-AG-3732-01	control
+TCGA-DC-6157-01	rectum adenocarcinoma	48	No	male	TCGA-DC-6157	TCGA-DC-6157-01	control
+TCGA-DC-4745-01	rectum adenocarcinoma	49	No	female	TCGA-DC-4745	TCGA-DC-4745-01	control
+TCGA-G5-6233-01	rectum adenocarcinoma	74	No	male	TCGA-G5-6233	TCGA-G5-6233-01	control
+TCGA-AF-2690-01	rectum adenocarcinoma	76	No	female	TCGA-AF-2690	TCGA-AF-2690-01	control
+TCGA-EI-6514-01	rectum adenocarcinoma	59	No	female	TCGA-EI-6514	TCGA-EI-6514-01	control
+TCGA-EI-6881-01	rectum adenocarcinoma	60	No	male	TCGA-EI-6881	TCGA-EI-6881-01	control
+TCGA-DC-6682-01	rectum adenocarcinoma	57	No	male	TCGA-DC-6682	TCGA-DC-6682-01	control
+TCGA-F5-6812-01	rectum adenocarcinoma	67	No	male	TCGA-F5-6812	TCGA-F5-6812-01	control
+TCGA-CI-6619-01	rectum adenocarcinoma	41	No	male	TCGA-CI-6619	TCGA-CI-6619-01	control
+TCGA-EI-6513-01	rectum adenocarcinoma	59	No	male	TCGA-EI-6513	TCGA-EI-6513-01	control
+TCGA-AF-3911-01	rectum adenocarcinoma	48	No	male	TCGA-AF-3911	TCGA-AF-3911-01	control
+TCGA-AF-6655-01	rectum adenocarcinoma	66	No	male	TCGA-AF-6655	TCGA-AF-6655-01	control
+TCGA-AH-6547-01	rectum adenocarcinoma	79	No	female	TCGA-AH-6547	TCGA-AH-6547-01	control
+TCGA-F5-6861-01	rectum adenocarcinoma	60	No	female	TCGA-F5-6861	TCGA-F5-6861-01	control
+TH27_1157_S02	rhabdomyosarcoma	1	Yes, age < 30 years	male	N/A	N/A	control
+THR31_0872_S01	rhabdomyosarcoma	NA	Yes, age < 30 years	male	N/A	SRR4305729	control
+THR31_0888_S01	rhabdomyosarcoma	NA	Yes, age < 30 years	female	N/A	SRR4305819	control
+THR31_1383_S01	rhabdomyosarcoma	NA	No	female	N/A	SRR4306150	control
+TH03_0006_S01	rhabdomyosarcoma	7	Yes, age < 30 years	female	N/A	N/A	control
+TH27_1410_S01	rhabdomyosarcoma	NA	NA	male	N/A	N/A	control
+THR29_0758_S01	rhabdomyosarcoma	5	Yes, age < 30 years	female	RMS_2074	RMS_2074_tumor, SRR5144216	control
+THR29_0781_S01	rhabdomyosarcoma	1	Yes, age < 30 years	female	RMS_2117	RMS_2117_tumor, SRR5144238	control
+TH03_0006_S03	rhabdomyosarcoma	7	Yes, age < 30 years	female	N/A	N/A	control
+THR31_1394_S01	rhabdomyosarcoma	NA	No	male	N/A	SRR4307392	control
+THR29_0744_S01	rhabdomyosarcoma	0	Yes, age < 30 years	female	RMS_2049	RMS_2049_tumor, SRR5144202	control
+THR29_0776_S01	rhabdomyosarcoma	20	Yes, age < 30 years	male	RMS_2107	RMS_2107_tumor, SRR5144233	control
+TH27_1157_S01	rhabdomyosarcoma	1	Yes, age < 30 years	male	N/A	N/A	control
+TH27_1269_S01	rhabdomyosarcoma	41	No	male	N/A	N/A	control
+THR31_0869_S01	rhabdomyosarcoma	NA	Yes, age < 30 years	male	N/A	SRR4305715	control
+THR29_0779_S01	rhabdomyosarcoma	7	Yes, age < 30 years	female	RMS_2111	RMS_2111_tumor, SRR5144236	control
+TH06_1176_S01	rosette forming glioneuronal tumor	5	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-DX-A23U-01	sarcoma	81	No	male	TCGA-DX-A23U	TCGA-DX-A23U-01	control
+TCGA-QQ-A5V2-01	sarcoma	42	No	male	TCGA-QQ-A5V2	TCGA-QQ-A5V2-01	control
+TCGA-HS-A5NA-01	sarcoma	65	No	female	TCGA-HS-A5NA	TCGA-HS-A5NA-01	control
+TCGA-DX-A6YS-01	sarcoma	61	No	male	TCGA-DX-A6YS	TCGA-DX-A6YS-01	control
+TCGA-DX-A6YZ-01	sarcoma	59	No	male	TCGA-DX-A6YZ	TCGA-DX-A6YZ-01	control
+TCGA-X9-A973-01	sarcoma	55	No	male	TCGA-X9-A973	TCGA-X9-A973-01	control
+TCGA-DX-A8BQ-01	sarcoma	63	No	male	TCGA-DX-A8BQ	TCGA-DX-A8BQ-01	control
+TCGA-Z4-A9VC-01	sarcoma	37	No	male	TCGA-Z4-A9VC	TCGA-Z4-A9VC-01	control
+TCGA-UE-A6QT-01	sarcoma	50	No	female	TCGA-UE-A6QT	TCGA-UE-A6QT-01	control
+TCGA-IF-A3RQ-01	sarcoma	70	No	female	TCGA-IF-A3RQ	TCGA-IF-A3RQ-01	control
+TCGA-3B-A9HJ-01	sarcoma	68	No	male	TCGA-3B-A9HJ	TCGA-3B-A9HJ-01	control
+TCGA-SI-A71O-06	sarcoma	29	Yes, age < 30 years	male	TCGA-SI-A71O	TCGA-SI-A71O-06	control
+TCGA-X6-A8C6-01	sarcoma	55	No	male	TCGA-X6-A8C6	TCGA-X6-A8C6-01	control
+TCGA-LI-A67I-01	sarcoma	75	No	female	TCGA-LI-A67I	TCGA-LI-A67I-01	control
+TCGA-QQ-A8VB-01	sarcoma	68	No	female	TCGA-QQ-A8VB	TCGA-QQ-A8VB-01	control
+TCGA-IF-A4AK-01	sarcoma	82	No	female	TCGA-IF-A4AK	TCGA-IF-A4AK-01	control
+TCGA-IW-A3M5-01	sarcoma	76	No	female	TCGA-IW-A3M5	TCGA-IW-A3M5-01	control
+TCGA-RN-AAAQ-01	sarcoma	52	No	male	TCGA-RN-AAAQ	TCGA-RN-AAAQ-01	control
+TCGA-DX-A8BP-01	sarcoma	85	No	male	TCGA-DX-A8BP	TCGA-DX-A8BP-01	control
+TCGA-QQ-A8VG-01	sarcoma	52	No	male	TCGA-QQ-A8VG	TCGA-QQ-A8VG-01	control
+TCGA-EE-A2A1-06	skin cutaneous melanoma	46	No	male	TCGA-EE-A2A1	TCGA-EE-A2A1-06	control
+TCGA-EE-A2GL-06	skin cutaneous melanoma	40	No	female	TCGA-EE-A2GL	TCGA-EE-A2GL-06	control
+TCGA-D3-A51G-06	skin cutaneous melanoma	NA	Unknown	male	TCGA-D3-A51G	TCGA-D3-A51G-06	control
+TCGA-EE-A3AF-06	skin cutaneous melanoma	48	No	female	TCGA-EE-A3AF	TCGA-EE-A3AF-06	control
+TCGA-EE-A29L-06	skin cutaneous melanoma	78	No	male	TCGA-EE-A29L	TCGA-EE-A29L-06	control
+TCGA-D3-A2JB-06	skin cutaneous melanoma	70	No	female	TCGA-D3-A2JB	TCGA-D3-A2JB-06	control
+TCGA-ER-A3ET-06	skin cutaneous melanoma	64	No	female	TCGA-ER-A3ET	TCGA-ER-A3ET-06	control
+TCGA-BF-A3DL-01	skin cutaneous melanoma	84	No	female	TCGA-BF-A3DL	TCGA-BF-A3DL-01	control
+TCGA-ER-A19T-01	skin cutaneous melanoma	51	No	male	TCGA-ER-A19T	TCGA-ER-A19T-01	control
+TCGA-D9-A1X3-06	skin cutaneous melanoma	63	No	male	TCGA-D9-A1X3	TCGA-D9-A1X3-06	control
+TCGA-D3-A8GD-06	skin cutaneous melanoma	63	No	female	TCGA-D3-A8GD	TCGA-D3-A8GD-06	control
+TCGA-D3-A8GL-06	skin cutaneous melanoma	43	No	male	TCGA-D3-A8GL	TCGA-D3-A8GL-06	control
+TCGA-EE-A2MI-06	skin cutaneous melanoma	43	No	male	TCGA-EE-A2MI	TCGA-EE-A2MI-06	control
+TCGA-D9-A1JW-06	skin cutaneous melanoma	82	No	male	TCGA-D9-A1JW	TCGA-D9-A1JW-06	control
+TCGA-DA-A1I4-06	skin cutaneous melanoma	51	No	male	TCGA-DA-A1I4	TCGA-DA-A1I4-06	control
+TCGA-D3-A1Q1-06	skin cutaneous melanoma	79	No	female	TCGA-D3-A1Q1	TCGA-D3-A1Q1-06	control
+TCGA-EB-A4IS-01	skin cutaneous melanoma	77	No	male	TCGA-EB-A4IS	TCGA-EB-A4IS-01	control
+TCGA-FS-A1ZY-06	skin cutaneous melanoma	71	No	male	TCGA-FS-A1ZY	TCGA-FS-A1ZY-06	control
+TCGA-FS-A1ZF-06	skin cutaneous melanoma	78	No	female	TCGA-FS-A1ZF	TCGA-FS-A1ZF-06	control
+TCGA-EE-A2MM-06	skin cutaneous melanoma	63	No	female	TCGA-EE-A2MM	TCGA-EE-A2MM-06	control
+TH03_0103_S01	spindle cell/sclerosing rhabdomyosarcoma	8	Yes, age < 30 years	not reported	N/A	N/A	control
+TH03_0105_S01	spindle cell/sclerosing rhabdomyosarcoma	17	Yes, age < 30 years	not reported	N/A	N/A	control
+THR29_0731_S01	spindle cell/sclerosing rhabdomyosarcoma	1	Yes, age < 30 years	male	RMS_2028	RMS_2028_tumor, SRR5144188	control
+THR29_0764_S01	spindle cell/sclerosing rhabdomyosarcoma	12	Yes, age < 30 years	male	RMS_2080	RMS_2080_tumor, SRR5144221	control
+THR29_0766_S01	spindle cell/sclerosing rhabdomyosarcoma	15	Yes, age < 30 years	male	RMS_2083	RMS_2083_tumor, SRR5144223	control
+TCGA-BR-4363-01	stomach adenocarcinoma	60	No	female	TCGA-BR-4363	TCGA-BR-4363-01	control
+TCGA-HU-8610-01	stomach adenocarcinoma	75	No	male	TCGA-HU-8610	TCGA-HU-8610-01	control
+TCGA-CG-5721-01	stomach adenocarcinoma	58	No	male	TCGA-CG-5721	TCGA-CG-5721-01	control
+TCGA-BR-6705-01	stomach adenocarcinoma	68	No	female	TCGA-BR-6705	TCGA-BR-6705-01	control
+TCGA-D7-A6EY-01	stomach adenocarcinoma	72	No	female	TCGA-D7-A6EY	TCGA-D7-A6EY-01	control
+TCGA-F1-6874-01	stomach adenocarcinoma	79	No	male	TCGA-F1-6874	TCGA-F1-6874-01	control
+TCGA-CD-8525-01	stomach adenocarcinoma	82	No	female	TCGA-CD-8525	TCGA-CD-8525-01	control
+TCGA-BR-8078-01	stomach adenocarcinoma	70	No	female	TCGA-BR-8078	TCGA-BR-8078-01	control
+TCGA-BR-8364-01	stomach adenocarcinoma	42	No	female	TCGA-BR-8364	TCGA-BR-8364-01	control
+TCGA-CG-4436-01	stomach adenocarcinoma	57	No	male	TCGA-CG-4436	TCGA-CG-4436-01	control
+TCGA-BR-A4CS-01	stomach adenocarcinoma	77	No	male	TCGA-BR-A4CS	TCGA-BR-A4CS-01	control
+TCGA-RD-A8N1-01	stomach adenocarcinoma	70	No	male	TCGA-RD-A8N1	TCGA-RD-A8N1-01	control
+TCGA-BR-8369-01	stomach adenocarcinoma	76	No	female	TCGA-BR-8369	TCGA-BR-8369-01	control
+TCGA-CD-A48A-01	stomach adenocarcinoma	57	No	male	TCGA-CD-A48A	TCGA-CD-A48A-01	control
+TCGA-BR-8680-01	stomach adenocarcinoma	45	No	male	TCGA-BR-8680	TCGA-BR-8680-01	control
+TCGA-BR-7851-01	stomach adenocarcinoma	74	No	male	TCGA-BR-7851	TCGA-BR-7851-01	control
+TCGA-BR-A4IY-01	stomach adenocarcinoma	58	No	male	TCGA-BR-A4IY	TCGA-BR-A4IY-01	control
+TCGA-CG-5726-01	stomach adenocarcinoma	73	No	male	TCGA-CG-5726	TCGA-CG-5726-01	control
+TCGA-VQ-A91E-01	stomach adenocarcinoma	67	No	female	TCGA-VQ-A91E	TCGA-VQ-A91E-01	control
+TCGA-CG-4469-01	stomach adenocarcinoma	70	No	male	TCGA-CG-4469	TCGA-CG-4469-01	control
+THR39_1368_S01	synovial sarcoma	NA	NA	NA	SS Tumor from Patient NCI13	SRS2755858,GSM2887712	control
+THR39_1361_S01	synovial sarcoma	NA	NA	NA	SS Tumor from Patient NCI4	SRS2755849,GSM2887703	control
+TCGA-DX-A7ER-01	synovial sarcoma	69	No	male	TCGA-DX-A7ER	TCGA-DX-A7ER-01	control
+TCGA-WK-A8XT-01	synovial sarcoma	40	No	female	TCGA-WK-A8XT	TCGA-WK-A8XT-01	control
+THR39_1363_S01	synovial sarcoma	NA	NA	NA	SS Tumor from Patient NCI3	SRS2755852,GSM2887702	control
+THR39_1364_S01	synovial sarcoma	NA	NA	NA	SS Tumor from Patient NCI8	SRS2755853,GSM2887707	control
+TCGA-MJ-A850-01	synovial sarcoma	28	Yes, age < 30 years	male	TCGA-MJ-A850	TCGA-MJ-A850-01	control
+TH03_0112_S01	synovial sarcoma	17	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-X6-A8C7-01	synovial sarcoma	24	Yes, age < 30 years	female	TCGA-X6-A8C7	TCGA-X6-A8C7-01	control
+THR39_1369_S01	synovial sarcoma	NA	NA	NA	SS Tumor from Patient NCI16	SRS2755860,GSM2887715	control
+THR39_1377_S01	synovial sarcoma	NA	NA	NA	SS Tumor from Patient NCI12	SRS2755877,GSM2887711	control
+TH03_0156_S01	synovial sarcoma	25	Yes, age < 30 years	not reported	N/A	N/A	control
+THR31_1393_S01	synovial sarcoma	NA	No	female	N/A	SRR4307134	control
+THR39_1372_S01	synovial sarcoma	NA	NA	NA	SS Tumor from Patient NCI18	SRS2755863,GSM2887717	control
+THR39_1374_S01	synovial sarcoma	NA	NA	NA	SS Tumor from Patient NCI15	SRS2755873,GSM2887714	control
+THR31_1392_S01	synovial sarcoma	NA	No	male	N/A	SRR4307029	control
+TCGA-DX-AB3C-01	synovial sarcoma	27	Yes, age < 30 years	male	TCGA-DX-AB3C	TCGA-DX-AB3C-01	control
+TCGA-DX-AB3B-01	synovial sarcoma	28	Yes, age < 30 years	female	TCGA-DX-AB3B	TCGA-DX-AB3B-01	control
+TH27_0976_S01	synovial sarcoma	20	Yes, age < 30 years	male	N/A	N/A	control
+THR39_1362_S01	synovial sarcoma	NA	NA	NA	SS Tumor from Patient NCI6	SRS2755850,GSM2887705	control
+TH03_0115_S01	teratoma	10	Yes, age < 30 years	female	N/A	N/A	control
+TCGA-2G-AAHG-01	testicular germ cell tumor	25	Yes, age < 30 years	male	TCGA-2G-AAHG	TCGA-2G-AAHG-01	control
+TCGA-4K-AA1H-01	testicular germ cell tumor	26	Yes, age < 30 years	male	TCGA-4K-AA1H	TCGA-4K-AA1H-01	control
+TCGA-2G-AAG9-01	testicular germ cell tumor	25	Yes, age < 30 years	male	TCGA-2G-AAG9	TCGA-2G-AAG9-01	control
+TCGA-2G-AAFJ-01	testicular germ cell tumor	23	Yes, age < 30 years	male	TCGA-2G-AAFJ	TCGA-2G-AAFJ-01	control
+TCGA-2G-AALO-01	testicular germ cell tumor	NA	Unknown	unknown	TCGA-2G-AALO	TCGA-2G-AALO-01	control
+TCGA-XY-A9T9-01	testicular germ cell tumor	37	No	male	TCGA-XY-A9T9	TCGA-XY-A9T9-01	control
+TCGA-SB-A6J6-01	testicular germ cell tumor	22	Yes, age < 30 years	male	TCGA-SB-A6J6	TCGA-SB-A6J6-01	control
+TCGA-ZM-AA0B-01	testicular germ cell tumor	32	No	male	TCGA-ZM-AA0B	TCGA-ZM-AA0B-01	control
+TCGA-2G-AAGF-01	testicular germ cell tumor	28	Yes, age < 30 years	male	TCGA-2G-AAGF	TCGA-2G-AAGF-01	control
+TCGA-2G-AAG0-01	testicular germ cell tumor	23	Yes, age < 30 years	male	TCGA-2G-AAG0	TCGA-2G-AAG0-01	control
+TCGA-2X-A9D5-01	testicular germ cell tumor	49	No	male	TCGA-2X-A9D5	TCGA-2X-A9D5-01	control
+TCGA-2G-AAKD-01	testicular germ cell tumor	18	Yes, age < 30 years	male	TCGA-2G-AAKD	TCGA-2G-AAKD-01	control
+TCGA-XE-AANR-01	testicular germ cell tumor	23	Yes, age < 30 years	male	TCGA-XE-AANR	TCGA-XE-AANR-01	control
+TCGA-2G-AAFI-01	testicular germ cell tumor	41	No	male	TCGA-2G-AAFI	TCGA-2G-AAFI-01	control
+TCGA-2G-AAHL-01	testicular germ cell tumor	26	Yes, age < 30 years	male	TCGA-2G-AAHL	TCGA-2G-AAHL-01	control
+TCGA-XY-A8S2-01	testicular germ cell tumor	67	No	male	TCGA-XY-A8S2	TCGA-XY-A8S2-01	control
+TCGA-XE-A8H5-01	testicular germ cell tumor	29	Yes, age < 30 years	male	TCGA-XE-A8H5	TCGA-XE-A8H5-01	control
+TCGA-2G-AAH4-01	testicular germ cell tumor	34	No	male	TCGA-2G-AAH4	TCGA-2G-AAH4-01	control
+TCGA-SN-A84W-01	testicular germ cell tumor	30	No	male	TCGA-SN-A84W	TCGA-SN-A84W-01	control
+TCGA-VF-A8AB-01	testicular germ cell tumor	31	No	male	TCGA-VF-A8AB	TCGA-VF-A8AB-01	control
+TH27_0701_S02	thymic carcinoma	15	Yes, age < 30 years	male	N/A	N/A	control
+TH27_0701_S01	thymic carcinoma	15	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-X7-A8DJ-01	thymoma	68	No	male	TCGA-X7-A8DJ	TCGA-X7-A8DJ-01	control
+TCGA-ZB-A969-01	thymoma	72	No	female	TCGA-ZB-A969	TCGA-ZB-A969-01	control
+TCGA-ZC-AAAA-01	thymoma	39	No	male	TCGA-ZC-AAAA	TCGA-ZC-AAAA-01	control
+TCGA-XU-A92Y-01	thymoma	71	No	female	TCGA-XU-A92Y	TCGA-XU-A92Y-01	control
+TCGA-ZB-A966-01	thymoma	78	No	female	TCGA-ZB-A966	TCGA-ZB-A966-01	control
+TCGA-ZC-AAAH-01	thymoma	52	No	male	TCGA-ZC-AAAH	TCGA-ZC-AAAH-01	control
+TCGA-3S-AAYX-01	thymoma	55	No	female	TCGA-3S-AAYX	TCGA-3S-AAYX-01	control
+TCGA-4V-A9QL-01	thymoma	58	No	female	TCGA-4V-A9QL	TCGA-4V-A9QL-01	control
+TCGA-ZC-AAAF-01	thymoma	74	No	female	TCGA-ZC-AAAF	TCGA-ZC-AAAF-01	control
+TCGA-XM-AAZ1-01	thymoma	42	No	male	TCGA-XM-AAZ1	TCGA-XM-AAZ1-01	control
+TCGA-4X-A9FD-01	thymoma	43	No	female	TCGA-4X-A9FD	TCGA-4X-A9FD-01	control
+TCGA-ZB-A96Q-01	thymoma	49	No	male	TCGA-ZB-A96Q	TCGA-ZB-A96Q-01	control
+TCGA-X7-A8M7-01	thymoma	26	Yes, age < 30 years	male	TCGA-X7-A8M7	TCGA-X7-A8M7-01	control
+TCGA-XU-AAXW-01	thymoma	39	No	female	TCGA-XU-AAXW	TCGA-XU-AAXW-01	control
+TCGA-X7-A8M8-01	thymoma	45	No	male	TCGA-X7-A8M8	TCGA-X7-A8M8-01	control
+TCGA-4V-A9QW-01	thymoma	62	No	male	TCGA-4V-A9QW	TCGA-4V-A9QW-01	control
+TCGA-XU-A936-01	thymoma	65	No	female	TCGA-XU-A936	TCGA-XU-A936-01	control
+TCGA-4V-A9QJ-01	thymoma	64	No	male	TCGA-4V-A9QJ	TCGA-4V-A9QJ-01	control
+TCGA-4V-A9QN-01	thymoma	40	No	female	TCGA-4V-A9QN	TCGA-4V-A9QN-01	control
+TCGA-5U-AB0F-01	thymoma	58	No	female	TCGA-5U-AB0F	TCGA-5U-AB0F-01	control
+TCGA-DJ-A3UM-01	thyroid carcinoma	45	No	female	TCGA-DJ-A3UM	TCGA-DJ-A3UM-01	control
+TCGA-IM-A4EB-01	thyroid carcinoma	37	No	male	TCGA-IM-A4EB	TCGA-IM-A4EB-01	control
+TCGA-DJ-A3VD-01	thyroid carcinoma	32	No	female	TCGA-DJ-A3VD	TCGA-DJ-A3VD-01	control
+TCGA-DJ-A3VL-01	thyroid carcinoma	38	No	male	TCGA-DJ-A3VL	TCGA-DJ-A3VL-01	control
+TCGA-EM-A1YE-01	thyroid carcinoma	47	No	female	TCGA-EM-A1YE	TCGA-EM-A1YE-01	control
+TCGA-FY-A3BL-01	thyroid carcinoma	29	Yes, age < 30 years	male	TCGA-FY-A3BL	TCGA-FY-A3BL-01	control
+TCGA-BJ-A45G-01	thyroid carcinoma	48	No	female	TCGA-BJ-A45G	TCGA-BJ-A45G-01	control
+TCGA-EM-A22P-01	thyroid carcinoma	64	No	male	TCGA-EM-A22P	TCGA-EM-A22P-01	control
+TCGA-EM-A2CN-01	thyroid carcinoma	62	No	male	TCGA-EM-A2CN	TCGA-EM-A2CN-01	control
+TCGA-BJ-A45H-01	thyroid carcinoma	45	No	male	TCGA-BJ-A45H	TCGA-BJ-A45H-01	control
+TCGA-KS-A4IB-01	thyroid carcinoma	41	No	female	TCGA-KS-A4IB	TCGA-KS-A4IB-01	control
+TCGA-FY-A3WA-01	thyroid carcinoma	52	No	female	TCGA-FY-A3WA	TCGA-FY-A3WA-01	control
+TCGA-FK-A3SE-01	thyroid carcinoma	31	No	female	TCGA-FK-A3SE	TCGA-FK-A3SE-01	control
+TCGA-H2-A26U-01	thyroid carcinoma	54	No	female	TCGA-H2-A26U	TCGA-H2-A26U-01	control
+TCGA-ET-A3DP-01	thyroid carcinoma	43	No	female	TCGA-ET-A3DP	TCGA-ET-A3DP-01	control
+TCGA-EM-A4G1-01	thyroid carcinoma	26	Yes, age < 30 years	female	TCGA-EM-A4G1	TCGA-EM-A4G1-01	control
+TCGA-DJ-A1QF-01	thyroid carcinoma	61	No	female	TCGA-DJ-A1QF	TCGA-DJ-A1QF-01	control
+TCGA-DJ-A2Q6-01	thyroid carcinoma	38	No	female	TCGA-DJ-A2Q6	TCGA-DJ-A2Q6-01	control
+TCGA-J8-A4HW-01	thyroid carcinoma	59	No	female	TCGA-J8-A4HW	TCGA-J8-A4HW-01	control
+TCGA-FE-A23A-01	thyroid carcinoma	27	Yes, age < 30 years	female	TCGA-FE-A23A	TCGA-FE-A23A-01	control
+TCGA-X6-A7WC-01	undifferentiated pleomorphic sarcoma	74	No	male	TCGA-X6-A7WC	TCGA-X6-A7WC-01	control
+TCGA-Z4-AAPG-01	undifferentiated pleomorphic sarcoma	64	No	female	TCGA-Z4-AAPG	TCGA-Z4-AAPG-01	control
+TCGA-FX-A3TO-01	undifferentiated pleomorphic sarcoma	87	No	male	TCGA-FX-A3TO	TCGA-FX-A3TO-01	control
+TH03_0018_S01	undifferentiated pleomorphic sarcoma	12	Yes, age < 30 years	male	N/A	N/A	control
+TCGA-DX-A7ET-01	undifferentiated pleomorphic sarcoma	71	No	male	TCGA-DX-A7ET	TCGA-DX-A7ET-01	control
+TCGA-DX-AB32-01	undifferentiated pleomorphic sarcoma	51	No	male	TCGA-DX-AB32	TCGA-DX-AB32-01	control
+TCGA-DX-A3U8-01	undifferentiated pleomorphic sarcoma	43	No	male	TCGA-DX-A3U8	TCGA-DX-A3U8-01	control
+TCGA-IE-A4EJ-01	undifferentiated pleomorphic sarcoma	84	No	female	TCGA-IE-A4EJ	TCGA-IE-A4EJ-01	control
+TCGA-K1-A6RU-01	undifferentiated pleomorphic sarcoma	66	No	female	TCGA-K1-A6RU	TCGA-K1-A6RU-01	control
+TCGA-DX-A8BJ-01	undifferentiated pleomorphic sarcoma	76	No	male	TCGA-DX-A8BJ	TCGA-DX-A8BJ-01	control
+TCGA-SG-A6Z4-01	undifferentiated pleomorphic sarcoma	47	No	male	TCGA-SG-A6Z4	TCGA-SG-A6Z4-01	control
+TCGA-WK-A8XQ-01	undifferentiated pleomorphic sarcoma	57	No	male	TCGA-WK-A8XQ	TCGA-WK-A8XQ-01	control
+TCGA-LI-A9QH-01	undifferentiated pleomorphic sarcoma	72	No	female	TCGA-LI-A9QH	TCGA-LI-A9QH-01	control
+TCGA-MB-A5Y9-01	undifferentiated pleomorphic sarcoma	90	No	male	TCGA-MB-A5Y9	TCGA-MB-A5Y9-01	control
+TCGA-X6-A8C2-01	undifferentiated pleomorphic sarcoma	56	No	male	TCGA-X6-A8C2	TCGA-X6-A8C2-01	control
+TCGA-DX-A8BT-01	undifferentiated pleomorphic sarcoma	63	No	female	TCGA-DX-A8BT	TCGA-DX-A8BT-01	control
+TCGA-SG-A849-01	undifferentiated pleomorphic sarcoma	78	No	male	TCGA-SG-A849	TCGA-SG-A849-01	control
+TCGA-DX-AB2W-01	undifferentiated pleomorphic sarcoma	62	No	female	TCGA-DX-AB2W	TCGA-DX-AB2W-01	control
+TCGA-DX-A8BX-01	undifferentiated pleomorphic sarcoma	52	No	male	TCGA-DX-A8BX	TCGA-DX-A8BX-01	control
+TCGA-DX-AB2Q-01	undifferentiated pleomorphic sarcoma	65	No	female	TCGA-DX-AB2Q	TCGA-DX-AB2Q-01	control
+THR31_0921_S01	undifferentiated sarcoma NOS	NA	Yes, age < 30 years	female	N/A	SRR4306019	control
+TH27_1268_S01	undifferentiated sarcoma NOS	42	No	male	N/A	N/A	control
+TH03_0146_S01	undifferentiated sarcoma NOS	9	Yes, age < 30 years	male	N/A	N/A	control
+THR31_0939_S01	undifferentiated sarcoma NOS	NA	Yes, age < 30 years	female	N/A	SRR4307665	control
+TH03_0003_S01	undifferentiated sarcoma NOS	17	Yes, age < 30 years	not reported	N/A	N/A	control
+TH03_0003_S04	undifferentiated sarcoma NOS	17	Yes, age < 30 years	not reported	N/A	N/A	control
+THR31_0911_S01	undifferentiated sarcoma NOS	NA	Yes, age < 30 years	female	N/A	SRR4305935	control
+TH27_1353_S01	undifferentiated sarcoma NOS	7	Yes, age < 30 years	female	N/A	N/A	control
+TH34_1415_S01	undifferentiated sarcoma NOS	16	Yes, age < 30 years	female	N/A	N/A	control
+TH03_0003_S03	undifferentiated sarcoma NOS	17	Yes, age < 30 years	not reported	N/A	N/A	control
+TCGA-N6-A4V9-01	uterine carcinosarcoma	59	No	female	TCGA-N6-A4V9	TCGA-N6-A4V9-01	control
+TCGA-N8-A4PM-01	uterine carcinosarcoma	73	No	female	TCGA-N8-A4PM	TCGA-N8-A4PM-01	control
+TCGA-N8-A4PO-01	uterine carcinosarcoma	66	No	female	TCGA-N8-A4PO	TCGA-N8-A4PO-01	control
+TCGA-N8-A4PN-01	uterine carcinosarcoma	68	No	female	TCGA-N8-A4PN	TCGA-N8-A4PN-01	control
+TCGA-N8-A56S-01	uterine carcinosarcoma	75	No	female	TCGA-N8-A56S	TCGA-N8-A56S-01	control
+TCGA-NA-A4R0-01	uterine carcinosarcoma	80	No	female	TCGA-NA-A4R0	TCGA-NA-A4R0-01	control
+TCGA-N5-A4R8-01	uterine carcinosarcoma	65	No	female	TCGA-N5-A4R8	TCGA-N5-A4R8-01	control
+TCGA-N7-A4Y8-01	uterine carcinosarcoma	72	No	female	TCGA-N7-A4Y8	TCGA-N7-A4Y8-01	control
+TCGA-N5-A59E-01	uterine carcinosarcoma	62	No	female	TCGA-N5-A59E	TCGA-N5-A59E-01	control
+TCGA-N5-A4RO-01	uterine carcinosarcoma	67	No	female	TCGA-N5-A4RO	TCGA-N5-A4RO-01	control
+TCGA-NA-A4QX-01	uterine carcinosarcoma	60	No	female	TCGA-NA-A4QX	TCGA-NA-A4QX-01	control
+TCGA-NA-A4QW-01	uterine carcinosarcoma	61	No	female	TCGA-NA-A4QW	TCGA-NA-A4QW-01	control
+TCGA-N6-A4VD-01	uterine carcinosarcoma	81	No	female	TCGA-N6-A4VD	TCGA-N6-A4VD-01	control
+TCGA-N6-A4VE-01	uterine carcinosarcoma	84	No	female	TCGA-N6-A4VE	TCGA-N6-A4VE-01	control
+TCGA-N9-A4Q3-01	uterine carcinosarcoma	65	No	female	TCGA-N9-A4Q3	TCGA-N9-A4Q3-01	control
+TCGA-N6-A4VG-01	uterine carcinosarcoma	77	No	female	TCGA-N6-A4VG	TCGA-N6-A4VG-01	control
+TCGA-N7-A59B-01	uterine carcinosarcoma	69	No	female	TCGA-N7-A59B	TCGA-N7-A59B-01	control
+TCGA-N7-A4Y5-01	uterine carcinosarcoma	87	No	female	TCGA-N7-A4Y5	TCGA-N7-A4Y5-01	control
+TCGA-N5-A4RU-01	uterine carcinosarcoma	54	No	female	TCGA-N5-A4RU	TCGA-N5-A4RU-01	control
+TCGA-N5-A4RF-01	uterine carcinosarcoma	68	No	female	TCGA-N5-A4RF	TCGA-N5-A4RF-01	control
+TCGA-QS-A744-01	uterine corpus endometrioid carcinoma	86	No	female	TCGA-QS-A744	TCGA-QS-A744-01	control
+TCGA-AJ-A3BI-01	uterine corpus endometrioid carcinoma	67	No	female	TCGA-AJ-A3BI	TCGA-AJ-A3BI-01	control
+TCGA-DI-A1C3-01	uterine corpus endometrioid carcinoma	38	No	female	TCGA-DI-A1C3	TCGA-DI-A1C3-01	control
+TCGA-B5-A5OE-01	uterine corpus endometrioid carcinoma	68	No	female	TCGA-B5-A5OE	TCGA-B5-A5OE-01	control
+TCGA-EY-A547-01	uterine corpus endometrioid carcinoma	75	No	female	TCGA-EY-A547	TCGA-EY-A547-01	control
+TCGA-AJ-A3NC-01	uterine corpus endometrioid carcinoma	63	No	female	TCGA-AJ-A3NC	TCGA-AJ-A3NC-01	control
+TCGA-FI-A3PX-01	uterine corpus endometrioid carcinoma	57	No	female	TCGA-FI-A3PX	TCGA-FI-A3PX-01	control
+TCGA-AX-A3FT-01	uterine corpus endometrioid carcinoma	64	No	female	TCGA-AX-A3FT	TCGA-AX-A3FT-01	control
+TCGA-BK-A139-02	uterine corpus endometrioid carcinoma	74	No	female	TCGA-BK-A139	TCGA-BK-A139-02	control
+TCGA-B5-A3FB-01	uterine corpus endometrioid carcinoma	73	No	female	TCGA-B5-A3FB	TCGA-B5-A3FB-01	control
+TCGA-EO-A3AZ-01	uterine corpus endometrioid carcinoma	80	No	female	TCGA-EO-A3AZ	TCGA-EO-A3AZ-01	control
+TCGA-JU-AAVI-01	uterine corpus endometrioid carcinoma	61	No	female	TCGA-JU-AAVI	TCGA-JU-AAVI-01	control
+TCGA-A5-A2K3-01	uterine corpus endometrioid carcinoma	68	No	female	TCGA-A5-A2K3	TCGA-A5-A2K3-01	control
+TCGA-AP-A3K1-01	uterine corpus endometrioid carcinoma	56	No	female	TCGA-AP-A3K1	TCGA-AP-A3K1-01	control
+TCGA-D1-A3DG-01	uterine corpus endometrioid carcinoma	81	No	female	TCGA-D1-A3DG	TCGA-D1-A3DG-01	control
+TCGA-KP-A3W4-01	uterine corpus endometrioid carcinoma	63	No	female	TCGA-KP-A3W4	TCGA-KP-A3W4-01	control
+TCGA-EO-A22U-01	uterine corpus endometrioid carcinoma	83	No	female	TCGA-EO-A22U	TCGA-EO-A22U-01	control
+TCGA-EO-A3B1-01	uterine corpus endometrioid carcinoma	63	No	female	TCGA-EO-A3B1	TCGA-EO-A3B1-01	control
+TCGA-AJ-A3NF-01	uterine corpus endometrioid carcinoma	60	No	female	TCGA-AJ-A3NF	TCGA-AJ-A3NF-01	control
+TCGA-E6-A8L9-01	uterine corpus endometrioid carcinoma	61	No	female	TCGA-E6-A8L9	TCGA-E6-A8L9-01	control
+TCGA-V4-A9EY-01	uveal melanoma	66	No	female	TCGA-V4-A9EY	TCGA-V4-A9EY-01	control
+TCGA-VD-A8KL-01	uveal melanoma	77	No	female	TCGA-VD-A8KL	TCGA-VD-A8KL-01	control
+TCGA-VD-A8K9-01	uveal melanoma	71	No	female	TCGA-VD-A8K9	TCGA-VD-A8K9-01	control
+TCGA-YZ-A985-01	uveal melanoma	41	No	female	TCGA-YZ-A985	TCGA-YZ-A985-01	control
+TCGA-V4-A9EI-01	uveal melanoma	78	No	male	TCGA-V4-A9EI	TCGA-V4-A9EI-01	control
+TCGA-VD-A8KI-01	uveal melanoma	68	No	male	TCGA-VD-A8KI	TCGA-VD-A8KI-01	control
+TCGA-V4-A9F1-01	uveal melanoma	46	No	female	TCGA-V4-A9F1	TCGA-V4-A9F1-01	control
+TCGA-V3-A9ZY-01	uveal melanoma	54	No	male	TCGA-V3-A9ZY	TCGA-V3-A9ZY-01	control
+TCGA-VD-A8KO-01	uveal melanoma	51	No	male	TCGA-VD-A8KO	TCGA-VD-A8KO-01	control
+TCGA-V4-A9EM-01	uveal melanoma	53	No	male	TCGA-V4-A9EM	TCGA-V4-A9EM-01	control
+TCGA-V3-A9ZX-01	uveal melanoma	56	No	male	TCGA-V3-A9ZX	TCGA-V3-A9ZX-01	control
+TCGA-VD-A8KM-01	uveal melanoma	65	No	male	TCGA-VD-A8KM	TCGA-VD-A8KM-01	control
+TCGA-V4-A9EK-01	uveal melanoma	37	No	female	TCGA-V4-A9EK	TCGA-V4-A9EK-01	control
+TCGA-V4-A9F4-01	uveal melanoma	41	No	male	TCGA-V4-A9F4	TCGA-V4-A9F4-01	control
+TCGA-V4-A9F2-01	uveal melanoma	78	No	female	TCGA-V4-A9F2	TCGA-V4-A9F2-01	control
+TCGA-V4-A9E9-01	uveal melanoma	50	No	male	TCGA-V4-A9E9	TCGA-V4-A9E9-01	control
+TCGA-VD-AA8N-01	uveal melanoma	86	No	male	TCGA-VD-AA8N	TCGA-VD-AA8N-01	control
+TCGA-V4-A9EJ-01	uveal melanoma	38	No	male	TCGA-V4-A9EJ	TCGA-V4-A9EJ-01	control
+TCGA-WC-A87U-01	uveal melanoma	73	No	male	TCGA-WC-A87U	TCGA-WC-A87U-01	control
+TCGA-WC-AA9A-01	uveal melanoma	70	No	female	TCGA-WC-AA9A	TCGA-WC-AA9A-01	control
+TARGET-50-PAJMJT-01	wilms tumor	5	Yes, age < 30 years	female	TARGET-50-PAJMJT	TARGET-50-PAJMJT-01	control
+TARGET-50-CAAAAH-01	wilms tumor	4.68	Yes, age < 30 years	female	TARGET-50-CAAAAH	TARGET-50-CAAAAH-01	control
+TARGET-50-PAJNTJ-02	wilms tumor	2	Yes, age < 30 years	unknown	TARGET-50-PAJNTJ	TARGET-50-PAJNTJ-02	control
+TARGET-50-PAJLKR-01	wilms tumor	6	Yes, age < 30 years	female	TARGET-50-PAJLKR	TARGET-50-PAJLKR-01	control
+TARGET-50-PAJNZS-01	wilms tumor	5	Yes, age < 30 years	female	TARGET-50-PAJNZS	TARGET-50-PAJNZS-01	control
+TARGET-50-PALDWP-01	wilms tumor	5.76	Yes, age < 30 years	male	TARGET-50-PALDWP	TARGET-50-PALDWP-01	control
+TH27_1405_S01	wilms tumor	NA	NA	male	N/A	N/A	control
+TARGET-50-PAJMIZ-01	wilms tumor	7	Yes, age < 30 years	female	TARGET-50-PAJMIZ	TARGET-50-PAJMIZ-01	control
+TARGET-50-PAJMKI-01	wilms tumor	5	Yes, age < 30 years	male	TARGET-50-PAJMKI	TARGET-50-PAJMKI-01	control
+TARGET-50-PAJMEP-01	wilms tumor	1.84	Yes, age < 30 years	male	TARGET-50-PAJMEP	TARGET-50-PAJMEP-01	control
+TARGET-50-PADXAY-01	wilms tumor	5	Yes, age < 30 years	male	TARGET-50-PADXAY	TARGET-50-PADXAY-01	control
+TARGET-50-PAJNRL-01	wilms tumor	4.04	Yes, age < 30 years	male	TARGET-50-PAJNRL	TARGET-50-PAJNRL-01	control
+TARGET-50-PAKUIT-01	wilms tumor	3	Yes, age < 30 years	female	TARGET-50-PAKUIT	TARGET-50-PAKUIT-01	control
+TARGET-50-PAJNAA-01	wilms tumor	9.1	Yes, age < 30 years	female	TARGET-50-PAJNAA	TARGET-50-PAJNAA-01	control
+TARGET-50-PALKRS-01	wilms tumor	5	Yes, age < 30 years	male	TARGET-50-PALKRS	TARGET-50-PALKRS-01	control
+TARGET-50-PAKSDG-01	wilms tumor	3	Yes, age < 30 years	male	TARGET-50-PAKSDG	TARGET-50-PAKSDG-01	control
+TARGET-50-PAJNCC-01	wilms tumor	2.18	Yes, age < 30 years	male	TARGET-50-PAJNCC	TARGET-50-PAJNCC-01	control
+TARGET-50-PAJNLT-01	wilms tumor	4	Yes, age < 30 years	female	TARGET-50-PAJNLT	TARGET-50-PAJNLT-01	control
+TARGET-50-CAAAAS-01	wilms tumor	6.78	Yes, age < 30 years	female	TARGET-50-CAAAAS	TARGET-50-CAAAAS-01	control
+TARGET-50-PAJMEL-01	wilms tumor	4	Yes, age < 30 years	female	TARGET-50-PAJMEL	TARGET-50-PAJMEL-01	control

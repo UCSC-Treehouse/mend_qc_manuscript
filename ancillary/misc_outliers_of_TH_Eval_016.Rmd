@@ -1,0 +1,106 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+
+# Set submittable print options
+
+```{r}
+
+f_final_draft <- TRUE
+notation_text_alpha <- ifelse (f_final_draft, 0, 1 ) 
+
+```
+
+
+```{r setup, include = FALSE}
+
+#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+
+```
+
+## Load data
+
+```{r}
+
+outlier_support_summary <- read_tsv("outlier_suport_summary_outlier_defines_disease_by_ttest_rs_3.tsv")
+
+# dput(subset(outlier_support_summary, parent_sample == "TH_Eval_016" & n_outlier_support < 4)$gene)
+
+this_parent_sample =  "TH_Eval_016"
+
+dput(subset(outlier_support_summary, parent_sample ==this_parent_sample)$gene)
+
+
+outlier_results_raw <- read_tsv("../data/outlier_results_for_81_random_upoutliers_seed_10.txt")
+
+```
+
+```{r}
+
+TH_Eval_016_outlier_support_summary <- outlier_support_summary %>%
+  filter(parent_sample == "TH_Eval_016") %>%
+  select(-parent_sample)
+
+outlier_results <- outlier_results_raw %>% 
+  left_join(TH_Eval_016_outlier_support_summary, by = "gene") %>%
+  mutate(
+    mend_depth =as.numeric(gsub("^.*est([0-9]*)M_.*$", "\\1",  sample_id)),
+    pc_outlier = ifelse(is.na(pc_outlier), "no", pc_outlier),
+    is_top_5 = ifelse(is.na(is_top_5), "not in top 5", "in top 5"),
+    above_pc_up_threshold = c("below pc_up threshold", "above pc_up threshold")[1+(expression_in_log2tpm1>pc_high)],
+    #ttest_support =  c("gene has ttest support", "gene has no ttest support")[1+(n_outlier_support>3)]
+    ttest_support =  ifelse(is.na(n_outlier_support), "gene has no ttest support", "gene has ttest support")
+    )
+
+# table(outlier_results$mend_depth)
+
+
+```
+
+
+# Randomly selected genes fall below both pc threshold and top5 in all combinations
+```{r}
+
+plot_title = paste(length(unique(outlier_results$gene)), "randomly selected outlier genes support in", this_parent_sample)
+
+ggplot(outlier_results) + 
+  geom_point(aes(x=mend_depth, y=expression_in_log2tpm1, color=is_top_5)) +
+ # geom_boxplot(aes(x=mend_depth, y=expression_in_log2tpm1, group=mend_depth)) +
+  scale_color_brewer(palette = "Set1") + 
+  facet_grid(above_pc_up_threshold ~ ttest_support) +
+  ggtitle(plot_title)
+
+
+# don't show genes with t-test support
+
+```
+```{r}
+outlier_support_summary <- outlier_results %>% 
+  group_by(gene) %>%
+  summarize(n_outlier_support = sum(pc_outlier=="pc_up")) %>%
+  arrange(n_outlier_support)
+
+
+table(outlier_support_summary$n_outlier_support)
+
+table(outlier_support_summary$n_outlier_support)
+```
+
+
+

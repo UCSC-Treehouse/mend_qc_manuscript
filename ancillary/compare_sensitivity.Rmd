@@ -1,0 +1,88 @@
+---
+title: "`r gsub('.Rmd', ' ', gsub('_', ' ', knitr::current_input()))`"
+author: "Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+
+
+
+```{r setup, include = FALSE}
+
+#knitr::opts_knit$set(root.dir = "~/Documents/Dropbox/ucsc/projects/gitCode/calculations for umend_qc_publication/")
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+library(purrr)
+```
+
+## Load counts of true outliers
+
+```{r}
+
+file_pattern="count_of_true_outliers_"
+file_names <- list.files(pattern=file_pattern)
+
+
+outlier_counts <- tibble(file=file_names) %>% 
+  mutate(
+    truth_def = gsub("TH_Eval_01[0-9]_", "", gsub(file_pattern, "", file)),
+    parent_sample = gsub("^.*(TH_Eval_01[0-9])_.*", "\\1", file),
+    n_outliers = map(file, scan, what="list")) %>%
+  unnest %>%
+  select (-file)
+
+```
+
+Load count_of_true_outliers_TH_Eval_014_outlier_defines_disease_by_ttest
+
+# Load sensitivity_results
+```{r}
+
+file_pattern="outlier_median_accuracy_stats_"
+file_names <- list.files(pattern=file_pattern)
+
+
+sensitivity_results <- tibble(file=file_names) %>% 
+  mutate(truth_def = gsub(".tsv", "", gsub(file_pattern, "", file))) %>%
+  mutate(file_contents = map(file, read_tsv)) %>%
+  unnest %>%
+  select(-file)
+```
+
+
+
+
+```{r}
+
+outlier_counts <- outlier_counts %>% 
+  left_join(sensitivity_results %>% 
+              filter(median_of_depth_bin == 48)) %>%
+  mutate(label_text = paste0("n=", n_outliers)) %>%
+  filter(truth_def %in% sensitivity_results$truth_def)
+
+
+
+
+library(ggrepel)
+ggplot(sensitivity_results, aes(x=median_of_depth_bin, y = sensitivity, color=truth_def)) + 
+  geom_line() +
+#  geom_label_repel(data=outlier_counts, aes(y = 0.5, label=label_text)) +
+  facet_grid(parent_sample ~ .) +
+  scale_color_brewer(palette = "Set1") +
+  ggtitle("Sensitivity of outlier detection based on different truth definitions")
+                                           
+
+```
+
+
